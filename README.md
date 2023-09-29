@@ -1,1 +1,1 @@
-# CausalBench
+# Causal Bench
