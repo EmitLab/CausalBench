@@ -53,8 +53,7 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
     imports = get_imports(module_path)
 
     # get platform information
-    # system_platform = platform.system() + ' ' + platform.release()
-    system_platform = platform.platform(terse=True)
+    system_platform = platform.platform()
 
     # get processor information
     processor = cpuinfo.get_cpu_info()['brand_raw']
