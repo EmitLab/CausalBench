@@ -81,6 +81,8 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
         'storage': storage
     }
 
+    print(get_gpus())
+
     return response
 
 
@@ -101,3 +103,25 @@ def get_imports(module_path):
         imports = {candidate: version(candidate) for candidate in candidates}
 
         return imports
+
+
+def get_gpus():
+    gpus = []
+
+    try:
+        import GPUtil
+        devices = GPUtil.getGPUs()
+        for device in devices:
+            gpus.append(device.name)
+    except:
+        pass
+
+    try:
+        from pyadl import ADLManager
+        devices = ADLManager.getInstance().getDevices()
+        for device in devices:
+            gpus.append(device.adapterName.decode('utf-8'))
+    except:
+        pass
+
+    return gpus
