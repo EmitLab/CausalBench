@@ -1,22 +1,22 @@
-import time
-import importlib
 import functools
-import tracemalloc
-
 import os
 import platform
-import psutil
 import shutil
 import tempfile
-import subprocess
+import time
+import tracemalloc
+from importlib.metadata import version
+from importlib.util import module_from_spec, spec_from_file_location
 
+import cpuinfo
 import pipreqs.pipreqs as pipreqs
+import psutil
 
 
 def execute(module_path, func_name, /, *args, **keywords) -> dict:
     # load module
-    spec = importlib.util.spec_from_file_location('module', module_path)
-    module = importlib.util.module_from_spec(spec)
+    spec = spec_from_file_location('module', module_path)
+    module = module_from_spec(spec)
     spec.loader.exec_module(module)
 
     # get function
@@ -51,22 +51,22 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
 
     # get imports
     imports = get_imports(module_path)
-   
+
     # get platform information
-    system_platform = platform.platform()
+    system_platform = platform.system() + ' ' + platform.release()
 
     # get processor information
-    processor = platform.processor()
+    processor = cpuinfo.get_cpu_info()['brand_raw']
 
     # get architecture information
-    architecture, _ = platform.architecture()
+    architecture = platform.machine()
 
     # get virtual memory information
     virtual = psutil.virtual_memory().total
 
     # get storage information
     storage = psutil.disk_usage('/').total
-    
+
     # form the response
     response = {
         'output': output,
@@ -80,7 +80,7 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
         'virtual': virtual,
         'storage': storage
     }
-    
+
     return response
 
 
@@ -89,18 +89,15 @@ def get_imports(module_path):
         # set up paths
         file_name = os.path.basename(module_path)
         temp_path = os.path.join(temp_dir, file_name)
-        
+
         # copy file to a temporary directory
         shutil.copy2(module_path, temp_path)
-        
+
         # get names of packages
         candidates = pipreqs.get_all_imports(temp_dir)
         candidates = pipreqs.get_pkg_names(candidates)
-        
-        # get imported packages
-        candidates = pipreqs.get_import_local(candidates)
 
-        # convert to output dictionary format
-        imports = {candidate['name'] : candidate['version'] for candidate in candidates}
-        
+        # get versions of packages
+        imports = {candidate: version(candidate) for candidate in candidates}
+
         return imports

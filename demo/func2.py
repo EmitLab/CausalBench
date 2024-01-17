@@ -2,6 +2,7 @@ from time import sleep
 import numpy as np
 import pandas as pd
 
+
 def foo(num1, num2):
     sleep(0.1)
 
