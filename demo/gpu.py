@@ -103,5 +103,5 @@ class GPUProfiler(Thread):
     def stop(self):
         self.stopped = True
         if self.initial is None or self.peak is None:
-            return None
+            return 0
         return self.peak - self.initial
