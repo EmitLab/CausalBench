@@ -1,21 +1,28 @@
+import sys
+
+try:
+    import GPUtil
+except:
+    pass
+
+try:
+    from pyadl import ADLManager
+except:
+    pass
+
+
 def get_gpus():
     gpus = []
 
-    try:
-        import GPUtil
+    if 'GPUtil' in sys.modules:
         devices = GPUtil.getGPUs()
         for device in devices:
             gpus.append(GPU('NVIDIA', device))
-    except:
-        pass
 
-    try:
-        from pyadl import ADLManager
+    if 'ADLManager' in sys.modules:
         devices = ADLManager.getInstance().getDevices()
         for device in devices:
             gpus.append(GPU('AMD', device))
-    except:
-        pass
 
     return gpus
 
