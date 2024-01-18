@@ -81,7 +81,10 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
         'storage': storage
     }
 
-    print(get_gpus())
+    gpus = get_gpus()
+    for gpu in gpus:
+        print(gpu.get_name())
+        print(gpu.get_memory_util())
 
     return response
 
@@ -112,7 +115,7 @@ def get_gpus():
         import GPUtil
         devices = GPUtil.getGPUs()
         for device in devices:
-            gpus.append(device.name)
+            gpus.append(GPU('NVIDIA', device))
     except:
         pass
 
@@ -120,8 +123,24 @@ def get_gpus():
         from pyadl import ADLManager
         devices = ADLManager.getInstance().getDevices()
         for device in devices:
-            gpus.append(device.adapterName.decode('utf-8'))
+            gpus.append(GPU('AMD', device))
     except:
         pass
 
     return gpus
+
+
+class GPU:
+
+    def __init__(self, vendor, device):
+        self.vendor = vendor
+        self.device = device
+
+    def get_name(self):
+        if self.vendor == 'NVIDIA':
+            return self.device.name
+        elif self.vendor == 'AMD':
+            return self.device.adapterName.decode('utf-8')
+
+    def get_memory_util(self):
+        return self.device.memoryUtil
