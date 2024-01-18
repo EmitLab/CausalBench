@@ -85,6 +85,7 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
 
     gpus = get_gpus()
     for gpu in gpus:
+        print(gpu.get_uuid())
         print(gpu.get_name())
         print(gpu.get_memory_util())
 

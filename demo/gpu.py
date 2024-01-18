@@ -2,12 +2,12 @@ import sys
 
 try:
     import GPUtil
-except:
+except NameError:
     pass
 
 try:
     from pyadl import ADLManager
-except:
+except NameError:
     pass
 
 
@@ -32,6 +32,12 @@ class GPU:
     def __init__(self, vendor, device):
         self.vendor = vendor
         self.device = device
+
+    def get_uuid(self):
+        if self.vendor == 'NVIDIA':
+            return self.device.uuid
+        elif self.vendor == 'AMD':
+            return self.device.uuid
 
     def get_name(self):
         if self.vendor == 'NVIDIA':
