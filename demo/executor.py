@@ -143,4 +143,7 @@ class GPU:
             return self.device.adapterName.decode('utf-8')
 
     def get_memory_util(self):
-        return self.device.memoryUtil
+        if self.vendor == 'NVIDIA':
+            return self.device.memoryUtil
+        elif self.vendor == 'AMD':
+            return self.device.getCurrentUsage() / 100
