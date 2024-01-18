@@ -12,7 +12,7 @@ import cpuinfo
 import pipreqs.pipreqs as pipreqs
 import psutil
 
-from gpu import get_gpus
+from gpu import gpu_profiler
 
 
 def execute(module_path, func_name, /, *args, **keywords) -> dict:
@@ -26,6 +26,13 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
 
     # define callable function
     newfunc = functools.partial(func, *args, **keywords)
+
+    # create gpu profiler
+    gpu, profiler = gpu_profiler()
+
+    # start GPU profiler
+    if profiler is not None:
+        profiler.start()
 
     # get start time
     start = time.time_ns()
@@ -44,6 +51,10 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
 
     # get the end time
     end = time.time_ns()
+
+    # stop GPU profiler
+    if profiler is not None:
+        gpu_memory = profiler.stop()
 
     # calculate the execution duration
     duration = end - start
@@ -78,16 +89,12 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
         'imports': imports,
         'platform': system_platform,
         'processor': processor,
+        'gpu': gpu,
         'architecture': architecture,
-        'virtual': virtual,
+        'virtual_memory': virtual,
+        'gpu_memory': gpu_memory,
         'storage': storage
     }
-
-    gpus = get_gpus()
-    for gpu in gpus:
-        print(gpu.get_uuid())
-        print(gpu.get_name())
-        print(gpu.get_memory_util())
 
     return response
 

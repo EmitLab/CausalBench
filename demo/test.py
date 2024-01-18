@@ -22,8 +22,10 @@ def call_func(module_path):
         print()
         print(f'Platform: {response["platform"]}')
         print(f'Processor: {response["processor"]}')
+        print(f'GPU: {response["gpu"]}')
         print(f'Architecture: {response["architecture"]}')
-        print(f'Virtual Memory: {response["virtual"]} bytes')
+        print(f'Virtual Memory: {response["virtual_memory"]} bytes')
+        print(f'GPU Memory: {response["gpu_memory"]} bytes')
         print(f'Storage: {response["storage"]} bytes')
         print('-' * 80)
     except FileNotFoundError as e:
