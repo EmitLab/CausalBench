@@ -37,7 +37,7 @@ class GPU:
         if self.vendor == 'NVIDIA':
             return self.device.uuid
         elif self.vendor == 'AMD':
-            return self.device.uuid
+            return self.device.uuid.decode('utf-8')
 
     def get_name(self):
         if self.vendor == 'NVIDIA':
