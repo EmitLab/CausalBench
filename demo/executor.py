@@ -12,6 +12,8 @@ import cpuinfo
 import pipreqs.pipreqs as pipreqs
 import psutil
 
+from gpu import get_gpus
+
 
 def execute(module_path, func_name, /, *args, **keywords) -> dict:
     # load module
@@ -106,44 +108,3 @@ def get_imports(module_path):
         imports = {candidate: version(candidate) for candidate in candidates}
 
         return imports
-
-
-def get_gpus():
-    gpus = []
-
-    try:
-        import GPUtil
-        devices = GPUtil.getGPUs()
-        for device in devices:
-            gpus.append(GPU('NVIDIA', device))
-    except:
-        pass
-
-    try:
-        from pyadl import ADLManager
-        devices = ADLManager.getInstance().getDevices()
-        for device in devices:
-            gpus.append(GPU('AMD', device))
-    except:
-        pass
-
-    return gpus
-
-
-class GPU:
-
-    def __init__(self, vendor, device):
-        self.vendor = vendor
-        self.device = device
-
-    def get_name(self):
-        if self.vendor == 'NVIDIA':
-            return self.device.name
-        elif self.vendor == 'AMD':
-            return self.device.adapterName.decode('utf-8')
-
-    def get_memory_util(self):
-        if self.vendor == 'NVIDIA':
-            return self.device.memoryUtil
-        elif self.vendor == 'AMD':
-            return self.device.getCurrentUsage() / 100
