@@ -2,13 +2,13 @@ import sys
 
 try:
     import GPUtil
-except NameError:
-    pass
+except:
+    print('Failed to import "GPUtil" library', file=sys.stderr)
 
 try:
     from pyadl import ADLManager
-except NameError:
-    pass
+except:
+    print('Failed to import "pyadl" library', file=sys.stderr)
 
 
 def get_gpus():
