@@ -91,6 +91,9 @@ class GPUProfiler(Thread):
         self.gpu.refresh()
         self.initial = self.peak = self.gpu.get_memory_used()
 
+        if self.initial is None or self.peak is None:
+            return
+
         while not self.stopped:
             self.gpu.refresh()
             memory = self.gpu.get_memory_used()
@@ -103,5 +106,5 @@ class GPUProfiler(Thread):
     def stop(self):
         self.stopped = True
         if self.initial is None or self.peak is None:
-            return 0
+            return None
         return self.peak - self.initial

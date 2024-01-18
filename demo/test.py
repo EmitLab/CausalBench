@@ -25,7 +25,12 @@ def call_func(module_path):
         print(f'GPU: {response["gpu"]}')
         print(f'Architecture: {response["architecture"]}')
         print(f'Virtual Memory: {response["virtual_memory"]} bytes')
-        print(f'GPU Memory: {response["gpu_memory"]} bytes')
+
+        if response["gpu_memory"] is None:
+            print(f'GPU Memory: None')
+        else:
+            print(f'GPU Memory: {response["gpu_memory"]} bytes')
+
         print(f'Storage: {response["storage"]} bytes')
         print('-' * 80)
     except FileNotFoundError as e:
