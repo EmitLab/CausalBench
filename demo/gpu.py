@@ -33,6 +33,7 @@ def gpu_profiler():
     gpus = get_gpus()
     if len(gpus) > 0:
         return gpus[0].get_name(), GPUProfiler(gpus[0])
+    return None, None
 
 
 class GPU:

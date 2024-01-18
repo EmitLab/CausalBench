@@ -53,6 +53,7 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
     end = time.time_ns()
 
     # stop GPU profiler
+    gpu_memory = None
     if profiler is not None:
         gpu_memory = profiler.stop()
 
