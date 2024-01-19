@@ -4,13 +4,13 @@ from threading import Thread
 
 try:
     import GPUtil
-except:
-    print('Failed to import "GPUtil" library', file=sys.stderr)
+except Exception as e:
+    print(f'Failed to import "GPUtil" library: {e}', file=sys.stderr)
 
 try:
     from pyadl import ADLManager
-except:
-    print('Failed to import "pyadl" library', file=sys.stderr)
+except Exception as e:
+    print(f'Failed to import "pyadl" library: {e}', file=sys.stderr)
 
 
 def get_gpus():
