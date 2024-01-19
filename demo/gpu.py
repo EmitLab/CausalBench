@@ -32,8 +32,8 @@ def get_gpus():
 def gpu_profiler():
     gpus = get_gpus()
     if len(gpus) > 0:
-        return gpus[0].get_name(), GPUProfiler(gpus[0])
-    return None, None
+        return gpus[0].get_name(), gpus[0].get_memory_total(), GPUProfiler(gpus[0])
+    return None, None, None
 
 
 class GPU:
@@ -65,6 +65,12 @@ class GPU:
             return self.device.memoryUtil
         elif self.vendor == 'AMD':
             return self.device.getCurrentUsage()
+
+    def get_memory_total(self):
+        if self.vendor == 'NVIDIA':
+            return self.device.memoryTotal
+        elif self.vendor == 'AMD':
+            return None
 
     def refresh(self):
         gpus = get_gpus()

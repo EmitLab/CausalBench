@@ -28,7 +28,7 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
     newfunc = functools.partial(func, *args, **keywords)
 
     # create gpu profiler
-    gpu, profiler = gpu_profiler()
+    gpu, gpu_memory_total, profiler = gpu_profiler()
 
     # start GPU profiler
     if profiler is not None:
@@ -76,25 +76,26 @@ def execute(module_path, func_name, /, *args, **keywords) -> dict:
     architecture = platform.machine()
 
     # get virtual memory information
-    virtual = psutil.virtual_memory().total
+    memory_total = psutil.virtual_memory().total
 
     # get storage information
-    storage = psutil.disk_usage('/').total
+    storage_total = psutil.disk_usage('/').total
 
     # form the response
     response = {
         'output': output,
         'duration': duration,
         'memory': memory,
+        'gpu_memory': gpu_memory,
         'python': python,
         'imports': imports,
         'platform': system_platform,
         'processor': processor,
         'gpu': gpu,
         'architecture': architecture,
-        'virtual_memory': virtual,
-        'gpu_memory': gpu_memory,
-        'storage': storage
+        'memory_total': memory_total,
+        'gpu_memory_total': gpu_memory_total,
+        'storage_total': storage_total
     }
 
     return response
