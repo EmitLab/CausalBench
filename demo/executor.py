@@ -15,14 +15,14 @@ import psutil
 from gpu import gpu_profiler
 
 
-def execute(module_path, func_name, /, *args, **keywords) -> dict:
+def execute(module_path, function_name, /, *args, **keywords) -> dict:
     # load module
     spec = spec_from_file_location('module', module_path)
     module = module_from_spec(spec)
     spec.loader.exec_module(module)
 
     # get function
-    func = getattr(module, func_name)
+    func = getattr(module, function_name)
 
     # define callable function
     newfunc = functools.partial(func, *args, **keywords)

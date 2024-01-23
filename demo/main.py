@@ -1,26 +1,26 @@
+import pandas as pd
+
 import executor
 
 
-def call_func(module_path):
-    num1 = 1
-    num2 = 2
-
-    function_name = 'foo'
-
+def execute_and_report(module_path, function_name, /, *args, **keywords):
     try:
-        response = executor.execute(module_path, function_name, num1=num1, num2=num2)
+        response = executor.execute(module_path, function_name, *args, **keywords)
 
         print('-' * 80)
         print(f'Module: {module_path}')
         print()
 
-        print(f'Output: {response["output"]}')
+        print('Output:')
+        print(response["output"])
+        print()
+
         print(f'Duration: {response["duration"]} nanoseconds')
-        print(f'Memory: {response["memory"]} bytes')
+        print(f'Used Memory: {response["memory"]} bytes')
         if response["gpu_memory"] is None:
-            print(f'GPU Memory: None')
+            print(f'Used GPU Memory: None')
         else:
-            print(f'GPU Memory: {response["gpu_memory"]} bytes')
+            print(f'Used GPU Memory: {response["gpu_memory"]} bytes')
         print()
 
         print(f'Python: {response["python"]}')
@@ -44,6 +44,10 @@ def call_func(module_path):
         print(e)
 
 
+def main():
+    X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
+    execute_and_report("./model1.py", "execute", data=[X], space=None)
+
+
 if __name__ == '__main__':
-    call_func("./func1.py")
-    call_func("./func2.py")
+    main()
