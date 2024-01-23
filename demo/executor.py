@@ -114,7 +114,23 @@ def get_imports(module_path):
         candidates = pipreqs.get_all_imports(temp_dir)
         candidates = pipreqs.get_pkg_names(candidates)
 
-        # get versions of packages
-        imports = {candidate: version(candidate) for candidate in candidates}
+        # get imports using pipreqs
+        imports_pipreqs = pipreqs.get_import_local(candidates)
+        candidates = [x for x in candidates if
+                      # check if candidate is not in exports
+                      x.lower() not in [y for x in imports_pipreqs for y in x['exports']]
+                      and
+                      # check if candidate is not in package names
+                      x.lower() not in [x['name'] for x in imports_pipreqs]]
+        imports_pipreqs = {x['name']: x['version'] for x in imports_pipreqs}
+
+        # get imports using importlib
+        imports_importlib = {candidate: version(candidate) for candidate in candidates}
+
+        # merge the imports
+        imports = {**imports_pipreqs, **imports_importlib}
+
+        # sort the imports
+        imports = dict(sorted(imports.items()))
 
         return imports
