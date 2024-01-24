@@ -1,4 +1,7 @@
+import networkx as nx
+import numpy as np
 import pandas as pd
+from matplotlib import pyplot as plt
 
 import executor
 
@@ -38,15 +41,45 @@ def execute_and_report(module_path, function_name, /, *args, **keywords):
             print(f'Total GPU Memory: {response["gpu_memory_total"]} bytes')
         print(f'Total Storage: {response["storage_total"]} bytes')
         print('-' * 80)
+
+        return response["output"]
     except FileNotFoundError as e:
         print(e)
     except AttributeError as e:
         print(e)
 
 
+def plot_graph(matrix, nodes):
+    plt.figure(figsize=(10, 6))
+
+    rows, cols = np.where(matrix == 1)
+    edges = zip(rows.tolist(), cols.tolist())
+    labels = {i: label for i, label in enumerate(nodes)}
+
+    graph = nx.DiGraph()
+    graph.add_edges_from(edges)
+
+    pos = nx.spring_layout(graph)
+    nx.draw_networkx_nodes(graph, pos,
+                           node_size=[len(labels[i]) * 500 for i in graph.nodes],
+                           node_color='white',
+                           edgecolors='black')
+    nx.draw_networkx_edges(graph, pos,
+                           node_size=[len(labels[i]) * 500 for i in graph.nodes])
+    nx.draw_networkx_labels(graph, pos, labels)
+
+    plt.axis('off')
+    plt.tight_layout()
+    plt.show()
+
+
 def main():
+    # dataset
     X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
-    execute_and_report("./model1.py", "execute", data=[X], space=None)
+
+    # model
+    matrix = execute_and_report("./model1.py", "execute", data=[X], space=None)
+    plot_graph(matrix, X.columns.tolist())
 
 
 if __name__ == '__main__':
