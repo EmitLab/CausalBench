@@ -59,7 +59,7 @@ def plot_graph(matrix, nodes):
     graph = nx.DiGraph()
     graph.add_edges_from(edges)
 
-    pos = nx.spring_layout(graph)
+    pos = nx.arf_layout(graph)
     nx.draw_networkx_nodes(graph, pos,
                            node_size=[len(labels[i]) * 500 for i in graph.nodes],
                            node_color='white',
