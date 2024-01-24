@@ -79,6 +79,9 @@ def main():
 
     # model
     matrix = execute_and_report("./model1.py", "execute", data=[X], space=None)
+
+    # evaluation
+    eval = execute_and_report("./evaluation.py", "evaluate", B_est=matrix, B_true=X)
     plot_graph(matrix, X.columns.tolist())
 
 
