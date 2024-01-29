@@ -6,10 +6,12 @@ output: dataframe (representation of the data), s (spatial, if any)
 '''
 #DataDEF: Causal info order-  Sex	Length	Diam	Height	Whole	Shucked	Viscera	Shell	Rings
 
-#imports
-import pandas as pd
 import os
+
+# imports
+import pandas as pd
 import yaml
+
 
 # Check the zip
     #(impl later as part of task)

@@ -51,7 +51,7 @@ def execute_and_report(module_path, function_name, /, *args, **keywords):
         print(e)
 
 
-def plot_graph(matrix, nodes, title=None):
+def plot_graph(matrix, nodes, pos=None, title=None):
     plt.figure(figsize=(10, 6))
 
     rows, cols = np.where(matrix == 1)
@@ -62,7 +62,9 @@ def plot_graph(matrix, nodes, title=None):
     graph.add_nodes_from(range(len(nodes)))
     graph.add_edges_from(edges)
 
-    pos = nx.arf_layout(graph)
+    if pos is None:
+        pos = nx.arf_layout(graph)
+
     nx.draw_networkx_nodes(graph, pos,
                            node_size=[len(labels[i]) * 500 for i in graph.nodes],
                            node_color='#5F9EA0')
@@ -77,6 +79,8 @@ def plot_graph(matrix, nodes, title=None):
     plt.axis('off')
     plt.tight_layout()
     plt.show()
+
+    return graph, pos
 
 
 def main():
@@ -98,8 +102,15 @@ def main():
     print(f'SHD score: {score}')
 
     # visualize
-    plot_graph(ground_truth.values, X.columns.tolist(), 'Ground Truth DAG')
-    plot_graph(matrix, X.columns.tolist(), 'Generated DAG')
+    graph, pos = plot_graph(matrix=ground_truth.values,
+                            nodes=X.columns.tolist(),
+                            pos=None,
+                            title='Ground Truth DAG')
+
+    graph, pos = plot_graph(matrix=matrix,
+                            nodes=X.columns.tolist(),
+                            pos=pos,
+                            title='Generated DAG')
 
 
 if __name__ == '__main__':
