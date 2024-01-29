@@ -1,6 +1,7 @@
+import logging
+
 import networkx as nx
 import numpy as np
-import pandas as pd
 from matplotlib import pyplot as plt
 
 import executor
@@ -76,6 +77,10 @@ def plot_graph(matrix, nodes):
 
 
 def main():
+    # disable logging
+    logger = logging.getLogger()
+    logger.disabled = True
+
     # dataset
     # X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
     dataframes = read_dataset()
@@ -84,7 +89,6 @@ def main():
 
     # model
     matrix = execute_and_report("./model1.py", "execute", data=[X], space=None)
-    print(matrix)
 
     # metrics
     score = execute_and_report("./metric1.py", "SHD", pred=matrix, truth=ground_truth)
