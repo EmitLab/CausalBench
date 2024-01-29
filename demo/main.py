@@ -51,7 +51,7 @@ def execute_and_report(module_path, function_name, /, *args, **keywords):
         print(e)
 
 
-def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=300):
+def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
     plt.figure(figsize=figsize, dpi=dpi)
 
     rows, cols = np.where(matrix == 1)
