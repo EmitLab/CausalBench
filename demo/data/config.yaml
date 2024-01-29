@@ -1,9 +1,9 @@
 #dataset knowledge is a must: https://archive.ics.uci.edu/ml/datasets/abalone
 type: dataset
-name: abalone_dataset
+name: abalone
 
 files:
-    - abalone_dataset:
+    - dataset:
         type: csv
         data: tensor
         path: data/abalone.mixed.numeric.csv
@@ -63,3 +63,45 @@ files:
                 type: #ratio
                 data: integer
                 unit: #
+    - groundtruth:
+          type: csv
+          data: matrix
+          path: data/causal_info_adjmat.csv
+          headers: false
+          columns:
+              - sex:
+                    header: Sex
+                    type: nominal
+                    data: integer
+              - length:
+                    header: Length
+                    type: nominal
+                    data: integer
+              - diam:
+                    header: Diam
+                    type: nominal
+                    data: integer
+              - height:
+                    header: Height
+                    type: nominal
+                    data: integer
+              - whole:
+                    header: Whole
+                    type: nominal
+                    data: integer
+              - shucked:
+                    header: Shucked
+                    type: nominal
+                    data: integer
+              - viscera:
+                    header: Viscera
+                    type: nominal
+                    data: integer
+              - shell:
+                    header: Shell
+                    type: nominal
+                    data: integer
+              - rings:
+                    header: Rings
+                    type: nominal
+                    data: integer
