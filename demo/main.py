@@ -51,8 +51,8 @@ def execute_and_report(module_path, function_name, /, *args, **keywords):
         print(e)
 
 
-def plot_graph(matrix, nodes, pos=None, title=None):
-    plt.figure(figsize=(10, 6))
+def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=300):
+    plt.figure(figsize=figsize, dpi=dpi)
 
     rows, cols = np.where(matrix == 1)
     edges = zip(rows.tolist(), cols.tolist())
@@ -70,8 +70,9 @@ def plot_graph(matrix, nodes, pos=None, title=None):
                            node_color='#5F9EA0')
     nx.draw_networkx_edges(graph, pos,
                            node_size=[len(labels[i]) * 500 for i in graph.nodes],
-                           edge_color='#5F9EA0',
-                           arrowsize=15)
+                           edge_color='#666666',
+                           arrowsize=15,
+                           connectionstyle='arc3,rad=0.1')
     nx.draw_networkx_labels(graph, pos, labels,
                             font_color='white')
 
