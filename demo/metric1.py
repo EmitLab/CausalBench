@@ -15,6 +15,8 @@ def SHD(pred, truth):
         >>> pred, truth = randint(2, size=(10, 10)), randint(2, size=(10, 10))
         >>> SHD(pred, truth)
     """
+    truth = truth.values
+
     # check if `truth` and `pred` are numpy arrays
     if not isinstance(truth, np.ndarray):
         raise TypeError("truth must be a numpy.ndarray")

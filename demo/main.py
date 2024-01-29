@@ -4,6 +4,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 import executor
+from datasetReader import read_dataset
 
 
 def execute_and_report(module_path, function_name, /, *args, **keywords):
@@ -57,6 +58,7 @@ def plot_graph(matrix, nodes):
     labels = {i: label for i, label in enumerate(nodes)}
 
     graph = nx.DiGraph()
+    graph.add_nodes_from(range(len(nodes)))
     graph.add_edges_from(edges)
 
     pos = nx.arf_layout(graph)
@@ -75,16 +77,22 @@ def plot_graph(matrix, nodes):
 
 def main():
     # dataset
-    X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
+    # X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
+    dataframes = read_dataset()
+    X = dataframes[0]
+    ground_truth = dataframes[1]
 
     # model
     matrix = execute_and_report("./model1.py", "execute", data=[X], space=None)
+    print(matrix)
 
-    # evaluation
-    # assume X.dag is the ground truth
-    eval = execute_and_report("./evaluation.py", "SHD", pred=matrix, truth=X.dag)
+    # metrics
+    score = execute_and_report("./metric1.py", "SHD", pred=matrix, truth=ground_truth)
+    print(f'SHD score: {score}')
+
     # visualize
     plot_graph(matrix, X.columns.tolist())
+    plot_graph(ground_truth.values, X.columns.tolist())
 
 
 if __name__ == '__main__':
