@@ -1,0 +1,68 @@
+{
+    "type": "object",
+    "properties": {
+        "type": {"type": "string"},
+        "name": {"type": "string"},
+        "files": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "patternProperties": {
+                    "^.*$": {
+                        "type": "object",
+                        "properties": {
+                            "type": {"type": "string"},
+                            "data": {"type": "string"},
+                            "path": {"type": "string"},
+                            "headers": {"type": "boolean"},
+                            "columns": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "patternProperties": {
+                                        "^.*$": {
+                                            "type": "object",
+                                            "properties": {
+                                                "index": {"type": "integer"},
+                                                "header": {"type": "string"},
+                                                "type": {
+                                                    "anyOf": [
+                                                        {"type": "string"},
+                                                        {"type": "null"}
+                                                    ]
+                                                },
+                                                "data": {"type": "string"},
+                                                "unit": {
+                                                    "anyOf": [
+                                                        {"type": "string"},
+                                                        {"type": "null"}
+                                                    ]
+                                                },
+                                                "vals": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "range": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "start": {"type": "number"},
+                                                        "end": {"type": "number"}
+                                                    }
+                                                }
+                                            },
+                                            "required": ["data"]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "required": ["type", "data", "path"]
+                    }
+                }
+            }
+        }
+    },
+    "required": ["type", "name", "files"]
+}
