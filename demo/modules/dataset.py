@@ -8,15 +8,17 @@ from modules.module import Module
 
 class Dataset(Module):
 
-    def __init__(self, dataset_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        if dataset_id == 0:
-            config_path = 'data/config.yaml'
-        else:
-            config_path = None
+    def __init__(self, module_id: int):
+        super().__init__(module_id, 'schema/dataset.json')
 
-        # set the structure of the current instance
-        super().__init__('schema/dataset.json', config_path)
+    def instantiate(self):
+        # TODO: Create the structure of the new instance
+        pass
+
+    def fetch(self, module_id: int):
+        # TODO: Replace with database call to download zip and obtain path
+        if module_id == 0:
+            return 'data/config.yaml'
 
     def load(self):
         # load the dataset
