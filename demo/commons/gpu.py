@@ -1,3 +1,4 @@
+import logging
 import sys
 import time
 from threading import Thread
@@ -5,12 +6,12 @@ from threading import Thread
 try:
     import GPUtil
 except Exception as e:
-    print(f'Failed to import \'GPUtil\' library: {e}', file=sys.stderr)
+    logging.warning(f'Failed to import \'GPUtil\' library: {e}')
 
 try:
     from pyadl import ADLManager
 except Exception as e:
-    print(f'Failed to import \'pyadl\' library: {e}', file=sys.stderr)
+    logging.warning(f'Failed to import \'pyadl\' library: {e}')
 
 
 def get_gpus():

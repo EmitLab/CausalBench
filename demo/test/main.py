@@ -1,11 +1,11 @@
-import logging
+from os.path import abspath
 
 import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
 
-import executor
-from datasetReader import read_dataset
+from commons import executor
+from modules.dataset import Dataset
 
 
 def execute_and_report(module_path, function_name, /, *args, **keywords):
@@ -85,21 +85,19 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 
 def main():
-    # disable logging
-    logger = logging.getLogger()
-    logger.disabled = True
-
     # dataset
     # X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
-    dataframes = read_dataset()
-    X = dataframes[0]
-    ground_truth = dataframes[1]
+    dataset = Dataset(0)
+    data = dataset.load()
+
+    X = data.dataset
+    ground_truth = data.ground_truth
 
     # model
-    matrix = execute_and_report("./model1.py", "execute", data=[X], space=None)
+    matrix = execute_and_report("model1.py", "execute", data=[X], space=None)
 
     # metrics
-    score = execute_and_report("./metric1.py", "SHD", pred=matrix, truth=ground_truth)
+    score = execute_and_report(abspath("./metric1.py"), "SHD", pred=matrix, truth=ground_truth)
     print(f'SHD score: {score}')
 
     # visualize

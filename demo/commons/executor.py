@@ -12,7 +12,7 @@ import cpuinfo
 import pipreqs.pipreqs as pipreqs
 import psutil
 
-from gpu import gpu_profiler
+from commons.gpu import gpu_profiler
 
 
 def execute(module_path, function_name, /, *args, **keywords) -> dict:

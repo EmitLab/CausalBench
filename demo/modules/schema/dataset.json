@@ -1,0 +1,62 @@
+{
+    "type": "object",
+    "properties": {
+        "type": {"type": "string"},
+        "name": {"type": "string"},
+        "files": {
+            "type": "object",
+            "patternProperties": {
+                "^.*$": {
+                    "type": "object",
+                    "properties": {
+                        "type": {"enum": ["csv"]},
+                        "data": {"enum": ["dataframe", "graph"]},
+                        "path": {"type": "string"},
+                        "headers": {"type": "boolean"},
+                        "columns": {
+                            "type": "object",
+                            "patternProperties": {
+                                "^.*$": {
+                                    "type": "object",
+                                    "properties": {
+                                        "index": {"type": "integer"},
+                                        "header": {"type": "string"},
+                                        "type": {
+                                            "anyOf": [
+                                                {"type": "string"},
+                                                {"type": "null"}
+                                            ]
+                                        },
+                                        "data": {"enum": ["string", "integer", "decimal"]},
+                                        "unit": {
+                                            "anyOf": [
+                                                {"type": "string"},
+                                                {"type": "null"}
+                                            ]
+                                        },
+                                        "labels": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "range": {
+                                            "type": "object",
+                                            "properties": {
+                                                "start": {"type": "number"},
+                                                "end": {"type": "number"}
+                                            }
+                                        }
+                                    },
+                                    "required": ["data"]
+                                }
+                            }
+                        }
+                    },
+                    "required": ["type", "data", "path"]
+                }
+            }
+        }
+    },
+    "required": ["type", "name", "files"]
+}
