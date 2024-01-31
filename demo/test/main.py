@@ -90,14 +90,14 @@ def main():
     dataset = Dataset(0)
     data = dataset.load()
 
-    X = data.dataset
-    ground_truth = data.ground_truth
+    X = data.file1
+    ground_truth = data.file2
 
     # model
-    matrix = execute_and_report("model1.py", "execute", data=[X], space=None)
+    matrix = execute_and_report("model/pc/model1.py", "execute", data=[X], space=None)
 
     # metrics
-    score = execute_and_report(abspath("./metric1.py"), "SHD", pred=matrix, truth=ground_truth)
+    score = execute_and_report(abspath("metric/shd/metric1.py"), "SHD", pred=matrix, truth=ground_truth)
     print(f'SHD score: {score}')
 
     # visualize

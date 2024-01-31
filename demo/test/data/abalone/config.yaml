@@ -3,10 +3,10 @@ type: dataset
 name: abalone
 
 files:
-    dataset:
+    file1:
         type: csv
         data: dataframe
-        path: data/abalone.mixed.numeric.csv
+        path: abalone.mixed.numeric.csv
         headers: true
         columns:
             sex:
@@ -63,10 +63,10 @@ files:
                 type: #ratio
                 data: integer
                 unit: #
-    ground_truth:
+    file2:
         type: csv
         data: graph
-        path: data/causal_info_adjmat.csv
+        path: causal_info_adjmat.csv
         headers: false
         columns:
             sex:

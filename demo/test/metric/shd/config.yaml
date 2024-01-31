@@ -1,0 +1,16 @@
+type: metric
+name: shd
+task: discovery
+path: shd.py
+inputs:
+    ground:
+        id: truth
+        data: graph
+
+    prediction:
+        id: pred
+        data: graph
+output:
+    score:
+        id: output1
+        data: integer

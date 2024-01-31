@@ -7,4 +7,4 @@ def execute(data, space):
     pc = PC()
     pc.learn(X)
 
-    return pc.causal_matrix
+    return {'pred': pc.causal_matrix}
