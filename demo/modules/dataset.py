@@ -10,7 +10,7 @@ from modules.module import Module
 class Dataset(Module):
 
     def __init__(self, module_id: int = None):
-        super().__init__(module_id, 'schema/dataset.json')
+        super().__init__(module_id, 'dataset')
 
     def instantiate(self):
         # TODO: Create the structure of the new instance

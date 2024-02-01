@@ -12,7 +12,7 @@ from jsonschema.exceptions import ValidationError
 
 class Module(ABC):
 
-    def __init__(self, module_id: int, schema_path: str):
+    def __init__(self, module_id: int, schema_name: str):
         if module_id is None:
             self.base_dir = self.instantiate()
             return
@@ -22,7 +22,7 @@ class Module(ABC):
         config_path = os.path.join(self.base_dir, 'config.yaml')
 
         # load schema
-        schema_string = resources.files(__package__).joinpath(schema_path).read_text()
+        schema_string = resources.files(__package__).joinpath('schema').joinpath(schema_name + '.json').read_text()
         self.schema = json.loads(schema_string)
 
         # load configuration
