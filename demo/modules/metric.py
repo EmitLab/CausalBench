@@ -19,7 +19,7 @@ class Dataset(Module):
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
-            return 'metric/shd/config.yaml'
+            return 'metric/shd'
 
     def execute(self, ground, pred):
         # TODO: Execute the metric, change input parameters if necessary
