@@ -1,4 +1,5 @@
 import logging
+import os
 
 import pandas as pd
 from bunch_py3 import bunchify
@@ -18,16 +19,18 @@ class Dataset(Module):
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
-            return 'data/abalone/config.yaml'
+            return 'data/abalone'
 
     def load(self):
         file_dict = {}
 
         for file, data in self.files.items():
+            file_path = os.path.join(self.base_dir, data.path)
+
             if data.data == 'dataframe':
-                file_df = pd.read_csv(data.path)
+                file_df = pd.read_csv(file_path)
             elif data.data == 'graph':
-                file_df = pd.read_csv(data.path, index_col=0)
+                file_df = pd.read_csv(file_path, index_col=0)
 
             file_dict[file] = file_df
 

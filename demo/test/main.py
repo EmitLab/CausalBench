@@ -94,10 +94,12 @@ def main():
     ground_truth = data.file2
 
     # model
-    matrix = execute_and_report("model/pc/model1.py", "execute", data=[X], space=None)
+    result = execute_and_report("model/pc/pc.py", "execute", data=[X], space=None)
+    matrix = result['pred']
 
     # metrics
-    score = execute_and_report(abspath("metric/shd/metric1.py"), "SHD", pred=matrix, truth=ground_truth)
+    result = execute_and_report(abspath("metric/shd/shd.py"), "SHD", pred=matrix, truth=ground_truth)
+    score = result['score']
     print(f'SHD score: {score}')
 
     # visualize

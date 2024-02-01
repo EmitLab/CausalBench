@@ -32,4 +32,6 @@ def SHD(pred, truth):
         raise ValueError("pred must be binary")
 
     diff = np.abs(truth - pred)
-    return np.sum(diff)
+    score = np.sum(diff)
+
+    return {'score': score}

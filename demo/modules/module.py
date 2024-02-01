@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 from abc import ABC, abstractmethod
 from importlib import resources
 
@@ -13,10 +14,12 @@ class Module(ABC):
 
     def __init__(self, module_id: int, schema_path: str):
         if module_id is None:
-            self.instantiate()
+            self.base_dir = self.instantiate()
             return
 
-        config_path = self.fetch(module_id)
+        # fetch the module instance from the dataset
+        self.base_dir = self.fetch(module_id)
+        config_path = os.path.join(self.base_dir, 'config.yaml')
 
         # load schema
         schema_string = resources.files(__package__).joinpath(schema_path).read_text()
@@ -42,7 +45,7 @@ class Module(ABC):
             logging.error(f'Configuration validation error: {e}')
 
     @abstractmethod
-    def instantiate(self):
+    def instantiate(self) -> str:
         pass
 
     @abstractmethod
