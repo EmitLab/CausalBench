@@ -1,42 +1,32 @@
 {
     "type": "object",
     "properties": {
-        "type": {"type": "string"},
+        "type": {"const": "model"},
         "name": {"type": "string"},
-        "task": {"type": "string"},
+        "task": {"enum": ["discovery"]},
         "path": {"type": "string"},
         "inputs": {
             "type": "object",
-            "properties": {
-                "data": {
+            "propertyNames": {"enum": ["data", "space"]},
+            "patternProperties": {
+                "^.*$": {
                     "type": "object",
                     "properties": {
                         "id": {"type": "string"},
-                        "data": {"type": "string", "enum": ["dataframe"]}
-                    },"required": ["id", "data"]},
-                "space": {
-                    "type": "object",
-                    "properties": {
-                        "id": {"type": "string"},
-                        "data": {
-                            "type": "string",
-                            "enum": ["graph"]
-                        }
+                        "data": {"enum": ["dataframe", "graph"]}
                     },
                     "required": ["id", "data"]
                 }
-            },
-            "required": ["data", "space"]
+            }
         },
-        "outputs": {"type": "object",
+        "outputs": {
+            "type": "object",
             "properties": {
-                "prediction": {"type": "object",
+                "prediction": {
+                    "type": "object",
                     "properties": {
                         "id": {"type": "string"},
-                        "data": {
-                            "type": "string",
-                            "enum": ["graph"]
-                        }
+                        "data": {"enum": ["dataframe", "graph"]}
                     },
                     "required": ["id", "data"]
                 }

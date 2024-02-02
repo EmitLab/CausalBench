@@ -1,7 +1,7 @@
 {
     "type": "object",
     "properties": {
-        "type": {"type": "string"},
+        "type": {"const": "dataset"},
         "name": {"type": "string"},
         "files": {
             "type": "object",
