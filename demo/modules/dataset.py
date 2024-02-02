@@ -16,6 +16,10 @@ class Dataset(Module):
         # TODO: Create the structure of the new instance
         pass
 
+    def validate(self):
+        # TODO: Perform logical validation of the structure
+        pass
+
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
