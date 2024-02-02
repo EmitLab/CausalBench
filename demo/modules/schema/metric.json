@@ -1,3 +1,73 @@
 {
-    "type": "object"
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["metric"]
+    },
+    "name": {
+      "type": "string"
+    },
+    "task": {
+      "type": "string",
+      "enum": ["discovery"]
+    },
+    "path": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "object",
+      "properties": {
+        "ground": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": ["truth"]
+            },
+            "data": {
+              "type": "string",
+              "enum": ["graph"]
+            }
+          },
+          "required": ["id", "data"]
+        },
+        "prediction": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": ["pred"]
+            },
+            "data": {
+              "type": "string",
+              "enum": ["graph"]
+            }
+          },
+          "required": ["id", "data"]
+        }
+      },
+      "required": ["ground", "prediction"]
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "data": {
+              "type": "string",
+              "enum": ["decimal"]
+            }
+          },
+          "required": ["id", "data"]
+        }
+      },
+      "required": ["score"]
+    }
+  },
+  "required": ["type", "name", "task", "path", "inputs", "output"]
 }

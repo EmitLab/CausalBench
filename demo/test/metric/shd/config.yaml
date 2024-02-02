@@ -13,4 +13,4 @@ inputs:
 output:
     score:
         id: output1
-        data: integer
+        data: decimal

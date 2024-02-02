@@ -22,8 +22,7 @@ class Metric(Module):
         arguments: Bunch = parse_arguments(args, keywords)
 
         if self.task == 'discovery':
-            ground_truth = arguments.ground_truth
-            prediction = arguments.prediction
+            ground_truth = self.ground
+            prediction = self.prediction
 
-            # TODO: Execute the metric
-            # ~~~~
+            return SHD(prediction, ground_truth)
