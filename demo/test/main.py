@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 
 from commons import executor
 from modules.dataset import Dataset
+from modules.model import Model
 
 
 def execute_and_report(module_path, function_name, /, *args, **keywords):
@@ -94,8 +95,10 @@ def main():
     ground_truth = data.file2
 
     # model
-    result = execute_and_report("model/pc/pc.py", "execute", data=[X], space=None)
+    model = Model(0)
+    result = model.execute(data=X, space = None)  # space is optional, and can be added.
     matrix = result['pred']
+    # result = execute_and_report("model/pc/pc.py", "execute", data=[X], space=None)
 
     # metrics
     result = execute_and_report(abspath("metric/shd/shd.py"), "SHD", pred=matrix, truth=ground_truth)
