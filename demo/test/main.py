@@ -99,13 +99,11 @@ def main():
     model = Model(0)
     result = model.execute(data=X, space = None)  # space is optional, and can be added.
     matrix = result['pred']
-    # result = execute_and_report("model/pc/pc.py", "execute", data=[X], space=None)
 
     # metrics
     metric = Metric(0)
     result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
     score = result['score']
-    print(f'SHD score: {score}')
 
     # visualize
     graph, pos = plot_graph(matrix=ground_truth.values,
