@@ -1,10 +1,11 @@
+import logging
 import os
 
-from setuptools import logging
+from bunch_py3 import bunchify, Bunch
 
 from commons.utils import parse_arguments, execute_and_report
 from modules.module import Module
-from bunch_py3 import bunchify, Bunch
+
 
 class Model(Module):
 
@@ -20,33 +21,18 @@ class Model(Module):
         if model_id == 0:
             return 'model/pc'
 
-    def execute(self, *args, **keywords): ##TODO: POPULATE
+    def execute(self, *args, **keywords):  ##TODO: POPULATE
         arguments: Bunch = parse_arguments(args, keywords)
+
+        file_path = os.path.join(self.base_dir, self.path)
+
         result = None
+
         if self.task == 'discovery':
-            data = arguments.data
-            space = arguments.space
-            result = execute_and_report(os.path.join(self.base_dir, self.path), "execute", data=data, space=space)
+            result = execute_and_report(file_path, "execute",
+                                        data=arguments.data,
+                                        space=arguments.space)
 
-        #logging.info('Executed data successfully')
+        logging.info('Executed model successfully')
 
-        # TODO: Execute the metric, change input parameters if necessary
         return bunchify(result)
-
-    '''
-    file_dict = {}
-
-    for file, data in self.files.items():
-        file_path = os.path.join(self.base_dir, data.path)
-
-        if data.data == 'dataframe':
-            file_df = pd.read_csv(file_path)
-        elif data.data == 'graph':
-            file_df = pd.read_csv(file_path, index_col=0)
-
-        file_dict[file] = file_df
-
-    logging.info('Loaded dataset successfully')
-
-    return bunchify(file_dict)
-'''
