@@ -1,6 +1,6 @@
 import os
 
-from bunch_py3 import Bunch
+from bunch_py3 import Bunch, bunchify
 
 from commons.utils import parse_arguments, execute_and_report
 from modules.module import Module
@@ -31,4 +31,5 @@ class Metric(Module):
                                         "SHD",
                                         pred=arguments.prediction,
                                         truth=arguments.ground_truth)
-            return result
+
+        return bunchify(result)
