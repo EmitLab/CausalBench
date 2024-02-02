@@ -2,7 +2,7 @@ import logging
 import os
 
 import pandas as pd
-from bunch_py3 import bunchify
+from bunch_py3 import bunchify, Bunch
 
 from modules.module import Module
 
@@ -12,7 +12,7 @@ class Dataset(Module):
     def __init__(self, module_id: int = None):
         super().__init__(module_id, 'dataset')
 
-    def instantiate(self):
+    def instantiate(self, args: Bunch):
         # TODO: Create the structure of the new instance
         pass
 

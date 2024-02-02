@@ -5,7 +5,7 @@ from abc import ABC, abstractmethod
 from importlib import resources
 
 import yaml
-from bunch_py3 import bunchify
+from bunch_py3 import bunchify, Bunch
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
@@ -14,7 +14,6 @@ class Module(ABC):
 
     def __init__(self, module_id: int, schema_name: str):
         if module_id is None:
-            self.base_dir = self.instantiate()
             return
 
         # fetch the module instance from the dataset
@@ -36,6 +35,22 @@ class Module(ABC):
         # validate object structure
         self.__validate()
 
+    def create(self, *args, **keywords):
+        # parse the arguments
+        if len(args) == 0:
+            arguments = bunchify(keywords)
+        elif len(args) == 1 and type(args[0]) is dict:
+            arguments = bunchify(args[0])
+        else:
+            logging.error('Invalid arguments')
+            return
+
+        # create the object
+        self.base_dir = self.instantiate(arguments)
+
+        # validate object structure
+        self.__validate()
+
     def __validate(self):
         config = json.loads(json.dumps(self.__dict__))
         try:
@@ -45,7 +60,7 @@ class Module(ABC):
             logging.error(f'Configuration validation error: {e}')
 
     @abstractmethod
-    def instantiate(self) -> str:
+    def instantiate(self, args: Bunch) -> str:
         pass
 
     @abstractmethod
