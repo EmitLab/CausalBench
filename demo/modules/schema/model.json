@@ -1,3 +1,48 @@
 {
-    "type": "object"
+    "type": "object",
+    "properties": {
+        "type": {"type": "string"},
+        "name": {"type": "string"},
+        "task": {"type": "string"},
+        "path": {"type": "string"},
+        "inputs": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "data": {"type": "string", "enum": ["dataframe"]}
+                    },"required": ["id", "data"]},
+                "space": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "data": {
+                            "type": "string",
+                            "enum": ["graph"]
+                        }
+                    },
+                    "required": ["id", "data"]
+                }
+            },
+            "required": ["data", "space"]
+        },
+        "outputs": {"type": "object",
+            "properties": {
+                "prediction": {"type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "data": {
+                            "type": "string",
+                            "enum": ["graph"]
+                        }
+                    },
+                    "required": ["id", "data"]
+                }
+            },
+            "required": ["prediction"]
+        }
+    },
+    "required": ["type", "name", "task", "path", "inputs", "outputs"]
 }
