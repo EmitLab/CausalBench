@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 
 from commons import executor
 from modules.dataset import Dataset
-
+from modules.metric import Metric
 
 def execute_and_report(module_path, function_name, /, *args, **keywords):
     try:
@@ -98,7 +98,8 @@ def main():
     matrix = result['pred']
 
     # metrics
-    result = execute_and_report(abspath("metric/shd/shd.py"), "SHD", pred=matrix, truth=ground_truth)
+    metric = Metric(0)
+    result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
     score = result['score']
     print(f'SHD score: {score}')
 

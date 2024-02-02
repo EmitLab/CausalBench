@@ -1,8 +1,7 @@
 from bunch_py3 import Bunch
 
-from commons.utils import parse_arguments
+from commons.utils import parse_arguments, execute_and_report
 from modules.module import Module
-
 
 class Metric(Module):
 
@@ -22,7 +21,8 @@ class Metric(Module):
         arguments: Bunch = parse_arguments(args, keywords)
 
         if self.task == 'discovery':
-            ground_truth = self.ground
-            prediction = self.prediction
-
-            return SHD(prediction, ground_truth)
+            ground_truth = arguments.ground_truth
+            prediction = arguments.prediction
+            mpath = os.path.join(self.base_dir, self.__dict__.get('path'))
+            result = execute_and_report(mpath, "SHD", pred=prediction, truth=ground_truth)
+            return result
