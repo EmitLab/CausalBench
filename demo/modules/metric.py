@@ -1,3 +1,4 @@
+import logging
 import os
 
 from bunch_py3 import Bunch, bunchify
@@ -24,12 +25,14 @@ class Metric(Module):
 
         file_path = os.path.join(self.base_dir, self.path)
 
-        result = None
+        metric_args = {}
 
         if self.task == 'discovery':
-            result = execute_and_report(file_path,
-                                        "SHD",
-                                        pred=arguments.prediction,
-                                        truth=arguments.ground_truth)
+            metric_args[self.inputs.ground.id] = arguments.ground_truth
+            metric_args[self.inputs.prediction.id] = arguments.prediction
+
+        result = execute_and_report(file_path, "evaluate", **metric_args)
+
+        logging.info('Executed metric successfully')
 
         return bunchify(result)

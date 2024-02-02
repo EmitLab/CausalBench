@@ -21,17 +21,18 @@ class Model(Module):
         if model_id == 0:
             return 'model/pc'
 
-    def execute(self, *args, **keywords):  ##TODO: POPULATE
+    def execute(self, *args, **keywords):
         arguments: Bunch = parse_arguments(args, keywords)
 
         file_path = os.path.join(self.base_dir, self.path)
 
-        result = None
+        model_args = {}
 
         if self.task == 'discovery':
-            result = execute_and_report(file_path, "execute",
-                                        data=arguments.data,
-                                        space=arguments.space)
+            model_args[self.inputs.data.id] = arguments.data
+            model_args[self.inputs.space.id] = arguments.space
+
+        result = execute_and_report(file_path, "execute", **model_args)
 
         logging.info('Executed model successfully')
 
