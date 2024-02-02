@@ -29,13 +29,16 @@ class Dataset(Module):
         file_dict = {}
 
         for file, data in self.files.items():
+            # form the proper file path
             file_path = os.path.join(self.base_dir, data.path)
 
+            # read the file
             if data.data == 'dataframe':
                 file_df = pd.read_csv(file_path)
             elif data.data == 'graph':
                 file_df = pd.read_csv(file_path, index_col=0)
 
+            # add the loaded file to the dictionary
             file_dict[file] = file_df
 
         logging.info('Loaded dataset successfully')

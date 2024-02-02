@@ -19,7 +19,7 @@
                 }
             }
         },
-        "output": {
+        "outputs": {
             "type": "object",
             "properties": {
                 "score": {
@@ -34,5 +34,5 @@
             "required": ["score"]
         }
     },
-    "required": ["type", "name", "task", "path", "inputs", "output"]
+    "required": ["type", "name", "task", "path", "inputs", "outputs"]
 }

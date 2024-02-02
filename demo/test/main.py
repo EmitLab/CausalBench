@@ -88,22 +88,20 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 def main():
     # dataset
-    # X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
     dataset = Dataset(0)
     data = dataset.load()
-
     X = data.file1
     ground_truth = data.file2
 
     # model
     model = Model(0)
     result = model.execute(data=X, space = None)  # space is optional, and can be added.
-    matrix = result['pred']
+    matrix = result.prediction
 
     # metrics
     metric = Metric(0)
     result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
-    score = result['score']
+    score = result.score
 
     # visualize
     graph, pos = plot_graph(matrix=ground_truth.values,

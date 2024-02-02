@@ -26,18 +26,27 @@ class Model(Module):
             return 'model/pc'
 
     def execute(self, *args, **keywords):
+        # parse the arguments
         arguments: Bunch = parse_arguments(args, keywords)
 
+        # form the proper file path
         file_path = os.path.join(self.base_dir, self.path)
 
+        # map the model arguments
         model_args = {}
 
         if self.task == 'discovery':
             model_args[self.inputs.data.id] = arguments.data
             model_args[self.inputs.space.id] = arguments.space
 
+        # execute the model
         result = execute_and_report(file_path, "execute", **model_args)
+
+        # map the outputs
+        output = {}
+        for key, data in self.outputs.items():
+            output[key] = result[data.id]
 
         logging.info('Executed model successfully')
 
-        return bunchify(result)
+        return bunchify(output)

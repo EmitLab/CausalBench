@@ -6,6 +6,7 @@ from bunch_py3 import Bunch, bunchify
 from commons.utils import parse_arguments, execute_and_report
 from modules.module import Module
 
+
 class Metric(Module):
 
     def __init__(self, module_id: int = None):
@@ -25,17 +26,26 @@ class Metric(Module):
             return 'metric/shd'
 
     def evaluate(self, *args, **keywords):
+        # parse the arguments
         arguments: Bunch = parse_arguments(args, keywords)
 
+        # form the proper file path
         file_path = os.path.join(self.base_dir, self.path)
 
+        # map the metric arguments
         metric_args = {}
 
         if self.task == 'discovery':
             metric_args[self.inputs.ground.id] = arguments.ground_truth
             metric_args[self.inputs.prediction.id] = arguments.prediction
 
+        # execute the metric
         result = execute_and_report(file_path, "evaluate", **metric_args)
+
+        # map the outputs
+        output = {}
+        for key, data in self.outputs.items():
+            output[key] = result[data.id]
 
         logging.info('Executed metric successfully')
 
