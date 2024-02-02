@@ -9,6 +9,8 @@ from bunch_py3 import bunchify, Bunch
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
+from commons.utils import parse_arguments
+
 
 class Module(ABC):
 
@@ -37,13 +39,7 @@ class Module(ABC):
 
     def create(self, *args, **keywords):
         # parse the arguments
-        if len(args) == 0:
-            arguments = bunchify(keywords)
-        elif len(args) == 1 and type(args[0]) is dict:
-            arguments = bunchify(args[0])
-        else:
-            logging.error('Invalid arguments')
-            return
+        arguments = parse_arguments(args, keywords)
 
         # create the object
         self.base_dir = self.instantiate(arguments)
@@ -60,7 +56,7 @@ class Module(ABC):
             logging.error(f'Configuration validation error: {e}')
 
     @abstractmethod
-    def instantiate(self, args: Bunch) -> str:
+    def instantiate(self, arguments: Bunch) -> str:
         pass
 
     @abstractmethod

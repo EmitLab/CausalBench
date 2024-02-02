@@ -1,4 +1,19 @@
+import logging
+
+from bunch_py3 import bunchify
+
 from commons import executor
+
+
+def parse_arguments(args, keywords):
+    # parse the arguments
+    if len(args) == 0:
+        return bunchify(keywords)
+    elif len(args) == 1 and type(args[0]) is dict:
+        return bunchify(args[0])
+    else:
+        logging.error('Invalid arguments')
+        return
 
 
 def execute_and_report(module_path, function_name, /, *args, **keywords):

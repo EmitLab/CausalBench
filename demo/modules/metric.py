@@ -1,5 +1,6 @@
 from bunch_py3 import Bunch
 
+from commons.utils import parse_arguments
 from modules.module import Module
 
 
@@ -8,7 +9,7 @@ class Metric(Module):
     def __init__(self, module_id: int = None):
         super().__init__(module_id, 'metric')
 
-    def instantiate(self, args: Bunch):
+    def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
         pass
 
@@ -17,6 +18,12 @@ class Metric(Module):
         if module_id == 0:
             return 'metric/shd'
 
-    def evaluate(self, ground, pred):
-        # TODO: Execute the metric, change input parameters if necessary
-        pass
+    def evaluate(self, *args, **keywords):
+        arguments: Bunch = parse_arguments(args, keywords)
+
+        if self.task == 'discovery':
+            ground_truth = arguments.ground_truth
+            prediction = arguments.prediction
+
+            # TODO: Execute the metric
+            # ~~~~

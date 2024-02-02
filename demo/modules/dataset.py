@@ -12,7 +12,7 @@ class Dataset(Module):
     def __init__(self, module_id: int = None):
         super().__init__(module_id, 'dataset')
 
-    def instantiate(self, args: Bunch):
+    def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
         pass
 
