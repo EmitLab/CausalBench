@@ -1,3 +1,5 @@
+import os
+
 from bunch_py3 import Bunch
 
 from commons.utils import parse_arguments, execute_and_report
@@ -20,9 +22,13 @@ class Metric(Module):
     def evaluate(self, *args, **keywords):
         arguments: Bunch = parse_arguments(args, keywords)
 
+        file_path = os.path.join(self.base_dir, self.path)
+
+        result = None
+
         if self.task == 'discovery':
-            ground_truth = arguments.ground_truth
-            prediction = arguments.prediction
-            mpath = os.path.join(self.base_dir, self.__dict__.get('path'))
-            result = execute_and_report(mpath, "SHD", pred=prediction, truth=ground_truth)
+            result = execute_and_report(file_path,
+                                        "SHD",
+                                        pred=arguments.prediction,
+                                        truth=arguments.ground_truth)
             return result
