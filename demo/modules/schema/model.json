@@ -1,3 +1,38 @@
 {
-    "type": "object"
+    "type": "object",
+    "properties": {
+        "type": {"const": "model"},
+        "name": {"type": "string"},
+        "task": {"enum": ["discovery"]},
+        "path": {"type": "string"},
+        "inputs": {
+            "type": "object",
+            "propertyNames": {"enum": ["data", "space"]},
+            "patternProperties": {
+                "^.*$": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "data": {"enum": ["dataframe", "graph"]}
+                    },
+                    "required": ["id", "data"]
+                }
+            }
+        },
+        "outputs": {
+            "type": "object",
+            "properties": {
+                "prediction": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "string"},
+                        "data": {"enum": ["dataframe", "graph"]}
+                    },
+                    "required": ["id", "data"]
+                }
+            },
+            "required": ["prediction"]
+        }
+    },
+    "required": ["type", "name", "task", "path", "inputs", "outputs"]
 }

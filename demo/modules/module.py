@@ -4,9 +4,9 @@ import os
 from abc import ABC, abstractmethod
 from importlib import resources
 
+import jsonschema
 import yaml
 from bunch_py3 import bunchify, Bunch
-from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
 from commons.utils import parse_arguments
@@ -50,13 +50,23 @@ class Module(ABC):
     def __validate(self):
         config = json.loads(json.dumps(self.__dict__))
         try:
-            validate(instance=config, schema=self.schema)
+            jsonschema.validate(instance=config, schema=self.schema)
             logging.info('Configuration validated successfully')
         except ValidationError as e:
             logging.error(f'Configuration validation error: {e}')
 
+        try:
+            self.validate()
+            logging.info('Logic validated successfully')
+        except Exception as e:
+            logging.error(f'Logic validation error: {e}')
+
     @abstractmethod
     def instantiate(self, arguments: Bunch) -> str:
+        pass
+
+    @abstractmethod
+    def validate(self):
         pass
 
     @abstractmethod

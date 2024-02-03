@@ -10,7 +10,7 @@ inputs:
     prediction:
         id: pred
         data: graph
-output:
+outputs:
     score:
-        id: output1
+        id: score
         data: decimal

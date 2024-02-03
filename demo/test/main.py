@@ -1,5 +1,3 @@
-from os.path import abspath
-
 import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
@@ -7,6 +5,8 @@ from matplotlib import pyplot as plt
 from commons import executor
 from modules.dataset import Dataset
 from modules.metric import Metric
+from modules.model import Model
+
 
 def execute_and_report(module_path, function_name, /, *args, **keywords):
     try:
@@ -86,22 +86,20 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 def main():
     # dataset
-    # X = pd.read_csv('./data/abalone.mixed.numeric.txt', delim_whitespace=True)
     dataset = Dataset(0)
     data = dataset.load()
-
     X = data.file1
     ground_truth = data.file2
 
     # model
-    result = execute_and_report("model/pc/pc.py", "execute", data=[X], space=None)
-    matrix = result['pred']
+    model = Model(0)
+    result = model.execute(data=X)
+    matrix = result.prediction
 
     # metrics
     metric = Metric(0)
     result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
-    score = result['score']
-    print(f'SHD score: {score}')
+    score = result.score
 
     # visualize
     graph, pos = plot_graph(matrix=ground_truth.values,
