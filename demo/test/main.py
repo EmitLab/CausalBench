@@ -1,5 +1,3 @@
-from os.path import abspath
-
 import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
@@ -95,7 +93,7 @@ def main():
 
     # model
     model = Model(0)
-    result = model.execute(data=X, space = None)  # space is optional, and can be added.
+    result = model.execute(data=X)
     matrix = result.prediction
 
     # metrics

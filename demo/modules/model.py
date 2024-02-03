@@ -37,7 +37,7 @@ class Model(Module):
 
         if self.task == 'discovery':
             model_args[self.inputs.data.id] = arguments.data
-            model_args[self.inputs.space.id] = arguments.space
+            model_args[self.inputs.space.id] = arguments.space if 'space' in arguments else None
 
         # execute the model
         result = execute_and_report(file_path, "execute", **model_args)
