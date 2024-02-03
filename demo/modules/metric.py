@@ -25,5 +25,5 @@ class Metric(Module):
             ground_truth = arguments.ground_truth
             prediction = arguments.prediction
             mpath = os.path.join(self.base_dir, self.path)
-            result = execute_and_report(mpath, "SHD", pred=prediction, truth=ground_truth)
+            result = execute_and_report(mpath, self.name, pred=prediction, truth=ground_truth)
             return result

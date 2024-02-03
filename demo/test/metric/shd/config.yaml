@@ -1,5 +1,5 @@
 type: metric
-name: shd
+name: SHD
 task: discovery
 path: shd.py
 inputs:
