@@ -3,6 +3,7 @@ from bunch_py3 import Bunch
 from commons.utils import parse_arguments, execute_and_report
 from modules.module import Module
 
+import os
 class Metric(Module):
 
     def __init__(self, module_id: int = None):
@@ -23,6 +24,6 @@ class Metric(Module):
         if self.task == 'discovery':
             ground_truth = arguments.ground_truth
             prediction = arguments.prediction
-            mpath = os.path.join(self.base_dir, self.__dict__.get('path'))
+            mpath = os.path.join(self.base_dir, self.path)
             result = execute_and_report(mpath, "SHD", pred=prediction, truth=ground_truth)
             return result
