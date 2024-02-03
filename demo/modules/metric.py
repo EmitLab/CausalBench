@@ -49,4 +49,4 @@ class Metric(Module):
 
         logging.info('Executed metric successfully')
 
-        return bunchify(result)
+        return bunchify(output)
