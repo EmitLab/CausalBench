@@ -39,7 +39,7 @@ class Metric(Module):
             metric_args[self.inputs.prediction.id] = arguments.prediction
 
         # execute the metric
-        result = execute_and_report(file_path, self.name, **metric_args)
+        result = execute_and_report(file_path, "evaluate", **metric_args)
 
         # map the outputs
         output = {}
