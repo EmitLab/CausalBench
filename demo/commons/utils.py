@@ -1,4 +1,7 @@
 import logging
+import os
+from pathlib import Path
+from zipfile import ZipFile
 
 from bunch_py3 import bunchify
 
@@ -57,3 +60,15 @@ def execute_and_report(module_path, function_name, /, *args, **keywords):
         print(e)
     except AttributeError as e:
         print(e)
+
+
+def extract_module(schema_name: str, zip_file_path: str):
+    # form the directory path
+    dir_name = os.path.basename(zip_file_path[:zip_file_path.rfind('.')])
+    dir_path = str(Path.home().joinpath('.causalbench').joinpath(schema_name).joinpath(dir_name))
+
+    # extract the zip file
+    zip_file = ZipFile(zip_file_path)
+    zip_file.extractall(path=dir_path)
+
+    return dir_path

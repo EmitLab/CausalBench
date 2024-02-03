@@ -23,7 +23,7 @@ class Model(Module):
     def fetch(self, model_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if model_id == 0:
-            return 'model/pc'
+            return 'model/pc.zip'
 
     def execute(self, *args, **keywords):
         # parse the arguments

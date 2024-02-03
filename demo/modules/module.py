@@ -9,7 +9,7 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from commons.utils import parse_arguments
+from commons.utils import parse_arguments, extract_module
 
 
 class Module(ABC):
@@ -18,15 +18,16 @@ class Module(ABC):
         if module_id is None:
             return
 
-        # fetch the module instance from the dataset
-        self.base_dir = self.fetch(module_id)
-        config_path = os.path.join(self.base_dir, 'config.yaml')
+        # create temporary directory
+        zip_file_path = self.fetch(module_id)
+        self.base_dir = extract_module(schema_name, zip_file_path)
 
         # load schema
         schema_string = resources.files(__package__).joinpath('schema').joinpath(schema_name + '.json').read_text()
         self.schema = json.loads(schema_string)
 
         # load configuration
+        config_path = os.path.join(self.base_dir, 'config.yaml')
         with open(config_path) as f:
             entries = yaml.safe_load(f)
             entries = bunchify(entries)

@@ -23,7 +23,7 @@ class Metric(Module):
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
-            return 'metric/shd'
+            return 'metric/shd.zip'
 
     def evaluate(self, *args, **keywords):
         # parse the arguments

@@ -23,7 +23,7 @@ class Dataset(Module):
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
-            return 'data/abalone'
+            return 'data/abalone.zip'
 
     def load(self):
         file_dict = {}
