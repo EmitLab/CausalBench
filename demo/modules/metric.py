@@ -6,7 +6,6 @@ from bunch_py3 import Bunch, bunchify
 from commons.utils import parse_arguments, execute_and_report
 from modules.module import Module
 
-
 class Metric(Module):
 
     def __init__(self, module_id: int = None):
@@ -40,7 +39,7 @@ class Metric(Module):
             metric_args[self.inputs.prediction.id] = arguments.prediction
 
         # execute the metric
-        result = execute_and_report(file_path, "evaluate", **metric_args)
+        result = execute_and_report(file_path, self.name, **metric_args)
 
         # map the outputs
         output = {}
