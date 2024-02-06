@@ -27,12 +27,16 @@ class Metric(Module):
         elif module_id == 1:
             return 'metric/accuracy.zip'
 
+    def publish(self) -> bool:
+        # TODO: Replace with database call to upload to the server
+        pass
+
     def evaluate(self, *args, **keywords):
         # parse the arguments
         arguments: Bunch = parse_arguments(args, keywords)
 
         # form the proper file path
-        file_path = os.path.join(self.base_dir, self.path)
+        file_path = os.path.join(self.package_path, self.path)
 
         # map the metric arguments
         metric_args = {}

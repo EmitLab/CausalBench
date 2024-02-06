@@ -15,35 +15,36 @@ from commons.utils import parse_arguments, extract_module
 class Module(ABC):
 
     def __init__(self, module_id: int, schema_name: str):
-        if module_id is None:
-            return
-
-        # create temporary directory
-        zip_file_path = self.fetch(module_id)
-        self.base_dir = extract_module(schema_name, zip_file_path)
+        # set the module ID
+        self.module_id = module_id
 
         # load schema
         schema_string = resources.files(__package__).joinpath('schema').joinpath(schema_name + '.json').read_text()
         self.schema = json.loads(schema_string)
 
-        # load configuration
-        config_path = os.path.join(self.base_dir, 'config.yaml')
-        with open(config_path) as f:
-            entries = yaml.safe_load(f)
-            entries = bunchify(entries)
+        if module_id is not None:
+            # create temporary directory
+            zip_file_path = self.fetch(module_id)
+            self.package_path = extract_module(schema_name, zip_file_path)
 
-        # set object structure
-        self.__dict__.update(entries)
+            # load configuration
+            config_path = os.path.join(self.package_path, 'config.yaml')
+            with open(config_path) as f:
+                entries = yaml.safe_load(f)
+                entries = bunchify(entries)
 
-        # validate object structure
-        self.__validate()
+            # set object structure
+            self.__dict__.update(entries)
+
+            # validate object structure
+            self.__validate()
 
     def create(self, *args, **keywords):
         # parse the arguments
         arguments = parse_arguments(args, keywords)
 
         # create the object
-        self.base_dir = self.instantiate(arguments)
+        self.package_path = self.instantiate(arguments)
 
         # validate object structure
         self.__validate()
@@ -72,4 +73,8 @@ class Module(ABC):
 
     @abstractmethod
     def fetch(self, module_id: int) -> str:
+        pass
+
+    @abstractmethod
+    def publish(self) -> bool:
         pass

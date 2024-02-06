@@ -20,6 +20,10 @@ class Dataset(Module):
         # TODO: Perform logical validation of the structure
         pass
 
+    def publish(self) -> bool:
+        # TODO: Replace with database call to upload to the server
+        pass
+
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
@@ -30,7 +34,7 @@ class Dataset(Module):
 
         for file, data in self.files.items():
             # form the proper file path
-            file_path = os.path.join(self.base_dir, data.path)
+            file_path = os.path.join(self.package_path, data.path)
 
             # read the file
             if data.data == 'dataframe':

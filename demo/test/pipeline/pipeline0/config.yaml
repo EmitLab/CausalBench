@@ -1,0 +1,8 @@
+type: pipeline
+name: pipeline0
+task: discovery
+dataset: 0
+model: 0
+metrics:
+    - 0
+    - 1

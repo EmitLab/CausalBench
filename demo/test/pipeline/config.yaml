@@ -1,0 +1,43 @@
+dataset: 0
+metrics:
+- 0
+- 1
+model: 1
+module_id: null
+name: pipeline1
+package_path: pipeline/pipeline1.zip
+schema:
+  $schema: http://json-schema.org/draft-07/schema#
+  description: Schema for validating pipeline configuration files
+  properties:
+    dataset:
+      description: Identifier for the dataset used
+      type: integer
+    metrics:
+      description: List of metrics identifiers
+      items:
+        type: integer
+      type: array
+    model:
+      description: Identifier for the model used
+      type: integer
+    name:
+      description: The name of the pipeline
+      type: string
+    task:
+      description: The task associated with the pipeline
+      type: string
+    type:
+      description: The type of configuration
+      type: string
+  required:
+  - type
+  - name
+  - task
+  - dataset
+  - model
+  - metrics
+  title: Pipeline Configuration
+  type: object
+task: discovery
+type: pipeline
