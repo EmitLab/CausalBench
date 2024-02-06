@@ -24,6 +24,8 @@ class Model(Module):
         # TODO: Replace with database call to download zip and obtain path
         if model_id == 0:
             return 'model/pc.zip'
+        elif model_id == 1:
+            return 'model/ges.zip'
 
     def execute(self, *args, **keywords):
         # parse the arguments
