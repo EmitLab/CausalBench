@@ -23,6 +23,8 @@ class Metric(Module):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
             return 'metric/shd.zip'
+        elif module_id == 1:
+            return 'metric/accuracy.zip'
 
     def evaluate(self, *args, **keywords):
         # parse the arguments
