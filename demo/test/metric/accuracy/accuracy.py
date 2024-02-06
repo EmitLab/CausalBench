@@ -22,4 +22,4 @@ def evaluate(pred, truth):
     
     score = np.mean(pred == truth)
 
-    return {'score': score.values}
+    return {'score': score}
