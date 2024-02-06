@@ -1,4 +1,3 @@
-from cdt.metrics import SID
 import numpy as np
 
 

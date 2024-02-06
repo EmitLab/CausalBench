@@ -1,5 +1,6 @@
 import networkx as nx
 import numpy as np
+import pandas as pd
 from matplotlib import pyplot as plt
 
 from commons import executor
@@ -84,33 +85,56 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
     return graph, pos
 
 
-def main():
+def display_scores(score_df):
+    for metric, scores in score_df.items():
+        plt.bar(score_df.index, scores)
+        plt.title(metric)
+        plt.show()
+
+
+def execute_pipeline(dataset_id: int, model_id: int, metric_id_list: list):
     # dataset
-    dataset = Dataset(0)
+    dataset = Dataset(dataset_id)
     data = dataset.load()
     X = data.file1
     ground_truth = data.file2
 
     # model
-    model = Model(0)
+    model = Model(model_id)
     result = model.execute(data=X)
     matrix = result.prediction
 
     # metrics
-    metric = Metric(0)
-    result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
-    score = result.score
+    metrics_names = []
+    scores = []
+    for metric_id in metric_id_list:
+        metric = Metric(metric_id)
+        result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
+        metrics_names.append(metric.name)
+        scores.append(result.score)
 
-    # visualize
-    graph, pos = plot_graph(matrix=ground_truth.values,
-                            nodes=X.columns.tolist(),
-                            pos=None,
-                            title='Ground Truth DAG')
+    return dataset.name, model.name, metrics_names, scores
 
-    graph, pos = plot_graph(matrix=matrix,
-                            nodes=X.columns.tolist(),
-                            pos=pos,
-                            title='Generated DAG')
+
+def main():
+    benchmark = [(0, 0, [0, 1]),
+                 (0, 1, [0, 1])]
+
+    dataset_model = []
+    metric_names = []
+    scores_list = []
+
+    for pipeline in benchmark:
+        dataset, model, metrics, scores = execute_pipeline(dataset_id=pipeline[0],
+                                                           model_id=pipeline[1],
+                                                           metric_id_list=pipeline[2])
+        dataset_model.append(f'{dataset}_{model}')
+        metric_names = metrics
+        scores_list.append(scores)
+
+    score_df = pd.DataFrame(scores_list, columns=metric_names, index=dataset_model)
+
+    display_scores(score_df)
 
 
 if __name__ == '__main__':
