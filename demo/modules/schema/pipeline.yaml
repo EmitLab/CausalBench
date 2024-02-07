@@ -1,0 +1,37 @@
+title: Pipeline Configuration
+description: Schema for validating pipeline configuration files
+type: object
+properties:
+    type:
+        type: string
+        description: The type of configuration
+    name:
+        type: string
+        description: The name of the pipeline
+    task:
+        type: string
+        description: The task associated with the pipeline
+    dataset:
+        anyOf:
+            - type: integer
+            - type: object
+        description: Identifier for the dataset used
+    model:
+        anyOf:
+            - type: integer
+            - type: object
+        description: Identifier for the model used
+    metrics:
+        type: array
+        items:
+            anyOf:
+                - type: integer
+                - type: object
+        description: List of metrics identifiers
+required:
+    - type
+    - name
+    - task
+    - dataset
+    - model
+    - metrics

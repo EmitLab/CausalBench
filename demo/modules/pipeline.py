@@ -1,3 +1,4 @@
+import logging
 from zipfile import ZipFile
 
 import yaml
@@ -39,20 +40,41 @@ class Pipeline(Module):
 
     def execute(self):
         # dataset
-        dataset = Dataset(self.dataset)
+        if type(self.dataset) == Dataset:
+            dataset = self.dataset
+        elif type(self.dataset) == int:
+            dataset = Dataset(self.dataset)
+        else:
+            logging.error(f'Invalid dataset provided: must be an integer or an object of type {Dataset}')
+            return
+
         data = dataset.load()
         X = data.file1
         ground_truth = data.file2
 
         # model
-        model = Model(self.model)
+        if type(self.model) == Model:
+            model = self.model
+        elif type(self.model) == int:
+            model = Model(self.model)
+        else:
+            logging.error(f'Invalid model provided: must be an integer or an object of type {Model}')
+            return
+
         result = model.execute(data=X)
         matrix = result.prediction
 
         # metrics
         scores = []
-        for metric_id in self.metrics:
-            metric = Metric(metric_id)
+        for metric in self.metrics:
+            if type(metric) == Metric:
+                pass
+            elif type(metric) == int:
+                metric = Metric(metric)
+            else:
+                logging.error(f'Invalid metric provided: must be an integer or an object of type {Metric}')
+                return
+
             result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
             scores.append((metric.module_id, metric.name, result.score))
 

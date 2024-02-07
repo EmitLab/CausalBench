@@ -19,8 +19,9 @@ class Module(ABC):
         self.module_id = module_id
 
         # load schema
-        schema_string = resources.files(__package__).joinpath('schema').joinpath(schema_name + '.json').read_text()
-        self.schema = json.loads(schema_string)
+        schema_path = str(resources.files(__package__).joinpath('schema').joinpath(schema_name + '.yaml'))
+        with open(schema_path) as f:
+            self.schema = yaml.safe_load(f)
 
         if module_id is not None:
             # create temporary directory
