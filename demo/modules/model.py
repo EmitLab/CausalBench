@@ -27,8 +27,8 @@ class Model(Module):
         elif model_id == 1:
             return 'model/ges.zip'
 
-    def publish(self) -> bool:
-        # TODO: Replace with database call to upload to the server
+    def save(self, state) -> bool:
+        # TODO: Add database call to upload to the server
         pass
 
     def execute(self, *args, **keywords):

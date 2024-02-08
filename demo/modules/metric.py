@@ -27,8 +27,8 @@ class Metric(Module):
         elif module_id == 1:
             return 'metric/accuracy.zip'
 
-    def publish(self) -> bool:
-        # TODO: Replace with database call to upload to the server
+    def save(self, state) -> bool:
+        # TODO: Add database call to upload to the server
         pass
 
     def evaluate(self, *args, **keywords):

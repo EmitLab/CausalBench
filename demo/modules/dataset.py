@@ -20,14 +20,14 @@ class Dataset(Module):
         # TODO: Perform logical validation of the structure
         pass
 
-    def publish(self) -> bool:
-        # TODO: Replace with database call to upload to the server
-        pass
-
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
             return 'data/abalone.zip'
+
+    def save(self, state) -> bool:
+        # TODO: Add database call to upload to the server
+        pass
 
     def load(self):
         file_dict = {}

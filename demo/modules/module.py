@@ -3,6 +3,7 @@ import logging
 import os
 from abc import ABC, abstractmethod
 from importlib import resources
+from zipfile import ZipFile
 
 import jsonschema
 import yaml
@@ -50,6 +51,9 @@ class Module(ABC):
         # validate object structure
         self.__validate()
 
+    def publish(self):
+        self.save(self.__getstate__())
+
     def __validate(self):
         config = json.loads(json.dumps(self.__dict__))
         try:
@@ -64,6 +68,13 @@ class Module(ABC):
         except Exception as e:
             logging.error(f'Logic validation error: {e}')
 
+    def __getstate__(self):
+        state = bunchify(self.__dict__)
+        del state['module_id']
+        del state['schema']
+        del state['package_path']
+        return state
+
     @abstractmethod
     def instantiate(self, arguments: Bunch) -> str:
         pass
@@ -77,5 +88,5 @@ class Module(ABC):
         pass
 
     @abstractmethod
-    def publish(self) -> bool:
+    def save(self, state: dict) -> bool:
         pass

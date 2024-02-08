@@ -19,9 +19,32 @@ class Pipeline(Module):
         self.type = 'pipeline'
         self.name = arguments.name
         self.task = arguments.task
-        self.dataset = arguments.dataset
-        self.model = arguments.model
-        self.metrics = arguments.metrics
+
+        # convert dataset to config format
+        self.dataset = Bunch()
+        if type(arguments.dataset) == Dataset:
+            self.dataset['object'] = arguments.dataset
+        elif type(arguments.dataset) == int:
+            self.dataset['id'] = arguments.dataset
+
+        # convert model to config format
+        self.model = Bunch()
+        if type(arguments.model[0]) == Model:
+            self.model['object'] = arguments.model[0]
+        elif type(arguments.model[0]) == int:
+            self.model['id'] = arguments.model[0]
+        self.model['parameters'] = arguments.model[1]
+
+        # convert metric to config format
+        self.metrics = []
+        for metric in arguments.metrics:
+            self_metric = Bunch()
+            if type(metric[0]) == Metric:
+                self_metric['object'] = metric[0]
+            elif type(metric[0]) == int:
+                self_metric['id'] = metric[0]
+            self_metric['parameters'] = metric[1]
+            self.metrics.append(self_metric)
 
         return f'pipeline/{self.name}.zip'
 
@@ -33,51 +56,72 @@ class Pipeline(Module):
         if module_id == 0:
             return 'pipeline/pipeline0.zip'
 
-    def publish(self) -> bool:
+    def save(self, state) -> bool:
+        # TODO: Add database call to upload to the server
         with ZipFile(self.package_path, 'w') as zipped:
-            zipped.writestr('config.yaml', yaml.dump(self.__dict__))
+            zipped.writestr('config.yaml', yaml.safe_dump(state))
         return True
 
     def execute(self):
-        # dataset
-        if type(self.dataset) == Dataset:
-            dataset = self.dataset
-        elif type(self.dataset) == int:
-            dataset = Dataset(self.dataset)
+        # load dataset
+        if 'object' in self.dataset:
+            dataset = self.dataset.object
+        elif 'id' in self.dataset:
+            dataset = Dataset(self.dataset.id)
         else:
             logging.error(f'Invalid dataset provided: must be an integer or an object of type {Dataset}')
             return
 
         data = dataset.load()
-        X = data.file1
-        ground_truth = data.file2
 
-        # model
-        if type(self.model) == Model:
-            model = self.model
-        elif type(self.model) == int:
-            model = Model(self.model)
+        # load model
+        if 'object' in self.model:
+            model = self.model.object
+        elif 'id' in self.model:
+            model = Model(self.model.id)
         else:
             logging.error(f'Invalid model provided: must be an integer or an object of type {Model}')
             return
 
-        result = model.execute(data=X)
-        matrix = result.prediction
+        # map model-data parameters
+        parameters = {}
+        for model_param, data_param in self.model.parameters.items():
+            parameters[model_param] = data[data_param]
+
+        # execute the model
+        model_result = model.execute(parameters)
 
         # metrics
         scores = []
-        for metric in self.metrics:
-            if type(metric) == Metric:
-                pass
-            elif type(metric) == int:
-                metric = Metric(metric)
+        for self_metric in self.metrics:
+            # load the metric
+            if 'object' in self_metric:
+                metric = self_metric
+            elif 'id' in self_metric:
+                metric = Metric(self_metric.id)
             else:
                 logging.error(f'Invalid metric provided: must be an integer or an object of type {Metric}')
                 return
 
-            result = metric.evaluate(ground_truth=ground_truth, prediction=matrix)
-            scores.append((metric.module_id, metric.name, result.score))
+            # check model-metric compatibility
+            if model.task != metric.task:
+                logging.error(f'The model "{model.name}" and metric "{metric.name}" are not compatible')
+                return
 
+            # map metric-data parameters
+            parameters = {}
+            for metric_param, data_param in self_metric.parameters.items():
+                parameters[metric_param] = data[data_param]
+
+            # map metric-model parameters
+            if self.task == 'discovery':
+                parameters['prediction'] = model_result.prediction
+
+            # execute the metric
+            metric_result = metric.evaluate(parameters)
+            scores.append((metric.module_id, metric.name, metric_result.score))
+
+        # return the results
         return PipelineResult(pipeline=(self.module_id, self.name),
                               dataset=(dataset.module_id, dataset.name),
                               model=(model.module_id, model.name),

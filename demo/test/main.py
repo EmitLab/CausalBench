@@ -90,15 +90,20 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 
 def main():
-    # pipeline0 = Pipeline(0)
-    # result0 = pipeline0.execute()
-    # print(result0.metrics)
+    pipeline0 = Pipeline(0)
+    result0 = pipeline0.execute()
+    print(result0.metrics)
 
     pipeline1 = Pipeline()
-    pipeline1.create(name='pipeline1', task='discovery', dataset=0, model=1, metrics=[0, 1])
-    # result1 = pipeline1.execute()
-    # print(result1.metrics)
-    pipeline1.publish()
+    pipeline1.create(name='pipeline1',
+                     task='discovery',
+                     dataset=0,
+                     model=(1, {'data': 'file1'}),
+                     metrics=[(0, {'ground_truth': 'file2'}),
+                              (1, {'ground_truth': 'file2'})])
+    result1 = pipeline1.execute()
+    print(result1.metrics)
+    # pipeline1.publish()
 
 
 if __name__ == '__main__':

@@ -1,33 +1,53 @@
-title: Pipeline Configuration
-description: Schema for validating pipeline configuration files
 type: object
 properties:
     type:
         type: string
-        description: The type of configuration
     name:
         type: string
-        description: The name of the pipeline
     task:
         type: string
-        description: The task associated with the pipeline
     dataset:
-        anyOf:
-            - type: integer
-            - type: object
-        description: Identifier for the dataset used
+        type: object
+        properties:
+            id:
+                type: integer
+        required:
+            - id
     model:
-        anyOf:
-            - type: integer
-            - type: object
-        description: Identifier for the model used
+        type: object
+        properties:
+            id:
+                type: integer
+            parameters:
+                type: object
+                propertyNames:
+                    enum:
+                        - data
+                        - space
+                patternProperties:
+                    ^.*$:
+                        type: string
+        required:
+            - id
+            - parameters
     metrics:
         type: array
         items:
-            anyOf:
-                - type: integer
-                - type: object
-        description: List of metrics identifiers
+            type: object
+            properties:
+                id:
+                    type: integer
+                parameters:
+                    type: object
+                    propertyNames:
+                        enum:
+                            - ground_truth
+                    patternProperties:
+                        ^.*$:
+                            type: string
+            required:
+                - id
+                - parameters
 required:
     - type
     - name
