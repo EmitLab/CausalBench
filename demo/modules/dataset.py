@@ -2,7 +2,7 @@ import logging
 import os
 
 import pandas as pd
-from bunch_py3 import bunchify, Bunch
+from bunch_py3 import Bunch
 
 from modules.module import Module
 
@@ -30,7 +30,7 @@ class Dataset(Module):
         pass
 
     def load(self):
-        file_dict = {}
+        files = Bunch()
 
         for file, data in self.files.items():
             # form the proper file path
@@ -43,8 +43,8 @@ class Dataset(Module):
                 file_df = pd.read_csv(file_path, index_col=0)
 
             # add the loaded file to the dictionary
-            file_dict[file] = file_df
+            files[file] = file_df
 
         logging.info('Loaded dataset successfully')
 
-        return bunchify(file_dict)
+        return files

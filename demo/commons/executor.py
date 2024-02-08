@@ -11,6 +11,7 @@ from importlib.util import module_from_spec, spec_from_file_location
 import cpuinfo
 import pipreqs.pipreqs as pipreqs
 import psutil
+from bunch_py3 import Bunch
 
 from commons.gpu import gpu_profiler
 
@@ -82,21 +83,21 @@ def execute(module_path, function_name, /, *args, **keywords) -> dict:
     storage_total = psutil.disk_usage('/').total
 
     # form the response
-    response = {
-        'output': output,
-        'duration': duration,
-        'memory': memory,
-        'gpu_memory': gpu_memory,
-        'python': python,
-        'imports': imports,
-        'platform': system_platform,
-        'processor': processor,
-        'gpu': gpu,
-        'architecture': architecture,
-        'memory_total': memory_total,
-        'gpu_memory_total': gpu_memory_total,
-        'storage_total': storage_total
-    }
+    response = Bunch()
+
+    response.output = output
+    response.duration = duration
+    response.memory = memory
+    response.gpu_memory = gpu_memory
+    response.python = python
+    response.imports = imports
+    response.platform = system_platform
+    response.processor = processor
+    response.gpu = gpu
+    response.architecture = architecture
+    response.memory_total = memory_total
+    response.gpu_memory_total = gpu_memory_total
+    response.storage_total = storage_total
 
     return response
 

@@ -2,51 +2,9 @@ import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
 
-from commons import executor
+from commons.utils import display_report
+from modules.model import Model
 from modules.pipeline import Pipeline
-
-
-def execute_and_report(module_path, function_name, /, *args, **keywords):
-    try:
-        response = executor.execute(module_path, function_name, *args, **keywords)
-
-        print('-' * 80)
-        print(f'Module: {module_path}')
-        print()
-
-        print('Output:')
-        print(response["output"])
-        print()
-
-        print(f'Duration: {response["duration"]} nanoseconds')
-        print(f'Used Memory: {response["memory"]} bytes')
-        if response["gpu_memory"] is None:
-            print(f'Used GPU Memory: None')
-        else:
-            print(f'Used GPU Memory: {response["gpu_memory"]} bytes')
-        print()
-
-        print(f'Python: {response["python"]}')
-        print(f'Imports: {response["imports"]}')
-        print()
-
-        print(f'Platform: {response["platform"]}')
-        print(f'Processor: {response["processor"]}')
-        print(f'GPU: {response["gpu"]}')
-        print(f'Architecture: {response["architecture"]}')
-        print(f'Total Memory: {response["memory_total"]} bytes')
-        if response["gpu_memory_total"] is None:
-            print(f'Total GPU Memory: None')
-        else:
-            print(f'Total GPU Memory: {response["gpu_memory_total"]} bytes')
-        print(f'Total Storage: {response["storage_total"]} bytes')
-        print('-' * 80)
-
-        return response["output"]
-    except FileNotFoundError as e:
-        print(e)
-    except AttributeError as e:
-        print(e)
 
 
 def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
@@ -82,27 +40,20 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
     return graph, pos
 
 
-# def display_scores(score_df):
-#     for metric, scores in score_df.items():
-#         plt.bar(score_df.index, scores)
-#         plt.title(metric)
-#         plt.show()
-
-
 def main():
     pipeline0 = Pipeline(0)
     result0 = pipeline0.execute()
-    print(result0.metrics)
+    display_report(result0)
 
     pipeline1 = Pipeline()
     pipeline1.create(name='pipeline1',
                      task='discovery',
                      dataset=0,
-                     model=(1, {'data': 'file1'}),
+                     model=(Model(1), {'data': 'file1'}),
                      metrics=[(0, {'ground_truth': 'file2'}),
                               (1, {'ground_truth': 'file2'})])
     result1 = pipeline1.execute()
-    print(result1.metrics)
+    display_report(result1)
     # pipeline1.publish()
 
 

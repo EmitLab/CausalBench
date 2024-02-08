@@ -1,9 +1,10 @@
 import logging
 import os
 
-from bunch_py3 import bunchify, Bunch
+from bunch_py3 import Bunch
 
-from commons.utils import parse_arguments, execute_and_report
+from commons import executor
+from commons.utils import parse_arguments
 from modules.module import Module
 
 
@@ -46,13 +47,14 @@ class Model(Module):
             model_args[self.inputs.space.id] = arguments.space if 'space' in arguments else None
 
         # execute the model
-        result = execute_and_report(file_path, "execute", **model_args)
+        response = executor.execute(file_path, 'execute', **model_args)
 
         # map the outputs
-        output = {}
+        output = Bunch()
         for key, data in self.outputs.items():
-            output[key] = result[data.id]
+            output[key] = response.output[data.id]
+        response.output = output
 
         logging.info('Executed model successfully')
 
-        return bunchify(output)
+        return response

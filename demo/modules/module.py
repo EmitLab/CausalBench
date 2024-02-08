@@ -3,7 +3,6 @@ import logging
 import os
 from abc import ABC, abstractmethod
 from importlib import resources
-from zipfile import ZipFile
 
 import jsonschema
 import yaml
@@ -55,7 +54,7 @@ class Module(ABC):
         self.save(self.__getstate__())
 
     def __validate(self):
-        config = json.loads(json.dumps(self.__dict__))
+        config = json.loads(json.dumps(self.__getstate__()))
         try:
             jsonschema.validate(instance=config, schema=self.schema)
             logging.info('Configuration validated successfully')
@@ -70,9 +69,9 @@ class Module(ABC):
 
     def __getstate__(self):
         state = bunchify(self.__dict__)
-        del state['module_id']
-        del state['schema']
-        del state['package_path']
+        del state.module_id
+        del state.schema
+        del state.package_path
         return state
 
     @abstractmethod

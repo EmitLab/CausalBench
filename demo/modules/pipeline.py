@@ -2,7 +2,7 @@ import logging
 from zipfile import ZipFile
 
 import yaml
-from bunch_py3 import Bunch
+from bunch_py3 import Bunch, bunchify
 
 from modules.dataset import Dataset
 from modules.metric import Metric
@@ -15,6 +15,12 @@ class Pipeline(Module):
     def __init__(self, module_id: int = None):
         super().__init__(module_id, 'pipeline')
 
+    def __getstate__(self):
+        state = super().__getstate__()
+        if 'model' in state and 'object' in state.model:
+            del state.model.object
+        return state
+
     def instantiate(self, arguments: Bunch):
         self.type = 'pipeline'
         self.name = arguments.name
@@ -23,27 +29,28 @@ class Pipeline(Module):
         # convert dataset to config format
         self.dataset = Bunch()
         if type(arguments.dataset) == Dataset:
-            self.dataset['object'] = arguments.dataset
+            self.dataset.object = arguments.dataset
         elif type(arguments.dataset) == int:
-            self.dataset['id'] = arguments.dataset
+            self.dataset.id = arguments.dataset
 
         # convert model to config format
         self.model = Bunch()
         if type(arguments.model[0]) == Model:
-            self.model['object'] = arguments.model[0]
+            self.model.id = arguments.model[0].module_id
+            self.model.object = arguments.model[0]
         elif type(arguments.model[0]) == int:
-            self.model['id'] = arguments.model[0]
-        self.model['parameters'] = arguments.model[1]
+            self.model.id = arguments.model[0]
+        self.model.parameters = arguments.model[1]
 
         # convert metric to config format
         self.metrics = []
         for metric in arguments.metrics:
             self_metric = Bunch()
             if type(metric[0]) == Metric:
-                self_metric['object'] = metric[0]
+                self_metric.object = metric[0]
             elif type(metric[0]) == int:
-                self_metric['id'] = metric[0]
-            self_metric['parameters'] = metric[1]
+                self_metric.id = metric[0]
+            self_metric.parameters = metric[1]
             self.metrics.append(self_metric)
 
         return f'pipeline/{self.name}.zip'
@@ -89,7 +96,7 @@ class Pipeline(Module):
             parameters[model_param] = data[data_param]
 
         # execute the model
-        model_result = model.execute(parameters)
+        model_response = model.execute(parameters)
 
         # metrics
         scores = []
@@ -109,33 +116,35 @@ class Pipeline(Module):
                 return
 
             # map metric-data parameters
-            parameters = {}
+            parameters = Bunch()
             for metric_param, data_param in self_metric.parameters.items():
                 parameters[metric_param] = data[data_param]
 
             # map metric-model parameters
             if self.task == 'discovery':
-                parameters['prediction'] = model_result.prediction
+                parameters.prediction = model_response.output.prediction
 
             # execute the metric
-            metric_result = metric.evaluate(parameters)
-            scores.append((metric.module_id, metric.name, metric_result.score))
+            metric_response = metric.evaluate(parameters)
+            metric_response.id = metric.module_id
+            metric_response.name = metric.name
+            scores.append(metric_response)
 
-        # return the results
-        return PipelineResult(pipeline=(self.module_id, self.name),
-                              dataset=(dataset.module_id, dataset.name),
-                              model=(model.module_id, model.name),
-                              metrics=scores)
+        # form the response
+        response = Bunch()
 
+        response.pipeline = Bunch()
+        response.pipeline.id = self.module_id
+        response.pipeline.name = self.name
 
-class PipelineResult:
+        response.dataset = Bunch()
+        response.dataset.id = dataset.module_id
+        response.dataset.name = dataset.name
 
-    def __init__(self,
-                 pipeline: tuple,
-                 dataset: tuple,
-                 model: tuple,
-                 metrics: list[tuple]):
-        self.pipeline = pipeline
-        self.dataset = dataset
-        self.model = model
-        self.metrics = metrics
+        response.model = model_response
+        response.model.id = model.module_id
+        response.model.name = model.name
+
+        response.metrics = scores
+
+        return response

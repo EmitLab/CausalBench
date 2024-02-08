@@ -1,9 +1,10 @@
 import logging
 import os
 
-from bunch_py3 import Bunch, bunchify
+from bunch_py3 import Bunch
 
-from commons.utils import parse_arguments, execute_and_report
+from commons import executor
+from commons.utils import parse_arguments
 from modules.module import Module
 
 
@@ -46,13 +47,14 @@ class Metric(Module):
             metric_args[self.inputs.prediction.id] = arguments.prediction
 
         # execute the metric
-        result = execute_and_report(file_path, "evaluate", **metric_args)
+        response = executor.execute(file_path, 'evaluate', **metric_args)
 
         # map the outputs
-        output = {}
+        output = Bunch()
         for key, data in self.outputs.items():
-            output[key] = result[data.id]
+            output[key] = response.output[data.id]
+        response.output = output
 
         logging.info('Executed metric successfully')
 
-        return bunchify(output)
+        return response
