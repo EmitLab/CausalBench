@@ -6,7 +6,7 @@ from tigramite.independence_tests.parcorr import ParCorr
 def execute(data):
 
     # check if `data` is dataframe
-    if not isinstance(data, pandas.dataframe.DataFrame):
+    if not isinstance(data, pandas.DataFrame):
         raise TypeError("data must be a DataFrame object")
 
     X = data
