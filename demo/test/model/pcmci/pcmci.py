@@ -5,7 +5,6 @@ from tigramite.independence_tests.parcorr import ParCorr
 import numpy
 
 def execute(data, space):
-
     # check if `data` is dataframe
     if not isinstance(data, pandas.DataFrame):
         raise TypeError("data must be a DataFrame object")
@@ -18,6 +17,7 @@ def execute(data, space):
     pcmci = PCMCI(dataframe=X, cond_ind_test=ParCorr())
     result = pcmci.run_pcmci()
     pred_output = result['graph']
+    p_matrix = result['p_matrix']
 
     # check if returned data type is graph/adjacency matrix
     if isinstance(pred_output, numpy.ndarray) or isinstance(pred_output, pandas.DataFrame):
@@ -29,8 +29,11 @@ def execute(data, space):
     else:
         print("result is neither a numpy array nor a pandas DataFrame")
 
+    #mapping pred_output graph to regular, checking for p values of < 0.05, null hypothesis
+    result_array = numpy.logical_and(pred_output == '-->', p_matrix < 0.05).astype(int)
 
-    return ({'pred': result['graph']})
+
+    return (result_array)
             #,'val_matrix': result['val_matrix'],
             #'p_matrix': result['p_matrix'],
             #'conf_matrix': result['conf_matrix']}
