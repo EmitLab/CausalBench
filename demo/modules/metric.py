@@ -18,8 +18,18 @@ class Metric(Module):
         pass
 
     def validate(self):
-        # TODO: Perform logical validation of the structure
-        pass
+        # check if the file exists
+        if not os.path.exists(os.path.join(self.package_path, self.path)):
+            raise FileNotFoundError(f"File '{file_path}' does not exist")
+
+        # check input and output arguments
+        if self.task == 'discovery':
+            if getattr(self.inputs, "ground", None) is not None:
+                raise ValueError('Ground input is missing')
+            if getattr(self.inputs, "prediction", None) is not None:
+                raise ValueError('Prediction input is missing')
+            if getattr(self.outputs, "score", None) is not None:
+                raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
@@ -27,6 +37,12 @@ class Metric(Module):
             return 'metric/shd.zip'
         elif module_id == 1:
             return 'metric/accuracy.zip'
+        elif module_id == 2:
+            return 'metric/f1.zip'
+        elif module_id == 3:
+            return 'metric/precision.zip'
+        elif module_id == 4:
+            return 'metric/recall.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
