@@ -19,16 +19,17 @@ class Metric(Module):
 
     def validate(self):
         # check if the file exists
-        if not os.path.exists(os.path.join(self.package_path, self.path)):
-            raise FileNotFoundError(f"File '{file_path}' does not exist")
+        file_path = os.path.join(self.package_path, self.path)
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File '{self.path}' does not exist in package path '{self.package_path}'")
 
         # check input and output arguments
         if self.task == 'discovery':
-            if getattr(self.inputs, "ground", None) is not None:
+            if getattr(self.inputs, "ground", None) is None:
                 raise ValueError('Ground input is missing')
-            if getattr(self.inputs, "prediction", None) is not None:
+            if getattr(self.inputs, "prediction", None) is None:
                 raise ValueError('Prediction input is missing')
-            if getattr(self.outputs, "score", None) is not None:
+            if getattr(self.outputs, "score", None) is None:
                 raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
