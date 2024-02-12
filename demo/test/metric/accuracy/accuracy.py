@@ -2,7 +2,7 @@ import numpy as np
 
 
 def evaluate(pred, truth):
-    truth = truth.values
+    truth = truth.to_numpy()
 
     # check if `truth` and `pred` are numpy arrays
     if not isinstance(truth, np.ndarray):

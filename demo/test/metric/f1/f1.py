@@ -2,7 +2,7 @@ import numpy as np
 
 
 def evaluate(pred, truth):
-    truth = truth.values
+    truth = truth.to_numpy()
 
     # check if `truth` and `pred` are numpy arrays
     if not isinstance(truth, np.ndarray):
@@ -18,15 +18,12 @@ def evaluate(pred, truth):
         raise ValueError("truth must be binary")
     if not np.all(np.isin(pred, [0, 1])):
         raise ValueError("pred must be binary")
-    
-    TP = (pred + truth).applymap(lambda elem:1 if elem==2 else 0).sum(axis=1).sum()
+
+    TP = np.sum((pred + truth) == 2)
     TP_FP = pred.sum(axis=1).sum()
     TP_FN = truth.sum(axis=1).sum()
     precision = TP/TP_FP
     recall = TP/TP_FN
-    F1 = 2*(recall*precision)/(recall+precision)
-    
-    # create a dictionary with the f1 score
-    score = {'f1': F1}
+    score = 2*(recall*precision)/(recall+precision)
 
     return {'score': score}

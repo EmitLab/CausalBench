@@ -19,7 +19,7 @@ def evaluate(pred, truth):
         >>> pred, truth = randint(2, size=(10, 10)), randint(2, size=(10, 10))
         >>> SHD(pred, truth)
     """
-    truth = truth.values
+    truth = truth.to_numpy()
 
     # check if `truth` and `pred` are numpy arrays
     if not isinstance(truth, np.ndarray):
