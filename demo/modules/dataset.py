@@ -45,6 +45,43 @@ class Dataset(Module):
             # add the loaded file to the dictionary
             files[file] = file_df
 
+            for column, col_data in data.columns.items():
+                if data.headers == True:
+                    col_df = file_df[col_data.header]
+                else:
+                    col_df = file_df[col_data.index]
+                
+                if col_data.data == 'integer':
+                    if not pd.api.types.is_integer_dtype(col_df):
+                        raise TypeError(f'Data type mismatch for column {column}')
+                    if 'labels' in col_data:
+                        labels = sorted(col_data.labels)
+                        data_labels = sorted(file_df[col_data.header].unique())
+                        if(labels!=data_labels):
+                            raise ValueError(f'Labels do not match for column {column}')
+                    if 'range' in col_data:
+                        start = col_data.range.start
+                        end = col_data.range.end
+                        min1 = min(file_df[col_data.header])
+                        max1 = max(file_df[col_data.header])
+                        if not (min1>=start and min1<=end and max1>=start and max1<=end):
+                            raise ValueError(f'Range does not match for column {column}')
+                elif col_data.data =='decimal':
+                    if not pd.api.types.is_float_dtype(col_df):
+                        raise TypeError(f'Data type mismatch for column {column}')
+                    if 'labels' in col_data:
+                        labels = sorted(col_data.labels)
+                        data_labels = sorted(file_df[col_data.header].unique())
+                        if labels!=data_labels:
+                            raise ValueError(f'Labels do not match for column {column}')
+                    if 'range' in col_data:
+                        start = col_data.range.start
+                        end = col_data.range.end
+                        min1 = min(file_df[col_data.header])
+                        max1 = max(file_df[col_data.header])
+                        if not (min1>=start and min1<=end and max1>=start and max1<=end):
+                            raise ValueError(f'Range does not match for column {column}')
+                        
         logging.info('Loaded dataset successfully')
 
         return files

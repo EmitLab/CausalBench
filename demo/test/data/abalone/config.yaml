@@ -41,7 +41,7 @@ files:
                 data: decimal
                 range:
                     start: 0.0
-                    end: 1.0
+                    end: 3.0
                 unit: #
             shucked:
                 header: Shucked
@@ -67,7 +67,7 @@ files:
         type: csv
         data: graph
         path: causal_info_adjmat.csv
-        headers: false
+        headers: true
         columns:
             sex:
                 header: Sex
