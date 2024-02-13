@@ -1,6 +1,8 @@
 import logging
 import os
 
+import numpy as np
+import pandas as pd
 from bunch_py3 import Bunch
 
 from commons import executor
@@ -18,8 +20,28 @@ class Metric(Module):
         pass
 
     def validate(self):
-        # TODO: Perform logical validation of the structure
-        pass
+        # check if the file exists
+        file_path = os.path.join(self.package_path, self.path)
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File '{self.path}' does not exist in package path '{self.package_path}'")
+
+        # check input and output arguments
+        if self.task == 'discovery':
+            if getattr(self.inputs, "ground", None) is None:
+                raise ValueError('Ground input is missing')
+            if getattr(self.inputs.ground, "data", None) is None:
+                raise ValueError('Ground data is missing')
+            elif getattr(self.inputs.ground, "data") != "graph":
+                raise ValueError('Ground input must be a graph for a discovery task')
+            if getattr(self.inputs, "prediction", None) is None:
+                raise ValueError('Prediction input is missing')
+            if getattr(self.inputs.prediction, "data", None) is None:
+                raise ValueError('Prediction data is missing')
+            elif getattr(self.inputs.prediction, "data") != "graph":
+                raise ValueError('Prediction input must be a graph for a discovery task')
+
+            if getattr(self.outputs, "score", None) is None:
+                raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
@@ -27,6 +49,12 @@ class Metric(Module):
             return 'metric/shd.zip'
         elif module_id == 1:
             return 'metric/accuracy.zip'
+        elif module_id == 2:
+            return 'metric/f1.zip'
+        elif module_id == 3:
+            return 'metric/precision.zip'
+        elif module_id == 4:
+            return 'metric/recall.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
@@ -45,6 +73,8 @@ class Metric(Module):
         if self.task == 'discovery':
             metric_args[self.inputs.ground.id] = arguments.ground_truth
             metric_args[self.inputs.prediction.id] = arguments.prediction
+            self.check_graph(arguments.ground_truth)
+            self.check_graph(arguments.prediction)
 
         # execute the metric
         response = executor.execute(file_path, 'evaluate', **metric_args)
@@ -58,3 +88,9 @@ class Metric(Module):
         logging.info('Executed metric successfully')
 
         return response
+
+    def check_graph(self, data):
+        if not isinstance(data, (np.ndarray, pd.DataFrame)):
+            raise TypeError("data must be either numpy.ndarray or pandas.DataFrame")
+        if data.shape[0] != data.shape[1]:
+            raise ValueError('data must be in square shape')

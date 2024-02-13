@@ -51,7 +51,10 @@ def main():
                      dataset=1,
                      model=(Model(0), {'data': 'file1'}),
                      metrics=[(0, {'ground_truth': 'file2'}),
-                              (1, {'ground_truth': 'file2'})])
+                              (1, {'ground_truth': 'file2'}),
+                              (2, {'ground_truth': 'file2'}),
+                              (3, {'ground_truth': 'file2'}),
+                              (4, {'ground_truth': 'file2'})])
     result1 = pipeline1.execute()
     display_report(result1)
     # pipeline1.publish()

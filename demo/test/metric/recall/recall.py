@@ -11,8 +11,7 @@ def evaluate(pred, truth):
         raise TypeError("pred must be a numpy.ndarray")
 
     # check if `truth` and `pred` have the same shape
-    if truth.shape != pred.shape:
-        raise ValueError("truth and pred must have the same shape")
+    assert(pred.shape==truth.shape and pred.shape[0]==pred.shape[1])
 
     # check if `truth` and `pred` are binary
     if not np.all(np.isin(truth, [0, 1])):
@@ -20,6 +19,8 @@ def evaluate(pred, truth):
     if not np.all(np.isin(pred, [0, 1])):
         raise ValueError("pred must be binary")
     
-    score = np.mean(pred == truth)
+    TP = np.sum((pred + truth) == 2)
+    TP_FN = truth.sum(axis=1).sum()
+    score = TP/TP_FN
 
     return {'score': score}
