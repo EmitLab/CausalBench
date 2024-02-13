@@ -18,7 +18,13 @@ class Model(Module):
         pass
 
     def validate(self):
-        # TODO: Perform logical validation of the structure
+        if self.task == 'discovery':
+            if 'data' not in self.inputs:
+                raise ValueError('Input does not include a \'data\' field')
+            if 'prediction' not in self.outputs:
+                raise ValueError('Output does not include a \'prediction\' field')
+
+            # TODO: Perform logical validation of the structure
         pass
 
     def fetch(self, model_id: int):
