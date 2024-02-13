@@ -48,8 +48,8 @@ def main():
     pipeline1 = Pipeline()
     pipeline1.create(name='pipeline1',
                      task='discovery',
-                     dataset=0,
-                     model=(Model(1), {'data': 'file1'}),
+                     dataset=1,
+                     model=(Model(0), {'data': 'file1'}),
                      metrics=[(0, {'ground_truth': 'file2'}),
                               (1, {'ground_truth': 'file2'})])
     result1 = pipeline1.execute()

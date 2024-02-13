@@ -24,6 +24,8 @@ class Dataset(Module):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
             return 'data/abalone.zip'
+        if module_id == 1:
+            return 'data/adult.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
