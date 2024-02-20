@@ -33,6 +33,14 @@ class Model(Module):
             return 'model/pc.zip'
         elif model_id == 1:
             return 'model/ges.zip'
+        elif model_id == 2:
+            return 'model/lingam.zip'
+        elif model_id == 3:
+            return 'model/pcmci.zip'
+        elif model_id == 4:
+            return 'model/dynotears.zip'
+        elif model_id == 5:
+            return 'model/tcdf.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
@@ -51,6 +59,7 @@ class Model(Module):
         if self.task == 'discovery':
             model_args[self.inputs.data.id] = arguments.data
             model_args[self.inputs.space.id] = arguments.space if 'space' in arguments else None
+            #model_args[self.inputs.extargs] = arguments.extargs if 'arguments' in arguments else None
 
         # execute the model
         response = executor.execute(file_path, 'execute', **model_args)

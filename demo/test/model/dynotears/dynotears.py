@@ -1,23 +1,23 @@
+from causalnex.structure import StructureModel
+from causalnex.structure import dynotears
+from causalnex.structure.dynotears import from_pandas_dynamic
 import pandas
-import lingam
 import numpy
-
 def execute(data, space):
-
     # check if `data` is dataframe
     if not isinstance(data, pandas.DataFrame):
         raise TypeError("data must be a DataFrame object")
 
     # the model does not take space, it should be type none.
     if space is not None:
-    #if not isinstance(space, None):
         raise TypeError("This model does not support space.")
 
-    X = data
-    model = lingam.VARLiNGAM()
-    model.fit(X)
+    sm = from_pandas_dynamic(data, p=1)
+        #P may need to be adjusted as it is
+        #"Number of past interactions we allow the model to create. "
 
-    pred_output = model._adjacency_matrices
+    pred_output = sm.edges
+        #TODO this returns a string list of pairs, needs to be convered to adjmatrix.
 
     # check if returned data type is graph/adjacency matrix
     if isinstance(pred_output, numpy.ndarray) or isinstance(pred_output, pandas.DataFrame):
@@ -29,7 +29,4 @@ def execute(data, space):
     else:
         print("result is neither a numpy array nor a pandas DataFrame")
 
-    print (model._adjacency_matrices)
-    print(model._adjacency_matrices.shape)
-    #TODO convert it into i, j, tau array and return it as such.
-    return {'pred': model._adjacency_matrices}
+    return {'pred': sm.edges}
