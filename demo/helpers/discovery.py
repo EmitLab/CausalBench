@@ -21,3 +21,15 @@ def adjmat_to_graph(adjmat: np.ndarray, nodes: list[str], weight: str = 'lag') -
     data = pd.DataFrame(data, columns=columns)
 
     return SpatioTemporalGraph(data, *columns)
+
+
+def temporal_log_to_graph(temporal_log: np.ndarray, cause: int, effect: int, lag: int) -> SpatioTemporalGraph:
+    data = []
+
+    for index, row_data in enumerate(temporal_log):
+        data.append((row_data[cause], row_data[effect], 0, 0, row_data[lag], 0))
+
+    columns = ['Cause', 'Effect', 'Location_Cause', 'Location_Effect', 'Lag', 'Strength']
+    data = pd.DataFrame(data, columns=columns)
+
+    return SpatioTemporalGraph(data, *columns)
