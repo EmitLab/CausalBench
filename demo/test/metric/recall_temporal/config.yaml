@@ -1,15 +1,15 @@
 type: metric
 name: recall
-task: discovery
+task: discovery.temporal
 path: recall.py
 inputs:
     ground:
         id: truth
-        data: graph
+        data: dataframe
 
     prediction:
         id: pred
-        data: graph
+        data: dataframe
 outputs:
     score:
         id: score

@@ -1,15 +1,15 @@
 type: metric
-name: accuracy
-task: discovery
-path: accuracy.py
+name: f1
+task: discovery.temporal
+path: f1.py
 inputs:
     ground:
         id: truth
-        data: graph
+        data: dataframe
 
     prediction:
         id: pred
-        data: graph
+        data: dataframe
 outputs:
     score:
         id: score

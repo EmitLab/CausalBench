@@ -123,7 +123,7 @@ class Pipeline(Module):
             # map metric-model parameters
             if self.task == 'discovery':
                 parameters.prediction = model_response.output.prediction
-
+                
             # execute the metric
             metric_response = metric.evaluate(parameters)
             metric_response.id = metric.module_id

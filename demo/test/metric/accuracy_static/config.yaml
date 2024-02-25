@@ -1,7 +1,7 @@
 type: metric
-name: precision
-task: discovery
-path: precision.py
+name: accuracy
+task: discovery.static
+path: accuracy.py
 inputs:
     ground:
         id: truth
