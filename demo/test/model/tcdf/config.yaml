@@ -1,0 +1,18 @@
+type: model
+name: tcdf
+task: discovery
+path: tcdf.py
+arguments: #find a way to introd arguments, if none, use default
+    #runTCDF.py --data yourdataset.csv
+
+inputs:
+    data:
+        id: data
+        data: dataframe
+    space:
+        id: space
+        data: graph
+outputs:
+    prediction:
+        id: pred
+        data: graph
