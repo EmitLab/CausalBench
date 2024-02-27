@@ -10,6 +10,10 @@ files:
         index: 
             time: index
         columns:
+            index:
+                header: index
+                type: ratio
+                data: integer
             var1:
                 header: var1
                 type: ratio
@@ -29,7 +33,7 @@ files:
             
     file2:
         type: csv
-        data: graph
+        data: dataframe
         path: demo_groundtruth.csv
         headers: true
         columns:

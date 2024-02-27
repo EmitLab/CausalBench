@@ -4,6 +4,7 @@ import os
 import pandas as pd
 from bunch_py3 import Bunch
 
+from causalbench.commons.utils import update_index
 from causalbench.formats import SpatioTemporalData
 from causalbench.helpers.discovery import adjmat_to_graph
 from causalbench.modules.module import Module
@@ -35,22 +36,20 @@ class Dataset(Module):
         # TODO: Add database call to upload to the server
         pass
 
-    def load(self):
+    def load(self) -> Bunch:
         files = Bunch()
 
         for file, data in self.files.items():
             # form the proper file path
-            file_path = os.path.join(self.package_path, data.path)
+            file_path = str(os.path.join(self.package_path, data.path))
 
             # read the file
             file_df = None
             data_object = None
             if data.data == 'dataframe':
                 file_df = pd.read_csv(file_path)
-
-                time = data.index.time if 'index' in data and 'time' in data.index else None
-                space = data.index.space if 'index' in data and 'space' in data.index else None
-                data_object = SpatioTemporalData(data=file_df, time=time, space=space)
+                data_object = SpatioTemporalData(data=file_df)
+                update_index(data, data_object)
 
             elif data.data == 'graph':
                 file_df = pd.read_csv(file_path, index_col=0)

@@ -1,9 +1,12 @@
 import logging
+from copy import copy
 from zipfile import ZipFile
 
 import yaml
 from bunch_py3 import Bunch
 
+from causalbench.commons.utils import update_index
+from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
 from causalbench.modules.model import Model
@@ -28,17 +31,17 @@ class Pipeline(Module):
 
         # convert dataset to config format
         self.dataset = Bunch()
-        if type(arguments.dataset) == Dataset:
+        if isinstance(arguments.dataset, Dataset):
             self.dataset.object = arguments.dataset
-        elif type(arguments.dataset) == int:
+        elif isinstance(arguments.dataset, int):
             self.dataset.id = arguments.dataset
 
         # convert model to config format
         self.model = Bunch()
-        if type(arguments.model[0]) == Model:
+        if isinstance(arguments.model[0], Model):
             self.model.id = arguments.model[0].module_id
             self.model.object = arguments.model[0]
-        elif type(arguments.model[0]) == int:
+        elif isinstance(arguments.model[0], int):
             self.model.id = arguments.model[0]
         self.model.parameters = arguments.model[1]
 
@@ -46,9 +49,9 @@ class Pipeline(Module):
         self.metrics = []
         for metric in arguments.metrics:
             self_metric = Bunch()
-            if type(metric[0]) == Metric:
+            if isinstance(metric[0], Metric):
                 self_metric.object = metric[0]
-            elif type(metric[0]) == int:
+            elif isinstance(metric[0], int):
                 self_metric.id = metric[0]
             self_metric.parameters = metric[1]
             self.metrics.append(self_metric)
@@ -93,7 +96,11 @@ class Pipeline(Module):
         # map model-data parameters
         parameters = {}
         for model_param, data_param in self.model.parameters.items():
-            parameters[model_param] = data[data_param]
+            data_object = data[data_param.file]
+            if isinstance(data_object, SpatioTemporalData):
+                data_object = copy(data_object)
+                update_index(data_param, data_object)
+            parameters[model_param] = data_object
 
         # execute the model
         model_response = model.execute(parameters)
@@ -118,12 +125,12 @@ class Pipeline(Module):
             # map metric-data parameters
             parameters = Bunch()
             for metric_param, data_param in self_metric.parameters.items():
-                parameters[metric_param] = data[data_param]
+                parameters[metric_param] = data[data_param.file]
 
             # map metric-model parameters
             if self.task == 'discovery.static':
                 parameters.prediction = model_response.output.prediction
-                
+
             # execute the metric
             metric_response = metric.evaluate(parameters)
             metric_response.id = metric.module_id

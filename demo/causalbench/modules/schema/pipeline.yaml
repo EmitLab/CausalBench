@@ -29,7 +29,19 @@ properties:
                         - space
                 patternProperties:
                     ^.*$:
-                        type: string
+                        type: object
+                        properties:
+                            file:
+                                type: string
+                            index:
+                                type: object
+                                properties:
+                                    time:
+                                        type: string
+                                    location:
+                                        type: string
+                        required:
+                            - file
         required:
             - id
             - parameters
@@ -47,7 +59,19 @@ properties:
                             - ground_truth
                     patternProperties:
                         ^.*$:
-                            type: string
+                            type: object
+                            properties:
+                                file:
+                                    type: string
+                                index:
+                                    type: object
+                                    properties:
+                                        time:
+                                            type: string
+                                        location:
+                                            type: string
+                            required:
+                                - file
             required:
                 - id
                 - parameters
