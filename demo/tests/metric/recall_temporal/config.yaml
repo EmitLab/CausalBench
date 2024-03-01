@@ -1,0 +1,16 @@
+type: metric
+name: recall
+task: discovery.temporal
+path: recall.py
+inputs:
+    ground:
+        id: truth
+        data: dataframe
+
+    prediction:
+        id: pred
+        data: dataframe
+outputs:
+    score:
+        id: score
+        data: decimal

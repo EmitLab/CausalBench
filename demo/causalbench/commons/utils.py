@@ -1,0 +1,92 @@
+import logging
+import os
+from pathlib import Path
+from zipfile import ZipFile
+
+from bunch_py3 import bunchify, Bunch
+
+from causalbench.formats import SpatioTemporalData
+
+
+def parse_arguments(args, keywords):
+    # parse the arguments
+    if len(args) == 0:
+        return bunchify(keywords)
+    elif len(args) == 1:
+        if isinstance(args[0], dict):
+            return bunchify(args[0])
+        elif isinstance(args[0], Bunch):
+            return args[0]
+    else:
+        logging.error('Invalid arguments')
+        return
+
+
+def display_report(report: Bunch):
+    print('-' * 80)
+
+    print(f'Dataset: {report.dataset.name}')
+    print(f'Model: {report.model.name}')
+
+    print('\nMetrics:')
+    for metric in report.metrics:
+        print(f'    {metric.name}: {metric.output.score}')
+
+    print('-' * 80)
+
+    # print(f'Module: {pipeline_report.mod}')
+    # print()
+    #
+    # print('Output:')
+    # print(response["output"])
+    # print()
+    #
+    # print(f'Duration: {response["duration"]} nanoseconds')
+    # print(f'Used Memory: {response["memory"]} bytes')
+    # if response["gpu_memory"] is None:
+    #     print(f'Used GPU Memory: None')
+    # else:
+    #     print(f'Used GPU Memory: {response["gpu_memory"]} bytes')
+    # print()
+    #
+    # print(f'Python: {response["python"]}')
+    # print(f'Imports: {response["imports"]}')
+    # print()
+    #
+    # print(f'Platform: {response["platform"]}')
+    # print(f'Processor: {response["processor"]}')
+    # print(f'GPU: {response["gpu"]}')
+    # print(f'Architecture: {response["architecture"]}')
+    # print(f'Total Memory: {response["memory_total"]} bytes')
+    # if response["gpu_memory_total"] is None:
+    #     print(f'Total GPU Memory: None')
+    # else:
+    #     print(f'Total GPU Memory: {response["gpu_memory_total"]} bytes')
+    # print(f'Total Storage: {response["storage_total"]} bytes')
+    # print('-' * 80)
+    #
+    # return response["output"]
+
+
+def extract_module(schema_name: str, zip_file_path: str):
+    # form the directory path
+    dir_name = os.path.basename(zip_file_path[:zip_file_path.rfind('.')])
+    dir_path = str(Path.home().joinpath('.causalbench').joinpath(schema_name).joinpath(dir_name))
+
+    # extract the zip file
+    zip_file = ZipFile(zip_file_path)
+    zip_file.extractall(path=dir_path)
+
+    return dir_path
+
+
+def update_index(data: Bunch, data_object: SpatioTemporalData):
+    if 'index' in data:
+        for name, col in data.index.items():
+            index_col = data.columns[col]
+            if data.headers:
+                index = index_col.header
+            else:
+                index = index_col.position
+            if index is not None:
+                data_object.index[name] = index

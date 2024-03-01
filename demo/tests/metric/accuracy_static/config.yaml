@@ -1,0 +1,16 @@
+type: metric
+name: accuracy
+task: discovery.static
+path: accuracy.py
+inputs:
+    ground:
+        id: truth
+        data: graph
+
+    prediction:
+        id: pred
+        data: graph
+outputs:
+    score:
+        id: score
+        data: decimal

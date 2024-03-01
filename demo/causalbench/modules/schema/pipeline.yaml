@@ -1,0 +1,84 @@
+type: object
+properties:
+    type:
+        type: string
+    name:
+        type: string
+    task:
+        enum:
+            - discovery.static
+            - discovery.temporal
+            - discovery.spatiotemporal
+    dataset:
+        type: object
+        properties:
+            id:
+                type: integer
+        required:
+            - id
+    model:
+        type: object
+        properties:
+            id:
+                type: integer
+            parameters:
+                type: object
+                propertyNames:
+                    enum:
+                        - data
+                        - space
+                patternProperties:
+                    ^.*$:
+                        type: object
+                        properties:
+                            file:
+                                type: string
+                            index:
+                                type: object
+                                properties:
+                                    time:
+                                        type: string
+                                    location:
+                                        type: string
+                        required:
+                            - file
+        required:
+            - id
+            - parameters
+    metrics:
+        type: array
+        items:
+            type: object
+            properties:
+                id:
+                    type: integer
+                parameters:
+                    type: object
+                    propertyNames:
+                        enum:
+                            - ground_truth
+                    patternProperties:
+                        ^.*$:
+                            type: object
+                            properties:
+                                file:
+                                    type: string
+                                index:
+                                    type: object
+                                    properties:
+                                        time:
+                                            type: string
+                                        location:
+                                            type: string
+                            required:
+                                - file
+            required:
+                - id
+                - parameters
+required:
+    - type
+    - name
+    - task
+    - dataset
+    - model
+    - metrics
