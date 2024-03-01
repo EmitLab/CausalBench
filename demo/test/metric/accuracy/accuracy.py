@@ -2,24 +2,22 @@ import numpy as np
 
 
 def evaluate(pred, truth):
-    truth = truth.to_numpy()
-
-    # check if `truth` and `pred` are numpy arrays
-    if not isinstance(truth, np.ndarray):
-        raise TypeError("truth must be a numpy.ndarray")
-    if not isinstance(pred, np.ndarray):
-        raise TypeError("pred must be a numpy.ndarray")
-
-    # check if `truth` and `pred` have the same shape
-    if truth.shape != pred.shape:
-        raise ValueError("truth and pred must have the same shape")
-
-    # check if `truth` and `pred` are binary
-    if not np.all(np.isin(truth, [0, 1])):
-        raise ValueError("truth must be binary")
-    if not np.all(np.isin(pred, [0, 1])):
-        raise ValueError("pred must be binary")
     
-    score = np.mean(pred == truth)
+    # check if pred is a 2d numpy array
+    if pred.shape[0] == pred.shape[1]:
+        d = pred.shape[0]
+        total = 0.5 * d * (d - 1)
+        TP = np.sum((pred + truth) == 2)
+        FP = np.sum((pred == 1) & (truth == 0)) 
+        TN = total - FP
+    # TODO: need to find a uniqe condition
+    # claculate total number of edges as 
+    if True:
+        np.array_equal(pred, truth)
+        total = 0.5 * d * (d - 1)
+        TP = np.sum((pred + truth) == 2, axis=0)
+        FP = np.sum((pred == 1) & (truth == 0), axis=0)
+        TN = total - FP
+    score = (TP + TN) / total
 
     return {'score': score}

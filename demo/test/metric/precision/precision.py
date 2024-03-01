@@ -20,7 +20,7 @@ def evaluate(pred, truth):
         raise ValueError("pred must be binary")
     
     TP = np.sum((pred + truth) == 2)
-    TP_FP = pred.sum(axis=1).sum()
-    score = TP/TP_FP
+    FP = np.sum((pred == 1) & (truth == 0))
+    score = TP / (TP + FP) if (TP + FP) > 0 else 0
 
     return {'score': score}

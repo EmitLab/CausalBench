@@ -20,10 +20,11 @@ def evaluate(pred, truth):
         raise ValueError("pred must be binary")
 
     TP = np.sum((pred + truth) == 2)
-    TP_FP = pred.sum(axis=1).sum()
-    TP_FN = truth.sum(axis=1).sum()
-    precision = TP/TP_FP
-    recall = TP/TP_FN
-    score = 2*(recall*precision)/(recall+precision)
+    FP = np.sum((pred == 1) & (truth == 0))
+    FN = np.sum((pred == 0) & (truth == 1))
+
+    precision = TP / (TP + FP) if (TP + FP) > 0 else 0
+    recall = TP / (TP + FN) if (TP + FN) > 0 else 0
+    score = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
 
     return {'score': score}
