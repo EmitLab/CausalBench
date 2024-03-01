@@ -26,7 +26,7 @@ class SpatioTemporalData:
 
     @space.setter
     def space(self, value):
-        self.time = value
+        self.space = value
 
     def __copy__(self):
         data_object = SpatioTemporalData(self.data)
