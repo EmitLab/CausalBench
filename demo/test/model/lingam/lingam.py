@@ -29,7 +29,11 @@ def execute(data, space):
     else:
         print("result is neither a numpy array nor a pandas DataFrame")
 
-    print (model._adjacency_matrices)
-    print(model._adjacency_matrices.shape)
-    #TODO convert it into i, j, tau array and return it as such.
-    return {'pred': model._adjacency_matrices}
+    #print (model._adjacency_matrices)
+    #print(model._adjacency_matrices.shape)
+    #convert it into i, j, tau array and return it as such.
+    result = model._adjacency_matrices
+    result[result != 0] = 1
+
+    #result is returned as an ndarray [time,i,j]
+    return {'pred': result}
