@@ -35,7 +35,7 @@ def execute(data, space):
             print("result is neither a numpy array nor a pandas DataFrame")
 
 
-    pred = adjmatwlag_to_graph(result, nodes=data.data.columns)
+    pred = adjmatwlag_to_graph(result, nodes=data.columns)
 
     #print (model._adjacency_matrices)
     #print(model._adjacency_matrices.shape)
