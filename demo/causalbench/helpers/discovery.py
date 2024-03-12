@@ -3,7 +3,6 @@ import pandas as pd
 
 from causalbench.formats import SpatioTemporalGraph
 
-
 def adjmat_to_graph(adjmat: np.ndarray, nodes: list[str], weight: str = 'strength') -> SpatioTemporalGraph:
     if weight not in ['lag', 'strength']:
         raise ValueError(f'Invalid type of weight: {weight}')
@@ -19,7 +18,7 @@ def adjmat_to_graph(adjmat: np.ndarray, nodes: list[str], weight: str = 'strengt
 
     columns = ['Cause', 'Effect', 'Location_Cause', 'Location_Effect', 'Lag', 'Strength']
     data = pd.DataFrame(data, columns=columns)
-
+    print (data)
     return SpatioTemporalGraph(data, *columns)
 
 
@@ -38,7 +37,6 @@ def graph_to_adjmat(graph: SpatioTemporalGraph, weight: str = 'strength') -> pd.
 
     return adjmat
 
-
 def temporal_log_to_graph(temporal_log: np.ndarray, cause: int, effect: int, lag: int) -> SpatioTemporalGraph:
     data = []
 
@@ -48,4 +46,21 @@ def temporal_log_to_graph(temporal_log: np.ndarray, cause: int, effect: int, lag
     columns = ['Cause', 'Effect', 'Location_Cause', 'Location_Effect', 'Lag', 'Strength']
     data = pd.DataFrame(data, columns=columns)
 
+    return SpatioTemporalGraph(data, *columns)
+
+def adjmatwlag_to_graph(adjmatWLag: np.ndarray, nodes: list[str], weight: str = 'strength') -> SpatioTemporalGraph:
+    if weight not in ['strength']:
+        raise ValueError(f'Invalid type of weight: {weight}')
+
+    data = []
+    lag = 0
+    for adjmat in adjmatWLag:
+        for index_cause, cause in enumerate(nodes):
+            for index_effect, effect in enumerate(nodes):
+                data.append((cause, effect, 0, 0, lag, adjmat[index_cause, index_effect]))
+        lag += 1
+
+    columns = ['Cause', 'Effect', 'Location_Cause', 'Location_Effect', 'Lag', 'Strength']
+    data = pd.DataFrame(data, columns=columns)
+    print (data)
     return SpatioTemporalGraph(data, *columns)
