@@ -8,13 +8,13 @@ class SpatioTemporalData:
 
     def __init__(self, data: pd.DataFrame):
         self.data = data
-        self.index = Bunch()
-        self.index.time = None
-        self.index.space = None
+        self._index = Bunch()
+        self._index.time = None
+        self._index.space = None
 
     @property
     def time(self):
-        return self.index.time
+        return self._index.time
 
     @time.setter
     def time(self, value):
@@ -22,14 +22,38 @@ class SpatioTemporalData:
 
     @property
     def space(self):
-        return self.index.space
+        return self._index.space
 
     @space.setter
     def space(self, value):
         self.space = value
 
+    def update_index(self, data: Bunch):
+        if 'index' in data:
+            index_dict = {}
+            for name, col in data.index.items():
+                index_col = data.columns[col]
+                if data.headers:
+                    index = index_col.header
+                else:
+                    index = self.data.columns[index_col.position]
+                index_dict[name] = index
+            self.index = index_dict
+
+    @property
+    def index(self) -> dict[str, str]:
+        return self._index
+
+    @index.setter
+    def index(self, index: dict[str, str]):
+        for name, col in index.items():
+            if name in self._index:
+                self._index[name] = col
+            else:
+                raise IndexError(f'Invalid index: "{name}"')
+
     def __copy__(self):
         data_object = SpatioTemporalData(self.data)
-        data_object.index.time = self.time
-        data_object.index.space = self.space
+        data_object._index.time = self.time
+        data_object._index.space = self.space
         return data_object

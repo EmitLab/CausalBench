@@ -16,17 +16,24 @@ properties:
                     data:
                         enum:
                             - dataframe
-                            - graph
+                            - graph.static
+                            - graph.temporal
                     path:
                         type: string
                     headers:
                         type: boolean
                     index:
                         type: object
-                        properties:
-                            time:
-                                type: string
-                            location:
+                        propertyNames:
+                            enum:
+                                - time
+                                - location
+                                - cause
+                                - effect
+                                - strength
+                                - lag
+                        patternProperties:
+                            ^.*$:
                                 type: string
                     columns:
                         type: object

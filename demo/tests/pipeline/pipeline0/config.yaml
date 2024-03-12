@@ -2,18 +2,15 @@ type: pipeline
 name: pipeline0
 task: discovery.static
 dataset:
-    id: 2
+    id: 0
 model:
     id: 0
     parameters:
-        data:
-            file: file1
+        data: file1
 metrics:
     -   id: 0
         parameters:
-            ground_truth:
-                file: file2
+            ground_truth: file2
     -   id: 1
         parameters:
-            ground_truth:
-                file: file2
+            ground_truth: file2

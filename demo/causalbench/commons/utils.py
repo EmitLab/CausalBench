@@ -78,15 +78,3 @@ def extract_module(schema_name: str, zip_file_path: str):
     zip_file.extractall(path=dir_path)
 
     return dir_path
-
-
-def update_index(data: Bunch, data_object: SpatioTemporalData):
-    if 'index' in data:
-        for name, col in data.index.items():
-            index_col = data.columns[col]
-            if data.headers:
-                index = index_col.header
-            else:
-                index = index_col.position
-            if index is not None:
-                data_object.index[name] = index
