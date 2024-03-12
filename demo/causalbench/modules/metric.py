@@ -69,11 +69,9 @@ class Metric(Module):
         # map the metric arguments
         metric_args = {}
 
-        if self.task == 'discovery.static':
-            metric_args[self.inputs.ground.id] = graph_to_adjmat(arguments.ground_truth)
-            metric_args[self.inputs.prediction.id] = graph_to_adjmat(arguments.prediction)
-            # self.check_graph(arguments.ground_truth.data)
-            # self.check_graph(arguments.prediction.data)
+        if self.task == 'discovery.static' or self.task == 'discovery.temporal':
+            metric_args[self.inputs.ground.id] = arguments.ground_truth
+            metric_args[self.inputs.prediction.id] = arguments.prediction
 
         # execute the metric
         response = executor.execute(file_path, 'evaluate', **metric_args)
@@ -87,9 +85,3 @@ class Metric(Module):
         logging.info('Executed metric successfully')
 
         return response
-
-    # def check_graph(self, data):
-    #     if not isinstance(data):
-    #         raise TypeError("data must be either numpy.ndarray or pandas.DataFrame")
-    #     if data.shape[0] != data.shape[1]:
-    #         raise ValueError('data must be in square shape')

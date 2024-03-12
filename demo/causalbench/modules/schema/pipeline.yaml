@@ -14,6 +14,25 @@ properties:
         properties:
             id:
                 type: integer
+            files:
+                type: object
+                patternProperties:
+                    ^.*$:
+                        type: object
+                        properties:
+                            index:
+                                type: object
+                                propertyNames:
+                                    enum:
+                                        - time
+                                        - location
+                                        - cause
+                                        - effect
+                                        - strength
+                                        - lag
+                                patternProperties:
+                                    ^.*$:
+                                        type: string
         required:
             - id
     model:
@@ -29,19 +48,7 @@ properties:
                         - space
                 patternProperties:
                     ^.*$:
-                        type: object
-                        properties:
-                            file:
-                                type: string
-                            index:
-                                type: object
-                                properties:
-                                    time:
-                                        type: string
-                                    location:
-                                        type: string
-                        required:
-                            - file
+                        type: string
         required:
             - id
             - parameters
@@ -59,19 +66,7 @@ properties:
                             - ground_truth
                     patternProperties:
                         ^.*$:
-                            type: object
-                            properties:
-                                file:
-                                    type: string
-                                index:
-                                    type: object
-                                    properties:
-                                        time:
-                                            type: string
-                                        location:
-                                            type: string
-                            required:
-                                - file
+                            type: string
             required:
                 - id
                 - parameters

@@ -5,7 +5,6 @@ from zipfile import ZipFile
 import yaml
 from bunch_py3 import Bunch
 
-from causalbench.commons.utils import update_index
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
@@ -84,6 +83,15 @@ class Pipeline(Module):
 
         data = dataset.load()
 
+        # update indices
+        if 'files' in self.dataset:
+            for file, data_object in data.items():
+                if file in self.dataset.files:
+                    if isinstance(data_object, SpatioTemporalData):
+                        data_object.update_index(self.dataset.files[file])
+                    if isinstance(data_object, SpatioTemporalGraph):
+                        data_object.update_index(self.dataset.files[file])
+
         # load model
         if 'object' in self.model:
             model = self.model.object
@@ -96,11 +104,7 @@ class Pipeline(Module):
         # map model-data parameters
         parameters = {}
         for model_param, data_param in self.model.parameters.items():
-            data_object = data[data_param.file]
-            if isinstance(data_object, SpatioTemporalData):
-                data_object = copy(data_object)
-                update_index(data_param, data_object)
-            parameters[model_param] = data_object
+            parameters[model_param] = data[data_param]
 
         # execute the model
         model_response = model.execute(parameters)
@@ -125,7 +129,7 @@ class Pipeline(Module):
             # map metric-data parameters
             parameters = Bunch()
             for metric_param, data_param in self_metric.parameters.items():
-                parameters[metric_param] = data[data_param.file]
+                parameters[metric_param] = data[data_param]
 
             # map metric-model parameters
             if self.task == 'discovery.static':

@@ -4,8 +4,7 @@ import os
 import pandas as pd
 from bunch_py3 import Bunch
 
-from causalbench.commons.utils import update_index
-from causalbench.formats import SpatioTemporalData
+from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.helpers.discovery import adjmat_to_graph
 from causalbench.modules.module import Module
 
@@ -48,12 +47,17 @@ class Dataset(Module):
             data_object = None
             if data.data == 'dataframe':
                 file_df = pd.read_csv(file_path)
-                data_object = SpatioTemporalData(data=file_df)
-                update_index(data, data_object)
+                data_object = SpatioTemporalData(file_df)
+                data_object.update_index(data)
 
-            elif data.data == 'graph':
+            elif data.data == 'graph.static':
                 file_df = pd.read_csv(file_path, index_col=0)
                 data_object = adjmat_to_graph(file_df.to_numpy(), file_df.columns)
+
+            elif data.data == 'graph.temporal':
+                file_df = pd.read_csv(file_path)
+                data_object = SpatioTemporalGraph(file_df)
+                data_object.update_index(data)
 
             if file_df is None:
                 raise ValueError(f'Invalid data type {data.data}')
@@ -66,7 +70,7 @@ class Dataset(Module):
                 if data.headers:
                     col_df = file_df[col_data.header]
                 else:
-                    col_df = file_df[col_data.index]
+                    col_df = file_df[col_data._index]
 
                 if col_data.data == 'integer':
                     if not pd.api.types.is_integer_dtype(col_df):
