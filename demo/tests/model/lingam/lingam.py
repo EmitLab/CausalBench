@@ -41,4 +41,4 @@ def execute(data, space):
     #print(model._adjacency_matrices.shape)
 
     #result is returned as an ndarray [lag,i,j]
-    return {'pred': result}
+    return {'pred': pred}
