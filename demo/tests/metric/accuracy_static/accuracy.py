@@ -1,14 +1,15 @@
 import numpy as np
-import pandas as pd
+
+from causalbench.formats import SpatioTemporalGraph
+from causalbench.helpers.discovery import graph_to_adjmat
 
 
-def evaluate(pred, truth):
-    # check if `truth` and `pred` are pandas DataFrames
-    if not isinstance(pred, pd.DataFrame):
-        raise TypeError("pred must be a pandas DataFrame")
-    if not isinstance(truth, pd.DataFrame):
-        raise TypeError("truth must be a pandas DataFrame")
+def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph):
+    # convert to adjacency matrix
+    pred = graph_to_adjmat(pred)
+    truth = graph_to_adjmat(truth)
 
+    # convert to numpy matrix
     pred = pred.to_numpy()
     truth = truth.to_numpy()
 

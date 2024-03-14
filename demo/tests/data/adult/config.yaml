@@ -71,7 +71,7 @@ files:
                 data: integer
     file2:
         type: csv
-        data: graph
+        data: graph.static
         path: causal_info_adjmat.csv
         headers: true
         columns:

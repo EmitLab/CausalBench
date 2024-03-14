@@ -6,8 +6,11 @@ For now, we do not differentiate reversed edges and undirected edges.
 import numpy as np
 import pandas as pd
 
+from causalbench.formats import SpatioTemporalGraph
+from causalbench.helpers.discovery import graph_to_adjmat
 
-def evaluate(pred, truth):
+
+def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph):
     r"""Compute the Structural Hamming Distance.
 
     Args:
@@ -20,12 +23,11 @@ def evaluate(pred, truth):
         >>> pred, truth = randint(2, size=(10, 10)), randint(2, size=(10, 10))
         >>> SHD(pred, truth)
     """
-    # check if `truth` and `pred` are pandas DataFrames
-    if not isinstance(pred, pd.DataFrame):
-        raise TypeError("pred must be a pandas DataFrame")
-    if not isinstance(truth, pd.DataFrame):
-        raise TypeError("truth must be a pandas DataFrame")
+    # convert to adjacency matrix
+    pred = graph_to_adjmat(pred)
+    truth = graph_to_adjmat(truth)
 
+    # convert to numpy matrix
     pred = pred.to_numpy()
     truth = truth.to_numpy()
 

@@ -33,9 +33,13 @@ files:
             
     file2:
         type: csv
-        data: dataframe
+        data: graph.temporal
         path: demo_groundtruth.csv
         headers: true
+        index:
+            cause: cause
+            effect: effect
+            lag: timestep
         columns:
             cause:
                 header: cause
