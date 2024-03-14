@@ -20,7 +20,7 @@ def execute(data, space):
     model.fit(X)
 
     result = model._adjacency_matrices
-    result[result != 0] = 1 #Convert to adj matrix.
+    #result[result != 0] = 1 #Convert to adj matrix.
 
     print("Lingam returns an adjacency matrix for each lag, conformance checking the sub adj matrices...")
     for subArr in result:
