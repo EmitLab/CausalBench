@@ -5,11 +5,11 @@ path: precision_temporal.py
 inputs:
     ground:
         id: truth
-        data: dataframe
+        data: graph.temporal
 
     prediction:
         id: pred
-        data: dataframe
+        data: graph.temporal
 outputs:
     score:
         id: score

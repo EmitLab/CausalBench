@@ -5,11 +5,11 @@ path: precision_static.py
 inputs:
     ground:
         id: truth
-        data: graph
+        data: graph.static
 
     prediction:
         id: pred
-        data: graph
+        data: graph.static
 outputs:
     score:
         id: score
