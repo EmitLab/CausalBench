@@ -12,11 +12,11 @@ def adjmat_to_graph(adjmat: np.ndarray, nodes: list[str], weight: str = 'strengt
 
     for index_cause, cause in enumerate(nodes):
         for index_effect, effect in enumerate(nodes):
-            if weight == 'strength':
-                if adjmat[index_cause, index_effect] != 0:
+            if adjmat[index_cause, index_effect] != 0:
+                if weight == 'strength':
                     data.append((cause, effect, 0, 0, adjmat[index_cause, index_effect], 0))
-            else:
-                data.append((cause, effect, 0, 0, 0, adjmat[index_cause, index_effect]))
+                else:
+                    data.append((cause, effect, 0, 0, 0, adjmat[index_cause, index_effect]))
 
     columns = ['cause', 'effect', 'location_cause', 'location_effect', 'strength', 'lag']
     data = pd.DataFrame(data, columns=columns)
