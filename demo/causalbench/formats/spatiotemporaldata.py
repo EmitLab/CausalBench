@@ -1,5 +1,3 @@
-import copy
-
 import pandas as pd
 from bunch_py3 import Bunch
 

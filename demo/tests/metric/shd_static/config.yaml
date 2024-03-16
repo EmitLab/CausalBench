@@ -1,7 +1,7 @@
 type: metric
 name: SHD
 task: discovery.static
-path: shd.py
+path: shd_static.py
 inputs:
     ground:
         id: truth

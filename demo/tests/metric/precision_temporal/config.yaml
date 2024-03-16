@@ -1,7 +1,7 @@
 type: metric
 name: precision
 task: discovery.temporal
-path: precision.py
+path: precision_temporal.py
 inputs:
     ground:
         id: truth

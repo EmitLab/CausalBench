@@ -7,12 +7,12 @@ class SpatioTemporalGraph:
     def __init__(self, data: pd.DataFrame):
         self.data = data
         self._index = Bunch()
-        self._index.cause = self.data.columns[0]
-        self._index.effect = self.data.columns[1]
-        self._index.location_cause = self.data.columns[2]
-        self._index.location_effect = self.data.columns[3]
-        self._index.strength = self.data.columns[4]
-        self._index.lag = self.data.columns[5]
+        self._index.cause = None
+        self._index.effect = None
+        self._index.location_cause = None
+        self._index.location_effect = None
+        self._index.strength = None
+        self._index.lag = None
 
     @property
     def cause(self):

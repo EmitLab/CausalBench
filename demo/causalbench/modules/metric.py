@@ -5,7 +5,6 @@ from bunch_py3 import Bunch
 
 from causalbench.commons import executor
 from causalbench.commons.utils import parse_arguments
-from causalbench.helpers.discovery import graph_to_adjmat
 from causalbench.modules.module import Module
 
 
@@ -30,13 +29,13 @@ class Metric(Module):
                 raise ValueError('Ground input is missing')
             if getattr(self.inputs.ground, "data", None) is None:
                 raise ValueError('Ground data is missing')
-            elif getattr(self.inputs.ground, "data") != "graph":
+            elif getattr(self.inputs.ground, "data") not in ["graph.static", "graph.temporal"]:
                 raise ValueError('Ground input must be a graph for a discovery task')
             if getattr(self.inputs, "prediction", None) is None:
                 raise ValueError('Prediction input is missing')
             if getattr(self.inputs.prediction, "data", None) is None:
                 raise ValueError('Prediction data is missing')
-            elif getattr(self.inputs.prediction, "data") != "graph":
+            elif getattr(self.inputs.prediction, "data") not in ["graph.static", "graph.temporal"]:
                 raise ValueError('Prediction input must be a graph for a discovery task')
 
             if getattr(self.outputs, "score", None) is None:
@@ -49,11 +48,23 @@ class Metric(Module):
         elif module_id == 1:
             return 'metric/accuracy_static.zip'
         elif module_id == 2:
-            return 'metric/f1.zip'
+            return 'metric/f1_static.zip'
         elif module_id == 3:
-            return 'metric/precision.zip'
+            return 'metric/precision_static.zip'
         elif module_id == 4:
-            return 'metric/recall.zip'
+            return 'metric/recall_static.zip'
+        elif module_id == 5:
+            return 'metric/shd_temporal.zip'
+        elif module_id == 6:
+            return 'metric/accuracy_temporal.zip'
+        elif module_id == 7:
+            return 'metric/f1_temporal.zip'
+        elif module_id == 8:
+            return 'metric/precision_temporal.zip'
+        elif module_id == 9:
+            return 'metric/recall_temporal.zip'
+        else:
+            raise ValueError(f"Invalid module_id: {module_id}")
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server

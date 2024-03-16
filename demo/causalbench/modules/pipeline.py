@@ -64,6 +64,8 @@ class Pipeline(Module):
         # TODO: Replace with database call to download zip and obtain path
         if module_id == 0:
             return 'pipeline/pipeline0.zip'
+        elif module_id == 1:
+            return 'pipeline/pipeline1.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
@@ -132,7 +134,7 @@ class Pipeline(Module):
                 parameters[metric_param] = data[data_param]
 
             # map metric-model parameters
-            if self.task == 'discovery.static':
+            if self.task in ['discovery.static', 'discovery.temporal']:
                 parameters.prediction = model_response.output.prediction
 
             # execute the metric

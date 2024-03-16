@@ -1,7 +1,7 @@
 type: metric
 name: f1
 task: discovery.static
-path: f1.py
+path: f1_static.py
 inputs:
     ground:
         id: truth

@@ -1,10 +1,11 @@
 import numpy as np
+import warnings
 
 from causalbench.formats import SpatioTemporalGraph
 from causalbench.helpers.discovery import graph_to_adjmat
 
 
-def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph):
+def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph, binarize: bool = True):
     # convert to adjacency matrix
     pred = graph_to_adjmat(pred)
     truth = graph_to_adjmat(truth)
@@ -17,12 +18,21 @@ def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph):
     if truth.shape != pred.shape:
         raise ValueError("truth and pred must have the same shape")
 
-    # check if `truth` and `pred` are binary
+    # check if `truth` and `pred` are binary and binarize if necessary
     if not np.all(np.isin(truth, [0, 1])):
-        raise ValueError("truth must be binary")
+        if binarize:
+            truth = (truth != 0).astype(int)
+            warnings.warn("truth has been binarized.")
+        else:
+            warnings.warn("truth is not binary.")
+
     if not np.all(np.isin(pred, [0, 1])):
-        raise ValueError("pred must be binary")
-    
+        if binarize:
+            pred = (pred != 0).astype(int)
+            warnings.warn("pred has been binarized.")
+        else:
+            warnings.warn("pred is not binary.")
+
     score = np.mean(pred == truth)
 
     return {'score': score}

@@ -26,7 +26,8 @@ properties:
                     data:
                         enum:
                             - dataframe
-                            - graph
+                            - graph.static
+                            - graph.temporal
                 required:
                     - id
                     - data
@@ -41,7 +42,8 @@ properties:
                     data:
                         enum:
                             - dataframe
-                            - graph
+                            - graph.static
+                            - graph.temporal
                 required:
                     - id
                     - data

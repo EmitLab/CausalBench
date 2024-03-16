@@ -40,10 +40,18 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 
 def main():
-    pipeline0 = Pipeline(0)
-    result0 = pipeline0.execute()
-    display_report(result0)
 
+    # # static discovery
+    # pipeline0 = Pipeline(0)
+    # result0 = pipeline0.execute()
+    # display_report(result0)
+
+    # temporal discovery
+    pipeline1 = Pipeline(1)
+    result1 = pipeline1.execute()
+    display_report(result1)
+
+    # manually creation
     # pipeline1 = Pipeline()
     # pipeline1.create(name='pipeline1',
     #                  task='discovery.temporal',

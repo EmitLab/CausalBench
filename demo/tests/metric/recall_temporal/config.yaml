@@ -1,7 +1,7 @@
 type: metric
 name: recall
 task: discovery.temporal
-path: recall.py
+path: recall_temporal.py
 inputs:
     ground:
         id: truth

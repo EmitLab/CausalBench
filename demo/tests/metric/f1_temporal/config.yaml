@@ -1,7 +1,7 @@
 type: metric
 name: f1
 task: discovery.temporal
-path: f1.py
+path: f1_temporal.py
 inputs:
     ground:
         id: truth

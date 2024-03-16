@@ -1,15 +1,12 @@
 type: model
 name: lingam
-task: discovery
+task: discovery.temporal
 path: lingam.py
 inputs:
     data:
         id: data
         data: dataframe
-    space:
-        id: space
-        data: graph
 outputs:
     prediction:
         id: pred
-        data: graph
+        data: graph.temporal

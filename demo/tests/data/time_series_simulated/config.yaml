@@ -44,11 +44,11 @@ files:
             cause:
                 header: cause
                 type: nominal
-                data: integer
+                data: string
             effect:
                 header: effect
                 type: nominal
-                data: integer
+                data: string
             timestep:
                 header: timestep
                 type: nominal
