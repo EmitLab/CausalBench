@@ -1,5 +1,5 @@
 type: metric
-name: f1
+name: f1_static
 task: discovery.static
 path: f1_static.py
 inputs:

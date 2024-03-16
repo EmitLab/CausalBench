@@ -1,5 +1,5 @@
 type: metric
-name: accuracy
+name: accuracy_static
 task: discovery.static
 path: accuracy_static.py
 inputs:

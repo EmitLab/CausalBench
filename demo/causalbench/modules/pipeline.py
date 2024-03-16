@@ -149,6 +149,7 @@ class Pipeline(Module):
         response.pipeline = Bunch()
         response.pipeline.id = self.module_id
         response.pipeline.name = self.name
+        response.pipeline.task = self.task
 
         response.dataset = Bunch()
         response.dataset.id = dataset.module_id

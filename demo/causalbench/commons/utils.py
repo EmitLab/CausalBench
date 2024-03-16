@@ -25,6 +25,7 @@ def parse_arguments(args, keywords):
 def display_report(report: Bunch):
     print('-' * 80)
 
+    print(f'Task: {report.pipeline.task}')
     print(f'Dataset: {report.dataset.name}')
     print(f'Model: {report.model.name}')
 

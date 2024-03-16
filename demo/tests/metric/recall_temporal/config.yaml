@@ -1,5 +1,5 @@
 type: metric
-name: recall
+name: recall_temporal
 task: discovery.temporal
 path: recall_temporal.py
 inputs:

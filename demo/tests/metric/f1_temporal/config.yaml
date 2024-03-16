@@ -1,5 +1,5 @@
 type: metric
-name: f1
+name: f1_temporal
 task: discovery.temporal
 path: f1_temporal.py
 inputs:

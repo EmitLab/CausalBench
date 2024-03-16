@@ -1,5 +1,5 @@
 type: metric
-name: accuracy
+name: accuracy_temporal
 task: discovery.temporal
 path: accuracy_temporal.py
 inputs:
