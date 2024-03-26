@@ -1,0 +1,13 @@
+type: model
+name: ermirmcfcminst
+task: domaingeneralization
+path: ermirmcfcminst.py
+inputs:
+    data:
+        id: data
+        data: dataframe
+outputs:
+    classification:
+        id:
+        data:
+
