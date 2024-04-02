@@ -80,6 +80,7 @@ class standard_erm_model:
         
         self.train_acc = train_acc
         self.test_acc  = test_acc
+        return yts_
 
 
 class irm_model:

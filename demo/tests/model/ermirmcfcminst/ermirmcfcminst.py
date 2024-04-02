@@ -16,7 +16,7 @@ from sklearn.model_selection import KFold
 from datetime import date
 import time
 
-from data_construct import * ## contains functions for constructing data
+from .data_construct import * ## contains functions for constructing data
 from IRM_methods import *    ## contains IRM and ERM methods
 
 #TODO: How do we process and import the paths if we want to access them from their

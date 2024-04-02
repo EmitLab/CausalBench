@@ -16,8 +16,8 @@ from sklearn.model_selection import KFold
 from datetime import date
 import time
 
-from data_construct import * ## contains functions for constructing data
-from IRM_methods import *    ## contains IRM and ERM methods
+from .OoD.ERMIRM.data_construct import *
+from .OoD.ERMIRM.IRM_methods import *
 
 #TODO: How do we process and import the paths if we want to access them from their
 # unzipped locations?
@@ -39,6 +39,10 @@ def execute(data, space):
     ### Model code
 
     '''
+    #Temp data generation.
+    
+    n_trial =10
+    n_tr = 100 # list of training sample sizes
     n_e = 2
     p_color_list = [0.2, 0.1]
     p_label_list = [0.25] * n_e
@@ -66,12 +70,11 @@ def execute(data, space):
     learning_rate = 4.9e-4
     erm_model1 = standard_erm_model(model_erm, num_epochs, batch_size, learning_rate)
     erm_model1.fit(data)
-    erm_model1.evaluate(data.test)
+    preds = erm_model1.evaluate(data.test)
 
     ###
 
-    result = data.test
-    #Do we want to add anything to the result file?
+    result = preds
 
     # check if returned data type is graph/adjacency matrix
     if isinstance(result, np.ndarray) or isinstance(result, pd.DataFrame):
