@@ -35,6 +35,8 @@ class Model(Module):
             return 'model/ges.zip'
         elif model_id == 2:
             return 'model/lingam.zip'
+        elif model_id == 3:
+            return 'model/ermirmcfcminst.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
