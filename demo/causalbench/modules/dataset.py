@@ -30,6 +30,8 @@ class Dataset(Module):
             return 'data/adult.zip'
         elif module_id == 2:
             return 'data/time_series_simulated.zip'
+        elif module_id == 3:
+            return 'data/fashion_mnist.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server

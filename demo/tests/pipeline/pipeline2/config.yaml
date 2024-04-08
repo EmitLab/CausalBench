@@ -1,0 +1,16 @@
+type: pipeline
+name: pipeline2
+task: classification
+dataset:
+    id: 3
+model:
+    id: 3
+    parameters:
+        data: file1
+metrics:
+    -   id: 5
+        parameters:
+            ground_truth: file2
+    -   id: 6
+        parameters:
+            ground_truth: file2

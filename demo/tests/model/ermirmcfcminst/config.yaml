@@ -1,13 +1,13 @@
 type: model
 name: ermirmcfcminst
-task: domaingeneralization
+task: classification
 path: ermirmcfcminst.py
 inputs:
     data:
         id: data
         data: dataframe
 outputs:
-    classification:
-        id:
-        data:
+    prediction:
+        id: pred
+        data: dataframe
 

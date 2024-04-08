@@ -51,7 +51,7 @@ class Model(Module):
 
         # map the model arguments
         model_args = {}
-
+        print(self.task)
         if self.task == 'discovery.static':
             model_args[self.inputs.data.id] = arguments.data
 
@@ -62,6 +62,8 @@ class Model(Module):
             model_args[self.inputs.data.id] = arguments.data
             model_args[self.inputs.space.id] = arguments.space if 'space' in arguments else None
 
+        elif self.task == 'classification':
+            model_args[self.inputs.data.id] = arguments.data
         else:
             raise TypeError(f'Invalid task type: {self.task}')
 
