@@ -6,6 +6,9 @@ inputs:
     data:
         id: data
         data: dataframe
+    target:
+        id: target
+        data: dataframe
 outputs:
     prediction:
         id: pred

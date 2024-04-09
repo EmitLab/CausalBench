@@ -46,6 +46,7 @@ properties:
                 propertyNames:
                     enum:
                         - data
+                        - target
                         - space
                 patternProperties:
                     ^.*$:

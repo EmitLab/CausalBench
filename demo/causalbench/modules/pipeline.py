@@ -107,6 +107,7 @@ class Pipeline(Module):
 
         # map model-data parameters
         parameters = {}
+        print(self.model.parameters.items())
         for model_param, data_param in self.model.parameters.items():
             parameters[model_param] = data[data_param]
 
