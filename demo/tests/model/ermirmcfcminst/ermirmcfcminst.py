@@ -22,14 +22,16 @@ from OoD.ERMIRM.IRM_methods import *    ## contains IRM and ERM methods
 #TODO: How do we process and import the paths if we want to access them from their
 # unzipped locations?
 
-def execute(data, space=None):
+def execute(data, target):
+    print("data: ", data.data)
+    print("target: ", target.data)
     # check if `data` is dataframe
     if not isinstance(data.data, pd.DataFrame):
         raise TypeError("data must be a DataFrame object")
 
     # the model does not take space, it should be type none.
-    if not isinstance(space, None):
-        raise TypeError("This model does not support space.")
+    # if not isinstance(space, None):
+    #     raise TypeError("This model does not support space.")
 
     X = data.data
 
