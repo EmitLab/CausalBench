@@ -64,6 +64,7 @@ class Model(Module):
 
         elif self.task == 'classification':
             model_args[self.inputs.data.id] = arguments.data
+            model_args[self.inputs.target.id] = arguments.target
         else:
             raise TypeError(f'Invalid task type: {self.task}')
 
