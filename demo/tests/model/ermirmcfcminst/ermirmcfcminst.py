@@ -16,22 +16,22 @@ from sklearn.model_selection import KFold
 from datetime import date
 import time
 
-from .data_construct import * ## contains functions for constructing data
-from IRM_methods import *    ## contains IRM and ERM methods
+from OoD.ERMIRM.data_construct import * ## contains functions for constructing data
+from OoD.ERMIRM.IRM_methods import *    ## contains IRM and ERM methods
 
 #TODO: How do we process and import the paths if we want to access them from their
 # unzipped locations?
 
-def execute(data, space):
+def execute(data, space=None):
     # check if `data` is dataframe
-    if not isinstance(data, pd.DataFrame):
+    if not isinstance(data.data, pd.DataFrame):
         raise TypeError("data must be a DataFrame object")
 
     # the model does not take space, it should be type none.
     if not isinstance(space, None):
         raise TypeError("This model does not support space.")
 
-    X = data
+    X = data.data
 
     ### Model code
 

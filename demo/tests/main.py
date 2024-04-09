@@ -40,7 +40,8 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 
 def main():
-
+    import sys
+    sys.path.insert(0, 'model/ermirmcfcminst')
     # # static discovery
     # pipeline0 = Pipeline(0)
     # result0 = pipeline0.execute()
