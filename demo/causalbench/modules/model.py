@@ -1,5 +1,6 @@
 import logging
 import os
+import requests
 
 from bunch_py3 import Bunch
 
@@ -29,6 +30,32 @@ class Model(Module):
 
     def fetch(self, model_id: int):
         # TODO: Replace with database call to download zip and obtain path
+        filename = None
+        print(f"MODULE: {model_id}")
+        url = f'http://127.0.0.1:8000/model_version/download/{model_id}/'
+        headers = {
+            'User-Agent': 'insomnia/2023.5.8'
+        }
+
+        response = requests.get(url, headers=headers)
+
+        if response.status_code == 200:
+            # Extract filename from the Content-Disposition header if available
+            content_disposition = response.headers.get('Content-Disposition')
+            if content_disposition:
+                filename = content_disposition.split('filename=')[-1].strip('"')
+            else:
+                # Fallback to a default name if the header is not present
+                filename = 'downloaded_model.zip'
+            
+            with open(filename, 'wb') as file:
+                file.write(response.content)
+            print(f'Download successful, saved as {filename}')
+        else:
+            print(f'Failed to download file: {response.status_code}')
+            print(response.text)
+
+        return filename
         if model_id == 0:
             return 'model/pc.zip'
         elif model_id == 1:
@@ -40,7 +67,21 @@ class Model(Module):
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        pass
+        # input_file_path = input("Enter the path of dataset.zip file: ")
+        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/model.zip"
+        print(f"Saving model {self.module_id}!")
+
+        url = 'http://127.0.0.1:8000/model_version/upload/'
+        headers = {
+            # 'Content-Type': 'application/json'
+        }
+        files = {
+            'file': ('model.zip', open(input_file_path, 'rb'), 'application/zip')
+        }
+
+        response = requests.post(url, headers=headers, files=files)
+        print(response.status_code)
+        print(response.text)
 
     def execute(self, *args, **keywords):
         # parse the arguments

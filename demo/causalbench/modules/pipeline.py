@@ -1,8 +1,6 @@
 import logging
-from copy import copy
-from zipfile import ZipFile
-
-import yaml
+import requests
+import json
 from bunch_py3 import Bunch
 
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
@@ -62,6 +60,30 @@ class Pipeline(Module):
 
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
+        filename = None
+        print(f"MODULE: {module_id}")
+        url = f'http://127.0.0.1:8000/pipelines/download/{module_id}/'
+        headers = {
+            'User-Agent': 'insomnia/2023.5.8'
+        }
+
+        response = requests.get(url, headers=headers)
+
+        if response.status_code == 200:
+            # Extract filename from the Content-Disposition header if available
+            content_disposition = response.headers.get('Content-Disposition')
+            if content_disposition:
+                filename = content_disposition.split('filename=')[-1].strip('"')
+            else:
+                # Fallback to a default name if the header is not present
+                filename = 'downloaded_pipeline.zip'
+            
+            with open(filename, 'wb') as file:
+                file.write(response.content)
+            print(f'Download successful, saved as {filename}')
+        else:
+            print(f'Failed to download file: {response.status_code}')
+            print(response.text)
         if module_id == 0:
             return 'pipeline/pipeline0.zip'
         elif module_id == 1:
@@ -71,9 +93,21 @@ class Pipeline(Module):
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        with ZipFile(self.package_path, 'w') as zipped:
-            zipped.writestr('config.yaml', yaml.safe_dump(state))
-        return True
+        # input_file_path = input("Enter the path of dataset.zip file: ")
+        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/pipeline.zip"
+        print(f"Saving pipeline {self.module_id}!")
+
+        url = 'http://127.0.0.1:8000/pipelines/upload/'
+        headers = {
+            # 'Content-Type': 'application/json'
+        }
+        files = {
+            'file': ('pipeline.zip', open(input_file_path, 'rb'), 'application/zip')
+        }
+
+        response = requests.post(url, headers=headers, files=files)
+        print(response.status_code)
+        print(response.text)
 
     def execute(self):
         # load dataset
@@ -163,5 +197,68 @@ class Pipeline(Module):
         response.model.name = model.name
 
         response.metrics = scores
+
+        url = 'http://127.0.0.1:8000/instance/env_config'
+        headers = {
+            'Content-Type': 'application/json'
+        }
+
+        data = {
+            "user_id": 1,
+            "python_version": "3.11",
+            "numpy_version": "1.22",
+            "pytorch_version": "2.44",
+            "model_version_id": "8"
+        }
+
+        api_response = requests.post(url, headers=headers, data=json.dumps(data))
+
+        env_config_id = api_response.text
+
+        url = 'http://127.0.0.1:8000/instance/sys_config'
+        headers = {
+            'Content-Type': 'application/json'
+        }
+
+        data = {
+            "user_id": 1,
+            "gpu_name": "Nvidia RTX 3060",
+            "gpu_driver_version": "12.11.2",
+            "gpu_memory": "8GB",
+            "sys_memory": "8GB",
+            "os_name": "Windows",
+            "cpu_name": "AMD RYzen 5 5600H"
+        }
+
+        api_response = requests.post(url, headers=headers, data=json.dumps(data))
+
+        sys_config_id = api_response.text
+
+        url = 'http://127.0.0.1:8000/runs/'
+        headers = {
+            'Content-Type': 'application/json'
+        }
+
+        data = {
+            "user_id": 1,
+            "gpu_name": "RTX 4090",
+            "gpu_driver_version": "1",
+            "gpu_memory": "16GB",
+            "sys_memory": "64GB",
+            "os_name": "Windows",
+            "cpu_name": "Tyzen 7 5900H",
+            "execution_start_time": "start time",
+            "execution_end_time": "end time",
+            "result": "90",
+            "dataset_version_id": 8,
+            "model_version_id": 8,
+            "metric_version_id": 8,
+            "instance_id":  1,
+            "env_config_id": 1,
+            "sys_config_id": 1,
+            "pipeline_id": 8
+        }
+
+        api_response = requests.post(url, headers=headers, data=json.dumps(data))
 
         return response

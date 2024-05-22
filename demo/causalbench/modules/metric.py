@@ -1,6 +1,6 @@
 import logging
 import os
-
+import requests
 from bunch_py3 import Bunch
 
 from causalbench.commons import executor
@@ -43,32 +43,70 @@ class Metric(Module):
 
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
-        if module_id == 0:
-            return 'metric/shd_static.zip'
-        elif module_id == 1:
-            return 'metric/accuracy_static.zip'
-        elif module_id == 2:
-            return 'metric/f1_static.zip'
-        elif module_id == 3:
-            return 'metric/precision_static.zip'
-        elif module_id == 4:
-            return 'metric/recall_static.zip'
-        elif module_id == 5:
-            return 'metric/shd_temporal.zip'
-        elif module_id == 6:
-            return 'metric/accuracy_temporal.zip'
-        elif module_id == 7:
-            return 'metric/f1_temporal.zip'
-        elif module_id == 8:
-            return 'metric/precision_temporal.zip'
-        elif module_id == 9:
-            return 'metric/recall_temporal.zip'
+        filename = None
+        url = f'http://127.0.0.1:8000/metric_version/download/{module_id}'
+        headers = {
+            'User-Agent': 'insomnia/2023.5.8'
+        }
+
+        response = requests.get(url, headers=headers)
+
+        if response.status_code == 200:
+            # Extract filename from the Content-Disposition header if available
+            content_disposition = response.headers.get('Content-Disposition')
+            if content_disposition:
+                filename = content_disposition.split('filename=')[-1].strip('"')
+            else:
+                # Fallback to a default name if the header is not present
+                filename = 'downloaded_metric.zip'
+            
+            with open(filename, 'wb') as file:
+                file.write(response.content)
+            print(f'Download successful, saved as {filename}')
         else:
-            raise ValueError(f"Invalid module_id: {module_id}")
+            print(f'Failed to download file: {response.status_code}')
+            print(response.text)
+        return filename
+        # if module_id == 0:
+        #     return 'metric/shd_static.zip'
+        # elif module_id == 1:
+        #     return 'metric/accuracy_static.zip'
+        # elif module_id == 2:
+        #     return 'metric/f1_static.zip'
+        # elif module_id == 3:
+        #     return 'metric/precision_static.zip'
+        # elif module_id == 4:
+        #     return 'metric/recall_static.zip'
+        # elif module_id == 5:
+        #     return 'metric/shd_temporal.zip'
+        # elif module_id == 6:
+        #     return 'metric/accuracy_temporal.zip'
+        # elif module_id == 7:
+        #     return 'metric/f1_temporal.zip'
+        # elif module_id == 8:
+        #     return 'metric/precision_temporal.zip'
+        # elif module_id == 9:
+        #     return 'metric/recall_temporal.zip'
+        # else:
+        #     raise ValueError(f"Invalid module_id: {module_id}")
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        pass
+        input_file_path = input("Enter the path of metric.zip file: ")
+        print(f"Saving metric {self.module_id}!")
+
+        url = 'http://127.0.0.1:8000/metric_version/upload/'
+        headers = {
+            # 'Content-Type': 'application/json'
+        }
+        files = {
+            'file': ('metric.zip', open(input_file_path, 'rb'), 'application/zip')
+        }
+
+        response = requests.post(url, headers=headers, files=files)
+        print(response.status_code)
+        print(response.text)
+
 
     def evaluate(self, *args, **keywords):
         # parse the arguments

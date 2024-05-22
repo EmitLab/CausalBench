@@ -1,9 +1,15 @@
 import networkx as nx
+# from demo.causalbench.modules.metric import Metric
+from causalbench.modules.metric import Metric
+from causalbench.modules.dataset import Dataset
+from causalbench.modules.model import Model
+from causalbench.modules.pipeline import Pipeline
+# from demo.causalbench.modules.metric import Metric
 import numpy as np
 from matplotlib import pyplot as plt
 
-from causalbench.commons.utils import display_report
-from causalbench.modules.pipeline import Pipeline
+# from causalbench.commons.utils import display_report
+# from causalbench.modules.pipeline import Pipeline
 
 
 def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
@@ -53,10 +59,10 @@ def main():
     # result1 = pipeline1.execute()
     # display_report(result1)
     
-    # Classification
-    pipeline2 = Pipeline(2)
-    result2 = pipeline2.execute()
-    display_report(result2)
+    # # Classification
+    # pipeline2 = Pipeline(2)
+    # result2 = pipeline2.execute()
+    # display_report(result2)
 
     # manually creation
     # pipeline1 = Pipeline()
@@ -72,6 +78,44 @@ def main():
     # result1 = pipeline1.execute()
     # display_report(result1)
     # pipeline1.publish()
+
+    ########################################################
+    ######## Abhinav's CB backend integration tests ########
+    ########################################################
+    # # Metric save test
+    # metric0 = Metric(1)
+    # metric0.save(1)
+
+    # # Dataset save test
+    # ds0 = Dataset(1)
+    # ds0.save(1)
+
+    # # Model Save test
+    # model0 = Model(1)
+    # model0.save(1)
+
+    # # Pipeline save test
+    # pipeline0 = Pipeline(1)
+    # pipeline0.save(1)
+
+    # # Metric fetch test
+    # metric0 = Metric(2)
+    # metric0.fetch(2)
+
+    # # Dataset fetch test
+    # ds0 = Dataset(12)
+    # ds0.fetch()
+
+    # # Model fetch test
+    # model0 = Model(1) # Model constructor calls fetch()
+
+    # # Pipeline fetch test
+    # pipeline0 = Pipeline(9)
+    # pipeline0.fetch(1)
+
+    # # Pipeline exec test
+    pipeline0 = Pipeline(9)
+    pipeline0.execute()
 
 
 if __name__ == '__main__':
