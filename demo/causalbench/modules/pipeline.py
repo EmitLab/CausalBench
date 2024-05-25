@@ -1,4 +1,5 @@
 import logging
+from datetime import datetime
 import requests
 import json
 from bunch_py3 import Bunch
@@ -61,7 +62,6 @@ class Pipeline(Module):
     def fetch(self, module_id: int):
         # TODO: Replace with database call to download zip and obtain path
         filename = None
-        print(f"MODULE: {module_id}")
         url = f'http://127.0.0.1:8000/pipelines/download/{module_id}/'
         headers = {
             'User-Agent': 'insomnia/2023.5.8'
@@ -76,14 +76,18 @@ class Pipeline(Module):
                 filename = content_disposition.split('filename=')[-1].strip('"')
             else:
                 # Fallback to a default name if the header is not present
-                filename = 'downloaded_pipeline.zip'
+                filename = 'downloaded_pipeline.yaml'
             
             with open(filename, 'wb') as file:
                 file.write(response.content)
             print(f'Download successful, saved as {filename}')
+            
+            return filename
         else:
             print(f'Failed to download file: {response.status_code}')
             print(response.text)
+            return None
+        return filename
         if module_id == 0:
             return 'pipeline/pipeline0.zip'
         elif module_id == 1:
@@ -110,6 +114,7 @@ class Pipeline(Module):
         print(response.text)
 
     def execute(self):
+        start = datetime.now()
         # load dataset
         if 'object' in self.dataset:
             dataset = self.dataset.object
@@ -197,6 +202,7 @@ class Pipeline(Module):
         response.model.name = model.name
 
         response.metrics = scores
+        end = datetime.now()
 
         url = 'http://127.0.0.1:8000/instance/env_config'
         headers = {
@@ -215,50 +221,78 @@ class Pipeline(Module):
 
         env_config_id = api_response.text
 
+        # data = {
+        #     "user_id": 1,
+        #     "gpu_name": "RTX 4090",
+        #     "gpu_driver_version": "1",
+        #     "gpu_memory": "16GB",
+        #     "sys_memory": "64GB",
+        #     "os_name": "Windows",
+        #     "cpu_name": "Tyzen 7 5900H",
+        #     "execution_start_time": "start time",
+        #     "execution_end_time": "end time",
+        #     "result": "90",
+        #     "dataset_version_id": 8,
+        #     "model_version_id": 8,
+        #     "metric_version_id": 8,
+        #     "instance_id":  1,
+        #     "env_config_id": 1,
+        #     "sys_config_id": 1,
+        #     "pipeline_id": 8
+        # }
+
         url = 'http://127.0.0.1:8000/instance/sys_config'
         headers = {
             'Content-Type': 'application/json'
         }
 
+        entry = scores[0]
+
         data = {
             "user_id": 1,
-            "gpu_name": "Nvidia RTX 3060",
-            "gpu_driver_version": "12.11.2",
-            "gpu_memory": "8GB",
-            "sys_memory": "8GB",
-            "os_name": "Windows",
-            "cpu_name": "AMD RYzen 5 5600H"
+            "gpu_name": "Unknown" if entry.gpu is None else entry.gpu,
+            "gpu_driver_version": "Unknown",
+            "gpu_memory": "Unknown" if entry.gpu_memory is None else f"{entry.gpu_memory_total / (1024 ** 3):.2f}GB",
+            "sys_memory": f"{entry.memory_total / (1024 ** 3):.2f}GB",
+            "os_name": entry.platform.split('-')[0],
+            "cpu_name": entry.processor,
         }
 
         api_response = requests.post(url, headers=headers, data=json.dumps(data))
 
         sys_config_id = api_response.text
 
-        url = 'http://127.0.0.1:8000/runs/'
-        headers = {
-            'Content-Type': 'application/json'
-        }
+        for entry in scores:
+            if entry.name.startswith("accuracy"):
+                result = int(entry.output.score * 100)
+            else:
+                result = f"{int(entry.output.score)}"
+            data = {
+                "user_id": 1,
+                "gpu_name": "Unknown" if entry.gpu is None else entry.gpu,
+                "gpu_driver_version": "Unknown",
+                "gpu_memory": "Unknown" if entry.gpu_memory is None else f"{entry.gpu_memory_total / (1024 ** 3):.2f}GB",
+                "sys_memory": f"{entry.memory_total / (1024 ** 3):.2f}GB",
+                "os_name": entry.platform.split('-')[0],
+                "cpu_name": entry.processor,
+                "execution_start_time": start.strftime('%Y-%m-%d %H:%M:%S'),  # Example start time
+                "execution_end_time": end.strftime('%Y-%m-%d %H:%M:%S'),  # Example end time
+                "result": f"{result}",
+                "dataset_version_id": dataset.module_id,
+                "model_version_id": model.module_id,
+                "metric_version_id": entry.id,
+                "env_config_id": env_config_id,
+                "sys_config_id": sys_config_id,
+                "instance_id": 1,
+                "pipeline_id": self.module_id
+            }
 
-        data = {
-            "user_id": 1,
-            "gpu_name": "RTX 4090",
-            "gpu_driver_version": "1",
-            "gpu_memory": "16GB",
-            "sys_memory": "64GB",
-            "os_name": "Windows",
-            "cpu_name": "Tyzen 7 5900H",
-            "execution_start_time": "start time",
-            "execution_end_time": "end time",
-            "result": "90",
-            "dataset_version_id": 8,
-            "model_version_id": 8,
-            "metric_version_id": 8,
-            "instance_id":  1,
-            "env_config_id": 1,
-            "sys_config_id": 1,
-            "pipeline_id": 8
-        }
+            url = 'http://127.0.0.1:8000/runs/'
+            headers = {
+                'Content-Type': 'application/json'
+            }
 
-        api_response = requests.post(url, headers=headers, data=json.dumps(data))
+            api_response = requests.post(url, headers=headers, data=json.dumps(data))
+
 
         return response

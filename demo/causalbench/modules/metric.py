@@ -92,7 +92,8 @@ class Metric(Module):
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        input_file_path = input("Enter the path of metric.zip file: ")
+        # input_file_path = input("Enter the path of metric.zip file: ")
+        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/accuracy_static.zip"
         print(f"Saving metric {self.module_id}!")
 
         url = 'http://127.0.0.1:8000/metric_version/upload/'

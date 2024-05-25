@@ -83,38 +83,39 @@ def main():
     ######## Abhinav's CB backend integration tests ########
     ########################################################
     # # Metric save test
-    # metric0 = Metric(1)
+    # metric0 = Metric()
     # metric0.save(1)
 
-    # # Dataset save test
-    # ds0 = Dataset(1)
+    # Dataset save test
+    # ds0 = Dataset()
+    # # # ds0.instantiate()
     # ds0.save(1)
 
     # # Model Save test
-    # model0 = Model(1)
+    # model0 = Model()
     # model0.save(1)
 
     # # Pipeline save test
-    # pipeline0 = Pipeline(1)
+    # pipeline0 = Pipeline()
     # pipeline0.save(1)
 
     # # Metric fetch test
-    # metric0 = Metric(2)
+    # metric0 = Metric(14)
     # metric0.fetch(2)
 
     # # Dataset fetch test
-    # ds0 = Dataset(12)
-    # ds0.fetch()
+    # ds0 = Dataset(34)
+    # ds0.fetch(34)
 
     # # Model fetch test
-    # model0 = Model(1) # Model constructor calls fetch()
+    # model0 = Model(12) # Model constructor calls fetch()
 
     # # Pipeline fetch test
-    # pipeline0 = Pipeline(9)
+    # pipeline0 = Pipeline(20)
     # pipeline0.fetch(1)
 
-    # # Pipeline exec test
-    pipeline0 = Pipeline(9)
+    # # # Pipeline exec test
+    pipeline0 = Pipeline(21)
     pipeline0.execute()
 
 
