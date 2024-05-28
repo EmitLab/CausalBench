@@ -87,23 +87,19 @@ def main():
     # metric0.save(1)
 
     # Dataset save test
-    # ds0 = Dataset()
-    # # # ds0.instantiate()
-    # ds0.save(1)
+    ds0 = Dataset()
+    # # ds0.instantiate()
+    ds0.save(1)
 
     # # Model Save test
     # model0 = Model()
     # model0.save(1)
 
-    # # Pipeline save test
-    # pipeline0 = Pipeline()
-    # pipeline0.save(1)
+    # Pipeline save test
+    pipeline0 = Pipeline()
+    pipeline0.save(1)
 
-    # # Metric fetch test
-    # metric0 = Metric(14)
-    # metric0.fetch(2)
-
-    # # Dataset fetch test
+        # # Dataset fetch test
     # ds0 = Dataset(34)
     # ds0.fetch(34)
 
@@ -115,8 +111,8 @@ def main():
     # pipeline0.fetch(1)
 
     # # # Pipeline exec test
-    pipeline0 = Pipeline(21)
-    pipeline0.execute()
+    # pipeline0 = Pipeline(24)
+    # pipeline0.execute()
 
 
 if __name__ == '__main__':

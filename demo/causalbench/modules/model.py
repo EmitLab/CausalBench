@@ -67,9 +67,9 @@ class Model(Module):
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        # input_file_path = input("Enter the path of dataset.zip file: ")
+        input_file_path = input("Enter the path of model.zip file: ")
         input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/model.zip"
-        print(f"Saving model {self.module_id}!")
+        print(f"Saving model!")
 
         url = 'http://127.0.0.1:8000/model_version/upload/'
         headers = {

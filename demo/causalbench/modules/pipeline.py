@@ -83,35 +83,32 @@ class Pipeline(Module):
             print(f'Download successful, saved as {filename}')
             
             return filename
-        else:
-            print(f'Failed to download file: {response.status_code}')
-            print(response.text)
-            return None
-        return filename
-        if module_id == 0:
-            return 'pipeline/pipeline0.zip'
-        elif module_id == 1:
-            return 'pipeline/pipeline1.zip'
-        elif module_id == 2:
-            return 'pipeline/pipeline2.zip'
+        
+        print(f'Failed to download file: {response.status_code}')
+        print(response.text)
+        return None
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        # input_file_path = input("Enter the path of dataset.zip file: ")
-        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/pipeline.zip"
-        print(f"Saving pipeline {self.module_id}!")
+        # input_file_path = input("Enter the path of pipeline.zip file: ")
+
+        with ZipFile(self.package_path, 'w') as zipped:
+            zipped.writestr('config.yaml', yaml.safe_dump(state))
+        
+        print(f"Saving pipeline!")
 
         url = 'http://127.0.0.1:8000/pipelines/upload/'
         headers = {
             # 'Content-Type': 'application/json'
         }
         files = {
-            'file': ('pipeline.zip', open(input_file_path, 'rb'), 'application/zip')
+            'file': ('pipeline.zip', open(self.package_path, 'rb'), 'application/zip')
         }
 
         response = requests.post(url, headers=headers, files=files)
         print(response.status_code)
         print(response.text)
+        return True
 
     def execute(self):
         start = datetime.now()
@@ -164,12 +161,12 @@ class Pipeline(Module):
             else:
                 logging.error(f'Invalid metric provided: must be an integer or an object of type {Metric}')
                 return
-
             # check model-metric compatibility
             if model.task != metric.task:
                 logging.error(f'The model "{model.name}" and metric "{metric.name}" are not compatible')
                 return
-
+            
+            logging.info("Checked model-metric compatibility")
             # map metric-data parameters
             parameters = Bunch()
             for metric_param, data_param in self_metric.parameters.items():
@@ -210,7 +207,7 @@ class Pipeline(Module):
         }
 
         data = {
-            "user_id": 1,
+            "user_id": 4,
             "python_version": "3.11",
             "numpy_version": "1.22",
             "pytorch_version": "2.44",
@@ -249,7 +246,7 @@ class Pipeline(Module):
         entry = scores[0]
 
         data = {
-            "user_id": 1,
+            "user_id": 4,
             "gpu_name": "Unknown" if entry.gpu is None else entry.gpu,
             "gpu_driver_version": "Unknown",
             "gpu_memory": "Unknown" if entry.gpu_memory is None else f"{entry.gpu_memory_total / (1024 ** 3):.2f}GB",
@@ -268,7 +265,7 @@ class Pipeline(Module):
             else:
                 result = f"{int(entry.output.score)}"
             data = {
-                "user_id": 1,
+                "user_id": 4,
                 "gpu_name": "Unknown" if entry.gpu is None else entry.gpu,
                 "gpu_driver_version": "Unknown",
                 "gpu_memory": "Unknown" if entry.gpu_memory is None else f"{entry.gpu_memory_total / (1024 ** 3):.2f}GB",

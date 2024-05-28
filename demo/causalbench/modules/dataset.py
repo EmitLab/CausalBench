@@ -61,9 +61,9 @@ class Dataset(Module):
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        # input_file_path = input("Enter the path of dataset.zip file: ")
+        input_file_path = input("Enter the path of dataset.zip file: ")
         input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/dataset.zip"
-        print(f"Saving dataset {self.module_id}!")
+        print(f"Saving dataset!")
 
         url = 'http://127.0.0.1:8000/dataset_version/upload/'
         headers = {
