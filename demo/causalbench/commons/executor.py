@@ -13,7 +13,7 @@ import pipreqs.pipreqs as pipreqs
 import psutil
 from bunch_py3 import Bunch
 
-from causalbench.commons.gpu import gpu_profiler
+from demo.causalbench.commons.gpu import gpu_profiler
 
 
 def execute(module_path, function_name, /, *args, **keywords) -> dict:

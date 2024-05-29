@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from causalbench.formats import SpatioTemporalGraph
+from demo.causalbench.formats import SpatioTemporalGraph
 
 
 def adjmat_to_graph(adjmat: np.ndarray, nodes: list[str], weight: str = 'strength') -> SpatioTemporalGraph:

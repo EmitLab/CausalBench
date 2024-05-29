@@ -1,14 +1,16 @@
 import logging
 from datetime import datetime
+from zipfile import ZipFile
+
 import requests
 import json
 from bunch_py3 import Bunch
 
-from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from causalbench.modules.dataset import Dataset
-from causalbench.modules.metric import Metric
-from causalbench.modules.model import Model
-from causalbench.modules.module import Module
+from demo.causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
+from demo.causalbench.modules.dataset import Dataset
+from demo.causalbench.modules.metric import Metric
+from demo.causalbench.modules.model import Model
+from demo.causalbench.modules.module import Module
 
 
 class Pipeline(Module):
@@ -30,6 +32,7 @@ class Pipeline(Module):
         # convert dataset to config format
         self.dataset = Bunch()
         if isinstance(arguments.dataset, Dataset):
+            #TODO: Set the ID of the dataset also?
             self.dataset.object = arguments.dataset
         elif isinstance(arguments.dataset, int):
             self.dataset.id = arguments.dataset
@@ -48,6 +51,7 @@ class Pipeline(Module):
         for metric in arguments.metrics:
             self_metric = Bunch()
             if isinstance(metric[0], Metric):
+                # TODO: Set the ID of the dataset also?
                 self_metric.object = metric[0]
             elif isinstance(metric[0], int):
                 self_metric.id = metric[0]
@@ -88,21 +92,19 @@ class Pipeline(Module):
         print(response.text)
         return None
 
-    def save(self, state) -> bool:
+    def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
         # input_file_path = input("Enter the path of pipeline.zip file: ")
+        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/pipeline.zip"
 
-        with ZipFile(self.package_path, 'w') as zipped:
-            zipped.writestr('config.yaml', yaml.safe_dump(state))
-        
         print(f"Saving pipeline!")
 
         url = 'http://127.0.0.1:8000/pipelines/upload/'
         headers = {
-            # 'Content-Type': 'application/json'
+            "Authorization": f"Bearer {access_token}"
         }
         files = {
-            'file': ('pipeline.zip', open(self.package_path, 'rb'), 'application/zip')
+            'file': ('pipeline.zip', open(input_file_path, 'rb'), 'application/zip')
         }
 
         response = requests.post(url, headers=headers, files=files)

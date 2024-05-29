@@ -5,9 +5,9 @@ import requests
 import pandas as pd
 from bunch_py3 import Bunch
 
-from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from causalbench.helpers.discovery import adjmat_to_graph
-from causalbench.modules.module import Module
+from demo.causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
+from demo.causalbench.helpers.discovery import adjmat_to_graph
+from demo.causalbench.modules.module import Module
 
 
 class Dataset(Module):
@@ -59,15 +59,15 @@ class Dataset(Module):
         elif module_id == 3:
             return 'data/fashion_mnist.zip'
 
-    def save(self, state) -> bool:
+    def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        input_file_path = input("Enter the path of dataset.zip file: ")
+        # input_file_path = input("Enter the path of dataset.zip file: ")
         input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/dataset.zip"
         print(f"Saving dataset!")
 
         url = 'http://127.0.0.1:8000/dataset_version/upload/'
         headers = {
-            # 'Content-Type': 'application/json'
+            "Authorization": f"Bearer {access_token}"
         }
         files = {
             'file': ('dataset.zip', open(input_file_path, 'rb'), 'application/zip')

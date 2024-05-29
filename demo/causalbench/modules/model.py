@@ -4,9 +4,9 @@ import requests
 
 from bunch_py3 import Bunch
 
-from causalbench.commons import executor
-from causalbench.commons.utils import parse_arguments
-from causalbench.modules.module import Module
+from demo.causalbench.commons import executor
+from demo.causalbench.commons.utils import parse_arguments
+from demo.causalbench.modules.module import Module
 
 
 class Model(Module):
@@ -65,15 +65,15 @@ class Model(Module):
         elif model_id == 3:
             return 'model/ermirmcfcminst.zip'
 
-    def save(self, state) -> bool:
+    def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        input_file_path = input("Enter the path of model.zip file: ")
+        # input_file_path = input("Enter the path of model.zip file: ")
         input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/model.zip"
         print(f"Saving model!")
 
         url = 'http://127.0.0.1:8000/model_version/upload/'
         headers = {
-            # 'Content-Type': 'application/json'
+            'Authorization': f"Bearer {access_token}"
         }
         files = {
             'file': ('model.zip', open(input_file_path, 'rb'), 'application/zip')
