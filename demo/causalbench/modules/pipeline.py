@@ -1,7 +1,5 @@
 import logging
 from datetime import datetime
-from zipfile import ZipFile
-
 import requests
 import json
 from bunch_py3 import Bunch
@@ -11,6 +9,7 @@ from demo.causalbench.modules.dataset import Dataset
 from demo.causalbench.modules.metric import Metric
 from demo.causalbench.modules.model import Model
 from demo.causalbench.modules.module import Module
+from demo.causalbench.services.requests import  save_module, fetch_module
 
 
 class Pipeline(Module):
@@ -64,53 +63,16 @@ class Pipeline(Module):
         pass
 
     def fetch(self, module_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        filename = None
-        url = f'http://127.0.0.1:8000/pipelines/download/{module_id}/'
-        headers = {
-            'User-Agent': 'insomnia/2023.5.8'
-        }
+        response = fetch_module(module_id, "pipelines", "downloaded_pipeline.zip")
 
-        response = requests.get(url, headers=headers)
-
-        if response.status_code == 200:
-            # Extract filename from the Content-Disposition header if available
-            content_disposition = response.headers.get('Content-Disposition')
-            if content_disposition:
-                filename = content_disposition.split('filename=')[-1].strip('"')
-            else:
-                # Fallback to a default name if the header is not present
-                filename = 'downloaded_pipeline.yaml'
-            
-            with open(filename, 'wb') as file:
-                file.write(response.content)
-            print(f'Download successful, saved as {filename}')
-            
-            return filename
-        
-        print(f'Failed to download file: {response.status_code}')
-        print(response.text)
-        return None
+        return response
 
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
+        input_file_path = None
         # input_file_path = input("Enter the path of pipeline.zip file: ")
-        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/pipeline.zip"
-
-        print(f"Saving pipeline!")
-
-        url = 'http://127.0.0.1:8000/pipelines/upload/'
-        headers = {
-            "Authorization": f"Bearer {access_token}"
-        }
-        files = {
-            'file': ('pipeline.zip', open(input_file_path, 'rb'), 'application/zip')
-        }
-
-        response = requests.post(url, headers=headers, files=files)
-        print(response.status_code)
-        print(response.text)
-        return True
+        response = save_module(input_file_path, access_token, "pipelines", "pipeline.zip")
+        return response
 
     def execute(self):
         start = datetime.now()

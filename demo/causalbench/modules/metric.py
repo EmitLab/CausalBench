@@ -7,6 +7,7 @@ from demo.causalbench.commons import executor
 from demo.causalbench.commons.utils import parse_arguments
 from demo.causalbench.modules.module import Module
 
+from demo.causalbench.services.requests import fetch_module, save_module
 
 class Metric(Module):
 
@@ -42,49 +43,17 @@ class Metric(Module):
                 raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        filename = None
-        url = f'http://127.0.0.1:8000/metric_version/download/{module_id}'
-        headers = {
-            'User-Agent': 'insomnia/2023.5.8'
-        }
+        response = fetch_module(module_id, "metric_version", "downloaded_metric.zip")
 
-        response = requests.get(url, headers=headers)
-
-        if response.status_code == 200:
-            # Extract filename from the Content-Disposition header if available
-            content_disposition = response.headers.get('Content-Disposition')
-            if content_disposition:
-                filename = content_disposition.split('filename=')[-1].strip('"')
-            else:
-                # Fallback to a default name if the header is not present
-                filename = 'downloaded_metric.zip'
-            
-            with open(filename, 'wb') as file:
-                file.write(response.content)
-            print(f'Download successful, saved as {filename}')
-        else:
-            print(f'Failed to download file: {response.status_code}')
-            print(response.text)
-        return filename
+        return response
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
         # input_file_path = input("Enter the path of metric.zip file: ")
-        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/accuracy_static.zip"
+        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/metric.zip"
         print(f"Saving metric!")
+        response = save_module(input_file_path, access_token, "metric_version", "metric.zip")
 
-        url = 'http://127.0.0.1:8000/metric_version/upload/'
-        headers = {
-            "Authorization": f"Bearer {access_token}"
-        }
-        files = {
-            'file': ('metric.zip', open(input_file_path, 'rb'), 'application/zip')
-        }
-
-        response = requests.post(url, headers=headers, files=files)
-        print(response.status_code)
-        print(response.text)
-
+        return response
 
     def evaluate(self, *args, **keywords):
         # parse the arguments

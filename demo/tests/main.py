@@ -58,31 +58,35 @@ def main():
     # metric0.publish()
 
     # # Dataset save test
-    # ds0 = Dataset()
-    # ds0.publish()
+    ds0 = Dataset()
+    ds0.publish()
 
     # # # Model Save test
     # model0 = Model()
     # model0.publish()
 
     # # Pipeline save test
-    pipeline0 = Pipeline()
-    pipeline0.publish()
+    # pipeline0 = Pipeline()
+    # pipeline0.publish()
 
     #     # # Dataset fetch test
     # # ds0 = Dataset(34)
     # # ds0.fetch(34)
 
     # # # Model fetch test
-    # # model0 = Model(12) # Model constructor calls fetch()
+    # model0 = Model(3) # Model constructor calls fetch()
 
     # # # Pipeline fetch test
-    # # pipeline0 = Pipeline(20)
+    # pipeline0 = Pipeline(3)
     # # pipeline0.fetch(1)
 
-    # # # # Pipeline exec test
-    # # pipeline0 = Pipeline(24)
-    # # pipeline0.execute()
+    # Metric Fetch test
+    # metric0 = Metric(8)
+    # metric0.publish()
+
+    # # # Pipeline exec test
+    # pipeline0 = Pipeline(3)
+    # pipeline0.execute()
 
         # # # static discovery
         # # pipeline0 = Pipeline(0)

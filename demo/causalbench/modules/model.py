@@ -7,7 +7,7 @@ from bunch_py3 import Bunch
 from demo.causalbench.commons import executor
 from demo.causalbench.commons.utils import parse_arguments
 from demo.causalbench.modules.module import Module
-
+from demo.causalbench.services.requests import save_module, fetch_module
 
 class Model(Module):
 
@@ -29,59 +29,18 @@ class Model(Module):
         pass
 
     def fetch(self, model_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        filename = None
-        print(f"MODULE: {model_id}")
-        url = f'http://127.0.0.1:8000/model_version/download/{model_id}/'
-        headers = {
-            'User-Agent': 'insomnia/2023.5.8'
-        }
+        response = fetch_module(model_id, "model_version", "downloaded_model.zip")
 
-        response = requests.get(url, headers=headers)
-
-        if response.status_code == 200:
-            # Extract filename from the Content-Disposition header if available
-            content_disposition = response.headers.get('Content-Disposition')
-            if content_disposition:
-                filename = content_disposition.split('filename=')[-1].strip('"')
-            else:
-                # Fallback to a default name if the header is not present
-                filename = 'downloaded_model.zip'
-            
-            with open(filename, 'wb') as file:
-                file.write(response.content)
-            print(f'Download successful, saved as {filename}')
-        else:
-            print(f'Failed to download file: {response.status_code}')
-            print(response.text)
-
-        return filename
-        if model_id == 0:
-            return 'model/pc.zip'
-        elif model_id == 1:
-            return 'model/ges.zip'
-        elif model_id == 2:
-            return 'model/lingam.zip'
-        elif model_id == 3:
-            return 'model/ermirmcfcminst.zip'
+        return response
 
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
         # input_file_path = input("Enter the path of model.zip file: ")
         input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/model.zip"
         print(f"Saving model!")
+        response = save_module(input_file_path, access_token, "model_version", "model.zip")
 
-        url = 'http://127.0.0.1:8000/model_version/upload/'
-        headers = {
-            'Authorization': f"Bearer {access_token}"
-        }
-        files = {
-            'file': ('model.zip', open(input_file_path, 'rb'), 'application/zip')
-        }
-
-        response = requests.post(url, headers=headers, files=files)
-        print(response.status_code)
-        print(response.text)
+        return response
 
     def execute(self, *args, **keywords):
         # parse the arguments
