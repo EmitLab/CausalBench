@@ -74,7 +74,7 @@ class Pipeline(Module):
         response = save_module(input_file_path, access_token, "pipelines", "pipeline.zip")
         return response
 
-    def execute(self):
+    def execute(self, access_token):
         start = datetime.now()
         # load dataset
         if 'object' in self.dataset:

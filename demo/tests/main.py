@@ -6,7 +6,7 @@ from demo.causalbench.modules.dataset import Dataset
 from demo.causalbench.modules.model import Model
 from demo.causalbench.modules.pipeline import Pipeline
 from demo.causalbench.modules.metric import Metric
-from demo.causalbench import access_token
+from demo.causalbench.services.auth import init_auth
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -49,6 +49,7 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 def main():
     import sys
     sys.path.insert(0,'model/ermirmcfcminst')
+    access_token = init_auth
 
     # ########################################################
     # ######## Abhinav's CB backend integration tests ########
@@ -86,7 +87,7 @@ def main():
 
     # # # Pipeline exec test
     # pipeline0 = Pipeline(3)
-    # pipeline0.execute()
+    pipeline0.execute(access_token)
 
         # # # static discovery
         # # pipeline0 = Pipeline(0)
