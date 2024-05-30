@@ -15,15 +15,59 @@ class Model(Module):
         super().__init__(model_id, 'model')
 
     def instantiate(self, arguments: Bunch):
+        self.type = 'model'
+        self.name = arguments.name
+        self.task = arguments.task
+        self.path = arguments.path
+
+        self.inputs = Bunch()
+
+        # Populate the inputs and outputs. However, we may have different types of input (data) and output (prediction)
+        '''
+        if isinstance(arguments.inputs[0], %dataObj%):
+            self.model.id = arguments.model[0].module_id
+            self.model.object = arguments.model[0]
+        '''
+        #TODO: Talk with pratanu.
+
+        return f'model/{self.name}.zip'
+
+
         # TODO: Create the structure of the new instance
         pass
 
     def validate(self):
+
+        if 'data' not in self.inputs:
+            raise ValueError('Input does not include a \'data\' field')
+        if 'id' is None in self.inputs.data:
+            raise ValueError('Input id is missing')
+        if 'data' is None in self.inputs.data:
+            raise ValueError('Input data is missing')
+
         if self.task == 'discovery.static':
-            if 'data' not in self.inputs:
-                raise ValueError('Input does not include a \'data\' field')
             if 'prediction' not in self.outputs:
                 raise ValueError('Output does not include a \'prediction\' field')
+            if 'id' is None in self.outputs.prediction:
+                raise ValueError('Output id is missing')
+            if 'data' is None in self.outputs.prediction:
+                raise ValueError('Output data is missing')
+
+        if self.task == 'classification':
+            if 'prediction' not in self.outputs:
+                raise ValueError('Output does not include a \'prediction\' field')
+            if 'id' is None in self.outputs.prediction:
+                raise ValueError('Output id is missing')
+            if 'data' is None in self.outputs.prediction:
+                raise ValueError('Output data is missing')
+
+        if self.task == 'discovery.temporal':
+            if 'prediction' not in self.outputs:
+                raise ValueError('Output does not include a \'prediction\' field')
+            if 'id' is None in self.outputs.prediction:
+                raise ValueError('Output id is missing')
+            if 'data' is None in self.outputs.prediction:
+                raise ValueError('Output data is missing')
 
             # TODO: Perform logical validation of the structure
         pass

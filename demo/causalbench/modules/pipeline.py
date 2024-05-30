@@ -2,6 +2,7 @@ import logging
 from datetime import datetime
 import requests
 import json
+import os
 from bunch_py3 import Bunch
 
 from demo.causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
@@ -60,7 +61,24 @@ class Pipeline(Module):
         return f'pipeline/{self.name}.zip'
 
     def validate(self):
-        pass
+        # check if the file exists
+        file_path = os.path.join(self.package_path, self.path)
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"File '{self.path}' does not exist in package path '{self.package_path}'")
+
+        # check if the pipeline has every component:
+        # check dataset/id not empty
+        if getattr(self.dataset, "id", None) is None:
+            raise ValueError('Dataset field is empty.')
+        # check model id not empty
+        if getattr(self.model, "id", None) is None:
+            raise ValueError('Dataset field is empty.')
+        if getattr(self.model, "parameters", None) is None:
+            raise ValueError('Dataset field is empty.')
+        # check metric notempty
+        if getattr(self.metric, "id", None) is None:
+            raise ValueError('Dataset field is empty.')
+        # we don't check for metric parameters as it might not have any parameter.
 
     def fetch(self, module_id: int):
         response = fetch_module(module_id, "pipelines", "downloaded_pipeline.zip")
