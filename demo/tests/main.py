@@ -59,16 +59,16 @@ def main():
     # metric0.publish()
 
     # # Dataset save test
-    ds0 = Dataset()
-    ds0.publish()
+    # ds0 = Dataset()
+    # ds0.publish()
 
     # # # Model Save test
     # model0 = Model()
     # model0.publish()
 
     # # Pipeline save test
-    # pipeline0 = Pipeline()
-    # pipeline0.publish()
+    pipeline0 = Pipeline()
+    pipeline0.publish()
 
     #     # # Dataset fetch test
     # # ds0 = Dataset(34)
@@ -87,7 +87,7 @@ def main():
 
     # # # Pipeline exec test
     # pipeline0 = Pipeline(3)
-    pipeline0.execute(access_token)
+    # pipeline0.execute(access_token)
 
         # # # static discovery
         # # pipeline0 = Pipeline(0)

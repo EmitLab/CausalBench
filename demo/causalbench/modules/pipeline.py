@@ -70,7 +70,7 @@ class Pipeline(Module):
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
         input_file_path = None
-        # input_file_path = input("Enter the path of pipeline.zip file: ")
+        input_file_path = input("Enter the path of pipeline.zip file: ")
         response = save_module(input_file_path, access_token, "pipelines", "pipeline.zip")
         return response
 
