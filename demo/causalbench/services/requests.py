@@ -2,7 +2,7 @@ from demo.causalbench.services.auth import init_auth
 import requests
 
 def save_module(input_file_path, access_token, api_base, output_file_name):
-    url = f'http://127.0.0.1:8000/{api_base}/upload/'
+    url = f'http://18.116.44.47:8000/{api_base}/upload/'
     headers = {
         "Authorization": f"Bearer {access_token}"
     }
@@ -23,7 +23,7 @@ def fetch_module(module_id, base_api, output_file_name):
     access_token = init_auth()
     filename = None
     print(f"MODULE: {module_id}")
-    url = f'http://127.0.0.1:8000/{base_api}/download/{module_id}/'
+    url = f'http://18.116.44.47:8000/{base_api}/download/{module_id}/'
     headers = {
         'Authorization': f'Bearer {access_token}'
     }

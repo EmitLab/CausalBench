@@ -4,7 +4,7 @@ def load_config(filename):
     with open(filename, 'r') as f:
         return json.load(f)
 def authenticate(config):
-    login_url = "http://127.0.0.1:8000/authenticate/login"
+    login_url = "http://18.116.44.47:8000/authenticate/login"
     email = config['email']
     password = config['password']
 

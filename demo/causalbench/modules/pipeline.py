@@ -165,7 +165,7 @@ class Pipeline(Module):
         response.metrics = scores
         end = datetime.now()
 
-        url = 'http://127.0.0.1:8000/instance/env_config'
+        url = 'http://18.116.44.47:8000/instance/env_config'
         headers = {
             'Content-Type': 'application/json'
         }
@@ -202,7 +202,7 @@ class Pipeline(Module):
         #     "pipeline_id": 8
         # }
 
-        url = 'http://127.0.0.1:8000/instance/sys_config'
+        url = 'http://18.116.44.47:8000/instance/sys_config'
         headers = {
             'Content-Type': 'application/json'
         }
@@ -248,7 +248,7 @@ class Pipeline(Module):
                 "pipeline_id": self.module_id
             }
 
-            url = 'http://127.0.0.1:8000/runs/'
+            url = 'http://18.116.44.47:8000/runs/'
             headers = {
                 'Content-Type': 'application/json'
             }
