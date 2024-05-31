@@ -7,6 +7,7 @@ class SpatioTemporalData:
     def __init__(self, data: pd.DataFrame):
         self.data = data
         self._index = Bunch()
+        self._index.target = None
         self._index.time = None
         self._index.space = None
         self._index.target = None
@@ -14,6 +15,14 @@ class SpatioTemporalData:
     @property
     def time(self):
         return self._index.time
+    
+    @property
+    def target(self):
+        return self._index.target
+    
+    @target.setter
+    def target(self, value):
+        self.target = value
 
     @time.setter
     def time(self, value):

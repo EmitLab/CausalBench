@@ -35,6 +35,8 @@ class Model(Module):
             return 'model/ges.zip'
         elif model_id == 2:
             return 'model/lingam.zip'
+        elif model_id == 3:
+            return 'model/ermirmcfcminst.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
@@ -49,7 +51,7 @@ class Model(Module):
 
         # map the model arguments
         model_args = {}
-
+        print(self.task)
         if self.task == 'discovery.static':
             model_args[self.inputs.data.id] = arguments.data
 
@@ -62,7 +64,7 @@ class Model(Module):
 
         elif self.task == 'classification':
             model_args[self.inputs.data.id] = arguments.data
-
+            model_args[self.inputs.target.id] = arguments.target
         else:
             raise TypeError(f'Invalid task type: {self.task}')
 

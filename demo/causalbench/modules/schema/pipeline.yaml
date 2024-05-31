@@ -9,6 +9,7 @@ properties:
             - discovery.static
             - discovery.temporal
             - discovery.spatiotemporal
+            - classification
     dataset:
         type: object
         properties:
@@ -45,6 +46,7 @@ properties:
                 propertyNames:
                     enum:
                         - data
+                        - target
                         - space
                 patternProperties:
                     ^.*$:

@@ -66,6 +66,8 @@ class Pipeline(Module):
             return 'pipeline/pipeline0.zip'
         elif module_id == 1:
             return 'pipeline/pipeline1.zip'
+        elif module_id == 2:
+            return 'pipeline/pipeline2.zip'
 
     def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
@@ -82,7 +84,7 @@ class Pipeline(Module):
         else:
             logging.error(f'Invalid dataset provided: must be an integer or an object of type {Dataset}')
             return
-
+        print(self.dataset.id,self.model.id)
         data = dataset.load()
 
         # update indices
@@ -105,6 +107,7 @@ class Pipeline(Module):
 
         # map model-data parameters
         parameters = {}
+        print(self.model.parameters.items())
         for model_param, data_param in self.model.parameters.items():
             parameters[model_param] = data[data_param]
 

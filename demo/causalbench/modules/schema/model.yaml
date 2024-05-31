@@ -9,6 +9,7 @@ properties:
             - discovery.static
             - discovery.temporal
             - discovery.spatiotemporal
+            - classification
     path:
         type: string
     inputs:
@@ -16,6 +17,7 @@ properties:
         propertyNames:
             enum:
                 - data
+                - target
                 - space
         patternProperties:
             ^.*$:
