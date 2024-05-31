@@ -1,7 +1,7 @@
+import argparse
 import os
 import shutil
 import tempfile
-import argparse
 
 
 def delete_zip_files(start_path):

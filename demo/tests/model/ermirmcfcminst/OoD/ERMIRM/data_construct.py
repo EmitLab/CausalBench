@@ -1,20 +1,10 @@
-import tensorflow as tf
 import numpy as np
-import argparse
-import IPython.display as display
-import matplotlib.pyplot as plt
-from tensorflow import keras
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.utils import shuffle
-import pandas as pd
+import tensorflow as tf
+
 tf.compat.v1.enable_eager_execution()
-import cProfile
-from sklearn.model_selection import train_test_split
 import copy as cp
 from sklearn.model_selection import KFold
-from datetime import date
-import time
+
 
 # Data generation for CS-CMNIST
 class assemble_data_mnist_sb:

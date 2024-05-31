@@ -9,12 +9,12 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from causalbench.commons.utils import parse_arguments, extract_module
+from causalbench.commons.utils import extract_module
 
 
 class Module(ABC):
 
-    def __init__(self, module_id: int, zip_file: str, schema_name: str):
+    def __init__(self, module_id: int | None, zip_file: str | None, schema_name: str):
         # set the module ID
         self.module_id = module_id
         self.schema_name = schema_name
@@ -31,9 +31,9 @@ class Module(ABC):
             zip_file = self.fetch(self.module_id)
             self.__load_module(zip_file)
 
-        # raise error
+        # nothing to load
         else:
-            raise ValueError("Invalid arguments: Either module_id or zip_file must be specified")
+            self.__dict__.update(Bunch())
 
     def __load_schema(self):
         # load schema

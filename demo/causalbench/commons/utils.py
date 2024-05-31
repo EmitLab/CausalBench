@@ -1,11 +1,11 @@
 import logging
 import os
+import tempfile
 from pathlib import Path
 from zipfile import ZipFile
 
+import yaml
 from bunch_py3 import bunchify, Bunch
-
-from causalbench.formats import SpatioTemporalData
 
 
 def parse_arguments(args, keywords):
@@ -22,15 +22,15 @@ def parse_arguments(args, keywords):
         return
 
 
-def display_report(report: Bunch):
+def display_run(run):
     print('-' * 80)
 
-    print(f'Task: {report.pipeline.task}')
-    print(f'Dataset: {report.dataset.name}')
-    print(f'Model: {report.model.name}')
+    print(f'Task: {run.pipeline.task}')
+    print(f'Dataset: {run.dataset.name}')
+    print(f'Model: {run.model.name}')
 
     print('\nMetrics:')
-    for metric in report.metrics:
+    for metric in run.metrics:
         print(f'    {metric.name}: {metric.output.score}')
 
     print('-' * 80)
@@ -79,3 +79,21 @@ def extract_module(schema_name: str, zip_file_path: str):
     zip_file.extractall(path=dir_path)
 
     return dir_path
+
+
+def package_module(state, package_path: str, entry_point: str = 'config.yaml'):
+    zip_name = tempfile.NamedTemporaryFile(delete=True).name
+    zip_path = zip_name + '.zip'
+
+    with ZipFile(zip_path, 'w') as zipped:
+        if entry_point:
+            zipped.writestr(entry_point, yaml.safe_dump(state))
+
+        for root, dirs, files in os.walk(package_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                zipped_file_path = os.path.relpath(os.path.join(root, file), package_path)
+                if zipped_file_path != entry_point:
+                    zipped.write(file_path, zipped_file_path)
+
+    return zip_path

@@ -9,16 +9,15 @@
 # LICENSE file in the root directory of this source tree.
 
 
+from itertools import chain, combinations
+
 import numpy as np
 import torch
-import math
-
-from sklearn.linear_model import LinearRegression
-from itertools import chain, combinations
 from scipy.stats import f as fdist
 from scipy.stats import ttest_ind
+from sklearn.linear_model import LinearRegression
 from torch.autograd import grad
-import scipy.optimize
+
 
 # import matplotlib
 # import matplotlib.pyplot as plt

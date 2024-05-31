@@ -1,11 +1,11 @@
 import logging
 import os
+
 from bunch_py3 import Bunch
 
 from causalbench.commons import executor
-from causalbench.commons.utils import parse_arguments
+from causalbench.commons.utils import parse_arguments, package_module
 from causalbench.modules.module import Module
-
 from causalbench.services.requests import fetch_module, save_module
 
 
@@ -39,16 +39,11 @@ class Metric(Module):
                 raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
-        return fetch_module(module_id, "metric_version", "downloaded_metric.zip")
+        return fetch_module(module_id, 'metric_version', 'downloaded_metric.zip')
 
     def save(self, state) -> bool:
-        # TODO: Add database call to upload to the server
-        input_file_path = input("Enter the path of metric.zip file: ")
-        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/metric/f1_static.zip"
-        print(f"Saving metric!")
-        response = save_module(input_file_path, "metric_version", "metric.zip")
-
-        return response
+        zip_path = package_module(state, self.package_path)
+        return save_module(zip_path, 'metric_version', 'metric.zip')
 
     def evaluate(self, *args, **keywords):
         # parse the arguments

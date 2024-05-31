@@ -1,20 +1,10 @@
-import tensorflow as tf
 import numpy as np
-import argparse
-import IPython.display as display
-import matplotlib.pyplot as plt
-from tensorflow import keras
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
+import tensorflow as tf
 from sklearn.utils import shuffle
-import pandas as pd
+
 tf.compat.v1.enable_eager_execution()
-import cProfile
-from sklearn.model_selection import train_test_split
-import copy as cp
-from sklearn.model_selection import KFold
-from datetime import date
-import time
+
+
 class standard_erm_model:
     def __init__(self, model,  num_epochs, batch_size, learning_rate):
         

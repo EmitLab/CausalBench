@@ -1,22 +1,9 @@
-import tensorflow as tf
-import numpy as np
-import argparse
-import IPython.display as display
-import matplotlib.pyplot as plt
-from tensorflow import keras
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.utils import shuffle
 import pandas as pd
-tf.compat.v1.enable_eager_execution()
-import cProfile
-from sklearn.model_selection import train_test_split
-import copy as cp
-from sklearn.model_selection import KFold
-from datetime import date
-import time
+import tensorflow as tf
+from tensorflow import keras
 
-from .OoD.ERMIRM.data_construct import *
+tf.compat.v1.enable_eager_execution()
+
 from .OoD.ERMIRM.IRM_methods import *
 
 #TODO: How do we process and import the paths if we want to access them from their

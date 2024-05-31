@@ -1,13 +1,13 @@
 import logging
 import os
-import requests
 
 from bunch_py3 import Bunch
 
 from causalbench.commons import executor
-from causalbench.commons.utils import parse_arguments
+from causalbench.commons.utils import parse_arguments, package_module
 from causalbench.modules.module import Module
 from causalbench.services.requests import save_module, fetch_module
+
 
 class Model(Module):
 
@@ -29,16 +29,11 @@ class Model(Module):
         pass
 
     def fetch(self, model_id: int):
-        return fetch_module(model_id, "model_version", "downloaded_model.zip")
+        return fetch_module(model_id, 'model_version', 'downloaded_model.zip')
 
     def save(self, state) -> bool:
-        # TODO: Add database call to upload to the server
-        input_file_path = input("Enter the path of model.zip file: ")
-        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/model/pc.zip"
-        print(f"Saving model!")
-        response = save_module(input_file_path, "model_version", "model.zip")
-
-        return response
+        zip_path = package_module(state, self.package_path)
+        return save_module(zip_path, 'model_version', 'model.zip')
 
     def execute(self, *args, **keywords):
         # parse the arguments
@@ -49,7 +44,6 @@ class Model(Module):
 
         # map the model arguments
         model_args = {}
-        print(self.task)
         if self.task == 'discovery.static':
             model_args[self.inputs.data.id] = arguments.data
 
@@ -67,7 +61,7 @@ class Model(Module):
             raise TypeError(f'Invalid task type: {self.task}')
 
         # execute the model
-        response = executor.execute(file_path, 'execute', **model_args)
+        response: Bunch = executor.execute(file_path, 'execute', **model_args)
 
         # map the outputs
         output = Bunch()

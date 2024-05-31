@@ -1,5 +1,8 @@
 import json
+
 import requests
+
+
 def load_config(filename):
     with open(filename, 'r') as f:
         return json.load(f)
