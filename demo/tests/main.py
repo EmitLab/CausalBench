@@ -2,11 +2,11 @@ import networkx as nx
 import json
 import requests
 
-from demo.causalbench.modules.dataset import Dataset
-from demo.causalbench.modules.model import Model
-from demo.causalbench.modules.pipeline import Pipeline
-from demo.causalbench.modules.metric import Metric
-from demo.causalbench.services.auth import init_auth
+from causalbench.modules.dataset import Dataset
+from causalbench.modules.model import Model
+from causalbench.modules.pipeline import Pipeline
+from causalbench.modules.metric import Metric
+from causalbench.services.auth import init_auth
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -59,8 +59,8 @@ def main():
     # metric0.publish()
     #
     # # # Dataset save test
-    # ds0 = Dataset()
-    # ds0.publish()
+    ds0 = Dataset()
+    ds0.publish()
 
     # # # Model Save test
     # model0 = Model()
@@ -86,8 +86,8 @@ def main():
     # metric0.publish()
 
     # # # Pipeline exec test
-    pipeline0 = Pipeline(3)
-    pipeline0.execute(access_token)
+    # pipeline0 = Pipeline(3)
+    # pipeline0.execute(access_token)
 
         # # # static discovery
         # # pipeline0 = Pipeline(0)

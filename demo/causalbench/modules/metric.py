@@ -3,11 +3,11 @@ import os
 import requests
 from bunch_py3 import Bunch
 
-from demo.causalbench.commons import executor
-from demo.causalbench.commons.utils import parse_arguments
-from demo.causalbench.modules.module import Module
+from causalbench.commons import executor
+from causalbench.commons.utils import parse_arguments
+from causalbench.modules.module import Module
 
-from demo.causalbench.services.requests import fetch_module, save_module
+from causalbench.services.requests import fetch_module, save_module
 
 class Metric(Module):
 

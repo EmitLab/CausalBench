@@ -4,12 +4,12 @@ import requests
 import json
 from bunch_py3 import Bunch
 
-from demo.causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from demo.causalbench.modules.dataset import Dataset
-from demo.causalbench.modules.metric import Metric
-from demo.causalbench.modules.model import Model
-from demo.causalbench.modules.module import Module
-from demo.causalbench.services.requests import  save_module, fetch_module
+from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
+from causalbench.modules.dataset import Dataset
+from causalbench.modules.metric import Metric
+from causalbench.modules.model import Model
+from causalbench.modules.module import Module
+from causalbench.services.requests import  save_module, fetch_module
 
 
 class Pipeline(Module):

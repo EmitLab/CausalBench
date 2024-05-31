@@ -5,10 +5,10 @@ import requests
 import pandas as pd
 from bunch_py3 import Bunch
 
-from demo.causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from demo.causalbench.helpers.discovery import adjmat_to_graph
-from demo.causalbench.modules.module import Module
-from demo.causalbench.services.requests import save_module, fetch_module
+from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
+from causalbench.helpers.discovery import adjmat_to_graph
+from causalbench.modules.module import Module
+from causalbench.services.requests import save_module, fetch_module
 
 class Dataset(Module):
 

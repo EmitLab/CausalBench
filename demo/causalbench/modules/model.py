@@ -4,10 +4,10 @@ import requests
 
 from bunch_py3 import Bunch
 
-from demo.causalbench.commons import executor
-from demo.causalbench.commons.utils import parse_arguments
-from demo.causalbench.modules.module import Module
-from demo.causalbench.services.requests import save_module, fetch_module
+from causalbench.commons import executor
+from causalbench.commons.utils import parse_arguments
+from causalbench.modules.module import Module
+from causalbench.services.requests import save_module, fetch_module
 
 class Model(Module):
 
