@@ -134,7 +134,7 @@ class Pipeline(Module):
                 parameters[metric_param] = data[data_param]
 
             # map metric-model parameters
-            if self.task in ['discovery.static', 'discovery.temporal']:
+            if self.task in ['discovery.static', 'discovery.temporal', 'classification']:
                 parameters.prediction = model_response.output.prediction
 
             # execute the metric

@@ -80,7 +80,7 @@ class Metric(Module):
         # map the metric arguments
         metric_args = {}
 
-        if self.task == 'discovery.static' or self.task == 'discovery.temporal':
+        if self.task in ['discovery.static', 'discovery.temporal', 'classification']:
             metric_args[self.inputs.ground.id] = arguments.ground_truth
             metric_args[self.inputs.prediction.id] = arguments.prediction
 
