@@ -2,7 +2,7 @@
 
 ## Build project
 ```python
-pip install -e.
+pip install -e .
 ```
 
 ## Known issues
