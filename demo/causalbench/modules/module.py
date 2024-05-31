@@ -10,7 +10,7 @@ from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
 from demo.causalbench.commons.utils import parse_arguments, extract_module
-from demo.causalbench import  access_token
+from demo.causalbench import access_token
 
 class Module(ABC):
 
@@ -45,7 +45,7 @@ class Module(ABC):
         arguments = parse_arguments(args, keywords)
         print(arguments)
         # create the object
-        # self.package_path = self.instantiate(arguments)
+        self.package_path = self.instantiate(arguments)
 
         # validate object structure
         self.__validate()

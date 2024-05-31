@@ -9,7 +9,7 @@ from demo.causalbench.modules.dataset import Dataset
 from demo.causalbench.modules.metric import Metric
 from demo.causalbench.modules.model import Model
 from demo.causalbench.modules.module import Module
-from demo.causalbench.services.requests import  save_module, fetch_module
+from demo.causalbench.services.requests import save_module, fetch_module
 
 
 class Pipeline(Module):
@@ -32,6 +32,7 @@ class Pipeline(Module):
         self.dataset = Bunch()
         if isinstance(arguments.dataset, Dataset):
             #TODO: Set the ID of the dataset also?
+            self.dataset.id = arguments.dataset.module_id
             self.dataset.object = arguments.dataset
         elif isinstance(arguments.dataset, int):
             self.dataset.id = arguments.dataset

@@ -16,12 +16,24 @@ class Dataset(Module):
         super().__init__(module_id, 'dataset')
 
     def instantiate(self, arguments: Bunch):
-        # TODO: Create the structure of the new instance
-        pass
+        self.type = arguments.type
+        self.name = arguments.name
+        self.files = arguments.files
+
+        # TODO: where are the files located?
+        return f'dataset/{self.name}.zip'
 
     def validate(self):
-        # TODO: Perform logical validation of the structure
-        pass
+        # check if the file path exists
+        for file in self.files.values():
+            # TODO: file.path is relative path or absolute path or link to database?
+            file_path = os.path.join(self.package_path, file.path)
+            if not os.path.exists(file_path):
+                raise FileNotFoundError(f"File '{file.path}' does not exist in package path '{self.package_path}'")
+        # check if the data is one of ['dataframe', 'graph.static', 'graph.temporal']
+        for file in self.files.values():
+            if file.data not in ['dataframe', 'graph.static', 'graph.temporal']:
+                raise ValueError(f'Invalid data type {file.data}')
 
     def fetch(self, module_id: str):
         response = fetch_module(module_id, "dataset_version", "downloaded_dataset.zip")
