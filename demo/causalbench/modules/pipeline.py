@@ -1,21 +1,26 @@
 import logging
 from datetime import datetime
+from zipfile import ZipFile
+
 import requests
 import json
+
+import yaml
 from bunch_py3 import Bunch
 
+from causalbench.commons.utils import parse_arguments
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
 from causalbench.modules.model import Model
 from causalbench.modules.module import Module
-from causalbench.services.requests import  save_module, fetch_module
+from causalbench.services.requests import save_module, fetch_module
 
 
 class Pipeline(Module):
 
-    def __init__(self, module_id: int = None):
-        super().__init__(module_id, 'pipeline')
+    def __init__(self, module_id: int = None, zip_file: str = None):
+        super().__init__(module_id, zip_file, 'pipeline')
 
     def __getstate__(self):
         state = super().__getstate__()
@@ -23,56 +28,16 @@ class Pipeline(Module):
             del state.model.object
         return state
 
-    def instantiate(self, arguments: Bunch):
-        self.type = 'pipeline'
-        self.name = arguments.name
-        self.task = arguments.task
-
-        # convert dataset to config format
-        self.dataset = Bunch()
-        if isinstance(arguments.dataset, Dataset):
-            #TODO: Set the ID of the dataset also?
-            self.dataset.object = arguments.dataset
-        elif isinstance(arguments.dataset, int):
-            self.dataset.id = arguments.dataset
-
-        # convert model to config format
-        self.model = Bunch()
-        if isinstance(arguments.model[0], Model):
-            self.model.id = arguments.model[0].module_id
-            self.model.object = arguments.model[0]
-        elif isinstance(arguments.model[0], int):
-            self.model.id = arguments.model[0]
-        self.model.parameters = arguments.model[1]
-
-        # convert metric to config format
-        self.metrics = []
-        for metric in arguments.metrics:
-            self_metric = Bunch()
-            if isinstance(metric[0], Metric):
-                # TODO: Set the ID of the dataset also?
-                self_metric.object = metric[0]
-            elif isinstance(metric[0], int):
-                self_metric.id = metric[0]
-            self_metric.parameters = metric[1]
-            self.metrics.append(self_metric)
-
-        return f'pipeline/{self.name}.zip'
-
     def validate(self):
         pass
 
     def fetch(self, module_id: int):
-        response = fetch_module(module_id, "pipelines", "downloaded_pipeline.zip")
+        return fetch_module(module_id, "pipelines", "downloaded_pipeline.zip")
 
-        return response
-
-    def save(self, state, access_token) -> bool:
-        # TODO: Add database call to upload to the server
-        input_file_path = None
-        input_file_path = input("Enter the path of pipeline.zip file: ")
-        response = save_module(input_file_path, access_token, "pipelines", "pipeline.zip")
-        return response
+    def save(self, state) -> bool:
+        with ZipFile(self.package_path, 'w') as zipped:
+            zipped.writestr('config.yaml', yaml.safe_dump(state))
+        return save_module(self.package_path, "pipelines", "pipeline.zip")
 
     def execute(self, access_token):
         start = datetime.now()
@@ -259,3 +224,49 @@ class Pipeline(Module):
             response = requests.post(url, headers=headers, data=json.dumps(data))
 
         return response
+
+    def __instantiate(self, arguments: Bunch):
+        self.type = 'pipeline'
+        self.name = arguments.name
+        self.task = arguments.task
+
+        # convert dataset to config format
+        self.dataset = Bunch()
+        if isinstance(arguments.dataset, Dataset):
+            #TODO: Set the ID of the dataset also?
+            self.dataset.object = arguments.dataset
+        elif isinstance(arguments.dataset, int):
+            self.dataset.id = arguments.dataset
+
+        # convert model to config format
+        self.model = Bunch()
+        if isinstance(arguments.model[0], Model):
+            self.model.id = arguments.model[0].module_id
+            self.model.object = arguments.model[0]
+        elif isinstance(arguments.model[0], int):
+            self.model.id = arguments.model[0]
+        self.model.parameters = arguments.model[1]
+
+        # convert metric to config format
+        self.metrics = []
+        for metric in arguments.metrics:
+            self_metric = Bunch()
+            if isinstance(metric[0], Metric):
+                # TODO: Set the ID of the dataset also?
+                self_metric.object = metric[0]
+            elif isinstance(metric[0], int):
+                self_metric.id = metric[0]
+            self_metric.parameters = metric[1]
+            self.metrics.append(self_metric)
+
+        self.package_path = f'pipeline/{self.name}.zip'
+
+    @staticmethod
+    def create(*args, **keywords):
+        # parse arguments
+        arguments = parse_arguments(args, keywords)
+
+        # create the instance
+        pipeline = Pipeline()
+        pipeline.__instantiate(arguments)
+        return pipeline

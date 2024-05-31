@@ -1,7 +1,8 @@
-from causalbench.services.auth import init_auth
+from causalbench import access_token
 import requests
 
-def save_module(input_file_path, access_token, api_base, output_file_name):
+
+def save_module(input_file_path, api_base, output_file_name):
     url = f'http://18.116.44.47:8000/{api_base}/upload/'
     headers = {
         "Authorization": f"Bearer {access_token}"
@@ -19,8 +20,8 @@ def save_module(input_file_path, access_token, api_base, output_file_name):
 
     return False
 
+
 def fetch_module(module_id, base_api, output_file_name):
-    access_token = init_auth()
     filename = None
     print(f"MODULE: {module_id}")
     url = f'http://18.116.44.47:8000/{base_api}/download/{module_id}/'
@@ -42,7 +43,9 @@ def fetch_module(module_id, base_api, output_file_name):
         with open(filename, 'wb') as file:
             file.write(response.content)
         print(f'Download successful, saved as {filename}')
+
     else:
         print(f'Failed to download file: {response.status_code}')
         print(response.text)
+
     return filename

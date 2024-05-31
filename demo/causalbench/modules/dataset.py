@@ -12,8 +12,8 @@ from causalbench.services.requests import save_module, fetch_module
 
 class Dataset(Module):
 
-    def __init__(self, module_id: int = None):
-        super().__init__(module_id, 'dataset')
+    def __init__(self, module_id: int = None, zip_file: str = None):
+        super().__init__(module_id, zip_file, 'dataset')
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -24,16 +24,13 @@ class Dataset(Module):
         pass
 
     def fetch(self, module_id: str):
-        response = fetch_module(module_id, "dataset_version", "downloaded_dataset.zip")
+        return fetch_module(module_id, "dataset_version", "downloaded_dataset.zip")
 
-        return response
-
-    def save(self, state, access_token) -> bool:
+    def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
-        input_file_path = None
         input_file_path = input("Enter the path of dataset.zip file: ")
         # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/data/abalone.zip"
-        response = save_module(input_file_path, access_token, "dataset_version", "dataset.zip")
+        response = save_module(input_file_path, "dataset_version", "dataset.zip")
 
         return response
 

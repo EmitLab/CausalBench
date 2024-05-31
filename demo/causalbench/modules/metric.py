@@ -1,6 +1,5 @@
 import logging
 import os
-import requests
 from bunch_py3 import Bunch
 
 from causalbench.commons import executor
@@ -9,14 +8,11 @@ from causalbench.modules.module import Module
 
 from causalbench.services.requests import fetch_module, save_module
 
+
 class Metric(Module):
 
-    def __init__(self, module_id: int = None):
-        super().__init__(module_id, 'metric')
-
-    def instantiate(self, arguments: Bunch):
-        # TODO: Create the structure of the new instance
-        pass
+    def __init__(self, module_id: int = None, zip_file: str = None):
+        super().__init__(module_id, zip_file, 'metric')
 
     def validate(self):
         # check if the file exists
@@ -43,15 +39,14 @@ class Metric(Module):
                 raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
-        response = fetch_module(module_id, "metric_version", "downloaded_metric.zip")
+        return fetch_module(module_id, "metric_version", "downloaded_metric.zip")
 
-        return response
-    def save(self, state, access_token) -> bool:
+    def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
         input_file_path = input("Enter the path of metric.zip file: ")
         # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/metric/f1_static.zip"
         print(f"Saving metric!")
-        response = save_module(input_file_path, access_token, "metric_version", "metric.zip")
+        response = save_module(input_file_path, "metric_version", "metric.zip")
 
         return response
 

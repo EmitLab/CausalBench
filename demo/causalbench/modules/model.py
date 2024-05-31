@@ -11,8 +11,8 @@ from causalbench.services.requests import save_module, fetch_module
 
 class Model(Module):
 
-    def __init__(self, model_id: int = None):
-        super().__init__(model_id, 'model')
+    def __init__(self, model_id: int = None, zip_file: str = None):
+        super().__init__(model_id, zip_file, 'model')
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -29,16 +29,14 @@ class Model(Module):
         pass
 
     def fetch(self, model_id: int):
-        response = fetch_module(model_id, "model_version", "downloaded_model.zip")
+        return fetch_module(model_id, "model_version", "downloaded_model.zip")
 
-        return response
-
-    def save(self, state, access_token) -> bool:
+    def save(self, state) -> bool:
         # TODO: Add database call to upload to the server
         input_file_path = input("Enter the path of model.zip file: ")
         # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/model/pc.zip"
         print(f"Saving model!")
-        response = save_module(input_file_path, access_token, "model_version", "model.zip")
+        response = save_module(input_file_path, "model_version", "model.zip")
 
         return response
 

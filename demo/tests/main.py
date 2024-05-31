@@ -10,6 +10,7 @@ from causalbench.services.auth import init_auth
 import numpy as np
 from matplotlib import pyplot as plt
 
+
 # from causalbench.commons.utils import display_report
 # from causalbench.modules.pipeline import Pipeline
 
@@ -48,7 +49,7 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 def main():
     import sys
-    sys.path.insert(0,'model/ermirmcfcminst')
+    sys.path.insert(0, 'model/ermirmcfcminst')
     access_token = init_auth()
 
     # ########################################################
@@ -59,8 +60,8 @@ def main():
     # metric0.publish()
     #
     # # # Dataset save test
-    ds0 = Dataset()
-    ds0.publish()
+    # ds0 = Dataset()
+    # ds0.publish()
 
     # # # Model Save test
     # model0 = Model()
@@ -89,35 +90,38 @@ def main():
     # pipeline0 = Pipeline(3)
     # pipeline0.execute(access_token)
 
-        # # # static discovery
-        # # pipeline0 = Pipeline(0)
-        # # result0 = pipeline0.execute()
-        # # display_report(result0)
+    # # # static discovery
+    # # pipeline0 = Pipeline(0)
+    # # result0 = pipeline0.execute()
+    # # display_report(result0)
 
-        # # # temporal discovery
-        # # pipeline1 = Pipeline(1)
-        # # result1 = pipeline1.execute()
-        # # display_report(result1)
-        
-        # # # Classification
-        # # pipeline2 = Pipeline(2)
-        # # result2 = pipeline2.execute()
-        # # display_report(result2)
+    # # # temporal discovery
+    # # pipeline1 = Pipeline(1)
+    # # result1 = pipeline1.execute()
+    # # display_report(result1)
 
-        # # manually creation
-        # # pipeline1 = Pipeline()
-        # # pipeline1.create(name='pipeline1',
-        # #                  task='discovery.temporal',
-        # #                  dataset=2,
-        # #                  model=(Model(0), {'data': 'file1'}),
-        # #                  metrics=[(0, {'ground_truth': 'file2'}),
-        # #                           (1, {'ground_truth': 'file2'}),
-        # #                           (2, {'ground_truth': 'file2'}),
-        # #                           (3, {'ground_truth': 'file2'}),
-        # #                           (4, {'ground_truth': 'file2'})])
-        # # result1 = pipeline1.execute()
-        # # display_report(result1)
-        # # pipeline1.publish()
+    # # # Classification
+    # # pipeline2 = Pipeline(2)
+    # # result2 = pipeline2.execute()
+    # # display_report(result2)
+
+    # # manually creation
+    # pipeline1 = Pipeline.create(name='pipeline1',
+    #                             task='discovery.temporal',
+    #                             dataset=2,
+    #                             model=(Model(0), {'data': 'file1'}),
+    #                             metrics=[(0, {'ground_truth': 'file2'}),
+    #                                      (1, {'ground_truth': 'file2'}),
+    #                                      (2, {'ground_truth': 'file2'}),
+    #                                      (3, {'ground_truth': 'file2'}),
+    #                                      (4, {'ground_truth': 'file2'})])
+    # # result1 = pipeline1.execute()
+    # # display_report(result1)
+    # pipeline1.publish()
+
+    metric1 = Metric(zip_file="metric/accuracy_static.zip")
+    metric1.publish()
+
 
 if __name__ == '__main__':
     main()

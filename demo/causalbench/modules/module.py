@@ -10,48 +10,57 @@ from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
 from causalbench.commons.utils import parse_arguments, extract_module
-from causalbench import  access_token
+
 
 class Module(ABC):
 
-    def __init__(self, module_id: int, schema_name: str):
+    def __init__(self, module_id: int, zip_file: str, schema_name: str):
         # set the module ID
         self.module_id = module_id
+        self.schema_name = schema_name
 
+        # load the schema
+        self.__load_schema()
+
+        # load directly from zip file
+        if zip_file is not None:
+            self.__load_module(zip_file)
+
+        # load using module ID
+        elif self.module_id is not None:
+            zip_file = self.fetch(self.module_id)
+            self.__load_module(zip_file)
+
+        # raise error
+        else:
+            raise ValueError("Invalid arguments: Either module_id or zip_file must be specified")
+
+    def __load_schema(self):
         # load schema
-        schema_path = str(resources.files(__package__).joinpath('schema').joinpath(schema_name + '.yaml'))
+        schema_path = str(resources.files(__package__)
+                          .joinpath('schema')
+                          .joinpath(self.schema_name + '.yaml'))
         with open(schema_path) as f:
             self.schema = yaml.safe_load(f)
 
-        if module_id is not None:
-            # create temporary directory
-            zip_file_path = self.fetch(module_id)
-            self.package_path = extract_module(schema_name, zip_file_path)
+    def __load_module(self, zip_file_path: str):
+        # extract zip to temporary directory
+        self.package_path = extract_module(self.schema_name, zip_file_path)
 
-            # load configuration
-            config_path = os.path.join(self.package_path, 'config.yaml')
-            with open(config_path) as f:
-                entries = yaml.safe_load(f)
-                entries = bunchify(entries)
+        # load configuration
+        config_path = os.path.join(self.package_path, 'config.yaml')
+        with open(config_path) as f:
+            entries = yaml.safe_load(f)
+            entries = bunchify(entries)
 
-            # set object structure
-            self.__dict__.update(entries)
-
-            # validate object structure
-            self.__validate()
-
-    def create(self, *args, **keywords):
-        # parse the arguments
-        arguments = parse_arguments(args, keywords)
-        print(arguments)
-        # create the object
-        self.package_path = self.instantiate(arguments)
+        # set object structure
+        self.__dict__.update(entries)
 
         # validate object structure
         self.__validate()
 
     def publish(self):
-        self.save(self.__getstate__(), access_token)
+        self.save(self.__getstate__())
 
     def __validate(self):
         config = json.loads(json.dumps(self.__getstate__()))
@@ -70,13 +79,9 @@ class Module(ABC):
     def __getstate__(self):
         state = bunchify(self.__dict__)
         # del state.module_id
-        # del state.schema
-        # del state.package_path
+        del state.schema
+        del state.package_path
         return state
-
-    @abstractmethod
-    def instantiate(self, arguments: Bunch) -> str:
-        pass
 
     @abstractmethod
     def validate(self):
@@ -87,5 +92,5 @@ class Module(ABC):
         pass
 
     @abstractmethod
-    def save(self, state: dict, access_token: str) -> bool:
+    def save(self, state: dict) -> bool:
         pass
