@@ -69,10 +69,17 @@ def display_run(run):
     # return response["output"]
 
 
+def causal_bench_path(*path_list):
+    path: Path = Path.home().joinpath('.causalbench')
+    for path_str in path_list:
+        path = path.joinpath(path_str)
+    return str(path)
+
+
 def extract_module(schema_name: str, zip_file_path: str):
     # form the directory path
     dir_name = os.path.basename(zip_file_path[:zip_file_path.rfind('.')])
-    dir_path = str(Path.home().joinpath('.causalbench').joinpath(schema_name).joinpath(dir_name))
+    dir_path = causal_bench_path(schema_name, dir_name)
 
     # extract the zip file
     zip_file = ZipFile(zip_file_path)

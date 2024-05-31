@@ -66,7 +66,7 @@ def save_run(run):
         "Authorization": f"Bearer {access_token}"
     }
 
-    entry = run.scores[0]
+    entry = run.metrics[0]
 
     data = {
         "user_id": 4,
@@ -80,9 +80,11 @@ def save_run(run):
 
     api_response = requests.post(url, headers=headers, data=json.dumps(data))
 
+    print(api_response)
+
     sys_config_id = api_response.text
 
-    for entry in run.scores:
+    for entry in run.metrics:
         if entry.name.startswith("accuracy"):
             result = int(entry.output.score * 100)
         else:
@@ -112,6 +114,8 @@ def save_run(run):
             'Content-Type': 'application/json',
             "Authorization": f"Bearer {access_token}"
         }
+
+        print(data)
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
 

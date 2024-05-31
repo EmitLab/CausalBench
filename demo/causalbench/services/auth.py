@@ -1,11 +1,9 @@
-import json
-
 import requests
+import yaml
+
+from causalbench.commons.utils import causal_bench_path
 
 
-def load_config(filename):
-    with open(filename, 'r') as f:
-        return json.load(f)
 def authenticate(config):
     login_url = "http://18.116.44.47:8000/authenticate/login"
     email = config['email']
@@ -28,10 +26,15 @@ def authenticate(config):
         print(f"Error occurred: {e}")
         return None
 
+
 def init_auth():
-    # Load config from file
-    config = load_config('config.json')
+    # load config from file
+    config_path = causal_bench_path('config.yaml')
+    with open(config_path) as f:
+        config = yaml.safe_load(f)
+
+    # authenticate
     response = authenticate(config)
     access_token = response['data']['access_token']
-    print(access_token)
+
     return access_token

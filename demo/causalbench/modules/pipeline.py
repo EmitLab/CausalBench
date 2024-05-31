@@ -4,7 +4,7 @@ from pathlib import Path
 
 from bunch_py3 import Bunch
 
-from causalbench.commons.utils import parse_arguments, package_module
+from causalbench.commons.utils import parse_arguments, package_module, causal_bench_path
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
@@ -132,11 +132,11 @@ class Pipeline(Module):
         run.pipeline.task = self.task
 
         run.dataset = Bunch()
-        run.dataset.id = dataset.module_id
+        run.dataset.id = self.dataset.id
         run.dataset.name = dataset.name
 
         run.model = model_response
-        run.model.id = model.module_id
+        run.model.id = self.model.id
         run.model.name = model.name
 
         run.metrics = scores
@@ -182,7 +182,7 @@ class Pipeline(Module):
             self.metrics.append(self_metric)
 
         # form the directory path
-        self.package_path = str(Path.home().joinpath('.causalbench').joinpath(self.schema_name).joinpath(self.name))
+        self.package_path = causal_bench_path(self.schema_name, self.name)
 
     @staticmethod
     def create(*args, **keywords):

@@ -49,7 +49,7 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 def main():
     import sys
     sys.path.insert(0, 'model/ermirmcfcminst')
-    access_token = init_auth()
+    # access_token = init_auth()
 
     # ########################################################
     # ######## Abhinav's CB backend integration tests ########
@@ -119,22 +119,34 @@ def main():
     # pipeline1.publish()
 
     dataset1 = Dataset(zip_file="data/abalone.zip")
-    dataset1.publish()
-
+    # dataset1.publish()
+    #
     model1 = Model(zip_file='model/ges.zip')
-    model1.publish()
-
+    # model1.publish()
+    #
     metric1 = Metric(zip_file='metric/accuracy_static.zip')
-    metric1.publish()
+    # metric1.publish()
 
     pipeline1 = Pipeline.create(name='pipeline1',
                                 task='discovery.static',
                                 dataset=dataset1,
                                 model=(model1, {'data': 'file1'}),
                                 metrics=[(metric1, {'ground_truth': 'file2'})])
+    # pipeline1.publish()
     result1 = pipeline1.execute()
     display_run(result1)
-    pipeline1.publish()
+
+    # pipeline1 = Pipeline.create(name='pipeline5',
+    #                             task='discovery.static',
+    #                             dataset=26,
+    #                             model=(24, {'data': 'file1'}),
+    #                             metrics=[(34, {'ground_truth': 'file2'})])
+    # pipeline1 = Pipeline(31)
+    # # pipeline1.publish()
+    #
+    # result1 = pipeline1.execute()
+    # display_run(result1)
+    # result1.publish()
 
 
 if __name__ == '__main__':

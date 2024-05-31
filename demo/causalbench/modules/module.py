@@ -78,9 +78,16 @@ class Module(ABC):
 
     def __getstate__(self):
         state = bunchify(self.__dict__)
-        # del state.module_id
-        del state.schema
-        del state.package_path
+
+        if 'module_id' in state:
+            del state.module_id
+
+        if 'schema' in state:
+            del state.schema
+
+        if 'package_path' in state:
+            del state.package_path
+
         return state
 
     @abstractmethod
