@@ -1,12 +1,13 @@
 import logging
 import os
-
+import requests
 from bunch_py3 import Bunch
 
 from causalbench.commons import executor
 from causalbench.commons.utils import parse_arguments
 from causalbench.modules.module import Module
 
+from causalbench.services.requests import fetch_module, save_module
 
 class Metric(Module):
 
@@ -42,33 +43,17 @@ class Metric(Module):
                 raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        if module_id == 0:
-            return 'metric/shd_static.zip'
-        elif module_id == 1:
-            return 'metric/accuracy_static.zip'
-        elif module_id == 2:
-            return 'metric/f1_static.zip'
-        elif module_id == 3:
-            return 'metric/precision_static.zip'
-        elif module_id == 4:
-            return 'metric/recall_static.zip'
-        elif module_id == 5:
-            return 'metric/shd_temporal.zip'
-        elif module_id == 6:
-            return 'metric/accuracy_temporal.zip'
-        elif module_id == 7:
-            return 'metric/f1_temporal.zip'
-        elif module_id == 8:
-            return 'metric/precision_temporal.zip'
-        elif module_id == 9:
-            return 'metric/recall_temporal.zip'
-        else:
-            raise ValueError(f"Invalid module_id: {module_id}")
+        response = fetch_module(module_id, "metric_version", "downloaded_metric.zip")
 
-    def save(self, state) -> bool:
+        return response
+    def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        pass
+        input_file_path = input("Enter the path of metric.zip file: ")
+        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/metric/f1_static.zip"
+        print(f"Saving metric!")
+        response = save_module(input_file_path, access_token, "metric_version", "metric.zip")
+
+        return response
 
     def evaluate(self, *args, **keywords):
         # parse the arguments

@@ -1,8 +1,7 @@
 import logging
-from copy import copy
-from zipfile import ZipFile
-
-import yaml
+from datetime import datetime
+import requests
+import json
 from bunch_py3 import Bunch
 
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
@@ -10,6 +9,7 @@ from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
 from causalbench.modules.model import Model
 from causalbench.modules.module import Module
+from causalbench.services.requests import  save_module, fetch_module
 
 
 class Pipeline(Module):
@@ -31,6 +31,7 @@ class Pipeline(Module):
         # convert dataset to config format
         self.dataset = Bunch()
         if isinstance(arguments.dataset, Dataset):
+            #TODO: Set the ID of the dataset also?
             self.dataset.object = arguments.dataset
         elif isinstance(arguments.dataset, int):
             self.dataset.id = arguments.dataset
@@ -49,6 +50,7 @@ class Pipeline(Module):
         for metric in arguments.metrics:
             self_metric = Bunch()
             if isinstance(metric[0], Metric):
+                # TODO: Set the ID of the dataset also?
                 self_metric.object = metric[0]
             elif isinstance(metric[0], int):
                 self_metric.id = metric[0]
@@ -61,21 +63,19 @@ class Pipeline(Module):
         pass
 
     def fetch(self, module_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        if module_id == 0:
-            return 'pipeline/pipeline0.zip'
-        elif module_id == 1:
-            return 'pipeline/pipeline1.zip'
-        elif module_id == 2:
-            return 'pipeline/pipeline2.zip'
+        response = fetch_module(module_id, "pipelines", "downloaded_pipeline.zip")
 
-    def save(self, state) -> bool:
+        return response
+
+    def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        with ZipFile(self.package_path, 'w') as zipped:
-            zipped.writestr('config.yaml', yaml.safe_dump(state))
-        return True
+        input_file_path = None
+        input_file_path = input("Enter the path of pipeline.zip file: ")
+        response = save_module(input_file_path, access_token, "pipelines", "pipeline.zip")
+        return response
 
-    def execute(self):
+    def execute(self, access_token):
+        start = datetime.now()
         # load dataset
         if 'object' in self.dataset:
             dataset = self.dataset.object
@@ -125,12 +125,12 @@ class Pipeline(Module):
             else:
                 logging.error(f'Invalid metric provided: must be an integer or an object of type {Metric}')
                 return
-
             # check model-metric compatibility
             if model.task != metric.task:
                 logging.error(f'The model "{model.name}" and metric "{metric.name}" are not compatible')
                 return
 
+            logging.info("Checked model-metric compatibility")
             # map metric-data parameters
             parameters = Bunch()
             for metric_param, data_param in self_metric.parameters.items():
@@ -163,5 +163,99 @@ class Pipeline(Module):
         response.model.name = model.name
 
         response.metrics = scores
+        end = datetime.now()
+
+        url = 'http://18.116.44.47:8000/instance/env_config'
+        headers = {
+            'Content-Type': 'application/json',
+            "Authorization": f"Bearer {access_token}"
+        }
+
+        data = {
+            "user_id": 4,
+            "python_version": "3.11",
+            "numpy_version": "1.22",
+            "pytorch_version": "2.44",
+            "model_version_id": str(self.model.id),
+        }
+
+        api_response = requests.post(url, headers=headers, data=json.dumps(data))
+
+        env_config_id = api_response.text
+
+        # data = {
+        #     "user_id": 1,
+        #     "gpu_name": "RTX 4090",
+        #     "gpu_driver_version": "1",
+        #     "gpu_memory": "16GB",
+        #     "sys_memory": "64GB",
+        #     "os_name": "Windows",
+        #     "cpu_name": "Tyzen 7 5900H",
+        #     "execution_start_time": "start time",
+        #     "execution_end_time": "end time",
+        #     "result": "90",
+        #     "dataset_version_id": 8,
+        #     "model_version_id": 8,
+        #     "metric_version_id": 8,
+        #     "instance_id":  1,
+        #     "env_config_id": 1,
+        #     "sys_config_id": 1,
+        #     "pipeline_id": 8
+        # }
+
+        url = 'http://18.116.44.47:8000/instance/sys_config'
+        headers = {
+            'Content-Type': 'application/json',
+            "Authorization": f"Bearer {access_token}"
+        }
+
+        entry = scores[0]
+
+        data = {
+            "user_id": 4,
+            "gpu_name": "Unknown" if entry.gpu is None else entry.gpu,
+            "gpu_driver_version": "Unknown",
+            "gpu_memory": "Unknown" if entry.gpu_memory is None else f"{entry.gpu_memory_total / (1024 ** 3):.2f}GB",
+            "sys_memory": f"{entry.memory_total / (1024 ** 3):.2f}GB",
+            "os_name": entry.platform.split('-')[0],
+            "cpu_name": entry.processor,
+        }
+
+        api_response = requests.post(url, headers=headers, data=json.dumps(data))
+
+        sys_config_id = api_response.text
+
+        for entry in scores:
+            if entry.name.startswith("accuracy"):
+                result = int(entry.output.score * 100)
+            else:
+                result = f"{int(entry.output.score)}"
+            data = {
+                "user_id": 4,
+                "gpu_name": "Unknown" if entry.gpu is None else entry.gpu,
+                "gpu_driver_version": "Unknown",
+                "gpu_memory": "Unknown" if entry.gpu_memory is None else f"{entry.gpu_memory_total / (1024 ** 3):.2f}GB",
+                "sys_memory": f"{entry.memory_total / (1024 ** 3):.2f}GB",
+                "os_name": entry.platform.split('-')[0],
+                "cpu_name": entry.processor,
+                "execution_start_time": start.strftime('%Y-%m-%d %H:%M:%S'),  # Example start time
+                "execution_end_time": end.strftime('%Y-%m-%d %H:%M:%S'),  # Example end time
+                "result": f"{result}",
+                "dataset_version_id": dataset.module_id,
+                "model_version_id": model.module_id,
+                "metric_version_id": entry.id,
+                "env_config_id": env_config_id,
+                "sys_config_id": sys_config_id,
+                "instance_id": 1,
+                "pipeline_id": self.module_id
+            }
+
+            url = 'http://18.116.44.47:8000/runs/'
+            headers = {
+                'Content-Type': 'application/json',
+                "Authorization": f"Bearer {access_token}"
+            }
+
+            response = requests.post(url, headers=headers, data=json.dumps(data))
 
         return response

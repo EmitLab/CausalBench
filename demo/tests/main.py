@@ -1,10 +1,17 @@
 import networkx as nx
+import json
+import requests
+
+from causalbench.modules.dataset import Dataset
+from causalbench.modules.model import Model
+from causalbench.modules.pipeline import Pipeline
+from causalbench.modules.metric import Metric
+from causalbench.services.auth import init_auth
 import numpy as np
 from matplotlib import pyplot as plt
 
-from causalbench.commons.utils import display_report
-from causalbench.modules.pipeline import Pipeline
-
+# from causalbench.commons.utils import display_report
+# from causalbench.modules.pipeline import Pipeline
 
 def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
     plt.figure(figsize=figsize, dpi=dpi)
@@ -42,37 +49,75 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 def main():
     import sys
     sys.path.insert(0,'model/ermirmcfcminst')
+    access_token = init_auth()
 
-    # # static discovery
-    # pipeline0 = Pipeline(0)
-    # result0 = pipeline0.execute()
-    # display_report(result0)
+    # ########################################################
+    # ######## Abhinav's CB backend integration tests ########
+    # ########################################################
+    # Metric save test
+    # metric0 = Metric()
+    # metric0.publish()
+    #
+    # # # Dataset save test
+    ds0 = Dataset()
+    ds0.publish()
 
-    # # temporal discovery
-    # pipeline1 = Pipeline(1)
-    # result1 = pipeline1.execute()
-    # display_report(result1)
-    
-    # Classification
-    pipeline2 = Pipeline(2)
-    result2 = pipeline2.execute()
-    display_report(result2)
+    # # # Model Save test
+    # model0 = Model()
+    # model0.publish()
 
-    # manually creation
-    # pipeline1 = Pipeline()
-    # pipeline1.create(name='pipeline1',
-    #                  task='discovery.temporal',
-    #                  dataset=2,
-    #                  model=(Model(0), {'data': 'file1'}),
-    #                  metrics=[(0, {'ground_truth': 'file2'}),
-    #                           (1, {'ground_truth': 'file2'}),
-    #                           (2, {'ground_truth': 'file2'}),
-    #                           (3, {'ground_truth': 'file2'}),
-    #                           (4, {'ground_truth': 'file2'})])
-    # result1 = pipeline1.execute()
-    # display_report(result1)
-    # pipeline1.publish()
+    # # Pipeline save test
+    # pipeline0 = Pipeline()
+    # pipeline0.publish()
 
+    #     # # Dataset fetch test
+    # # ds0 = Dataset(34)
+    # # ds0.fetch(34)
+
+    # # # Model fetch test
+    # model0 = Model(3) # Model constructor calls fetch()
+
+    # # # Pipeline fetch test
+    # pipeline0 = Pipeline(3)
+    # # pipeline0.fetch(1)
+
+    # Metric Fetch test
+    # metric0 = Metric(8)
+    # metric0.publish()
+
+    # # # Pipeline exec test
+    # pipeline0 = Pipeline(3)
+    # pipeline0.execute(access_token)
+
+        # # # static discovery
+        # # pipeline0 = Pipeline(0)
+        # # result0 = pipeline0.execute()
+        # # display_report(result0)
+
+        # # # temporal discovery
+        # # pipeline1 = Pipeline(1)
+        # # result1 = pipeline1.execute()
+        # # display_report(result1)
+        
+        # # # Classification
+        # # pipeline2 = Pipeline(2)
+        # # result2 = pipeline2.execute()
+        # # display_report(result2)
+
+        # # manually creation
+        # # pipeline1 = Pipeline()
+        # # pipeline1.create(name='pipeline1',
+        # #                  task='discovery.temporal',
+        # #                  dataset=2,
+        # #                  model=(Model(0), {'data': 'file1'}),
+        # #                  metrics=[(0, {'ground_truth': 'file2'}),
+        # #                           (1, {'ground_truth': 'file2'}),
+        # #                           (2, {'ground_truth': 'file2'}),
+        # #                           (3, {'ground_truth': 'file2'}),
+        # #                           (4, {'ground_truth': 'file2'})])
+        # # result1 = pipeline1.execute()
+        # # display_report(result1)
+        # # pipeline1.publish()
 
 if __name__ == '__main__':
     main()

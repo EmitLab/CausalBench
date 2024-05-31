@@ -10,7 +10,7 @@ from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
 from causalbench.commons.utils import parse_arguments, extract_module
-
+from causalbench import  access_token
 
 class Module(ABC):
 
@@ -43,7 +43,7 @@ class Module(ABC):
     def create(self, *args, **keywords):
         # parse the arguments
         arguments = parse_arguments(args, keywords)
-
+        print(arguments)
         # create the object
         self.package_path = self.instantiate(arguments)
 
@@ -51,7 +51,7 @@ class Module(ABC):
         self.__validate()
 
     def publish(self):
-        self.save(self.__getstate__())
+        self.save(self.__getstate__(), access_token)
 
     def __validate(self):
         config = json.loads(json.dumps(self.__getstate__()))
@@ -69,9 +69,9 @@ class Module(ABC):
 
     def __getstate__(self):
         state = bunchify(self.__dict__)
-        del state.module_id
-        del state.schema
-        del state.package_path
+        # del state.module_id
+        # del state.schema
+        # del state.package_path
         return state
 
     @abstractmethod
@@ -87,5 +87,5 @@ class Module(ABC):
         pass
 
     @abstractmethod
-    def save(self, state: dict) -> bool:
+    def save(self, state: dict, access_token: str) -> bool:
         pass

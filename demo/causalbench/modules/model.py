@@ -1,12 +1,13 @@
 import logging
 import os
+import requests
 
 from bunch_py3 import Bunch
 
 from causalbench.commons import executor
 from causalbench.commons.utils import parse_arguments
 from causalbench.modules.module import Module
-
+from causalbench.services.requests import save_module, fetch_module
 
 class Model(Module):
 
@@ -28,19 +29,18 @@ class Model(Module):
         pass
 
     def fetch(self, model_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        if model_id == 0:
-            return 'model/pc.zip'
-        elif model_id == 1:
-            return 'model/ges.zip'
-        elif model_id == 2:
-            return 'model/lingam.zip'
-        elif model_id == 3:
-            return 'model/ermirmcfcminst.zip'
+        response = fetch_module(model_id, "model_version", "downloaded_model.zip")
 
-    def save(self, state) -> bool:
+        return response
+
+    def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        pass
+        input_file_path = input("Enter the path of model.zip file: ")
+        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/model/pc.zip"
+        print(f"Saving model!")
+        response = save_module(input_file_path, access_token, "model_version", "model.zip")
+
+        return response
 
     def execute(self, *args, **keywords):
         # parse the arguments

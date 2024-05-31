@@ -1,5 +1,6 @@
 import logging
 import os
+import requests
 
 import pandas as pd
 from bunch_py3 import Bunch
@@ -7,7 +8,7 @@ from bunch_py3 import Bunch
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.helpers.discovery import adjmat_to_graph
 from causalbench.modules.module import Module
-
+from causalbench.services.requests import save_module, fetch_module
 
 class Dataset(Module):
 
@@ -22,20 +23,19 @@ class Dataset(Module):
         # TODO: Perform logical validation of the structure
         pass
 
-    def fetch(self, module_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        if module_id == 0:
-            return 'data/abalone.zip'
-        elif module_id == 1:
-            return 'data/adult.zip'
-        elif module_id == 2:
-            return 'data/time_series_simulated.zip'
-        elif module_id == 3:
-            return 'data/fashion_mnist.zip'
+    def fetch(self, module_id: str):
+        response = fetch_module(module_id, "dataset_version", "downloaded_dataset.zip")
 
-    def save(self, state) -> bool:
+        return response
+
+    def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        pass
+        input_file_path = None
+        input_file_path = input("Enter the path of dataset.zip file: ")
+        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/data/abalone.zip"
+        response = save_module(input_file_path, access_token, "dataset_version", "dataset.zip")
+
+        return response
 
     def load(self) -> Bunch:
         files = Bunch()
