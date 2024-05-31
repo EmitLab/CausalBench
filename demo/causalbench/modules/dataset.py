@@ -5,10 +5,10 @@ import requests
 import pandas as pd
 from bunch_py3 import Bunch
 
-from demo.causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from demo.causalbench.helpers.discovery import adjmat_to_graph
-from demo.causalbench.modules.module import Module
-from demo.causalbench.services.requests import save_module, fetch_module
+from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
+from causalbench.helpers.discovery import adjmat_to_graph
+from causalbench.modules.module import Module
+from causalbench.services.requests import save_module, fetch_module
 
 class Dataset(Module):
 
@@ -43,8 +43,8 @@ class Dataset(Module):
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
         input_file_path = None
-        # input_file_path = input("Enter the path of dataset.zip file: ")
-        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/data/adult.zip"
+        input_file_path = input("Enter the path of dataset.zip file: ")
+        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/data/abalone.zip"
         response = save_module(input_file_path, access_token, "dataset_version", "dataset.zip")
 
         return response

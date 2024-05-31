@@ -3,11 +3,11 @@ import os
 import requests
 from bunch_py3 import Bunch
 
-from demo.causalbench.commons import executor
-from demo.causalbench.commons.utils import parse_arguments
-from demo.causalbench.modules.module import Module
+from causalbench.commons import executor
+from causalbench.commons.utils import parse_arguments
+from causalbench.modules.module import Module
 
-from demo.causalbench.services.requests import fetch_module, save_module
+from causalbench.services.requests import fetch_module, save_module
 
 class Metric(Module):
 
@@ -48,8 +48,8 @@ class Metric(Module):
         return response
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        # input_file_path = input("Enter the path of metric.zip file: ")
-        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/metric.zip"
+        input_file_path = input("Enter the path of metric.zip file: ")
+        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/metric/f1_static.zip"
         print(f"Saving metric!")
         response = save_module(input_file_path, access_token, "metric_version", "metric.zip")
 

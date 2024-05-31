@@ -9,8 +9,8 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from demo.causalbench.commons.utils import parse_arguments, extract_module
-from demo.causalbench import access_token
+from causalbench.commons.utils import parse_arguments, extract_module
+from causalbench import  access_token
 
 class Module(ABC):
 

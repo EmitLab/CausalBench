@@ -4,12 +4,12 @@ import requests
 import json
 from bunch_py3 import Bunch
 
-from demo.causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from demo.causalbench.modules.dataset import Dataset
-from demo.causalbench.modules.metric import Metric
-from demo.causalbench.modules.model import Model
-from demo.causalbench.modules.module import Module
-from demo.causalbench.services.requests import save_module, fetch_module
+from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
+from causalbench.modules.dataset import Dataset
+from causalbench.modules.metric import Metric
+from causalbench.modules.model import Model
+from causalbench.modules.module import Module
+from causalbench.services.requests import  save_module, fetch_module
 
 
 class Pipeline(Module):
@@ -32,7 +32,6 @@ class Pipeline(Module):
         self.dataset = Bunch()
         if isinstance(arguments.dataset, Dataset):
             #TODO: Set the ID of the dataset also?
-            self.dataset.id = arguments.dataset.module_id
             self.dataset.object = arguments.dataset
         elif isinstance(arguments.dataset, int):
             self.dataset.id = arguments.dataset
@@ -71,7 +70,7 @@ class Pipeline(Module):
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
         input_file_path = None
-        # input_file_path = input("Enter the path of pipeline.zip file: ")
+        input_file_path = input("Enter the path of pipeline.zip file: ")
         response = save_module(input_file_path, access_token, "pipelines", "pipeline.zip")
         return response
 
@@ -130,7 +129,7 @@ class Pipeline(Module):
             if model.task != metric.task:
                 logging.error(f'The model "{model.name}" and metric "{metric.name}" are not compatible')
                 return
-            
+
             logging.info("Checked model-metric compatibility")
             # map metric-data parameters
             parameters = Bunch()
@@ -168,7 +167,8 @@ class Pipeline(Module):
 
         url = 'http://18.116.44.47:8000/instance/env_config'
         headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": f"Bearer {access_token}"
         }
 
         data = {
@@ -176,7 +176,7 @@ class Pipeline(Module):
             "python_version": "3.11",
             "numpy_version": "1.22",
             "pytorch_version": "2.44",
-            "model_version_id": "8"
+            "model_version_id": str(self.model.id),
         }
 
         api_response = requests.post(url, headers=headers, data=json.dumps(data))
@@ -205,7 +205,8 @@ class Pipeline(Module):
 
         url = 'http://18.116.44.47:8000/instance/sys_config'
         headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": f"Bearer {access_token}"
         }
 
         entry = scores[0]
@@ -251,10 +252,10 @@ class Pipeline(Module):
 
             url = 'http://18.116.44.47:8000/runs/'
             headers = {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": f"Bearer {access_token}"
             }
 
-            api_response = requests.post(url, headers=headers, data=json.dumps(data))
-
+            response = requests.post(url, headers=headers, data=json.dumps(data))
 
         return response

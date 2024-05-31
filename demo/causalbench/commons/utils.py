@@ -5,7 +5,7 @@ from zipfile import ZipFile
 
 from bunch_py3 import bunchify, Bunch
 
-from demo.causalbench.formats import SpatioTemporalData
+from causalbench.formats import SpatioTemporalData
 
 
 def parse_arguments(args, keywords):

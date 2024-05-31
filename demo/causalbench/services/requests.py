@@ -1,4 +1,4 @@
-from demo.causalbench.services.auth import init_auth
+from causalbench.services.auth import init_auth
 import requests
 
 def save_module(input_file_path, access_token, api_base, output_file_name):

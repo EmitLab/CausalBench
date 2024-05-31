@@ -2,11 +2,11 @@ import networkx as nx
 import json
 import requests
 
-from demo.causalbench.modules.dataset import Dataset
-from demo.causalbench.modules.model import Model
-from demo.causalbench.modules.pipeline import Pipeline
-from demo.causalbench.modules.metric import Metric
-from demo.causalbench.services.auth import init_auth
+from causalbench.modules.dataset import Dataset
+from causalbench.modules.model import Model
+from causalbench.modules.pipeline import Pipeline
+from causalbench.modules.metric import Metric
+from causalbench.services.auth import init_auth
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -49,7 +49,7 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 def main():
     import sys
     sys.path.insert(0,'model/ermirmcfcminst')
-    access_token = init_auth
+    access_token = init_auth()
 
     # ########################################################
     # ######## Abhinav's CB backend integration tests ########
@@ -57,8 +57,8 @@ def main():
     # Metric save test
     # metric0 = Metric()
     # metric0.publish()
-
-    # # Dataset save test
+    #
+    # # # Dataset save test
     ds0 = Dataset()
     ds0.publish()
 
@@ -87,7 +87,7 @@ def main():
 
     # # # Pipeline exec test
     # pipeline0 = Pipeline(3)
-    pipeline0.execute(access_token)
+    # pipeline0.execute(access_token)
 
         # # # static discovery
         # # pipeline0 = Pipeline(0)
