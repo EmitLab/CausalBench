@@ -48,8 +48,8 @@ class Metric(Module):
         return response
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        # input_file_path = input("Enter the path of metric.zip file: ")
-        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/metric.zip"
+        input_file_path = input("Enter the path of metric.zip file: ")
+        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/metric/f1_static.zip"
         print(f"Saving metric!")
         response = save_module(input_file_path, access_token, "metric_version", "metric.zip")
 

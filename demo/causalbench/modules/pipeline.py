@@ -129,7 +129,7 @@ class Pipeline(Module):
             if model.task != metric.task:
                 logging.error(f'The model "{model.name}" and metric "{metric.name}" are not compatible')
                 return
-            
+
             logging.info("Checked model-metric compatibility")
             # map metric-data parameters
             parameters = Bunch()
@@ -167,7 +167,8 @@ class Pipeline(Module):
 
         url = 'http://18.116.44.47:8000/instance/env_config'
         headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": f"Bearer {access_token}"
         }
 
         data = {
@@ -175,7 +176,7 @@ class Pipeline(Module):
             "python_version": "3.11",
             "numpy_version": "1.22",
             "pytorch_version": "2.44",
-            "model_version_id": "8"
+            "model_version_id": str(self.model.id),
         }
 
         api_response = requests.post(url, headers=headers, data=json.dumps(data))
@@ -204,7 +205,8 @@ class Pipeline(Module):
 
         url = 'http://18.116.44.47:8000/instance/sys_config'
         headers = {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            "Authorization": f"Bearer {access_token}"
         }
 
         entry = scores[0]
@@ -250,10 +252,10 @@ class Pipeline(Module):
 
             url = 'http://18.116.44.47:8000/runs/'
             headers = {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": f"Bearer {access_token}"
             }
 
-            api_response = requests.post(url, headers=headers, data=json.dumps(data))
-
+            response = requests.post(url, headers=headers, data=json.dumps(data))
 
         return response

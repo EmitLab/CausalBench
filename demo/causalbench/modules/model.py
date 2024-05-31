@@ -35,8 +35,8 @@ class Model(Module):
 
     def save(self, state, access_token) -> bool:
         # TODO: Add database call to upload to the server
-        # input_file_path = input("Enter the path of model.zip file: ")
-        input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/zipfiles/model.zip"
+        input_file_path = input("Enter the path of model.zip file: ")
+        # input_file_path = "/home/abhinavgorantla/emitlab/causal_bench/CausalBench/demo/tests/model/pc.zip"
         print(f"Saving model!")
         response = save_module(input_file_path, access_token, "model_version", "model.zip")
 

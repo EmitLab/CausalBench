@@ -45,7 +45,7 @@ class Module(ABC):
         arguments = parse_arguments(args, keywords)
         print(arguments)
         # create the object
-        # self.package_path = self.instantiate(arguments)
+        self.package_path = self.instantiate(arguments)
 
         # validate object structure
         self.__validate()

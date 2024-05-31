@@ -49,7 +49,7 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 def main():
     import sys
     sys.path.insert(0,'model/ermirmcfcminst')
-    access_token = init_auth
+    access_token = init_auth()
 
     # ########################################################
     # ######## Abhinav's CB backend integration tests ########
@@ -57,8 +57,8 @@ def main():
     # Metric save test
     # metric0 = Metric()
     # metric0.publish()
-
-    # # Dataset save test
+    #
+    # # # Dataset save test
     # ds0 = Dataset()
     # ds0.publish()
 
@@ -67,8 +67,8 @@ def main():
     # model0.publish()
 
     # # Pipeline save test
-    pipeline0 = Pipeline()
-    pipeline0.publish()
+    # pipeline0 = Pipeline()
+    # pipeline0.publish()
 
     #     # # Dataset fetch test
     # # ds0 = Dataset(34)
@@ -86,8 +86,8 @@ def main():
     # metric0.publish()
 
     # # # Pipeline exec test
-    # pipeline0 = Pipeline(3)
-    # pipeline0.execute(access_token)
+    pipeline0 = Pipeline(3)
+    pipeline0.execute(access_token)
 
         # # # static discovery
         # # pipeline0 = Pipeline(0)
