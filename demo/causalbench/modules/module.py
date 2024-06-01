@@ -15,7 +15,7 @@ from causalbench.commons.utils import extract_module
 class Module(ABC):
 
     def __init__(self, module_id: int | None, zip_file: str | None, schema_name: str):
-        # set the module ID
+        # set the module ID and schema name
         self.module_id = module_id
         self.schema_name = schema_name
 

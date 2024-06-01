@@ -43,6 +43,19 @@ class Pipeline(Module):
         return fetch_module(module_id, 'pipelines', 'downloaded_pipeline.zip')
 
     def save(self, state) -> bool:
+        if state.dataset.id is None:
+            logging.error(f'Cannot publish pipeline as it contains unpublished dataset')
+            return False
+
+        if state.model.id is None:
+            logging.error('Cannot publish pipeline as it contains unpublished model')
+            return False
+
+        for metric in state.metrics:
+            if metric.id is None:
+                logging.error('Cannot publish pipeline as it contains unpublished metric')
+                return False
+
         zip_path = package_module(state, self.package_path)
         return save_module(zip_path, 'pipelines', 'pipeline.zip')
 

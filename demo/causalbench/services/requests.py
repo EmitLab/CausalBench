@@ -80,8 +80,6 @@ def save_run(run):
 
     api_response = requests.post(url, headers=headers, data=json.dumps(data))
 
-    print(api_response)
-
     sys_config_id = api_response.text
 
     for entry in run.metrics:
@@ -114,8 +112,6 @@ def save_run(run):
             'Content-Type': 'application/json',
             "Authorization": f"Bearer {access_token}"
         }
-
-        print(data)
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
 
