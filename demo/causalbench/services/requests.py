@@ -1,4 +1,8 @@
 import json
+import logging
+import os.path
+import sys
+import tempfile
 
 import requests
 
@@ -15,8 +19,8 @@ def save_module(input_file_path, api_base, output_file_name):
     }
 
     response = requests.post(url, headers=headers, files=files)
-    print(response.status_code)
-    print(response.text)
+
+    print(f'{response.status_code}: {response.text}', file=sys.stderr)
 
     return response.status_code == 200
 
@@ -115,12 +119,12 @@ def save_run(run):
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
 
+        print(f'{response.status_code}: {response.text}', file=sys.stderr)
+
         return response.status_code == 200
 
 
 def fetch_module(module_id, base_api, output_file_name):
-    filename = None
-    print(f"MODULE: {module_id}")
     url = f'http://18.116.44.47:8000/{base_api}/download/{module_id}/'
     headers = {
         'Authorization': f'Bearer {access_token}'
@@ -132,17 +136,20 @@ def fetch_module(module_id, base_api, output_file_name):
         # Extract filename from the Content-Disposition header if available
         content_disposition = response.headers.get('Content-Disposition')
         if content_disposition:
-            filename = content_disposition.split('filename=')[-1].strip('"')
+            file_name = content_disposition.split('filename=')[-1].strip('"')
         else:
             # Fallback to a default name if the header is not present
-            filename = output_file_name
+            file_name = output_file_name
 
-        with open(filename, 'wb') as file:
+        file_path = os.path.join(tempfile.gettempdir(), file_name)
+        with open(file_path, 'wb') as file:
             file.write(response.content)
-        print(f'Download successful, saved as {filename}')
+        print(f'Module {module_id} - Download successful, saved as {file_path}', file=sys.stderr)
+
+        return file_path
 
     else:
-        print(f'Failed to download file: {response.status_code}')
-        print(response.text)
+        logging.error(f'Module {module_id} - Failed to download file: {response.status_code}')
+        logging.error(response.text)
 
-    return filename
+        return None

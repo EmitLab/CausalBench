@@ -42,8 +42,8 @@ class Metric(Module):
         return fetch_module(module_id, 'metric_version', 'downloaded_metric.zip')
 
     def save(self, state) -> bool:
-        zip_path = package_module(state, self.package_path)
-        return save_module(zip_path, 'metric_version', 'metric.zip')
+        zip_file = package_module(state, self.package_path)
+        return save_module(zip_file, 'metric_version', 'metric.zip')
 
     def evaluate(self, *args, **keywords):
         # parse the arguments

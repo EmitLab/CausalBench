@@ -32,8 +32,8 @@ class Model(Module):
         return fetch_module(model_id, 'model_version', 'downloaded_model.zip')
 
     def save(self, state) -> bool:
-        zip_path = package_module(state, self.package_path)
-        return save_module(zip_path, 'model_version', 'model.zip')
+        zip_file = package_module(state, self.package_path)
+        return save_module(zip_file, 'model_version', 'model.zip')
 
     def execute(self, *args, **keywords):
         # parse the arguments

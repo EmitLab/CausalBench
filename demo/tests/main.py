@@ -2,12 +2,10 @@ import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
 
-from causalbench.commons.utils import display_run
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
 from causalbench.modules.model import Model
 from causalbench.modules.pipeline import Pipeline
-from causalbench.services.auth import init_auth
 
 
 # from causalbench.commons.utils import display_report
@@ -127,26 +125,26 @@ def main():
     metric1 = Metric(zip_file='metric/accuracy_static.zip')
     # metric1.publish()
 
-    pipeline1 = Pipeline.create(name='pipeline1',
-                                task='discovery.static',
-                                dataset=dataset1,
-                                model=(model1, {'data': 'file1'}),
-                                metrics=[(metric1, {'ground_truth': 'file2'})])
+    # pipeline1 = Pipeline.create(name='pipeline1',
+    #                             task='discovery.static',
+    #                             dataset=dataset1,
+    #                             model=(model1, {'data': 'file1'}),
+    #                             metrics=[(metric1, {'ground_truth': 'file2'})])
     # pipeline1.publish()
-    result1 = pipeline1.execute()
-    display_run(result1)
+    # result1 = pipeline1.execute()
+    # display_run(result1)
 
     # pipeline1 = Pipeline.create(name='pipeline5',
     #                             task='discovery.static',
     #                             dataset=26,
     #                             model=(24, {'data': 'file1'}),
     #                             metrics=[(34, {'ground_truth': 'file2'})])
-    # pipeline1 = Pipeline(31)
+    pipeline1 = Pipeline(31)
     # # pipeline1.publish()
     #
-    # result1 = pipeline1.execute()
-    # display_run(result1)
-    # result1.publish()
+    run1 = pipeline1.execute()
+    print(run1)
+    run1.publish()
 
 
 if __name__ == '__main__':

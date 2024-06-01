@@ -43,9 +43,9 @@ class Module(ABC):
         with open(schema_path) as f:
             self.schema = yaml.safe_load(f)
 
-    def __load_module(self, zip_file_path: str):
+    def __load_module(self, zip_file: str):
         # extract zip to temporary directory
-        self.package_path = extract_module(self.schema_name, zip_file_path)
+        self.package_path = extract_module(self.schema_name, zip_file)
 
         # load configuration
         config_path = os.path.join(self.package_path, 'config.yaml')
@@ -66,13 +66,13 @@ class Module(ABC):
         config = json.loads(json.dumps(self.__getstate__()))
         try:
             jsonschema.validate(instance=config, schema=self.schema)
-            logging.info('Configuration validated successfully')
+            logging.debug('Configuration validated successfully')
         except ValidationError as e:
             logging.error(f'Configuration validation error: {e}')
 
         try:
             self.validate()
-            logging.info('Logic validated successfully')
+            logging.debug('Logic validated successfully')
         except Exception as e:
             logging.error(f'Logic validation error: {e}')
 

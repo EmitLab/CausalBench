@@ -22,53 +22,6 @@ def parse_arguments(args, keywords):
         return
 
 
-def display_run(run):
-    print('-' * 80)
-
-    print(f'Task: {run.pipeline.task}')
-    print(f'Dataset: {run.dataset.name}')
-    print(f'Model: {run.model.name}')
-
-    print('\nMetrics:')
-    for metric in run.metrics:
-        print(f'    {metric.name}: {metric.output.score}')
-
-    print('-' * 80)
-
-    # print(f'Module: {pipeline_report.mod}')
-    # print()
-    #
-    # print('Output:')
-    # print(response["output"])
-    # print()
-    #
-    # print(f'Duration: {response["duration"]} nanoseconds')
-    # print(f'Used Memory: {response["memory"]} bytes')
-    # if response["gpu_memory"] is None:
-    #     print(f'Used GPU Memory: None')
-    # else:
-    #     print(f'Used GPU Memory: {response["gpu_memory"]} bytes')
-    # print()
-    #
-    # print(f'Python: {response["python"]}')
-    # print(f'Imports: {response["imports"]}')
-    # print()
-    #
-    # print(f'Platform: {response["platform"]}')
-    # print(f'Processor: {response["processor"]}')
-    # print(f'GPU: {response["gpu"]}')
-    # print(f'Architecture: {response["architecture"]}')
-    # print(f'Total Memory: {response["memory_total"]} bytes')
-    # if response["gpu_memory_total"] is None:
-    #     print(f'Total GPU Memory: None')
-    # else:
-    #     print(f'Total GPU Memory: {response["gpu_memory_total"]} bytes')
-    # print(f'Total Storage: {response["storage_total"]} bytes')
-    # print('-' * 80)
-    #
-    # return response["output"]
-
-
 def causal_bench_path(*path_list):
     path: Path = Path.home().joinpath('.causalbench')
     for path_str in path_list:
@@ -76,23 +29,23 @@ def causal_bench_path(*path_list):
     return str(path)
 
 
-def extract_module(schema_name: str, zip_file_path: str):
+def extract_module(schema_name: str, zip_file: str):
     # form the directory path
-    dir_name = os.path.basename(zip_file_path[:zip_file_path.rfind('.')])
+    dir_name = os.path.basename(zip_file[:zip_file.rfind('.')])
     dir_path = causal_bench_path(schema_name, dir_name)
 
     # extract the zip file
-    zip_file = ZipFile(zip_file_path)
-    zip_file.extractall(path=dir_path)
+    with ZipFile(zip_file, 'r') as zipped:
+        zipped.extractall(path=dir_path)
 
     return dir_path
 
 
 def package_module(state, package_path: str, entry_point: str = 'config.yaml'):
     zip_name = tempfile.NamedTemporaryFile(delete=True).name
-    zip_path = zip_name + '.zip'
+    zip_file = zip_name + '.zip'
 
-    with ZipFile(zip_path, 'w') as zipped:
+    with ZipFile(zip_file, 'w') as zipped:
         if entry_point:
             zipped.writestr(entry_point, yaml.safe_dump(state))
 
@@ -103,4 +56,4 @@ def package_module(state, package_path: str, entry_point: str = 'config.yaml'):
                 if zipped_file_path != entry_point:
                     zipped.write(file_path, zipped_file_path)
 
-    return zip_path
+    return zip_file

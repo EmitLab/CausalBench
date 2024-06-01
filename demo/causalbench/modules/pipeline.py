@@ -1,6 +1,5 @@
 import logging
 from datetime import datetime
-from pathlib import Path
 
 from bunch_py3 import Bunch
 
@@ -56,8 +55,8 @@ class Pipeline(Module):
                 logging.error('Cannot publish pipeline as it contains unpublished metric')
                 return False
 
-        zip_path = package_module(state, self.package_path)
-        return save_module(zip_path, 'pipelines', 'pipeline.zip')
+        zip_file = package_module(state, self.package_path)
+        return save_module(zip_file, 'pipelines', 'pipeline.zip')
 
     def execute(self) -> Run | None:
         # execution start time
@@ -157,6 +156,7 @@ class Pipeline(Module):
         run.time = Bunch()
         run.time.start = start_time
         run.time.end = end_time
+        run.time.duration = end_time - start_time
 
         return run
 
