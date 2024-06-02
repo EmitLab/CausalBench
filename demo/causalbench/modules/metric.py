@@ -39,11 +39,18 @@ class Metric(Module):
                 raise ValueError('Score output is missing')
 
     def fetch(self, module_id: int):
-        return fetch_module(module_id, 'metric_version', 'downloaded_metric.zip')
+        return fetch_module('Metric',
+                            module_id,
+                            'metric_version',
+                            'downloaded_metric.zip')
 
     def save(self, state) -> bool:
         zip_file = package_module(state, self.package_path)
-        return save_module(zip_file, 'metric_version', 'metric.zip')
+        self.module_id = save_module('Metric',
+                                     zip_file,
+                                     'metric_version',
+                                     'metric.zip')
+        return self.module_id is not None
 
     def evaluate(self, *args, **keywords):
         # parse the arguments

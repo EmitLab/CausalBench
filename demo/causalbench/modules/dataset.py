@@ -25,11 +25,18 @@ class Dataset(Module):
         pass
 
     def fetch(self, module_id: str):
-        return fetch_module(module_id, 'dataset_version', 'downloaded_dataset.zip')
+        return fetch_module('Dataset',
+                            module_id,
+                            'dataset_version',
+                            'downloaded_dataset.zip')
 
     def save(self, state) -> bool:
         zip_file = package_module(state, self.package_path)
-        return save_module(zip_file, 'dataset_version', 'dataset.zip')
+        self.module_id = save_module('Dataset',
+                                     zip_file,
+                                     'dataset_version',
+                                     'dataset.zip')
+        return self.module_id is not None
 
     def load(self) -> Bunch:
         files = Bunch()

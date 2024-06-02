@@ -39,7 +39,10 @@ class Pipeline(Module):
         pass
 
     def fetch(self, module_id: int):
-        return fetch_module(module_id, 'pipelines', 'downloaded_pipeline.zip')
+        return fetch_module('Pipeline',
+                            module_id,
+                            'pipelines',
+                            'downloaded_pipeline.zip')
 
     def save(self, state) -> bool:
         if state.dataset.id is None:
@@ -56,7 +59,11 @@ class Pipeline(Module):
                 return False
 
         zip_file = package_module(state, self.package_path)
-        return save_module(zip_file, 'pipelines', 'pipeline.zip')
+        self.module_id = save_module('Pipeline',
+                                     zip_file,
+                                     'pipelines',
+                                     'pipeline.zip')
+        return self.module_id is not None
 
     def execute(self) -> Run | None:
         # execution start time

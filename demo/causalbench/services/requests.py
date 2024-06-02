@@ -5,24 +5,29 @@ import sys
 import tempfile
 
 import requests
+from bunch_py3 import bunchify
 
 from causalbench import access_token
 
 
-def save_module(input_file_path, api_base, output_file_name):
+def save_module(module_type, input_file, api_base, default_output_file):
     url = f'http://18.116.44.47:8000/{api_base}/upload/'
     headers = {
         "Authorization": f"Bearer {access_token}"
     }
     files = {
-        'file': (output_file_name, open(input_file_path, 'rb'), 'application/zip')
+        'file': (default_output_file, open(input_file, 'rb'), 'application/zip')
     }
 
     response = requests.post(url, headers=headers, files=files)
+    data = bunchify(json.loads(response.text))
 
-    print(f'{response.status_code}: {response.text}', file=sys.stderr)
+    if response.status_code == 200:
+        print(f'{module_type} published: ID={data.id}', file=sys.stderr)
+        return data.id
 
-    return response.status_code == 200
+    else:
+        print(f'Failed to publish {module_type.lower()}: {response.status_code} - {data.msg}', file=sys.stderr)
 
 
 def save_run(run):
@@ -118,13 +123,17 @@ def save_run(run):
         }
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
+        data = bunchify(json.loads(response.text))
 
-        print(f'{response.status_code}: {response.text}', file=sys.stderr)
+        if response.status_code == 200:
+            print(f'Run published: ID={data.id}', file=sys.stderr)
+            return data.id
 
-        return response.status_code == 200
+        else:
+            print(f'Failed to publish run: {response.status_code} - {data.msg}', file=sys.stderr)
 
 
-def fetch_module(module_id, base_api, output_file_name):
+def fetch_module(module_type, module_id, base_api, default_output_file):
     url = f'http://18.116.44.47:8000/{base_api}/download/{module_id}/'
     headers = {
         'Authorization': f'Bearer {access_token}'
@@ -139,17 +148,17 @@ def fetch_module(module_id, base_api, output_file_name):
             file_name = content_disposition.split('filename=')[-1].strip('"')
         else:
             # Fallback to a default name if the header is not present
-            file_name = output_file_name
+            file_name = default_output_file
 
         file_path = os.path.join(tempfile.gettempdir(), file_name)
         with open(file_path, 'wb') as file:
             file.write(response.content)
-        print(f'Module {module_id} - Download successful, saved as {file_path}', file=sys.stderr)
+        print(f'{module_type} {module_id} - Download successful, saved as {file_path}', file=sys.stderr)
 
         return file_path
 
     else:
-        logging.error(f'Module {module_id} - Failed to download file: {response.status_code}')
+        logging.error(f'{module_type} {module_id} - Failed to download file: {response.status_code}')
         logging.error(response.text)
 
         return None

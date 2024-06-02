@@ -29,11 +29,18 @@ class Model(Module):
         pass
 
     def fetch(self, model_id: int):
-        return fetch_module(model_id, 'model_version', 'downloaded_model.zip')
+        return fetch_module('Model',
+                            model_id,
+                            'model_version',
+                            'downloaded_model.zip')
 
     def save(self, state) -> bool:
         zip_file = package_module(state, self.package_path)
-        return save_module(zip_file, 'model_version', 'model.zip')
+        self.module_id = save_module('Model',
+                                     zip_file,
+                                     'model_version',
+                                     'model.zip')
+        return self.module_id is not None
 
     def execute(self, *args, **keywords):
         # parse the arguments
