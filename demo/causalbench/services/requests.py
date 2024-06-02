@@ -20,7 +20,7 @@ def save_module(module_type, input_file, api_base, default_output_file):
     }
 
     response = requests.post(url, headers=headers, files=files)
-    data = bunchify(json.loads(response.text))
+    data = bunchify(response.json())
 
     if response.status_code == 200:
         print(f'{module_type} published: ID={data.id}', file=sys.stderr)
@@ -123,7 +123,7 @@ def save_run(run):
         }
 
         response = requests.post(url, headers=headers, data=json.dumps(data))
-        data = bunchify(json.loads(response.text))
+        data = bunchify(response.json())
 
         if response.status_code == 200:
             print(f'Run published: ID={data.id}', file=sys.stderr)
