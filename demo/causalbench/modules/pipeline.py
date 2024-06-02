@@ -170,6 +170,7 @@ class Pipeline(Module):
     def __instantiate(self, arguments: Bunch):
         self.type = 'pipeline'
         self.name = arguments.name
+        self.description = arguments.description
         self.task = arguments.task
 
         # convert dataset to config format

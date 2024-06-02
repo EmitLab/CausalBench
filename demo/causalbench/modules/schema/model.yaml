@@ -4,6 +4,12 @@ properties:
         const: model
     name:
         type: string
+    source:
+        type: string
+    url:
+        type: string
+    description:
+        type: string
     task:
         enum:
             - discovery.static

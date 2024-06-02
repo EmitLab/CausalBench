@@ -2,10 +2,7 @@ import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
 
-from causalbench.modules.dataset import Dataset
-from causalbench.modules.metric import Metric
-from causalbench.modules.model import Model
-from causalbench.modules.pipeline import Pipeline
+from causalbench.modules import Dataset, Metric, Model, Pipeline, Run
 
 
 # from causalbench.commons.utils import display_report
@@ -126,13 +123,14 @@ def main():
     metric1.publish()
 
     pipeline1 = Pipeline.create(name='pipeline1',
+                                description='Pipeline to evaluate GES algorithm on Abalone dataset',
                                 task='discovery.static',
                                 dataset=dataset1,
                                 model=(model1, {'data': 'file1'}),
                                 metrics=[(metric1, {'ground_truth': 'file2'})])
     pipeline1.publish()
 
-    run1 = pipeline1.execute()
+    run1: Run = pipeline1.execute()
     run1.publish()
     print(run1)
 

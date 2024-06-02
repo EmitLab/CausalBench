@@ -1,7 +1,9 @@
 #dataset knowledge is a must: https://archive.ics.uci.edu/ml/datasets/abalone
 type: dataset
 name: abalone
-
+source: UCI
+url: https://archive.ics.uci.edu/dataset/1/abalone
+description: Predict the age of abalone from physical measurements
 files:
     file1:
         type: csv

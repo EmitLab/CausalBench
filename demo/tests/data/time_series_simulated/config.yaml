@@ -1,6 +1,8 @@
 type: dataset
 name: time_sim
-
+source: Kaggle
+url: https://www.kaggle.com/datasets/shenba/time-series-datasets
+description: Time series dataset for electric production
 files:
     file1:
         type: csv
