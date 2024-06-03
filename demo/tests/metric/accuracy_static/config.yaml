@@ -1,8 +1,8 @@
 type: metric
 name: accuracy_static
-source: UCI
-url: https://archive.ics.uci.edu/dataset/1/abalone
-description: Predict the age of abalone from physical measurements
+source: NA
+url: NA
+description: Accuracy metric for static causal graph.
 task: discovery.static
 path: accuracy_static.py
 inputs:
