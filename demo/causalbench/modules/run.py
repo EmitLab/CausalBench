@@ -7,7 +7,7 @@ from causalbench.services.requests import save_run
 class Run(Module):
 
     def __init__(self, module_id: int = None):
-        super().__init__(module_id, None, 'run')
+        super().__init__(module_id, None, None, 'run')
 
     def validate(self):
         # TODO: To be implemented

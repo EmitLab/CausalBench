@@ -11,8 +11,8 @@ from causalbench.services.requests import save_module, fetch_module
 
 class Model(Module):
 
-    def __init__(self, model_id: int = None, zip_file: str = None):
-        super().__init__(model_id, zip_file, 'model')
+    def __init__(self, model_id: int = None, version: int = None, zip_file: str = None):
+        super().__init__(model_id, version, zip_file, 'model')
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -28,15 +28,17 @@ class Model(Module):
             # TODO: Perform logical validation of the structure
         pass
 
-    def fetch(self, model_id: int):
+    def fetch(self):
         return fetch_module('Model',
-                            model_id,
+                            self.module_id,
+                            self.version,
                             'model_version',
                             'downloaded_model.zip')
 
     def save(self, state) -> bool:
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Model',
+                                     self.module_id,
                                      zip_file,
                                      'model_version',
                                      'model.zip')

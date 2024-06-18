@@ -11,8 +11,8 @@ from causalbench.services.requests import fetch_module, save_module
 
 class Metric(Module):
 
-    def __init__(self, module_id: int = None, zip_file: str = None):
-        super().__init__(module_id, zip_file, 'metric')
+    def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
+        super().__init__(module_id, version, zip_file, 'metric')
 
     def validate(self):
         # check if the file exists
@@ -38,15 +38,17 @@ class Metric(Module):
             if getattr(self.outputs, "score", None) is None:
                 raise ValueError('Score output is missing')
 
-    def fetch(self, module_id: int):
+    def fetch(self):
         return fetch_module('Metric',
-                            module_id,
+                            self.module_id,
+                            self.version,
                             'metric_version',
                             'downloaded_metric.zip')
 
     def save(self, state) -> bool:
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Metric',
+                                     self.module_id,
                                      zip_file,
                                      'metric_version',
                                      'metric.zip')

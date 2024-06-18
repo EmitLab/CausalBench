@@ -15,8 +15,8 @@ from causalbench.services.requests import save_module, fetch_module
 
 class Pipeline(Module):
 
-    def __init__(self, module_id: int = None, zip_file: str = None):
-        super().__init__(module_id, zip_file, 'pipeline')
+    def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
+        super().__init__(module_id, version, zip_file, 'pipeline')
 
     def __getstate__(self):
         state = super().__getstate__()
@@ -38,9 +38,10 @@ class Pipeline(Module):
         # TODO: To be implemented
         pass
 
-    def fetch(self, module_id: int):
+    def fetch(self):
         return fetch_module('Pipeline',
-                            module_id,
+                            self.module_id,
+                            self.version,
                             'pipelines',
                             'downloaded_pipeline.zip')
 
@@ -60,6 +61,7 @@ class Pipeline(Module):
 
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Pipeline',
+                                     self.module_id,
                                      zip_file,
                                      'pipelines',
                                      'pipeline.zip')
@@ -69,34 +71,17 @@ class Pipeline(Module):
         # execution start time
         start_time = datetime.now()
 
-        # load dataset
-        if 'object' in self.dataset:
-            dataset = self.dataset.object
-        elif 'id' in self.dataset:
-            dataset = Dataset(self.dataset.id)
-        else:
-            logging.error(f'Invalid dataset provided: must be an integer or an object of type {Dataset}')
-            return
+        # load data
+        data = self.dataset.object.load()
 
-        data = dataset.load()
-
-        # update indices
-        if 'files' in self.dataset:
-            for file, data_object in data.items():
-                if file in self.dataset.files:
-                    if isinstance(data_object, SpatioTemporalData):
-                        data_object.update_index(self.dataset.files[file])
-                    if isinstance(data_object, SpatioTemporalGraph):
-                        data_object.update_index(self.dataset.files[file])
-
-        # load model
-        if 'object' in self.model:
-            model = self.model.object
-        elif 'id' in self.model:
-            model = Model(self.model.id)
-        else:
-            logging.error(f'Invalid model provided: must be an integer or an object of type {Model}')
-            return
+        # # update indices
+        # if 'files' in self.dataset:
+        #     for file, data_object in data.items():
+        #         if file in self.dataset.files:
+        #             if isinstance(data_object, SpatioTemporalData):
+        #                 data_object.update_index(self.dataset.files[file])
+        #             if isinstance(data_object, SpatioTemporalGraph):
+        #                 data_object.update_index(self.dataset.files[file])
 
         # map model-data parameters
         parameters = {}
@@ -104,23 +89,14 @@ class Pipeline(Module):
             parameters[model_param] = data[data_param]
 
         # execute the model
-        model_response: Bunch = model.execute(parameters)
+        model_response: Bunch = self.model.object.execute(parameters)
 
         # metrics
         scores = []
         for self_metric in self.metrics:
-            # load the metric
-            if 'object' in self_metric:
-                metric = self_metric.object
-            elif 'id' in self_metric:
-                metric = Metric(self_metric.id)
-            else:
-                logging.error(f'Invalid metric provided: must be an integer or an object of type {Metric}')
-                return
-
             # check model-metric compatibility
-            if model.task != metric.task:
-                logging.error(f'The model "{model.name}" and metric "{metric.name}" are not compatible')
+            if self.model.object.task != self_metric.object.task:
+                logging.error(f'The model "{self.model.object.name}" and metric "{self_metric.object.name}" are not compatible')
                 return
             logging.info("Checked model-metric compatibility")
 
@@ -134,9 +110,9 @@ class Pipeline(Module):
                 parameters.prediction = model_response.output.prediction
 
             # execute the metric
-            metric_response = metric.evaluate(parameters)
-            metric_response.id = metric.module_id
-            metric_response.name = metric.name
+            metric_response = self_metric.object.evaluate(parameters)
+            metric_response.id = self_metric.object.module_id
+            metric_response.name = self_metric.object.name
             scores.append(metric_response)
 
         # execution end time
@@ -152,11 +128,11 @@ class Pipeline(Module):
 
         run.dataset = Bunch()
         run.dataset.id = self.dataset.id
-        run.dataset.name = dataset.name
+        run.dataset.name = self.dataset.object.name
 
         run.model = model_response
         run.model.id = self.model.id
-        run.model.name = model.name
+        run.model.name = self.model.object.name
 
         run.metrics = scores
 
@@ -177,30 +153,51 @@ class Pipeline(Module):
         self.dataset = Bunch()
         if isinstance(arguments.dataset, Dataset):
             self.dataset.id = arguments.dataset.module_id
+            self.dataset.version = arguments.dataset.version
             self.dataset.object = arguments.dataset
-        elif isinstance(arguments.dataset, int):
-            self.dataset.id = arguments.dataset
+        else:
+            raise ValueError('Invalid dataset instance')
 
         # convert model to config format
         self.model = Bunch()
-        if isinstance(arguments.model[0], Model):
-            self.model.id = arguments.model[0].module_id
-            self.model.object = arguments.model[0]
-        elif isinstance(arguments.model[0], int):
-            self.model.id = arguments.model[0]
-        self.model.parameters = arguments.model[1]
+        if isinstance(arguments.model, tuple):
+            if isinstance(arguments.model[0], Model):
+                self.model.id = arguments.model[0].module_id
+                self.model.version = arguments.model[0].version
+                self.model.object = arguments.model[0]
+            else:
+                raise ValueError('Invalid model instance')
+
+            if isinstance(arguments.model[1], dict):
+                self.model.parameters = arguments.model[1]
+            else:
+                raise ValueError('Invalid model arguments')
+        else:
+            raise ValueError('Invalid model definition')
 
         # convert metric to config format
         self.metrics = []
-        for metric in arguments.metrics:
-            self_metric = Bunch()
-            if isinstance(metric[0], Metric):
-                self_metric.id = metric[0].module_id
-                self_metric.object = metric[0]
-            elif isinstance(metric[0], int):
-                self_metric.id = metric[0]
-            self_metric.parameters = metric[1]
-            self.metrics.append(self_metric)
+        if isinstance(arguments.metrics, list):
+            for metric in arguments.metrics:
+                self_metric = Bunch()
+                self.metrics.append(self_metric)
+
+                if isinstance(metric, tuple):
+                    if isinstance(metric[0], Metric):
+                        self_metric.id = metric[0].module_id
+                        self_metric.version = metric[0].version
+                        self_metric.object = metric[0]
+                    else:
+                        raise ValueError('Invalid metric instance')
+
+                    if isinstance(arguments.model[1], dict):
+                        self_metric.parameters = metric[1]
+                    else:
+                        raise ValueError('Invalid metric arguments')
+                else:
+                    raise ValueError('Invalid metric definition')
+        else:
+            raise ValueError('Invalid metric definition')
 
         # form the directory path
         self.package_path = causal_bench_path(self.schema_name, self.name)

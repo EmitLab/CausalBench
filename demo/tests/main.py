@@ -113,38 +113,40 @@ def main():
     # # display_report(result1)
     # pipeline1.publish()
 
-    dataset1 = Dataset(zip_file="data/abalone.zip")
-    dataset1.publish()
-    #
-    model1 = Model(zip_file='model/ges.zip')
-    model1.publish()
-    #
-    metric1 = Metric(zip_file='metric/accuracy_static.zip')
-    metric1.publish()
+    dataset1 = Dataset(module_id=2, version=2)
+    # dataset1.publish()
 
-    pipeline1 = Pipeline.create(name='pipeline1',
+    model1 = Model(zip_file='model/ges.zip')
+    # model1.publish()
+
+    metric1 = Metric(zip_file='metric/accuracy_static.zip')
+    # metric1.publish()
+
+    # pipeline1 = Pipeline.create(name='pipeline1',
+    #                             description='Pipeline to evaluate GES algorithm on Abalone dataset',
+    #                             task='discovery.static',
+    #                             dataset=dataset1,
+    #                             model=(model1, {'data': 'file1'}),
+    #                             metrics=[(metric1, {'ground_truth': 'file2'})])
+    # pipeline1.publish()
+    #
+    # run1: Run = pipeline1.execute()
+    # run1.publish()
+    # print(run1)
+
+    pipeline1 = Pipeline.create(name='pipeline5',
                                 description='Pipeline to evaluate GES algorithm on Abalone dataset',
                                 task='discovery.static',
                                 dataset=dataset1,
                                 model=(model1, {'data': 'file1'}),
-                                metrics=[(metric1, {'ground_truth': 'file2'})])
-    pipeline1.publish()
-
-    run1: Run = pipeline1.execute()
-    run1.publish()
-    print(run1)
-
-    # pipeline1 = Pipeline.create(name='pipeline5',
-    #                             task='discovery.static',
-    #                             dataset=26,
-    #                             model=(24, {'data': 'file1'}),
-    #                             metrics=[(34, {'ground_truth': 'file2'})])
-    # pipeline1 = Pipeline(31)
+                                metrics=[(metric1, {'ground_truth': 'file2'}),
+                                         (metric1, {'ground_truth': 'file2'})])
+    # # pipeline1 = Pipeline(31)
     # # # pipeline1.publish()
     # #
-    # run1 = pipeline1.execute()
-    # print(run1)
-    # run1.publish()
+    run1 = pipeline1.execute()
+    print(run1)
+    # # run1.publish()
 
 
 if __name__ == '__main__':

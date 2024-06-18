@@ -77,6 +77,7 @@ properties:
 required:
     - type
     - name
+    - description
     - task
     - dataset
     - model

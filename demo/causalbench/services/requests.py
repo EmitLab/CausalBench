@@ -10,10 +10,14 @@ from bunch_py3 import bunchify
 from causalbench import access_token
 
 
-def save_module(module_type, input_file, api_base, default_output_file):
-    url = f'http://18.116.44.47:8000/{api_base}/upload/'
+def save_module(module_type, module_id, input_file, api_base, default_output_file):
+    if module_id is None:
+        url = f'http://35.92.40.127:8000/{api_base}/upload'
+    else:
+        url = f'http://35.92.40.127:8000/{api_base}/upload/{module_id}'
+
     headers = {
-        "Authorization": f"Bearer {access_token}"
+        'Authorization': f'Bearer {access_token}'
     }
     files = {
         'file': (default_output_file, open(input_file, 'rb'), 'application/zip')
@@ -27,14 +31,14 @@ def save_module(module_type, input_file, api_base, default_output_file):
         return data.id
 
     else:
-        print(f'Failed to publish {module_type.lower()}: {response.status_code} - {data.msg}', file=sys.stderr)
+        print(f'Failed to publish {module_type.lower()}: {response.status_code}', file=sys.stderr)
 
 
 def save_run(run):
-    url = 'http://18.116.44.47:8000/instance/env_config'
+    url = 'http://35.92.40.127:8000/instance/env_config'
     headers = {
         'Content-Type': 'application/json',
-        "Authorization": f"Bearer {access_token}"
+        'Authorization': f'Bearer {access_token}'
     }
 
     data = {
@@ -69,7 +73,7 @@ def save_run(run):
     #     "pipeline_id": 8
     # }
 
-    url = 'http://18.116.44.47:8000/instance/sys_config'
+    url = 'http://35.92.40.127:8000/instance/sys_config'
     headers = {
         'Content-Type': 'application/json',
         "Authorization": f"Bearer {access_token}"
@@ -116,7 +120,7 @@ def save_run(run):
             "pipeline_id": run.pipeline.id
         }
 
-        url = 'http://18.116.44.47:8000/runs/'
+        url = 'http://35.92.40.127:8000/runs/'
         headers = {
             'Content-Type': 'application/json',
             "Authorization": f"Bearer {access_token}"
@@ -133,8 +137,8 @@ def save_run(run):
             print(f'Failed to publish run: {response.status_code} - {data.msg}', file=sys.stderr)
 
 
-def fetch_module(module_type, module_id, base_api, default_output_file):
-    url = f'http://18.116.44.47:8000/{base_api}/download/{module_id}/'
+def fetch_module(module_type, module_id, version, base_api, default_output_file):
+    url = f'http://35.92.40.127:8000/{base_api}/download/{module_id}/{version}'
     headers = {
         'Authorization': f'Bearer {access_token}'
     }

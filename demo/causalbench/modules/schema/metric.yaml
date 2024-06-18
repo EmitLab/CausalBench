@@ -57,6 +57,9 @@ properties:
 required:
     - type
     - name
+    - source
+    - url
+    - description
     - task
     - path
     - inputs

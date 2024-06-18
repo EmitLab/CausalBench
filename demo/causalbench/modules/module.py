@@ -9,31 +9,22 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from causalbench.commons.utils import extract_module
+from causalbench.commons.utils import extract_module, cached_module
 
 
 class Module(ABC):
 
-    def __init__(self, module_id: int | None, zip_file: str | None, schema_name: str):
+    def __init__(self, module_id: int | None, version: int | None, zip_file: str | None, schema_name: str):
         # set the module ID and schema name
         self.module_id = module_id
+        self.version = version
         self.schema_name = schema_name
 
         # load the schema
         self.__load_schema()
 
-        # load directly from zip file
-        if zip_file is not None:
-            self.__load_module(zip_file)
-
-        # load using module ID
-        elif self.module_id is not None:
-            zip_file = self.fetch(self.module_id)
-            self.__load_module(zip_file)
-
-        # nothing to load
-        else:
-            self.__dict__.update(Bunch())
+        # load the module
+        self.__load_module(zip_file)
 
     def __load_schema(self):
         # load schema
@@ -44,8 +35,13 @@ class Module(ABC):
             self.schema = yaml.safe_load(f)
 
     def __load_module(self, zip_file: str):
-        # extract zip to temporary directory
-        self.package_path = extract_module(self.schema_name, zip_file)
+        # get package
+        self.__get_package(zip_file)
+
+        # package path not defined
+        if self.package_path is None:
+            self.__dict__.update(Bunch())
+            return
 
         # load configuration
         config_path = os.path.join(self.package_path, 'config.yaml')
@@ -59,8 +55,31 @@ class Module(ABC):
         # validate object structure
         self.__validate()
 
-    def publish(self):
-        self.save(self.__getstate__())
+    def __get_package(self, zip_file):
+        # load directly from zip file
+        if zip_file is not None:
+            # extract zip to temporary directory
+            self.package_path = extract_module(self.module_id, self.version, self.schema_name, zip_file)
+
+        # load using module ID and version
+        elif self.module_id is not None and self.version is not None:
+            # use cached version if available
+            self.package_path = cached_module(self.module_id, self.version, self.schema_name)
+
+            # cached version is not available
+            if self.package_path is None:
+                self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+
+        # nothing to load
+        else:
+            self.package_path = None
+
+    def publish(self) -> bool:
+        if self.version is not None:
+            logging.error('Module with version cannot be published')
+            return False
+
+        return self.save(self.__getstate__())
 
     def __validate(self):
         config = json.loads(json.dumps(self.__getstate__()))
@@ -82,6 +101,9 @@ class Module(ABC):
         if 'module_id' in state:
             del state.module_id
 
+        if 'version' in state:
+            del state.version
+
         if 'schema' in state:
             del state.schema
 
@@ -95,7 +117,7 @@ class Module(ABC):
         pass
 
     @abstractmethod
-    def fetch(self, module_id: int) -> str:
+    def fetch(self) -> str:
         pass
 
     @abstractmethod
