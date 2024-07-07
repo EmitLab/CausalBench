@@ -27,8 +27,8 @@ def save_module(module_type, module_id, input_file, api_base, default_output_fil
     data = bunchify(response.json())
 
     if response.status_code == 200:
-        print(f'{module_type} published: ID={data.id}', file=sys.stderr)
-        return data.id
+        print(f'{module_type} published: ID={data.id}, Version={data.version}', file=sys.stderr)
+        return data.id, data.version_num
 
     else:
         print(f'Failed to publish {module_type.lower()}: {response.status_code}', file=sys.stderr)
