@@ -5,7 +5,7 @@ from causalbench.commons.utils import causal_bench_path
 
 
 def authenticate(config):
-    login_url = "http://35.92.40.127:8000/authenticate/login"
+    login_url = "https://www.causalbench.org/api/authenticate/login"
     email = config['email']
     password = config['password']
 

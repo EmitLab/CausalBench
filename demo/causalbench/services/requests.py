@@ -12,9 +12,9 @@ from causalbench import access_token
 
 def save_module(module_type, module_id, input_file, api_base, default_output_file):
     if module_id is None:
-        url = f'http://35.92.40.127:8000/{api_base}/upload'
+        url = f'https://www.causalbench.org/api/{api_base}/upload'
     else:
-        url = f'http://35.92.40.127:8000/{api_base}/upload/{module_id}'
+        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}'
 
     headers = {
         'Authorization': f'Bearer {access_token}'
@@ -35,7 +35,7 @@ def save_module(module_type, module_id, input_file, api_base, default_output_fil
 
 
 def save_run(run):
-    url = 'http://35.92.40.127:8000/instance/env_config'
+    url = 'https://www.causalbench.org/api/instance/env_config'
     headers = {
         'Content-Type': 'application/json',
         'Authorization': f'Bearer {access_token}'
@@ -70,10 +70,10 @@ def save_run(run):
     #     "instance_id":  1,
     #     "env_config_id": 1,
     #     "sys_config_id": 1,
-    #     "pipeline_id": 8
+    #     "scenario_id": 8
     # }
 
-    url = 'http://35.92.40.127:8000/instance/sys_config'
+    url = 'https://www.causalbench.org/api/instance/sys_config'
     headers = {
         'Content-Type': 'application/json',
         "Authorization": f"Bearer {access_token}"
@@ -117,10 +117,10 @@ def save_run(run):
             "env_config_id": env_config_id,
             "sys_config_id": sys_config_id,
             "instance_id": 1,
-            "pipeline_id": run.pipeline.id
+            "scenario_id": run.scenario.id
         }
 
-        url = 'http://35.92.40.127:8000/runs/'
+        url = 'https://www.causalbench.org/api/runs/'
         headers = {
             'Content-Type': 'application/json',
             "Authorization": f"Bearer {access_token}"
@@ -138,7 +138,7 @@ def save_run(run):
 
 
 def fetch_module(module_type, module_id, version, base_api, default_output_file):
-    url = f'http://35.92.40.127:8000/{base_api}/download/{module_id}/{version}'
+    url = f'https://www.causalbench.org/api/{base_api}/download/{module_id}/{version}'
     headers = {
         'Authorization': f'Bearer {access_token}'
     }
