@@ -1,5 +1,5 @@
-type: pipeline
-name: pipeline1
+type: scenario
+name: scenario1
 task: discovery.temporal
 dataset:
     id: 2

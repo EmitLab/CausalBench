@@ -5,15 +5,3 @@ url: NA
 description: Accuracy metric for static causal graph.
 task: discovery.static
 path: accuracy_static.py
-inputs:
-    ground:
-        id: truth
-        data: graph.static
-
-    prediction:
-        id: pred
-        data: graph.static
-outputs:
-    score:
-        id: score
-        data: decimal

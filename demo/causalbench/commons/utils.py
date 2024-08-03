@@ -1,5 +1,7 @@
+import atexit
 import logging
 import os
+import shutil
 import tempfile
 from pathlib import Path
 from zipfile import ZipFile
@@ -41,6 +43,18 @@ def cached_module(module_id, version, schema_name: str) -> str:
 def extract_module(module_id, version, schema_name: str, zip_file: str) -> str:
     # form the directory path
     dir_path = causal_bench_path(schema_name, module_id, version)
+
+    # extract the zip file
+    with ZipFile(zip_file, 'r') as zipped:
+        zipped.extractall(path=dir_path)
+
+    return dir_path
+
+
+def extract_module_temporary(zip_file: str) -> str:
+    # form the directory path
+    dir_path = tempfile.TemporaryDirectory().name
+    atexit.register(lambda: shutil.rmtree(dir_path))
 
     # extract the zip file
     with ZipFile(zip_file, 'r') as zipped:

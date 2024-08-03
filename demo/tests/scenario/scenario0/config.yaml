@@ -1,5 +1,5 @@
-type: pipeline
-name: pipeline0
+type: scenario
+name: scenario0
 task: discovery.static
 dataset:
     id: 0

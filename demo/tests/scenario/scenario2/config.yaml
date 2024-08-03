@@ -1,5 +1,5 @@
-type: pipeline
-name: pipeline2
+type: scenario
+name: scenario2
 task: classification
 dataset:
     id: 3

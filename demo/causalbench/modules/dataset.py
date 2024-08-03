@@ -4,9 +4,9 @@ import os
 import pandas as pd
 from bunch_py3 import Bunch
 
+from causalbench.commons.helpers import adjmat_to_graph
 from causalbench.commons.utils import package_module
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from causalbench.helpers.discovery import adjmat_to_graph
 from causalbench.modules.module import Module
 from causalbench.services.requests import save_module, fetch_module
 

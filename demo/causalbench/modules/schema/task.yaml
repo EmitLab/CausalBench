@@ -1,0 +1,9 @@
+type: object
+properties:
+    filename:
+        type: string
+    classname:
+        type: string
+required:
+    - filename
+    - classname

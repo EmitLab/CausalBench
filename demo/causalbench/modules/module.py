@@ -9,12 +9,12 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from causalbench.commons.utils import extract_module, cached_module
+from causalbench.commons.utils import extract_module, cached_module, extract_module_temporary
 
 
 class Module(ABC):
 
-    def __init__(self, module_id: int | None, version: int | None, zip_file: str | None, schema_name: str):
+    def __init__(self, module_id: any, version: int | None, zip_file: str | None, schema_name: str):
         # set the module ID and schema name
         self.module_id = module_id
         self.version = version
@@ -59,16 +59,18 @@ class Module(ABC):
         # load directly from zip file
         if zip_file is not None:
             # extract zip to temporary directory
-            self.package_path = extract_module(self.module_id, self.version, self.schema_name, zip_file)
+            self.package_path = extract_module_temporary(zip_file)
 
         # load using module ID and version
         elif self.module_id is not None and self.version is not None:
-            # use cached version if available
-            self.package_path = cached_module(self.module_id, self.version, self.schema_name)
+            self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
 
-            # cached version is not available
-            if self.package_path is None:
-                self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+            # # use cached version if available
+            # self.package_path = cached_module(self.module_id, self.version, self.schema_name)
+            #
+            # # cached version is not available
+            # if self.package_path is None:
+            #     self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
 
         # nothing to load
         else:

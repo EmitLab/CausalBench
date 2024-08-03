@@ -2,11 +2,13 @@ import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
 
-from causalbench.modules import Dataset, Metric, Model, Pipeline, Run
+from causalbench.modules import Dataset, Metric, Model, Scenario, Run
+from causalbench.modules.context import Context
+from causalbench.modules.task import Task, AbstractTask
 
 
 # from causalbench.commons.utils import display_report
-# from causalbench.modules.pipeline import Pipeline
+# from causalbench.modules.scenario import Pipeline
 
 def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
     plt.figure(figsize=figsize, dpi=dpi)
@@ -42,8 +44,8 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 
 def main():
-    import sys
-    sys.path.insert(0, 'model/ermirmcfcminst')
+    # import sys
+    # sys.path.insert(0, 'model/ermirmcfcminst')
     # access_token = init_auth()
 
     # ########################################################
@@ -62,8 +64,8 @@ def main():
     # model0.publish()
 
     # # Pipeline save test
-    # pipeline0 = Pipeline()
-    # pipeline0.publish()
+    # scenario0 = Pipeline()
+    # scenario0.publish()
 
     #     # # Dataset fetch test
     # # ds0 = Dataset(34)
@@ -73,34 +75,34 @@ def main():
     # model0 = Model(3) # Model constructor calls fetch()
 
     # # # Pipeline fetch test
-    # pipeline0 = Pipeline(3)
-    # # pipeline0.fetch(1)
+    # scenario0 = Pipeline(3)
+    # # scenario0.fetch(1)
 
     # Metric Fetch test
     # metric0 = Metric(8)
     # metric0.publish()
 
     # # # Pipeline exec test
-    # pipeline0 = Pipeline(3)
-    # pipeline0.execute(access_token)
+    # scenario0 = Pipeline(3)
+    # scenario0.execute(access_token)
 
     # # # static discovery
-    # # pipeline0 = Pipeline(0)
-    # # result0 = pipeline0.execute()
+    # # scenario0 = Pipeline(0)
+    # # result0 = scenario0.execute()
     # # display_report(result0)
 
     # # # temporal discovery
-    # # pipeline1 = Pipeline(1)
-    # # result1 = pipeline1.execute()
+    # # scenario1 = Pipeline(1)
+    # # result1 = scenario1.execute()
     # # display_report(result1)
 
     # # # Classification
-    # # pipeline2 = Pipeline(2)
-    # # result2 = pipeline2.execute()
+    # # scenario2 = Pipeline(2)
+    # # result2 = scenario2.execute()
     # # display_report(result2)
 
     # # manually creation
-    # pipeline1 = Pipeline.create(name='pipeline1',
+    # scenario1 = Pipeline.create(name='scenario1',
     #                             task='discovery.temporal',
     #                             dataset=2,
     #                             model=(Model(0), {'data': 'file1'}),
@@ -109,11 +111,11 @@ def main():
     #                                      (2, {'ground_truth': 'file2'}),
     #                                      (3, {'ground_truth': 'file2'}),
     #                                      (4, {'ground_truth': 'file2'})])
-    # # result1 = pipeline1.execute()
+    # # result1 = scenario1.execute()
     # # display_report(result1)
-    # pipeline1.publish()
+    # scenario1.publish()
 
-    dataset1 = Dataset(module_id=2, version=2)
+    dataset1 = Dataset(zip_file='data/abalone.zip')
     # dataset1.publish()
 
     model1 = Model(zip_file='model/ges.zip')
@@ -122,31 +124,45 @@ def main():
     metric1 = Metric(zip_file='metric/accuracy_static.zip')
     # metric1.publish()
 
-    # pipeline1 = Pipeline.create(name='pipeline1',
+    # scenario1 = Pipeline.create(name='scenario1',
     #                             description='Pipeline to evaluate GES algorithm on Abalone dataset',
     #                             task='discovery.static',
     #                             dataset=dataset1,
     #                             model=(model1, {'data': 'file1'}),
     #                             metrics=[(metric1, {'ground_truth': 'file2'})])
-    # pipeline1.publish()
+    # scenario1.publish()
     #
-    # run1: Run = pipeline1.execute()
+    # run1: Run = scenario1.execute()
     # run1.publish()
     # print(run1)
 
-    pipeline1 = Pipeline.create(name='pipeline5',
-                                description='Pipeline to evaluate GES algorithm on Abalone dataset',
-                                task='discovery.static',
-                                dataset=dataset1,
-                                model=(model1, {'data': 'file1'}),
-                                metrics=[(metric1, {'ground_truth': 'file2'}),
-                                         (metric1, {'ground_truth': 'file2'})])
-    # # pipeline1 = Pipeline(31)
-    # # # pipeline1.publish()
-    # #
-    run1 = pipeline1.execute()
-    print(run1)
-    # # run1.publish()
+    # scenario1 = Scenario.create(name='scenario5',
+    #                             description='Scenario to evaluate GES algorithm on Abalone dataset',
+    #                             task='discovery.static',
+    #                             dataset=dataset1,
+    #                             model=(model1, {'data': 'file1'}),
+    #                             metrics=[(metric1, {'ground_truth': 'file2'}),
+    #                                      (metric1, {'ground_truth': 'file2'})])
+    # # # scenario1 = Pipeline(31)
+    # # # # scenario1.publish()
+    # # #
+    # run1 = scenario1.execute()
+    # print(run1)
+    # # # run1.publish()
+
+    # task: Task = Task(module_id='discovery.static')
+    # obj: AbstractTask = task.load()
+    # helpers = obj.helpers()
+    # print(helpers.hello())
+
+    context: Context = Context.create(name='Context1',
+                                      description='Test context',
+                                      task='discovery.static',
+                                      datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
+                                      models=[(model1, {})],
+                                      metrics=[(metric1, {})])
+
+    context.execute()
 
 
 if __name__ == '__main__':
