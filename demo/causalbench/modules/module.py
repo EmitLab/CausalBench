@@ -76,12 +76,17 @@ class Module(ABC):
         else:
             self.package_path = None
 
-    def publish(self) -> bool:
+    def publish(self, public: bool = False) -> bool:
         if self.version is not None:
             logging.error('Module with version cannot be published')
             return False
 
-        return self.save(self.__getstate__())
+        if public:
+            choice = input(f'Are you sure you want to publish {self.__class__.__name__.lower()} as public? [y/N] ')
+            if choice.strip() not in ['y', 'Y']:
+                public = False
+
+        return self.save(self.__getstate__(), public)
 
     def __validate(self):
         config = json.loads(json.dumps(self.__getstate__()))
@@ -116,12 +121,12 @@ class Module(ABC):
 
     @abstractmethod
     def validate(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
     def fetch(self) -> str:
-        pass
+        raise NotImplementedError
 
     @abstractmethod
-    def save(self, state: dict) -> bool:
-        pass
+    def save(self, state: dict, public: bool) -> bool:
+        raise NotImplementedError

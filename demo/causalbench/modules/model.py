@@ -29,7 +29,7 @@ class Model(Module):
                             'model_version',
                             'downloaded_model.zip')
 
-    def save(self, state) -> bool:
+    def save(self, state: dict, public: bool) -> bool:
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Model',
                                      self.module_id,

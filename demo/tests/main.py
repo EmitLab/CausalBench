@@ -116,7 +116,7 @@ def main():
     # scenario1.publish()
 
     dataset1 = Dataset(zip_file='data/abalone.zip')
-    # dataset1.publish()
+    # dataset1.publish(public=True)
 
     model1 = Model(zip_file='model/pc.zip')
     # model1.publish()

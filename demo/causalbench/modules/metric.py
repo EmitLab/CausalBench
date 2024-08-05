@@ -27,7 +27,7 @@ class Metric(Module):
                             'metric_version',
                             'downloaded_metric.zip')
 
-    def save(self, state) -> bool:
+    def save(self, state: dict, public: bool) -> bool:
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Metric',
                                      self.module_id,
