@@ -30,6 +30,8 @@ class Run(Module):
 
         string += '-' * 80 + '\n'
 
+        string += f'Task: {self.task}' + '\n\n'
+
         string += f'Dataset: {self.dataset.name}' + '\n'
         string += f'Model: {self.model.name}' + '\n'
 

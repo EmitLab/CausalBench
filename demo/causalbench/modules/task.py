@@ -54,8 +54,8 @@ class Task(Module):
         pass
 
     def load(self) -> AbstractTask:
-        # compute path to file
-        file_path = os.path.join(self.package_path, self.filename)
+        # form the proper file path
+        file_path = os.path.join(self.package_path, self.path)
 
         # load the module
         spec = spec_from_file_location('module', file_path)
@@ -63,7 +63,7 @@ class Task(Module):
         spec.loader.exec_module(module)
 
         # create an instance of the task
-        class_name = getattr(module, self.classname)
+        class_name = getattr(module, self.class_name)
         task: AbstractTask = class_name()
 
         return task

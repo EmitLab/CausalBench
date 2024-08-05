@@ -118,11 +118,17 @@ def main():
     dataset1 = Dataset(zip_file='data/abalone.zip')
     # dataset1.publish()
 
-    model1 = Model(zip_file='model/ges.zip')
+    model1 = Model(zip_file='model/pc.zip')
     # model1.publish()
+
+    model2 = Model(zip_file='model/ges.zip')
+    # model2.publish()
 
     metric1 = Metric(zip_file='metric/accuracy_static.zip')
     # metric1.publish()
+
+    metric2 = Metric(zip_file='metric/f1_static.zip')
+    # metric2.publish()
 
     # scenario1 = Pipeline.create(name='scenario1',
     #                             description='Pipeline to evaluate GES algorithm on Abalone dataset',
@@ -159,8 +165,10 @@ def main():
                                       description='Test context',
                                       task='discovery.static',
                                       datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
-                                      models=[(model1, {})],
-                                      metrics=[(metric1, {})])
+                                      models=[(model1, {}),
+                                              (model2, {})],
+                                      metrics=[(metric1, {}),
+                                               (metric2, {})])
 
     context.execute()
 

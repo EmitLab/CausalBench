@@ -80,6 +80,8 @@ class Scenario:
         # form the response
         run = Run()
 
+        run.task = self.task.name
+
         run.dataset = Bunch()
         run.dataset.id = self.dataset.module_id
         run.dataset.name = self.dataset.name

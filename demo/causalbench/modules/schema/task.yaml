@@ -1,9 +1,12 @@
 type: object
 properties:
-    filename:
+    name:
         type: string
-    classname:
+    path:
+        type: string
+    class_name:
         type: string
 required:
-    - filename
-    - classname
+    - name
+    - path
+    - class_name

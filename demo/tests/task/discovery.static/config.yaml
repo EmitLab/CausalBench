@@ -1,2 +1,3 @@
-filename: task.py
-classname: DiscoveryStatic
+name: discovery.static
+path: task.py
+class_name: DiscoveryStatic

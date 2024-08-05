@@ -60,9 +60,30 @@ class Helpers:
 
             if weight == 'strength':
                 strength = row[graph.strength]
-                adjmat.loc[cause, effect] += strength
+                adjmat.at[cause, effect] += strength
             else:
                 lag = row[graph.lag]
-                adjmat.loc[cause, effect] = lag
+                adjmat.at[cause, effect] = lag
 
         return adjmat
+
+    @staticmethod
+    def align_adjmats(adjmat1: pd.DataFrame, adjmat2: pd.DataFrame) -> (pd.DataFrame, pd.DataFrame):
+        nodes = sorted(set(adjmat1.columns.tolist() + adjmat2.columns.tolist()))
+
+        aligned_adjmat1 = pd.DataFrame(index=nodes, columns=nodes)
+        aligned_adjmat2 = pd.DataFrame(index=nodes, columns=nodes)
+
+        for cause in nodes:
+            for effect in nodes:
+                if cause in adjmat1.index and effect in adjmat1.columns:
+                    aligned_adjmat1.at[cause, effect] = adjmat1.at[cause, effect]
+                else:
+                    aligned_adjmat1.at[cause, effect] = 0
+
+                if cause in adjmat2.index and effect in adjmat2.columns:
+                    aligned_adjmat2.at[cause, effect] = adjmat2.at[cause, effect]
+                else:
+                    aligned_adjmat2.at[cause, effect] = 0
+
+        return aligned_adjmat1, aligned_adjmat2
