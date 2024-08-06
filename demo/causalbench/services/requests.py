@@ -10,13 +10,16 @@ from bunch_py3 import bunchify
 from causalbench import access_token
 
 
-def save_module(module_type, module_id, version, input_file, api_base, default_output_file):
+def save_module(module_type, module_id, version, public, input_file, api_base, default_output_file):
+    visibility = "private"
+    if public:
+        visibility = "public"
     if module_id is None:
-        url = f'https://www.causalbench.org/api/{api_base}/upload'
+        url = f'https://www.causalbench.org/api/{api_base}/upload?visibility={visibility}'
     elif module_id is not None and version is None:
-        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}'
+        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}?visibility={visibility}'
     else:
-        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}/{version}'
+        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}/{version}?visibility={visibility}'
 
     headers = {
         'Authorization': f'Bearer {access_token}'
@@ -29,7 +32,7 @@ def save_module(module_type, module_id, version, input_file, api_base, default_o
     data = bunchify(response.json())
 
     if response.status_code == 200:
-        print(f'{module_type} published: ID={data.id}, Version={data.version}', file=sys.stderr)
+        print(f'{module_type} published: ID={data.id}, Version={data.version_num}', file=sys.stderr)
         return data.id, data.version_num
 
     else:
