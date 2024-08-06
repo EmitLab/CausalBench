@@ -11,70 +11,41 @@ from causalbench.services.requests import save_module, fetch_module
 
 class Model(Module):
 
-    def __init__(self, model_id: int = None, zip_file: str = None):
-        super().__init__(model_id, zip_file, 'model')
+    def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
+        super().__init__(module_id, version, zip_file, 'model')
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
         pass
 
     def validate(self):
-        if self.task == 'discovery.static':
-            if 'data' not in self.inputs:
-                raise ValueError('Input does not include a \'data\' field')
-            if 'prediction' not in self.outputs:
-                raise ValueError('Output does not include a \'prediction\' field')
-
-            # TODO: Perform logical validation of the structure
+        # TODO: Perform logical validation of the structure
         pass
 
-    def fetch(self, model_id: int):
+    def fetch(self):
         return fetch_module('Model',
-                            model_id,
+                            self.module_id,
+                            self.version,
                             'model_version',
                             'downloaded_model.zip')
 
-    def save(self, state) -> bool:
+    def save(self, state: dict, public: bool = False) -> bool:
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Model',
+                                     self.module_id,
+                                     self.version,
+                                     public,
                                      zip_file,
                                      'model_version',
                                      'model.zip')
         return self.module_id is not None
 
-    def execute(self, *args, **keywords):
-        # parse the arguments
-        arguments: Bunch = parse_arguments(args, keywords)
-
+    def execute(self, parameters: Bunch) -> Bunch:
         # form the proper file path
         file_path = os.path.join(self.package_path, self.path)
 
-        # map the model arguments
-        model_args = {}
-        if self.task == 'discovery.static':
-            model_args[self.inputs.data.id] = arguments.data
-
-        elif self.task == 'discovery.temporal':
-            model_args[self.inputs.data.id] = arguments.data
-
-        elif self.task == 'discovery.spatiotemporal':
-            model_args[self.inputs.data.id] = arguments.data
-            model_args[self.inputs.space.id] = arguments.space if 'space' in arguments else None
-
-        elif self.task == 'classification':
-            model_args[self.inputs.data.id] = arguments.data
-            model_args[self.inputs.target.id] = arguments.target
-        else:
-            raise TypeError(f'Invalid task type: {self.task}')
-
         # execute the model
-        response: Bunch = executor.execute(file_path, 'execute', **model_args)
-
-        # map the outputs
-        output = Bunch()
-        for key, data in self.outputs.items():
-            output[key] = response.output[data.id]
-        response.output = output
+        response: Bunch = executor.execute(file_path, 'execute', **parameters)
 
         logging.info('Executed model successfully')
 

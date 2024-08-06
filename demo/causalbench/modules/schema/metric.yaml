@@ -18,46 +18,11 @@ properties:
             - classification
     path:
         type: string
-    inputs:
-        type: object
-        propertyNames:
-            enum:
-                - ground
-                - prediction
-        patternProperties:
-            ^.*$:
-                type: object
-                properties:
-                    id:
-                        type: string
-                    data:
-                        enum:
-                            - dataframe
-                            - graph.static
-                            - graph.temporal
-                required:
-                    - id
-                    - data
-    outputs:
-        type: object
-        properties:
-            score:
-                type: object
-                properties:
-                    id:
-                        type: string
-                    data:
-                        enum:
-                            - decimal
-                required:
-                    - id
-                    - data
-        required:
-            - score
 required:
     - type
     - name
+    - source
+    - url
+    - description
     - task
     - path
-    - inputs
-    - outputs

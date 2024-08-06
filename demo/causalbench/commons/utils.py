@@ -1,5 +1,7 @@
+import atexit
 import logging
 import os
+import shutil
 import tempfile
 from pathlib import Path
 from zipfile import ZipFile
@@ -22,17 +24,25 @@ def parse_arguments(args, keywords):
         return
 
 
-def causal_bench_path(*path_list):
+def causal_bench_path(*path_list) -> str:
     path: Path = Path.home().joinpath('.causalbench')
     for path_str in path_list:
-        path = path.joinpath(path_str)
+        path = path.joinpath(str(path_str))
     return str(path)
 
 
-def extract_module(schema_name: str, zip_file: str):
+def cached_module(module_id, version, schema_name: str) -> str:
     # form the directory path
-    dir_name = os.path.basename(zip_file[:zip_file.rfind('.')])
-    dir_path = causal_bench_path(schema_name, dir_name)
+    dir_path = causal_bench_path(schema_name, module_id, version)
+
+    # check if directory exists
+    if os.path.isdir(dir_path):
+        return dir_path
+
+
+def extract_module(module_id, version, schema_name: str, zip_file: str) -> str:
+    # form the directory path
+    dir_path = causal_bench_path(schema_name, module_id, version)
 
     # extract the zip file
     with ZipFile(zip_file, 'r') as zipped:
@@ -41,7 +51,19 @@ def extract_module(schema_name: str, zip_file: str):
     return dir_path
 
 
-def package_module(state, package_path: str, entry_point: str = 'config.yaml'):
+def extract_module_temporary(zip_file: str) -> str:
+    # form the directory path
+    dir_path = tempfile.TemporaryDirectory().name
+    atexit.register(lambda: shutil.rmtree(dir_path))
+
+    # extract the zip file
+    with ZipFile(zip_file, 'r') as zipped:
+        zipped.extractall(path=dir_path)
+
+    return dir_path
+
+
+def package_module(state, package_path: str, entry_point: str = 'config.yaml') -> str:
     zip_name = tempfile.NamedTemporaryFile(delete=True).name
     zip_file = zip_name + '.zip'
 

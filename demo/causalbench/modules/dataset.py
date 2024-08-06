@@ -4,17 +4,17 @@ import os
 import pandas as pd
 from bunch_py3 import Bunch
 
+from causalbench.commons.helpers import adjmat_to_graph
 from causalbench.commons.utils import package_module
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from causalbench.helpers.discovery import adjmat_to_graph
 from causalbench.modules.module import Module
 from causalbench.services.requests import save_module, fetch_module
 
 
 class Dataset(Module):
 
-    def __init__(self, module_id: int = None, zip_file: str = None):
-        super().__init__(module_id, zip_file, 'dataset')
+    def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
+        super().__init__(module_id, version, zip_file, 'dataset')
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -24,15 +24,19 @@ class Dataset(Module):
         # TODO: Perform logical validation of the structure
         pass
 
-    def fetch(self, module_id: str):
+    def fetch(self):
         return fetch_module('Dataset',
-                            module_id,
+                            self.module_id,
+                            self.version,
                             'dataset_version',
                             'downloaded_dataset.zip')
 
-    def save(self, state) -> bool:
+    def save(self, state: dict, public: bool = False) -> bool:
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Dataset',
+                                     self.module_id,
+                                     self.version,
+                                     public,
                                      zip_file,
                                      'dataset_version',
                                      'dataset.zip')

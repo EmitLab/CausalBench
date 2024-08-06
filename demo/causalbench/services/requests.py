@@ -10,10 +10,19 @@ from bunch_py3 import bunchify
 from causalbench import access_token
 
 
-def save_module(module_type, input_file, api_base, default_output_file):
-    url = f'http://18.116.44.47:8000/{api_base}/upload/'
+def save_module(module_type, module_id, version, public, input_file, api_base, default_output_file):
+    visibility = "private"
+    if public:
+        visibility = "public"
+    if module_id is None:
+        url = f'https://www.causalbench.org/api/{api_base}/upload?visibility={visibility}'
+    elif module_id is not None and version is None:
+        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}?visibility={visibility}'
+    else:
+        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}/{version}?visibility={visibility}'
+
     headers = {
-        "Authorization": f"Bearer {access_token}"
+        'Authorization': f'Bearer {access_token}'
     }
     files = {
         'file': (default_output_file, open(input_file, 'rb'), 'application/zip')
@@ -23,18 +32,18 @@ def save_module(module_type, input_file, api_base, default_output_file):
     data = bunchify(response.json())
 
     if response.status_code == 200:
-        print(f'{module_type} published: ID={data.id}', file=sys.stderr)
-        return data.id
+        print(f'{module_type} published: ID={data.id}, Version={data.version_num}', file=sys.stderr)
+        return data.id, data.version_num
 
     else:
-        print(f'Failed to publish {module_type.lower()}: {response.status_code} - {data.msg}', file=sys.stderr)
+        print(f'Failed to publish {module_type.lower()}: {response.status_code}', file=sys.stderr)
 
 
 def save_run(run):
-    url = 'http://18.116.44.47:8000/instance/env_config'
+    url = 'https://www.causalbench.org/api/instance/env_config'
     headers = {
         'Content-Type': 'application/json',
-        "Authorization": f"Bearer {access_token}"
+        'Authorization': f'Bearer {access_token}'
     }
 
     data = {
@@ -66,10 +75,10 @@ def save_run(run):
     #     "instance_id":  1,
     #     "env_config_id": 1,
     #     "sys_config_id": 1,
-    #     "pipeline_id": 8
+    #     "scenario_id": 8
     # }
 
-    url = 'http://18.116.44.47:8000/instance/sys_config'
+    url = 'https://www.causalbench.org/api/instance/sys_config'
     headers = {
         'Content-Type': 'application/json',
         "Authorization": f"Bearer {access_token}"
@@ -113,10 +122,10 @@ def save_run(run):
             "env_config_id": env_config_id,
             "sys_config_id": sys_config_id,
             "instance_id": 1,
-            "pipeline_id": run.pipeline.id
+            "scenario_id": run.scenario.id
         }
 
-        url = 'http://18.116.44.47:8000/runs/'
+        url = 'https://www.causalbench.org/api/runs/'
         headers = {
             'Content-Type': 'application/json',
             "Authorization": f"Bearer {access_token}"
@@ -133,8 +142,8 @@ def save_run(run):
             print(f'Failed to publish run: {response.status_code} - {data.msg}', file=sys.stderr)
 
 
-def fetch_module(module_type, module_id, base_api, default_output_file):
-    url = f'http://18.116.44.47:8000/{base_api}/download/{module_id}/'
+def fetch_module(module_type, module_id, version, base_api, default_output_file):
+    url = f'https://www.causalbench.org/api/{base_api}/download/{module_id}/{version}'
     headers = {
         'Authorization': f'Bearer {access_token}'
     }

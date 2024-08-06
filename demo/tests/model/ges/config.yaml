@@ -5,11 +5,3 @@ url: https://github.com/huawei-noah/trustworthyAI/tree/master/gcastle
 description: Greedy equivalence search (GES) for causal discovery.
 task: discovery.static
 path: ges.py
-inputs:
-    data:
-        id: data
-        data: dataframe
-outputs:
-    prediction:
-        id: pred
-        data: graph.static
