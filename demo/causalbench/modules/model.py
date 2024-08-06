@@ -33,6 +33,7 @@ class Model(Module):
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Model',
                                      self.module_id,
+                                     self.version,
                                      zip_file,
                                      'model_version',
                                      'model.zip')

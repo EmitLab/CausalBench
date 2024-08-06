@@ -32,12 +32,13 @@ class Dataset(Module):
                             'downloaded_dataset.zip')
 
     def save(self, state: dict, public: bool) -> bool:
-        # zip_file = package_module(state, self.package_path)
-        # self.module_id = save_module('Dataset',
-        #                              self.module_id,
-        #                              zip_file,
-        #                              'dataset_version',
-        #                              'dataset.zip')
+        zip_file = package_module(state, self.package_path)
+        self.module_id = save_module('Dataset',
+                                     self.module_id,
+                                     self.version,
+                                     zip_file,
+                                     'dataset_version',
+                                     'dataset.zip')
         return self.module_id is not None
 
     def load(self) -> Bunch:

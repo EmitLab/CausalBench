@@ -31,6 +31,7 @@ class Metric(Module):
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Metric',
                                      self.module_id,
+                                     self.version,
                                      zip_file,
                                      'metric_version',
                                      'metric.zip')

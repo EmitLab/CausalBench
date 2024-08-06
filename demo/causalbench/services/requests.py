@@ -10,11 +10,13 @@ from bunch_py3 import bunchify
 from causalbench import access_token
 
 
-def save_module(module_type, module_id, input_file, api_base, default_output_file):
+def save_module(module_type, module_id, version, input_file, api_base, default_output_file):
     if module_id is None:
         url = f'https://www.causalbench.org/api/{api_base}/upload'
-    else:
+    elif module_id is not None and version is None:
         url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}'
+    else:
+        url = f'https://www.causalbench.org/api/{api_base}/upload/{module_id}/{version}'
 
     headers = {
         'Authorization': f'Bearer {access_token}'
