@@ -77,9 +77,9 @@ class Module(ABC):
             self.package_path = None
 
     def publish(self, public: bool = False) -> bool:
-        if self.version is not None:
-            logging.error('Module with version cannot be published')
-            return False
+        # if self.version is not None:
+        #     logging.error('Module with version cannot be published')
+        #     return False
 
         if public:
             choice = input(f'Are you sure you want to publish {self.__class__.__name__.lower()} as public? [y/N] ')

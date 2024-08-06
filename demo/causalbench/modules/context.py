@@ -48,10 +48,10 @@ class Context(Module):
         return fetch_module('Context',
                             self.module_id,
                             self.version,
-                            'contexts',
+                            'pipelines',
                             'downloaded_context.zip')
 
-    def save(self, state) -> bool:
+    def save(self, state, public: bool = False) -> bool:
         for dataset in state.datasets:
             if dataset.id is None:
                 logging.error('Cannot publish context as it contains unpublished dataset')
@@ -70,8 +70,10 @@ class Context(Module):
         zip_file = package_module(state, self.package_path)
         self.module_id = save_module('Context',
                                      self.module_id,
+                                     self.version,
+                                     public,
                                      zip_file,
-                                     'contexts',
+                                     'pipelines',
                                      'context.zip')
         return self.module_id is not None
 
