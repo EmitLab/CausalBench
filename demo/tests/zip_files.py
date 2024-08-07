@@ -1,7 +1,7 @@
+import argparse
 import os
 import shutil
 import tempfile
-import argparse
 
 
 def delete_zip_files(start_path):
@@ -15,8 +15,6 @@ def rezip_subfolders(start_path):
     for item in os.listdir(start_path):
         item_path = os.path.join(start_path, item)
         if os.path.isdir(item_path):
-            # Prepare the name for the new zip file
-            zip_path = f"{item_path}.zip"
             # Create a temporary directory to hold the contents
             with tempfile.TemporaryDirectory() as temp_dir:
                 # Copy the contents of the sub-folder to the temp directory

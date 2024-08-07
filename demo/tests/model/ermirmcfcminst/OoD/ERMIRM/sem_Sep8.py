@@ -11,7 +11,7 @@
 #
 
 import torch
-import numpy as np
+
 
 class ChainEquationModel(object):
     def __init__(self, dim, scramble=False, hetero=True, hidden=False, child=True,  ones=True, noise_identity=True):

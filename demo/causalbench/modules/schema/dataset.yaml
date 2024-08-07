@@ -4,6 +4,12 @@ properties:
         const: dataset
     name:
         type: string
+    source:
+        type: string
+    url:
+        type: string
+    description:
+        type: string
     files:
         type: object
         patternProperties:
@@ -79,4 +85,7 @@ properties:
 required:
     - type
     - name
+    - source
+    - url
+    - description
     - files

@@ -1,14 +1,17 @@
-import numpy as np
 import warnings
 
+import numpy as np
+
 from causalbench.formats import SpatioTemporalGraph
-from causalbench.helpers.discovery import graph_to_adjmat
 
-def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph, binarize: bool = True):
 
+def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph, helpers: any, binarize: bool = True):
     # convert to adjacency matrix
-    pred = graph_to_adjmat(pred)
-    truth = graph_to_adjmat(truth)
+    pred = helpers.graph_to_adjmat(prediction)
+    truth = helpers.graph_to_adjmat(ground_truth)
+
+    # align the adjacency matrices
+    pred, truth = helpers.align_adjmats(pred, truth)
 
     # convert to numpy matrix
     pred = pred.to_numpy()

@@ -10,6 +10,7 @@ class SpatioTemporalData:
         self._index.target = None
         self._index.time = None
         self._index.space = None
+        self._index.target = None
 
     @property
     def time(self):
@@ -34,6 +35,14 @@ class SpatioTemporalData:
     @space.setter
     def space(self, value):
         self.space = value
+
+    @property
+    def target(self):
+        return self._index.target
+
+    @target.setter
+    def target(self, value):
+        self.target = value
 
     def update_index(self, data: Bunch):
         if 'index' in data:

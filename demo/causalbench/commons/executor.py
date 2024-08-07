@@ -16,7 +16,7 @@ from bunch_py3 import Bunch
 from causalbench.commons.gpu import gpu_profiler
 
 
-def execute(module_path, function_name, /, *args, **keywords) -> dict:
+def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     # load module
     spec = spec_from_file_location('module', module_path)
     module = module_from_spec(spec)

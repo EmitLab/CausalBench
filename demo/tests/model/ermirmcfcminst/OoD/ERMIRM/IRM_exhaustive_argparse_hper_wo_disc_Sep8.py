@@ -2,22 +2,14 @@
 ### This file is based on https://github.com/facebookresearch/InvariantRiskMinimization/blob/master/code/experiment_synthetic/models.py
 ### This is the main file which calls the ERM and IRM models and generates the final comparison plots
 
-from datetime import date
 import time
-import tensorflow as tf
-import numpy as np
-import argparse
+from datetime import date
+
 import matplotlib.pyplot as plt
-from tensorflow import keras
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.utils import shuffle
 import pandas as pd
+import tensorflow as tf
+
 tf.compat.v1.enable_eager_execution()
-import cProfile
-from sklearn.model_selection import train_test_split
-import copy as cp
-from sklearn.model_selection import KFold
 
 # Copyright (c) Facebook, Inc. and its affiliates.
 # All rights reserved.
