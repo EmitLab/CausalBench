@@ -1,24 +1,24 @@
 import logging
-from datetime import datetime
+import time
 
 from bunch_py3 import Bunch, bunchify
 
+from causalbench.commons.hwinfo import hwinfo
 from causalbench.commons.utils import parse_arguments, package_module, causal_bench_path
-from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.modules import Scenario
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
 from causalbench.modules.model import Model
 from causalbench.modules.module import Module
 from causalbench.modules.run import Run
-from causalbench.modules.task import Task, AbstractTask
+from causalbench.modules.task import Task
 from causalbench.services.requests import save_module, fetch_module
 
 
 class Context(Module):
 
     def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
-        super().__init__(module_id, version, zip_file, 'context')
+        super().__init__(module_id, version, zip_file)
 
     def __getstate__(self):
         state = super().__getstate__()
@@ -45,7 +45,7 @@ class Context(Module):
         pass
 
     def fetch(self):
-        return fetch_module('Context',
+        return fetch_module(self.schema_name,
                             self.module_id,
                             self.version,
                             'pipelines',
@@ -68,7 +68,7 @@ class Context(Module):
                 return False
 
         zip_file = package_module(state, self.package_path)
-        self.module_id = save_module('Context',
+        self.module_id = save_module(self.schema_name,
                                      self.module_id,
                                      self.version,
                                      public,
@@ -79,7 +79,7 @@ class Context(Module):
 
     def execute(self) -> Run | None:
         # execution start time
-        start_time = datetime.now()
+        start_time = time.time_ns()
 
         # load the task
         task: Task = Task(module_id=self.task)
@@ -113,84 +113,47 @@ class Context(Module):
                 scenarios.append(scenario)
 
         # execute the scenarios
+        results = []
         for scenario in scenarios:
-            run: Run = scenario.execute()
-            print(run)
+            results.append(scenario.execute())
 
         # execution end time
-        end_time = datetime.now()
+        end_time = time.time_ns()
 
-        # load data
-        # data = self.dataset.object.load()
+        # create run
+        run: Run = Run()
 
-        # # update indices
-        # if 'files' in self.dataset:
-        #     for file, data_object in data.items():
-        #         if file in self.dataset.files:
-        #             if isinstance(data_object, SpatioTemporalData):
-        #                 data_object.update_index(self.dataset.files[file])
-        #             if isinstance(data_object, SpatioTemporalGraph):
-        #                 data_object.update_index(self.dataset.files[file])
+        # context
+        run.context = Bunch()
+        run.context.id = self.module_id
+        run.context.version = self.version
+        run.context.name = self.name
 
-        # # map model-data parameters
-        # parameters = {}
-        # for model_param, data_param in self.model.parameters.items():
-        #     parameters[model_param] = data[data_param]
-        #
-        # # execute the model
-        # model_response: Bunch = self.model.object.execute(parameters)
-        #
-        # # metrics
-        # scores = []
-        # for self_metric in self.metrics:
-        #     # check model-metric compatibility
-        #     if self.model.object.task != self_metric.object.task:
-        #         logging.error(f'The model "{self.model.object.name}" and metric "{self_metric.object.name}" are not compatible')
-        #         return
-        #     logging.info("Checked model-metric compatibility")
-        #
-        #     # map metric-data parameters
-        #     parameters = Bunch()
-        #     for metric_param, data_param in self_metric.parameters.items():
-        #         parameters[metric_param] = data[data_param]
-        #
-        #     # map metric-model parameters
-        #     if self.task in ['discovery.static', 'discovery.temporal', 'classification']:
-        #         parameters.prediction = model_response.output.prediction
-        #
-        #     # execute the metric
-        #     metric_response = self_metric.object.evaluate(parameters)
-        #     metric_response.id = self_metric.object.module_id
-        #     metric_response.name = self_metric.object.name
-        #     scores.append(metric_response)
-        #
-        # # execution end time
-        # end_time = datetime.now()
-        #
-        # # form the response
-        # run = Run()
-        #
-        # run.scenario = Bunch()
-        # run.scenario.id = self.module_id
-        # run.scenario.name = self.name
-        # run.scenario.task = self.task
-        #
-        # run.dataset = Bunch()
-        # run.dataset.id = self.dataset.id
-        # run.dataset.name = self.dataset.object.name
-        #
-        # run.model = model_response
-        # run.model.id = self.model.id
-        # run.model.name = self.model.object.name
-        #
-        # run.metrics = scores
-        #
-        # run.time = Bunch()
-        # run.time.start = start_time
-        # run.time.end = end_time
-        # run.time.duration = end_time - start_time
+        # task
+        run.task = self.task
 
-        # return run
+        # results
+        run.results = results
+
+        # timing
+        run.time = Bunch()
+        run.time.start = start_time
+        run.time.end = end_time
+        run.time.duration = end_time - start_time
+
+        # hardware
+        run.profiling = hwinfo()
+
+        # convert results to string for human readability
+        for result in run.results:
+            for output, value in result.model.output.items():
+                result.model.output[output] = str(value)
+
+            for metric in result.metrics:
+                for output, value in metric.output.items():
+                    metric.output[output] = str(value)
+
+        return run
 
     def __instantiate(self, arguments: Bunch):
         self.type = 'context'

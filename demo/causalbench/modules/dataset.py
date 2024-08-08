@@ -14,7 +14,7 @@ from causalbench.services.requests import save_module, fetch_module
 class Dataset(Module):
 
     def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
-        super().__init__(module_id, version, zip_file, 'dataset')
+        super().__init__(module_id, version, zip_file)
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -25,7 +25,7 @@ class Dataset(Module):
         pass
 
     def fetch(self):
-        return fetch_module('Dataset',
+        return fetch_module(self.schema_name,
                             self.module_id,
                             self.version,
                             'dataset_version',
@@ -33,7 +33,7 @@ class Dataset(Module):
 
     def save(self, state: dict, public: bool = False) -> bool:
         zip_file = package_module(state, self.package_path)
-        self.module_id = save_module('Dataset',
+        self.module_id = save_module(self.schema_name,
                                      self.module_id,
                                      self.version,
                                      public,

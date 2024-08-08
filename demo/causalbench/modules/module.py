@@ -9,16 +9,16 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from causalbench.commons.utils import extract_module, cached_module, extract_module_temporary
+from causalbench.commons.utils import extract_module, extract_module_temporary
 
 
 class Module(ABC):
 
-    def __init__(self, module_id: any, version: int | None, zip_file: str | None, schema_name: str):
+    def __init__(self, module_id: any, version: int | None, zip_file: str | None):
         # set the module ID and schema name
         self.module_id = module_id
         self.version = version
-        self.schema_name = schema_name
+        self.schema_name = self.__class__.__name__.lower()
 
         # load the schema
         self.__load_schema()
@@ -77,12 +77,13 @@ class Module(ABC):
             self.package_path = None
 
     def publish(self, public: bool = False) -> bool:
-        # if self.version is not None:
-        #     logging.error('Module with version cannot be published')
-        #     return False
+        if self.version is not None:
+            choice = input(f'Are you sure you want to overwrite existing version of {self.schema_name}? [y/N] ')
+            if choice.strip() not in ['y', 'Y']:
+                return False
 
         if public:
-            choice = input(f'Are you sure you want to publish {self.__class__.__name__.lower()} as public? [y/N] ')
+            choice = input(f'Are you sure you want to publish {self.schema_name} as public? [y/N] ')
             if choice.strip() not in ['y', 'Y']:
                 public = False
 

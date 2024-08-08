@@ -1,5 +1,4 @@
 import json
-import logging
 import os.path
 import sys
 import tempfile
@@ -11,9 +10,7 @@ from causalbench import access_token
 
 
 def save_module(module_type, module_id, version, public, input_file, api_base, default_output_file):
-    visibility = "private"
-    if public:
-        visibility = "public"
+    visibility = "public" if public else "private"
     if module_id is None:
         url = f'https://www.causalbench.org/api/{api_base}/upload?visibility={visibility}'
     elif module_id is not None and version is None:
@@ -32,14 +29,15 @@ def save_module(module_type, module_id, version, public, input_file, api_base, d
     data = bunchify(response.json())
 
     if response.status_code == 200:
-        print(f'{module_type} published: ID={data.id}, Version={data.version_num}', file=sys.stderr)
+        print(f'Published {module_type} with module_id={data.id} and version={data.version_num} (visibility={visibility})', file=sys.stderr)
         return data.id, data.version_num
 
     else:
-        print(f'Failed to publish {module_type.lower()}: {response.status_code}', file=sys.stderr)
+        print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {data.msg} (Error {response.status_code})', file=sys.stderr)
+        exit(1)
 
 
-def save_run(run):
+def save_run(module_type, run):
     url = 'https://www.causalbench.org/api/instance/env_config'
     headers = {
         'Content-Type': 'application/json',
@@ -139,7 +137,8 @@ def save_run(run):
             return data.id
 
         else:
-            print(f'Failed to publish run: {response.status_code} - {data.msg}', file=sys.stderr)
+            print(f'Failed to publish {module_type}: {data.msg} (Error {response.status_code})', file=sys.stderr)
+            exit(1)
 
 
 def fetch_module(module_type, module_id, version, base_api, default_output_file):
@@ -162,12 +161,12 @@ def fetch_module(module_type, module_id, version, base_api, default_output_file)
         file_path = os.path.join(tempfile.gettempdir(), file_name)
         with open(file_path, 'wb') as file:
             file.write(response.content)
-        print(f'{module_type} {module_id} - Download successful, saved as {file_path}', file=sys.stderr)
 
+        print(f'Fetched {module_type} with module_id={module_id} and version={version} (location={file_path})', file=sys.stderr)
         return file_path
 
     else:
-        logging.error(f'{module_type} {module_id} - Failed to download file: {response.status_code}')
-        logging.error(response.text)
+        data = bunchify(response.json())
 
-        return None
+        print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {data.msg} (Error {response.status_code})', file=sys.stderr)
+        exit(1)

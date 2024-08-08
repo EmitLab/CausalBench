@@ -4,7 +4,7 @@ import os
 from bunch_py3 import Bunch
 
 from causalbench.commons import executor
-from causalbench.commons.utils import parse_arguments, package_module
+from causalbench.commons.utils import package_module
 from causalbench.modules.module import Module
 from causalbench.services.requests import save_module, fetch_module
 
@@ -12,7 +12,7 @@ from causalbench.services.requests import save_module, fetch_module
 class Model(Module):
 
     def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
-        super().__init__(module_id, version, zip_file, 'model')
+        super().__init__(module_id, version, zip_file)
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -23,7 +23,7 @@ class Model(Module):
         pass
 
     def fetch(self):
-        return fetch_module('Model',
+        return fetch_module(self.schema_name,
                             self.module_id,
                             self.version,
                             'model_version',
@@ -31,7 +31,7 @@ class Model(Module):
 
     def save(self, state: dict, public: bool = False) -> bool:
         zip_file = package_module(state, self.package_path)
-        self.module_id = save_module('Model',
+        self.module_id = save_module(self.schema_name,
                                      self.module_id,
                                      self.version,
                                      public,

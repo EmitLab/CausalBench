@@ -15,10 +15,10 @@ def parse_arguments(args, keywords):
     if len(args) == 0:
         return bunchify(keywords)
     elif len(args) == 1:
-        if isinstance(args[0], dict):
-            return bunchify(args[0])
-        elif isinstance(args[0], Bunch):
+        if isinstance(args[0], Bunch):
             return args[0]
+        elif isinstance(args[0], dict):
+            return bunchify(args[0])
     else:
         logging.error('Invalid arguments')
         return
@@ -64,18 +64,19 @@ def extract_module_temporary(zip_file: str) -> str:
 
 
 def package_module(state, package_path: str, entry_point: str = 'config.yaml') -> str:
-    zip_name = tempfile.NamedTemporaryFile(delete=True).name
-    zip_file = zip_name + '.zip'
+    zip_file = tempfile.NamedTemporaryFile(delete=True, suffix='.zip').name
+    # atexit.register(lambda: os.remove(zip_file))
 
     with ZipFile(zip_file, 'w') as zipped:
         if entry_point:
-            zipped.writestr(entry_point, yaml.safe_dump(state))
+            zipped.writestr(entry_point, yaml.safe_dump(state, sort_keys=False))
 
-        for root, dirs, files in os.walk(package_path):
-            for file in files:
-                file_path = os.path.join(root, file)
-                zipped_file_path = os.path.relpath(os.path.join(root, file), package_path)
-                if zipped_file_path != entry_point:
-                    zipped.write(file_path, zipped_file_path)
+        if package_path is not None:
+            for root, dirs, files in os.walk(package_path):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    zipped_file_path = os.path.relpath(os.path.join(root, file), package_path)
+                    if zipped_file_path != entry_point:
+                        zipped.write(file_path, zipped_file_path)
 
     return zip_file

@@ -1,17 +1,11 @@
-import logging
-from datetime import datetime
+import time
 
 from bunch_py3 import Bunch
 
-from causalbench.commons.utils import parse_arguments, package_module, causal_bench_path
-from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
 from causalbench.modules.model import Model
-from causalbench.modules.module import Module
-from causalbench.modules.run import Run
 from causalbench.modules.task import Task
-from causalbench.services.requests import save_module, fetch_module
 
 
 class Scenario:
@@ -23,9 +17,9 @@ class Scenario:
         self.model = model
         self.metrics = metrics
 
-    def execute(self) -> Run:
+    def execute(self) -> Bunch:
         # execution start time
-        start_time = datetime.now()
+        start_time = time.time_ns()
 
         # load the task
         task = self.task.load()
@@ -71,33 +65,38 @@ class Scenario:
             # execute the metric
             metric_response = self_metric.evaluate(parameters)
             metric_response.id = self_metric.module_id
+            metric_response.version = self_metric.version
             metric_response.name = self_metric.name
             scores.append(metric_response)
 
         # execution end time
-        end_time = datetime.now()
+        end_time = time.time_ns()
 
         # form the response
-        run = Run()
+        response = Bunch()
 
-        run.task = self.task.name
+        # dataset
+        response.dataset = Bunch()
+        response.dataset.id = self.dataset.module_id
+        response.dataset.version = self.dataset.version
+        response.dataset.name = self.dataset.name
 
-        run.dataset = Bunch()
-        run.dataset.id = self.dataset.module_id
-        run.dataset.name = self.dataset.name
+        # model
+        response.model = model_response
+        response.model.id = self.model.module_id
+        response.model.version = self.model.version
+        response.model.name = self.model.name
 
-        run.model = model_response
-        run.model.id = self.model.module_id
-        run.model.name = self.model.name
+        # metrics
+        response.metrics = scores
 
-        run.metrics = scores
+        # timing
+        response.time = Bunch()
+        response.time.start = start_time
+        response.time.end = end_time
+        response.time.duration = end_time - start_time
 
-        run.time = Bunch()
-        run.time.start = start_time
-        run.time.end = end_time
-        run.time.duration = end_time - start_time
-
-        return run
+        return response
 
     @staticmethod
     def map_parameters(fields: dict[str, type], data: Bunch, mapping: Bunch = None) -> Bunch:
