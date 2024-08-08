@@ -21,15 +21,21 @@ def execute(data, space, arguments):
         #TODO: TCDF takes in the file location instead of the data. Needs workaround.
         #TODO: TCDF requires at least one argument, which is the data.
         #TODO: TCDF's results need to be seperated into analysis and results parts. Requires a parser.
-        args = ["--data", "test/model/tcdf/tcdfmodule/misc/data/demo_dataset.csv"]
-        subprocess.run(['python', file] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        #args = ["--data", "test/model/tcdf/tcdfmodule/misc/data/demo_dataset.csv"]
+        command = ['python', 'runTCDF.py', '--data', data]
         #pred_output = runTCDF(data=data)
     else:
-        #pred_output = runTCDF(data=data, args=args)
+        command = ['python', 'runTCDF.py', '--data', data, '--kernel_size', arguments.get('kernel_size'),
+                   '--dilation_coefficient', arguments.get('dilation_coefficient'), '--significance', arguments.get('significance'),
+                   '--epochs', arguments.get('epochs')]
 
+
+    #pred_output = runTCDF(data=data, args=args)
+
+    execution = subprocess.run(command, capture_output=True, text=True)
     #Output parser: outs var1, var2, tau
-    stdout_text = proc.stdout.decode('utf-8')
-    stderr_text = proc.stderr.decode('utf-8')
+    #stdout_text = proc.stdout.decode('utf-8')
+    #stderr_text = proc.stderr.decode('utf-8')
 
     # Define the pattern to match
     pattern = r"(\w+) causes (\w+) with a delay of (\d+) time steps\."

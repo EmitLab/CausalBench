@@ -2,7 +2,42 @@ type: model
 name: tcdf
 task: discovery
 path: tcdf.py
-arguments: #find a way to introd arguments, if none, use default
+version_num: 1
+arguments:
+    kernel_size:
+        type: int
+        default_value: 4
+        description: Size of sliding kernel
+    dilation_coefficient:
+        type: int
+        default_value: 4
+        description: Dilation coefficient, recommended to be equal to kernel size
+    learning_rate:
+        type: float
+        default_value: 0.01
+        description: Learning rate
+    significance:
+        type: float
+        default_value: 0.8
+        description: Significance number stating when an increase in loss is significant enough to label a potential cause as true cause. See paper for more details
+    hidden_layers:
+        type: int
+        default_value: 0
+        description: Number of hidden layers in the depthwise convolution
+    epochs:
+        type: int
+        default_value: 1000
+        description: Number of epochs
+    cuda:
+        type: boolean
+        default_value: False
+        description: Use CUDA (GPU)
+    ground_truth:
+        type: file
+        default_value: None
+        description: Provide dataset(s) and the ground truth(s) to evaluate the results of TCDF. Argument format DataFile1=GroundtruthFile1,Key2=Value2,... with a key for each dataset containing multivariate time series (required file format csv, a column with header for each time series) and a value for the corresponding ground truth (required file format csv, no header, index of cause in first column, index of effect in second column, time delay between cause and effect in third column)
+
+#find a way to introd arguments, if none, use default
     #runTCDF.py --data yourdataset.csv
 
 inputs:
