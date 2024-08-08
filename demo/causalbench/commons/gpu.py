@@ -14,29 +14,6 @@ except Exception as e:
     logging.warning(f'Failed to import \'pyadl\' library: {e}')
 
 
-def get_gpus():
-    gpus = []
-
-    if 'GPUtil' in sys.modules:
-        devices = GPUtil.getGPUs()
-        for device in devices:
-            gpus.append(GPU('NVIDIA', device))
-
-    if 'pyadl' in sys.modules:
-        devices = ADLManager.getInstance().getDevices()
-        for device in devices:
-            gpus.append(GPU('AMD', device))
-
-    return gpus
-
-
-def gpu_profiler():
-    gpus = get_gpus()
-    if len(gpus) > 0:
-        return gpus[0].get_name(), gpus[0].get_memory_total(), GPUProfiler(gpus[0])
-    return None, None, None
-
-
 class GPU:
 
     def __init__(self, vendor, device):
@@ -73,6 +50,12 @@ class GPU:
         elif self.vendor == 'AMD':
             return None
 
+    def get_driver(self):
+        if self.vendor == 'NVIDIA':
+            return self.device.driver
+        elif self.vendor == 'AMD':
+            return None
+
     def refresh(self):
         gpus = get_gpus()
         for gpu in gpus:
@@ -82,7 +65,7 @@ class GPU:
 
 class GPUProfiler(Thread):
 
-    def __init__(self, gpu, delay=1):
+    def __init__(self, gpu: GPU, delay: int=1):
         super(GPUProfiler, self).__init__()
 
         self.gpu = gpu
@@ -116,3 +99,33 @@ class GPUProfiler(Thread):
         if self.initial is None or self.peak is None:
             return None
         return self.peak - self.initial
+
+
+def get_gpus() -> list[GPU]:
+    gpus = []
+
+    if 'GPUtil' in sys.modules:
+        devices = GPUtil.getGPUs()
+        for device in devices:
+            gpus.append(GPU('NVIDIA', device))
+
+    if 'pyadl' in sys.modules:
+        devices = ADLManager.getInstance().getDevices()
+        for device in devices:
+            gpus.append(GPU('AMD', device))
+
+    return gpus
+
+
+def gpu_info() -> (str, int, int):
+    gpus = get_gpus()
+    if len(gpus) > 0:
+        return gpus[0].get_name(), gpus[0].get_driver(), gpus[0].get_memory_total()
+    return None, None, None
+
+
+def gpu_profiler() -> GPUProfiler | None:
+    gpus = get_gpus()
+    if len(gpus) > 0:
+        return GPUProfiler(gpus[0])
+    return None

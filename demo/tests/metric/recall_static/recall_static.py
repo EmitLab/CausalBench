@@ -1,8 +1,10 @@
-import numpy as np
 import warnings
+
+import numpy as np
 
 from causalbench.formats import SpatioTemporalGraph
 from causalbench.helpers.discovery import graph_to_adjmat
+
 
 def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph, binarize: bool = True):
 

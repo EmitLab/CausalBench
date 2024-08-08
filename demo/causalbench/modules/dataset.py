@@ -4,15 +4,17 @@ import os
 import pandas as pd
 from bunch_py3 import Bunch
 
+from causalbench.commons.helpers import adjmat_to_graph
+from causalbench.commons.utils import package_module
 from causalbench.formats import SpatioTemporalData, SpatioTemporalGraph
-from causalbench.helpers.discovery import adjmat_to_graph
 from causalbench.modules.module import Module
+from causalbench.services.requests import save_module, fetch_module
 
 
 class Dataset(Module):
 
-    def __init__(self, module_id: int = None):
-        super().__init__(module_id, 'dataset')
+    def __init__(self, module_id: int = None, version: int = None, zip_file: str = None):
+        super().__init__(module_id, version, zip_file)
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -22,18 +24,23 @@ class Dataset(Module):
         # TODO: Perform logical validation of the structure
         pass
 
-    def fetch(self, module_id: int):
-        # TODO: Replace with database call to download zip and obtain path
-        if module_id == 0:
-            return 'data/abalone.zip'
-        elif module_id == 1:
-            return 'data/adult.zip'
-        elif module_id == 2:
-            return 'data/time_series_simulated.zip'
+    def fetch(self):
+        return fetch_module(self.schema_name,
+                            self.module_id,
+                            self.version,
+                            'dataset_version',
+                            'downloaded_dataset.zip')
 
-    def save(self, state) -> bool:
-        # TODO: Add database call to upload to the server
-        pass
+    def save(self, state: dict, public: bool = False) -> bool:
+        zip_file = package_module(state, self.package_path)
+        self.module_id = save_module(self.schema_name,
+                                     self.module_id,
+                                     self.version,
+                                     public,
+                                     zip_file,
+                                     'dataset_version',
+                                     'dataset.zip')
+        return self.module_id is not None
 
     def load(self) -> Bunch:
         files = Bunch()

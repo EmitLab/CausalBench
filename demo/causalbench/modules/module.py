@@ -9,83 +9,125 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from causalbench.commons.utils import parse_arguments, extract_module
+from causalbench.commons.utils import extract_module, extract_module_temporary
 
 
 class Module(ABC):
 
-    def __init__(self, module_id: int, schema_name: str):
-        # set the module ID
+    def __init__(self, module_id: any, version: int | None, zip_file: str | None):
+        # set the module ID and schema name
         self.module_id = module_id
+        self.version = version
+        self.schema_name = self.__class__.__name__.lower()
 
+        # load the schema
+        self.__load_schema()
+
+        # load the module
+        self.__load_module(zip_file)
+
+    def __load_schema(self):
         # load schema
-        schema_path = str(resources.files(__package__).joinpath('schema').joinpath(schema_name + '.yaml'))
+        schema_path = str(resources.files(__package__)
+                          .joinpath('schema')
+                          .joinpath(self.schema_name + '.yaml'))
         with open(schema_path) as f:
             self.schema = yaml.safe_load(f)
 
-        if module_id is not None:
-            # create temporary directory
-            zip_file_path = self.fetch(module_id)
-            self.package_path = extract_module(schema_name, zip_file_path)
+    def __load_module(self, zip_file: str):
+        # get package
+        self.__get_package(zip_file)
 
-            # load configuration
-            config_path = os.path.join(self.package_path, 'config.yaml')
-            with open(config_path) as f:
-                entries = yaml.safe_load(f)
-                entries = bunchify(entries)
+        # package path not defined
+        if self.package_path is None:
+            self.__dict__.update(Bunch())
+            return
 
-            # set object structure
-            self.__dict__.update(entries)
+        # load configuration
+        config_path = os.path.join(self.package_path, 'config.yaml')
+        with open(config_path) as f:
+            entries = yaml.safe_load(f)
+            entries = bunchify(entries)
 
-            # validate object structure
-            self.__validate()
-
-    def create(self, *args, **keywords):
-        # parse the arguments
-        arguments = parse_arguments(args, keywords)
-
-        # create the object
-        self.package_path = self.instantiate(arguments)
+        # set object structure
+        self.__dict__.update(entries)
 
         # validate object structure
         self.__validate()
 
-    def publish(self):
-        self.save(self.__getstate__())
+    def __get_package(self, zip_file):
+        # load directly from zip file
+        if zip_file is not None:
+            # extract zip to temporary directory
+            self.package_path = extract_module_temporary(zip_file)
+
+        # load using module ID and version
+        elif self.module_id is not None and self.version is not None:
+            self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+
+            # # use cached version if available
+            # self.package_path = cached_module(self.module_id, self.version, self.schema_name)
+            #
+            # # cached version is not available
+            # if self.package_path is None:
+            #     self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+
+        # nothing to load
+        else:
+            self.package_path = None
+
+    def publish(self, public: bool = False) -> bool:
+        if self.version is not None:
+            choice = input(f'Are you sure you want to overwrite existing version of {self.schema_name}? [y/N] ')
+            if choice.strip() not in ['y', 'Y']:
+                return False
+
+        if public:
+            choice = input(f'Are you sure you want to publish {self.schema_name} as public? [y/N] ')
+            if choice.strip() not in ['y', 'Y']:
+                public = False
+
+        return self.save(self.__getstate__(), public)
 
     def __validate(self):
         config = json.loads(json.dumps(self.__getstate__()))
         try:
             jsonschema.validate(instance=config, schema=self.schema)
-            logging.info('Configuration validated successfully')
+            logging.debug('Configuration validated successfully')
         except ValidationError as e:
             logging.error(f'Configuration validation error: {e}')
 
         try:
             self.validate()
-            logging.info('Logic validated successfully')
+            logging.debug('Logic validated successfully')
         except Exception as e:
             logging.error(f'Logic validation error: {e}')
 
     def __getstate__(self):
         state = bunchify(self.__dict__)
-        del state.module_id
-        del state.schema
-        del state.package_path
+
+        if 'module_id' in state:
+            del state.module_id
+
+        if 'version' in state:
+            del state.version
+
+        if 'schema' in state:
+            del state.schema
+
+        if 'package_path' in state:
+            del state.package_path
+
         return state
 
     @abstractmethod
-    def instantiate(self, arguments: Bunch) -> str:
-        pass
-
-    @abstractmethod
     def validate(self):
-        pass
+        raise NotImplementedError
 
     @abstractmethod
-    def fetch(self, module_id: int) -> str:
-        pass
+    def fetch(self) -> str:
+        raise NotImplementedError
 
     @abstractmethod
-    def save(self, state: dict) -> bool:
-        pass
+    def save(self, state: dict, public: bool) -> bool:
+        raise NotImplementedError
