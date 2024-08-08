@@ -1,0 +1,23 @@
+type: context
+name: TCDF Discovery
+task: discovery.static
+dataset:
+    id: 0
+    version_num: 1
+model:
+    id: 1
+    version_num: 1
+    parameters:
+        data: file1
+metrics:
+    -   id: 0
+        version_num: 1
+        parameters:
+            ground_truth: file2
+    -   id: 1
+        version_num: 1
+        parameters:
+            ground_truth: file2
+model_hyperparameters:
+    kernel_size: 8
+    learning_rate: 0.05
