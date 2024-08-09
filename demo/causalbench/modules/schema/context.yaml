@@ -1,7 +1,7 @@
 type: object
 properties:
     type:
-        type: string
+        const: context
     name:
         type: string
     description:
@@ -52,20 +52,20 @@ properties:
                     type: integer
                 version:
                     type: integer
-                parameters:
-                    type: object
-                    propertyNames:
-                        enum:
-                            - data
-                            - target
-                            - space
-                    patternProperties:
-                        ^.*$:
-                            type: string
+#                parameters:
+#                    type: object
+#                    propertyNames:
+#                        enum:
+#                            - data
+#                            - target
+#                            - space
+#                    patternProperties:
+#                        ^.*$:
+#                            type: string
             required:
                 - id
                 - version
-                - parameters
+#                - parameters
     metrics:
         type: array
         items:
@@ -75,18 +75,18 @@ properties:
                     type: integer
                 version:
                     type: integer
-                parameters:
-                    type: object
-                    propertyNames:
-                        enum:
-                            - ground_truth
-                    patternProperties:
-                        ^.*$:
-                            type: string
+#                parameters:
+#                    type: object
+#                    propertyNames:
+#                        enum:
+#                            - ground_truth
+#                    patternProperties:
+#                        ^.*$:
+#                            type: string
             required:
                 - id
                 - version
-                - parameters
+#                - parameters
 required:
     - type
     - name

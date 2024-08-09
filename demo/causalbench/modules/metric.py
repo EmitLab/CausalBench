@@ -21,7 +21,7 @@ class Metric(Module):
             raise FileNotFoundError(f"File '{self.path}' does not exist in package path '{self.package_path}'")
 
     def fetch(self):
-        return fetch_module(self.schema_name,
+        return fetch_module(self.type,
                             self.module_id,
                             self.version,
                             'metric_version',
@@ -29,13 +29,13 @@ class Metric(Module):
 
     def save(self, state: dict, public: bool = False) -> bool:
         zip_file = package_module(state, self.package_path)
-        self.module_id = save_module(self.schema_name,
-                                     self.module_id,
-                                     self.version,
-                                     public,
-                                     zip_file,
-                                     'metric_version',
-                                     'metric.zip')
+        self.module_id, self.version = save_module(self.type,
+                                                   self.module_id,
+                                                   self.version,
+                                                   public,
+                                                   zip_file,
+                                                   'metric_version',
+                                                   'metric.zip')
         return self.module_id is not None
 
     def evaluate(self, parameters: Bunch) -> Bunch:
