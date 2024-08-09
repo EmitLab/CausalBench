@@ -1,8 +1,0 @@
-type: model
-name: pcmci
-source: GitHub
-url: https://github.com/jakobrunge/tigramite
-description: PCMCI is a causal discovery framework for large-scale time series datasets.
-task: discovery.temporal
-path: pcmci.py
-

@@ -60,6 +60,7 @@ def main():
     # model2.publish()
 
     model3 = Model(zip_file='model/varlingam.zip')
+    model4 = Model(zip_file='model/pcmciplus.zip')
 
     metric1 = Metric(zip_file='metric/precision_static.zip')
     # metric1.publish()
@@ -87,7 +88,8 @@ def main():
                                       description='Test temporal task',
                                       task='discovery.temporal',
                                       datasets=[(dataset2, {'data': 'file1', 'ground_truth': 'file2'})],
-                                      models=[(model3, {})],
+                                      models=[(model3, {}),
+                                              (model4, {})],
                                       metrics=[(metric3, {}),
                                                (metric4, {})])
     context2.execute()

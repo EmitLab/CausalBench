@@ -79,7 +79,7 @@ class Helpers:
         # check if the length of the two lists of adjacency matrices are the same
         if len(adjmats1) != len(adjmats2):
             warnings.warn("The number of adjacency matrices must be the same")
-            # TODO: add 0 adjacency matrices so that the length of the two lists are the same
+            # NOTE: add 0 adjacency matrices so that the length of the two lists are the same
             # find the one with less adjacency matrices
             diff = abs(len(adjmats1) - len(adjmats2))
             if len(adjmats1) < len(adjmats2):
