@@ -45,7 +45,7 @@ class Context(Module):
         pass
 
     def fetch(self):
-        return fetch_module(self.schema_name,
+        return fetch_module(self.type,
                             self.module_id,
                             self.version,
                             'pipelines',
@@ -68,13 +68,13 @@ class Context(Module):
                 return False
 
         zip_file = package_module(state, self.package_path)
-        self.module_id = save_module(self.schema_name,
-                                     self.module_id,
-                                     self.version,
-                                     public,
-                                     zip_file,
-                                     'pipelines',
-                                     'context.zip')
+        self.module_id, self.version = save_module(self.type,
+                                                   self.module_id,
+                                                   self.version,
+                                                   public,
+                                                   zip_file,
+                                                   'pipelines',
+                                                   'context.zip')
         return self.module_id is not None
 
     def execute(self) -> Run | None:
@@ -156,7 +156,15 @@ class Context(Module):
         return run
 
     def __instantiate(self, arguments: Bunch):
-        self.type = 'context'
+        # module ID
+        if 'module_id' in arguments:
+            self.module_id = arguments.module_id
+
+        # version
+        if 'version' in arguments:
+            self.version = arguments.version
+
+        # metadata
         self.name = arguments.name
         self.description = arguments.description
         self.task = arguments.task
@@ -196,22 +204,13 @@ class Context(Module):
                 self_model = Bunch()
                 self.models.append(self_model)
 
-                if isinstance(model, tuple):
-                    # model
-                    if isinstance(model[0], Model):
-                        self_model.id = model[0].module_id
-                        self_model.version = model[0].version
-                        self_model.object = model[0]
-                    else:
-                        raise ValueError('Invalid model instance')
-
-                    # hyperparameters
-                    # if isinstance(arguments.model[1], dict):
-                    #     self_model.parameters = model[1]
-                    # else:
-                    #     raise ValueError('Invalid model arguments')
+                # model
+                if isinstance(model, Model):
+                    self_model.id = model.module_id
+                    self_model.version = model.version
+                    self_model.object = model
                 else:
-                    raise ValueError('Invalid model definition')
+                    raise ValueError('Invalid model instance')
         else:
             raise ValueError('Invalid model definition')
 
@@ -222,27 +221,18 @@ class Context(Module):
                 self_metric = Bunch()
                 self.metrics.append(self_metric)
 
-                if isinstance(metric, tuple):
-                    # metric
-                    if isinstance(metric[0], Metric):
-                        self_metric.id = metric[0].module_id
-                        self_metric.version = metric[0].version
-                        self_metric.object = metric[0]
-                    else:
-                        raise ValueError('Invalid metric instance')
-
-                    # hyperparameters
-                    # if isinstance(arguments.model[1], dict):
-                    #     self_metric.parameters = metric[1]
-                    # else:
-                    #     raise ValueError('Invalid metric arguments')
+                # metric
+                if isinstance(metric, Metric):
+                    self_metric.id = metric.module_id
+                    self_metric.version = metric.version
+                    self_metric.object = metric
                 else:
-                    raise ValueError('Invalid metric definition')
+                    raise ValueError('Invalid metric instance')
         else:
             raise ValueError('Invalid metric definition')
 
         # form the directory path
-        self.package_path = causal_bench_path(self.schema_name, self.name)
+        self.package_path = causal_bench_path(self.type, self.name)
 
     @staticmethod
     def create(*args, **keywords):

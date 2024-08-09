@@ -41,7 +41,7 @@ class Task(Module):
         pass
 
     def fetch(self):
-        return fetch_module('Task',
+        return fetch_module(self.type,
                             self.module_id,
                             self.version,
                             'tasks',

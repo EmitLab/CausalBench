@@ -23,7 +23,7 @@ class Model(Module):
         pass
 
     def fetch(self):
-        return fetch_module(self.schema_name,
+        return fetch_module(self.type,
                             self.module_id,
                             self.version,
                             'model_version',
@@ -31,13 +31,13 @@ class Model(Module):
 
     def save(self, state: dict, public: bool = False) -> bool:
         zip_file = package_module(state, self.package_path)
-        self.module_id = save_module(self.schema_name,
-                                     self.module_id,
-                                     self.version,
-                                     public,
-                                     zip_file,
-                                     'model_version',
-                                     'model.zip')
+        self.module_id, self.version = save_module(self.type,
+                                                   self.module_id,
+                                                   self.version,
+                                                   public,
+                                                   zip_file,
+                                                   'model_version',
+                                                   'model.zip')
         return self.module_id is not None
 
     def execute(self, parameters: Bunch) -> Bunch:
