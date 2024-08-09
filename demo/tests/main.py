@@ -55,9 +55,17 @@ def main():
 
     model1 = Model(zip_file='model/pc.zip')
     # model1.publish()
+    # dataset1 = Dataset(module_id=9, version=3)
+    # dataset1 = Dataset(zip_file='data/abalone.zip')
+    # dataset1.publish(public=True)
 
-    model2 = Model(zip_file='model/ges.zip')
-    # model2.publish()
+    # model1 = Model(module_id=4, version=1)
+    # model1 = Model(zip_file='model/pc.zip')
+    # model1.publish(public=True)
+
+    # model2 = Model(module_id=5, version=1)
+    # model2 = Model(zip_file='model/ges.zip')
+    # model2.publish(public=True)
 
     model3 = Model(zip_file='model/varlingam.zip')
     model4 = Model(zip_file='model/pcmciplus.zip')
@@ -82,6 +90,30 @@ def main():
                                                (metric2, {})])
 
     context1.execute()
+    # metric1 = Metric(module_id=8, version=1)
+    # metric1 = Metric(zip_file='metric/accuracy_static.zip')
+    # metric1.publish(public=True)
+
+    # metric2 = Metric(module_id=9, version=1)
+    # metric2 = Metric(zip_file='metric/f1_static.zip')
+    # metric2.publish(public=True)
+
+    # context: Context = Context(module_id=10, version=6)
+    # context: Context = Context.create(module_id=10,
+    #                                   name='Context1',
+    #                                   description='Test context',
+    #                                   task='discovery.static',
+    #                                   datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
+    #                                   models=[model1, model2],
+    #                                   metrics=[metric1, metric2])
+    # context.publish(public=True)
+
+    # run: Run = context.execute()
+    # run.publish(public=True)
+    # print(run)
+
+    run: Run = Run(module_id=2)
+    print(run)
 
     # temporal task
     context2: Context = Context.create(name='Context2',

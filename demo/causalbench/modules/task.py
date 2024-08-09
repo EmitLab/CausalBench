@@ -5,6 +5,7 @@ from importlib.util import spec_from_file_location, module_from_spec
 from bunch_py3 import Bunch
 
 from causalbench.modules.module import Module
+from causalbench.services.requests import fetch_module
 
 
 class AbstractTask(ABC):
@@ -29,7 +30,7 @@ class AbstractTask(ABC):
 class Task(Module):
 
     def __init__(self, module_id: str = None, zip_file: str = None):
-        super().__init__(module_id, 0, zip_file, 'task')
+        super().__init__(module_id, 0, zip_file)
 
     def instantiate(self, arguments: Bunch):
         # TODO: Create the structure of the new instance
@@ -40,16 +41,11 @@ class Task(Module):
         pass
 
     def fetch(self):
-        # return fetch_module('Task',
-        #                     self.module_id,
-        #                     self.version,
-        #                     'task',
-        #                     'downloaded_task.zip')
-
-        if self.module_id == 'discovery.static':
-            return 'task/discovery.static.zip'
-        if self.module_id == 'discovery.temporal':
-            return 'task/discovery.temporal.zip'
+        return fetch_module(self.type,
+                            self.module_id,
+                            self.version,
+                            'tasks',
+                            'downloaded_task.zip')
 
     def save(self, state, public: bool) -> bool:
         # TODO: Save the task

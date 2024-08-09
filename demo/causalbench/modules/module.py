@@ -9,16 +9,16 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from causalbench.commons.utils import extract_module, cached_module, extract_module_temporary
+from causalbench.commons.utils import extract_module, extract_module_temporary
 
 
 class Module(ABC):
 
-    def __init__(self, module_id: any, version: int | None, zip_file: str | None, schema_name: str):
+    def __init__(self, module_id: any, version: int | None, zip_file: str | None):
         # set the module ID and schema name
         self.module_id = module_id
         self.version = version
-        self.schema_name = schema_name
+        self.type = self.__class__.__name__.lower()
 
         # load the schema
         self.__load_schema()
@@ -30,7 +30,7 @@ class Module(ABC):
         # load schema
         schema_path = str(resources.files(__package__)
                           .joinpath('schema')
-                          .joinpath(self.schema_name + '.yaml'))
+                          .joinpath(self.type + '.yaml'))
         with open(schema_path) as f:
             self.schema = yaml.safe_load(f)
 
@@ -63,26 +63,27 @@ class Module(ABC):
 
         # load using module ID and version
         elif self.module_id is not None and self.version is not None:
-            self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+            self.package_path = extract_module(self.module_id, self.version, self.type, self.fetch())
 
             # # use cached version if available
-            # self.package_path = cached_module(self.module_id, self.version, self.schema_name)
+            # self.package_path = cached_module(self.module_id, self.version, self.type)
             #
             # # cached version is not available
             # if self.package_path is None:
-            #     self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+            #     self.package_path = extract_module(self.module_id, self.version, self.type, self.fetch())
 
         # nothing to load
         else:
             self.package_path = None
 
     def publish(self, public: bool = False) -> bool:
-        # if self.version is not None:
-        #     logging.error('Module with version cannot be published')
-        #     return False
+        if self.module_id is not None and self.version is not None:
+            choice = input(f'Are you sure you want to overwrite existing version of {self.type}? [y/N] ')
+            if choice.strip() not in ['y', 'Y']:
+                return False
 
         if public:
-            choice = input(f'Are you sure you want to publish {self.__class__.__name__.lower()} as public? [y/N] ')
+            choice = input(f'Are you sure you want to publish {self.type} as public? [y/N] ')
             if choice.strip() not in ['y', 'Y']:
                 public = False
 

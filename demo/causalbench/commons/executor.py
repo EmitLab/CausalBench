@@ -8,10 +8,8 @@ import tracemalloc
 from importlib.metadata import version
 from importlib.util import module_from_spec, spec_from_file_location
 
-import cpuinfo
 import pipreqs.pipreqs as pipreqs
-import psutil
-from bunch_py3 import Bunch
+from bunch_py3 import Bunch, bunchify
 
 from causalbench.commons.gpu import gpu_profiler
 
@@ -29,14 +27,14 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     newfunc = functools.partial(func, *args, **keywords)
 
     # create gpu profiler
-    gpu, gpu_memory_total, profiler = gpu_profiler()
+    profiler = gpu_profiler()
 
     # start GPU profiler
     if profiler is not None:
         profiler.start()
 
     # get start time
-    start = time.time_ns()
+    start_time = time.time_ns()
 
     # start memory trace
     tracemalloc.start()
@@ -51,15 +49,12 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     tracemalloc.stop()
 
     # get the end time
-    end = time.time_ns()
+    end_time = time.time_ns()
 
     # stop GPU profiler
     gpu_memory = None
     if profiler is not None:
         gpu_memory = profiler.stop()
-
-    # calculate the execution duration
-    duration = end - start
 
     # get python information
     python = platform.python_version()
@@ -67,37 +62,29 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     # get imports
     imports = get_imports(module_path)
 
-    # get platform information
-    system_platform = platform.platform()
-
-    # get processor information
-    processor = cpuinfo.get_cpu_info()['brand_raw']
-
-    # get architecture information
-    architecture = platform.machine()
-
-    # get virtual memory information
-    memory_total = psutil.virtual_memory().total
-
-    # get storage information
-    storage_total = psutil.disk_usage('/').total
-
     # form the response
     response = Bunch()
 
-    response.output = output
-    response.duration = duration
-    response.memory = memory
-    response.gpu_memory = gpu_memory
-    response.python = python
-    response.imports = imports
-    response.platform = system_platform
-    response.processor = processor
-    response.gpu = gpu
-    response.architecture = architecture
-    response.memory_total = memory_total
-    response.gpu_memory_total = gpu_memory_total
-    response.storage_total = storage_total
+    # output
+    if isinstance(output, Bunch):
+        response.output = output
+    elif isinstance(output, dict):
+        response.output = bunchify(output)
+    else:
+        raise ValueError(f'Unexpected output type: {type(output)}')
+
+    # timing
+    response.time = Bunch()
+    response.time.start = start_time
+    response.time.end = end_time
+    response.time.duration = end_time - start_time
+
+    # profiling
+    response.profiling = Bunch()
+    response.profiling.memory = memory
+    response.profiling.gpu_memory = gpu_memory
+    response.profiling.python = python
+    response.profiling.imports = imports
 
     return response
 
