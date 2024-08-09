@@ -31,18 +31,18 @@ def causal_bench_path(*path_list) -> str:
     return str(path)
 
 
-def cached_module(module_id, version, schema_name: str) -> str:
+def cached_module(module_id, version, module_type: str) -> str:
     # form the directory path
-    dir_path = causal_bench_path(schema_name, module_id, version)
+    dir_path = causal_bench_path(module_type, module_id, version)
 
     # check if directory exists
     if os.path.isdir(dir_path):
         return dir_path
 
 
-def extract_module(module_id, version, schema_name: str, zip_file: str) -> str:
+def extract_module(module_id, version, module_type: str, zip_file: str) -> str:
     # form the directory path
-    dir_path = causal_bench_path(schema_name, module_id, version)
+    dir_path = causal_bench_path(module_type, module_id, version)
 
     # extract the zip file
     with ZipFile(zip_file, 'r') as zipped:
@@ -65,7 +65,7 @@ def extract_module_temporary(zip_file: str) -> str:
 
 def package_module(state, package_path: str, entry_point: str = 'config.yaml') -> str:
     zip_file = tempfile.NamedTemporaryFile(delete=True, suffix='.zip').name
-    # atexit.register(lambda: os.remove(zip_file))
+    atexit.register(lambda: os.remove(zip_file))
 
     with ZipFile(zip_file, 'w') as zipped:
         if entry_point:

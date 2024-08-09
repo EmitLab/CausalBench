@@ -18,7 +18,7 @@ class Module(ABC):
         # set the module ID and schema name
         self.module_id = module_id
         self.version = version
-        self.schema_name = self.__class__.__name__.lower()
+        self.type = self.__class__.__name__.lower()
 
         # load the schema
         self.__load_schema()
@@ -30,7 +30,7 @@ class Module(ABC):
         # load schema
         schema_path = str(resources.files(__package__)
                           .joinpath('schema')
-                          .joinpath(self.schema_name + '.yaml'))
+                          .joinpath(self.type + '.yaml'))
         with open(schema_path) as f:
             self.schema = yaml.safe_load(f)
 
@@ -63,27 +63,27 @@ class Module(ABC):
 
         # load using module ID and version
         elif self.module_id is not None and self.version is not None:
-            self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+            self.package_path = extract_module(self.module_id, self.version, self.type, self.fetch())
 
             # # use cached version if available
-            # self.package_path = cached_module(self.module_id, self.version, self.schema_name)
+            # self.package_path = cached_module(self.module_id, self.version, self.type)
             #
             # # cached version is not available
             # if self.package_path is None:
-            #     self.package_path = extract_module(self.module_id, self.version, self.schema_name, self.fetch())
+            #     self.package_path = extract_module(self.module_id, self.version, self.type, self.fetch())
 
         # nothing to load
         else:
             self.package_path = None
 
     def publish(self, public: bool = False) -> bool:
-        if self.version is not None:
-            choice = input(f'Are you sure you want to overwrite existing version of {self.schema_name}? [y/N] ')
+        if self.module_id is not None and self.version is not None:
+            choice = input(f'Are you sure you want to overwrite existing version of {self.type}? [y/N] ')
             if choice.strip() not in ['y', 'Y']:
                 return False
 
         if public:
-            choice = input(f'Are you sure you want to publish {self.schema_name} as public? [y/N] ')
+            choice = input(f'Are you sure you want to publish {self.type} as public? [y/N] ')
             if choice.strip() not in ['y', 'Y']:
                 public = False
 
