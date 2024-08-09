@@ -48,6 +48,8 @@ class Task(Module):
 
         if self.module_id == 'discovery.static':
             return 'task/discovery.static.zip'
+        if self.module_id == 'discovery.temporal':
+            return 'task/discovery.temporal.zip'
 
     def save(self, state, public: bool) -> bool:
         # TODO: Save the task

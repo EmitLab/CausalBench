@@ -25,14 +25,14 @@ def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph,
     if not np.all(np.isin(truth, [0, 1])):
         if binarize:
             truth = (truth != 0).astype(int)
-            warnings.warn("truth has been binarized.")
+            warnings.warn("ground_truth has been binarized.")
         else:
             raise ValueError("truth must be binary.")
 
     if not np.all(np.isin(pred, [0, 1])):
         if binarize:
             pred = (pred != 0).astype(int)
-            warnings.warn("pred has been binarized.")
+            warnings.warn("prediction has been binarized.")
         else:
             raise ValueError("truth must be binary.")
 

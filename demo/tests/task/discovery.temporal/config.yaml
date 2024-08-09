@@ -1,0 +1,3 @@
+name: discovery.temporal
+path: discovery.temporal.py
+class_name: DiscoveryTemporal

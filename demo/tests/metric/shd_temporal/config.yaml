@@ -5,15 +5,3 @@ url: NA
 description: SHD metric for temporl causal graph.
 task: discovery.temporal
 path: shd_temporal.py
-inputs:
-    ground:
-        id: truth
-        data: graph.temporal
-
-    prediction:
-        id: pred
-        data: graph.temporal
-outputs:
-    score:
-        id: score
-        data: decimal

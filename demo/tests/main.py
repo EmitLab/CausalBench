@@ -48,75 +48,10 @@ def main():
     # sys.path.insert(0, 'model/ermirmcfcminst')
     # access_token = init_auth()
 
-    # ########################################################
-    # ######## Abhinav's CB backend integration tests ########
-    # ########################################################
-    # Metric save test
-    # metric0 = Metric()
-    # metric0.publish()
-    #
-    # # # Dataset save test
-    # ds0 = Dataset()
-    # ds0.publish()
-
-    # # # Model Save test
-    # model0 = Model()
-    # model0.publish()
-
-    # # Pipeline save test
-    # scenario0 = Pipeline()
-    # scenario0.publish()
-
-    #     # # Dataset fetch test
-    # # ds0 = Dataset(34)
-    # # ds0.fetch(34)
-
-    # # # Model fetch test
-    # model0 = Model(3) # Model constructor calls fetch()
-
-    # # # Pipeline fetch test
-    # scenario0 = Pipeline(3)
-    # # scenario0.fetch(1)
-
-    # Metric Fetch test
-    # metric0 = Metric(8)
-    # metric0.publish()
-
-    # # # Pipeline exec test
-    # scenario0 = Pipeline(3)
-    # scenario0.execute(access_token)
-
-    # # # static discovery
-    # # scenario0 = Pipeline(0)
-    # # result0 = scenario0.execute()
-    # # display_report(result0)
-
-    # # # temporal discovery
-    # # scenario1 = Pipeline(1)
-    # # result1 = scenario1.execute()
-    # # display_report(result1)
-
-    # # # Classification
-    # # scenario2 = Pipeline(2)
-    # # result2 = scenario2.execute()
-    # # display_report(result2)
-
-    # # manually creation
-    # scenario1 = Pipeline.create(name='scenario1',
-    #                             task='discovery.temporal',
-    #                             dataset=2,
-    #                             model=(Model(0), {'data': 'file1'}),
-    #                             metrics=[(0, {'ground_truth': 'file2'}),
-    #                                      (1, {'ground_truth': 'file2'}),
-    #                                      (2, {'ground_truth': 'file2'}),
-    #                                      (3, {'ground_truth': 'file2'}),
-    #                                      (4, {'ground_truth': 'file2'})])
-    # # result1 = scenario1.execute()
-    # # display_report(result1)
-    # scenario1.publish()
-
     dataset1 = Dataset(zip_file='data/abalone.zip')
     # dataset1.publish(public=True)
+
+    dataset2 = Dataset(zip_file='data/time_series_simulated.zip')
 
     model1 = Model(zip_file='model/pc.zip')
     # model1.publish()
@@ -124,45 +59,20 @@ def main():
     model2 = Model(zip_file='model/ges.zip')
     # model2.publish()
 
-    metric1 = Metric(zip_file='metric/accuracy_static.zip')
+    model3 = Model(zip_file='model/lingam.zip')
+
+    metric1 = Metric(zip_file='metric/precision_static.zip')
     # metric1.publish()
 
-    metric2 = Metric(zip_file='metric/f1_static.zip')
+    metric2 = Metric(zip_file='metric/recall_static.zip')
     # metric2.publish()
 
-    # scenario1 = Pipeline.create(name='scenario1',
-    #                             description='Pipeline to evaluate GES algorithm on Abalone dataset',
-    #                             task='discovery.static',
-    #                             dataset=dataset1,
-    #                             model=(model1, {'data': 'file1'}),
-    #                             metrics=[(metric1, {'ground_truth': 'file2'})])
-    # scenario1.publish()
-    #
-    # run1: Run = scenario1.execute()
-    # run1.publish()
-    # print(run1)
+    metric3 = Metric(zip_file='metric/accuracy_temporal.zip')
+    metric4 = Metric(zip_file='metric/shd_temporal.zip')
 
-    # scenario1 = Scenario.create(name='scenario5',
-    #                             description='Scenario to evaluate GES algorithm on Abalone dataset',
-    #                             task='discovery.static',
-    #                             dataset=dataset1,
-    #                             model=(model1, {'data': 'file1'}),
-    #                             metrics=[(metric1, {'ground_truth': 'file2'}),
-    #                                      (metric1, {'ground_truth': 'file2'})])
-    # # # scenario1 = Pipeline(31)
-    # # # # scenario1.publish()
-    # # #
-    # run1 = scenario1.execute()
-    # print(run1)
-    # # # run1.publish()
-
-    # task: Task = Task(module_id='discovery.static')
-    # obj: AbstractTask = task.load()
-    # helpers = obj.helpers()
-    # print(helpers.hello())
-
-    context: Context = Context.create(name='Context1',
-                                      description='Test context',
+    # static task
+    context1: Context = Context.create(name='Context1',
+                                      description='Test static task',
                                       task='discovery.static',
                                       datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
                                       models=[(model1, {}),
@@ -170,8 +80,17 @@ def main():
                                       metrics=[(metric1, {}),
                                                (metric2, {})])
 
-    context.execute()
+    context1.execute()
 
+    # temporal task
+    context2: Context = Context.create(name='Context2',
+                                      description='Test temporal task',
+                                      task='discovery.temporal',
+                                      datasets=[(dataset2, {'data': 'file1', 'ground_truth': 'file2'})],
+                                      models=[(model3, {})],
+                                      metrics=[(metric3, {}),
+                                               (metric4, {})])
+    context2.execute()
 
 if __name__ == '__main__':
     main()

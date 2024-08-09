@@ -4,7 +4,7 @@ from tigramite.independence_tests.parcorr import ParCorr
 from tigramite.pcmci import PCMCI
 
 
-def execute(data, space):
+def execute(data, space: None, helpers: any):
     # check if `data` is dataframe
     if not isinstance(data, pandas.DataFrame):
         raise TypeError("data must be a DataFrame object")
@@ -32,8 +32,5 @@ def execute(data, space):
     #mapping pred_output graph to regular, checking for p values of < 0.05, null hypothesis
     result_array = numpy.logical_and(pred_output == '-->', p_matrix < 0.05).astype(int)
 
-
+    # should return prediction instead
     return (result_array)
-            #,'val_matrix': result['val_matrix'],
-            #'p_matrix': result['p_matrix'],
-            #'conf_matrix': result['conf_matrix']}

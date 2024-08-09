@@ -2,15 +2,3 @@ type: metric
 name: Matthews correlation coefficient
 task: classification
 path: matthews_corrcoef.py
-inputs:
-    ground:
-        id: truth
-        data: dataframe
-
-    prediction:
-        id: pred
-        data: dataframe
-outputs:
-    score:
-        id: score
-        data: decimal

@@ -1,15 +1,17 @@
 import lingam
-from causalbench.helpers.discovery import adjmatwlag_to_graph
+import numpy as np
 
-def execute(data):
+def execute(data, helpers: any):
 
     X = data.data.drop(columns=data.time)
 
-    model = lingam.VARLiNGAM()
+    model = lingam.VARLiNGAM(lags=2, prune=False) # lags should be provided as a hyperparameter
     model.fit(X)
 
+    order = model.causal_order_
     result = model.adjacency_matrices_
-
-    pred = adjmatwlag_to_graph(result, nodes=X.columns)
-
-    return {'pred': pred}
+    # re-order the adjacency matrices based on the causal order
+    for i, adjmat in enumerate(result):
+        result[i] = adjmat[:, np.argsort(order)]
+    prediction = helpers.adjmatwlag_to_graph(result, nodes=X.columns)
+    return {'prediction': prediction}

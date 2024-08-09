@@ -3,7 +3,6 @@ import yaml
 
 from causalbench.commons.utils import causal_bench_path
 
-
 def authenticate(config):
     login_url = "https://www.causalbench.org/api/authenticate/login"
     email = config['email']
@@ -17,7 +16,7 @@ def authenticate(config):
 
     try:
         # Sending login request
-        response = requests.post(login_url, json=payload)
+        response = requests.post(login_url, json=payload, verify=False)
         response.raise_for_status()  # Raise an exception for HTTP errors
         response = response.json()
 
