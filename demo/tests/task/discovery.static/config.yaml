@@ -1,4 +1,4 @@
 type: task
 name: discovery.static
-path: task.py
+path: discovery.static.py
 class_name: DiscoveryStatic

@@ -1,32 +1,40 @@
 import numpy as np
+import warnings
 
 from causalbench.formats import SpatioTemporalGraph
-from causalbench.helpers.discovery import graph_to_adjmat
 
-
-def evaluate(pred: SpatioTemporalGraph, truth: SpatioTemporalGraph):
+def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph, helpers: any, binarize: bool = True):
 
     # convert to adjacency matrix
-    pred = graph_to_adjmat(pred, weight='lag')
-    truth = graph_to_adjmat(truth, weight='lag')
+    preds = helpers.graph_to_adjmatwlag(prediction)
+    truths = helpers.graph_to_adjmatwlag(ground_truth)
 
-    # convert to numpy matrix
-    pred = pred.to_numpy().astype(int)
-    truth = truth.to_numpy().astype(int)
+    # align the adjacency matrices
+    # this step make sure that the adjacency matrices match in shape, and have the same nodes
+    preds, truths = helpers.align_adjmatswlag(preds, truths)
+    score = 0
+    for pred, truth in zip(preds, truths):
+        # convert to numpy matrix
+        pred = pred.to_numpy().astype(int)
+        truth = truth.to_numpy().astype(int)
 
-    # check if `truth` and `pred` have the same shape
-    if truth.shape != pred.shape:
-        raise ValueError("truth and pred must have the same shape")
+        # check if `truth` and `pred` are binary and binarize if necessary
+        if not np.all(np.isin(truth, [0, 1])):
+            if binarize:
+                truth = (truth != 0).astype(int)
+                warnings.warn("ground_truth has been binarized.")
+            else:
+                warnings.warn("ground_truth is not binary.")
 
-    # check if `truth` and `pred` are natural numbers
-    if not (np.all(truth >= 0)):
-        raise ValueError("truth must be natural numbers")
+        if not np.all(np.isin(pred, [0, 1])):
+            if binarize:
+                pred = (pred != 0).astype(int)
+                warnings.warn("prediction has been binarized.")
+            else:
+                warnings.warn("prediction is not binary.")
 
-    if not (np.all(pred >= 0)):
-        raise ValueError("pred must be natural numbers")
-
-    # compute the SHD
-    diff = np.abs(truth - pred)
-    score = np.sum(diff)
+        # compute the SHD
+        diff = np.abs(truth - pred)
+        score += np.sum(diff)
 
     return {'score': score}

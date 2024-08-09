@@ -1,0 +1,4 @@
+type: metric
+name: Matthews correlation coefficient
+task: classification
+path: matthews_corrcoef.py

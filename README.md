@@ -53,3 +53,34 @@ For questions, feedback, or further information, please contact us at email@exam
 
 ## Acknowledgments
 ...
+
+## Support Benchmark Context
+| Dataset               | File                 |
+|-----------------------|----------------------|
+| Abalone               | data, static graph   |
+| Adult                 | data, static graph   |
+| Time series simulated | data, temporal graph |
+
+| Model      | Task     |
+|------------|----------|
+| PC         | Static   |
+| GES        | Static   |
+| VAR-LiNGAM | Temporal |
+| PCMCI*     | Temporal |
+
+* PCMCI is not working now
+
+
+| Metric    | Task     |
+|-----------|----------|
+| Accuracy  | Static   |
+| F1        | Static   |
+| Precision | Static   |
+| Recall    | Static   |
+| SHD       | Static   |
+| Accuracy  | Temporal |
+| F1        | Temporal |
+| Precision | Temporal |
+| Recall    | Temporal |
+| SHD       | Temporal |
+

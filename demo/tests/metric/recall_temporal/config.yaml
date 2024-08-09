@@ -5,15 +5,3 @@ url: NA
 description: Recall metric for temporal causal graph.
 task: discovery.temporal
 path: recall_temporal.py
-inputs:
-    ground:
-        id: truth
-        data: graph.temporal
-
-    prediction:
-        id: pred
-        data: graph.temporal
-outputs:
-    score:
-        id: score
-        data: decimal

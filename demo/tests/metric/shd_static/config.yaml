@@ -5,15 +5,3 @@ url: NA
 description: SHD metric for static causal graph.
 task: discovery.static
 path: shd_static.py
-inputs:
-    ground:
-        id: truth
-        data: graph.static
-
-    prediction:
-        id: pred
-        data: graph.static
-outputs:
-    score:
-        id: score
-        data: decimal
