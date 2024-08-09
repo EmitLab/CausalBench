@@ -59,7 +59,7 @@ def main():
     model2 = Model(zip_file='model/ges.zip')
     # model2.publish()
 
-    model3 = Model(zip_file='model/lingam.zip')
+    model3 = Model(zip_file='model/varlingam.zip')
 
     metric1 = Metric(zip_file='metric/precision_static.zip')
     # metric1.publish()
