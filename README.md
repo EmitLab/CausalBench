@@ -1,12 +1,10 @@
-[kpkc]
-TODO: Needs contact address, and usage wiki pages. 
----
-
 # CausalBench
+
+The up-to-date documentation regarding usage and features of CausalBench can be found at [docs.causalbench.org](docs.causalbench.org).
 
 ## Overview
 
-CausalBench is a transparent, fair, and easy-to-use evaluation platform designed to advance research in causal learning. It facilitates scientific collaboration by providing a suite of tools for novel algorithms, datasets, and metrics. Our mission is to promote scientific objectivity, reproducibility, fairness, and awareness of bias in causal learning research. CausalBench serves as a comprehensive benchmarking resource, impacting a broad range of scientific and engineering disciplines.
+CausalBench is a flexible, fair, and easy-to-use evaluation platform designed to advance research in causal learning. It facilitates scientific collaboration by providing a suite of tools for novel algorithms, datasets, and metrics. Our mission is to promote scientific objectivity, reproducibility, fairness, and awareness of bias in causal learning research. CausalBench serves as a comprehensive benchmarking resource, impacting a broad range of scientific and engineering disciplines.
 
 ## Features
 
@@ -49,12 +47,18 @@ CausalBench is licensed under the MIT License. See the [LICENSE](#) file for mor
 
 ## Contact
 
-For questions, feedback, or further information, please contact us at email@example.com.
+For questions, feedback, or further information, please contact us at support@causalbench.org.
 
 ## Acknowledgments
-...
+This work is supported by NSF grant 2311716, "CausalBench: A Cyberinfrastructure
+for Causal-Learning Benchmarking for Efficacy, Reproducibility, and Scientific
+Collaboration".
+
+
 
 ## Support Benchmark Context
+CausalBench is structured to support different machine learning tasks and dataset types. With user contribution, the supported context will be expanded, currently, these models and tasks are provided.    
+
 | Dataset               | File                 |
 |-----------------------|----------------------|
 | Abalone               | data, static graph   |
@@ -66,9 +70,7 @@ For questions, feedback, or further information, please contact us at email@exam
 | PC         | Static   |
 | GES        | Static   |
 | VAR-LiNGAM | Temporal |
-| PCMCI*     | Temporal |
-
-* PCMCI is not working now
+| PCMCI      | Temporal |
 
 
 | Metric    | Task     |
@@ -83,4 +85,3 @@ For questions, feedback, or further information, please contact us at email@exam
 | Precision | Temporal |
 | Recall    | Temporal |
 | SHD       | Temporal |
-
