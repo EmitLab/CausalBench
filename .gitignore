@@ -6,6 +6,8 @@
 # virtualenv
 .venv
 venv/
+venv2/
+venv3/
 ENV/
 cb/
 

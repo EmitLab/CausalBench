@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "causalbench-asu"
+version = "0.1rc1"
+authors = [
+  { name="CausalBench Team", email="support@causalbench.org"}
+]
+
+maintainers = [
+    { name="Ahmet Kapkiç", email="akapkic@asu.edu"},
+  { name="Pratanu Mandal", email="pmandal5@asu.edu"}
+]
+description = "Spatio Temporal Causal Benchmarking Platform"
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["causalbench","causality", "causal", "inference", "benchmark"]
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "gputil",
+    "requests",
+    "pyyaml",
+    "bunch_py3",
+    "pandas",
+    "jsonschema",
+    "pipreqs",
+    "psutil",
+    "py-cpuinfo",
+    "pip-system-certs",
+    "pyadl",
+    "gcastle",
+    "torch~=2.3.0"
+]
+
+[project.urls]
+Homepage = "https://causalbench.org"
+Documentation = "https://docs.causalbench.org"
+Repository = "https://github.com/EmitLab/CausalBench"
+Issues = "https://github.com/EmitLab/CausalBench/issues"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["causalbench-asu"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["causalbench-asu/causalbench"]
