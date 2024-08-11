@@ -2,8 +2,7 @@ import networkx as nx
 import numpy as np
 from matplotlib import pyplot as plt
 
-from causalbench.modules import Dataset, Metric, Model, Scenario, Run
-from causalbench.modules.context import Context
+from causalbench.modules import Dataset, Metric, Model, Context, Run
 from causalbench.modules.task import Task, AbstractTask
 
 
@@ -75,8 +74,11 @@ def main():
     # metric3 = Metric(zip_file='metric/accuracy_temporal.zip')
     # metric4 = Metric(zip_file='metric/shd_temporal.zip')
 
+    task: Task = Task(module_id='discovery.temporal')
+    task.load()
+
     # static task
-    context1: Context = Context(module_id=10, version=6)
+    # context1: Context = Context(module_id=10, version=6)
     # context1: Context = Context.create(module_id=10,
     #                                    name='Context1',
     #                                    description='Test static context',
@@ -86,9 +88,9 @@ def main():
     #                                    metrics=[metric1, metric2])
     # context1.publish(public=True)
 
-    run: Run = context1.execute()
-    # run.publish(public=True)
-    print(run)
+    # run: Run = context1.execute()
+    # # run.publish(public=True)
+    # print(run)
 
     # run: Run = Run(module_id=2)
     # print(run)

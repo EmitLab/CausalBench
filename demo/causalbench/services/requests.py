@@ -39,7 +39,7 @@ def save_module(module_type, module_id, version, public, input_file, api_base, d
             print(f'Failed to publish {module_type} with module_id={module_id}: {data.msg} (Error {response.status_code})', file=sys.stderr)
         else:
             print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {data.msg} (Error {response.status_code})', file=sys.stderr)
-        exit(1)
+        sys.exit(1)
 
 
 def fetch_module(module_type, module_id, version, base_api, default_output_file):
@@ -76,4 +76,4 @@ def fetch_module(module_type, module_id, version, base_api, default_output_file)
             print(f'Failed to fetch {module_type} with module_id={module_id}: {data.msg} (Error {response.status_code})', file=sys.stderr)
         else:
             print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {data.msg} (Error {response.status_code})', file=sys.stderr)
-        exit(1)
+        sys.exit(1)

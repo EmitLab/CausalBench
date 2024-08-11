@@ -5,7 +5,7 @@ from bunch_py3 import Bunch, bunchify
 
 from causalbench.commons.hwinfo import hwinfo
 from causalbench.commons.utils import parse_arguments, package_module, causal_bench_path
-from causalbench.modules import Scenario
+from causalbench.modules.scenario import Scenario
 from causalbench.modules.dataset import Dataset
 from causalbench.modules.metric import Metric
 from causalbench.modules.model import Model
