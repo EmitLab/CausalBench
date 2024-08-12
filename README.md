@@ -64,15 +64,16 @@ CausalBench is structured to support different machine learning tasks and datase
 |-----------------------|----------------------|
 | Abalone               | data, static graph   |
 | Adult                 | data, static graph   |
+| Sachs                 | data, static graph   |
 | Time series simulated | data, temporal graph |
+| Telecom               | data, temporal graph |
 
 | Model      | Task     |
 |------------|----------|
 | PC         | Static   |
 | GES        | Static   |
 | VAR-LiNGAM | Temporal |
-| PCMCI      | Temporal |
-
+| PCMCIplus  | Temporal |
 
 | Metric    | Task     |
 |-----------|----------|
