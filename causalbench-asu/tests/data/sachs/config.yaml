@@ -14,47 +14,47 @@ files:
             raf:
                 header: raf
                 type: nominal
-                data: float
+                data: decimal
             mek:
                 header: mek
                 type: nominal
-                data: float
+                data: decimal
             plc:
                 header: plc
                 type: nominal
-                data: float
+                data: decimal
             pip2:
                 header: pip2
                 type: nominal
-                data: float
+                data: decimal
             pip3:
                 header: pip3
                 type: nominal
-                data: float
+                data: decimal
             erk:
                 header: erk
                 type: nominal
-                data: float
+                data: decimal
             akt:
                 header: akt
                 type: nominal
-                data: float
+                data: decimal
             pka:
                 header: pka
                 type: nominal
-                data: float
+                data: decimal
             pkc:
                 header: pkc
                 type: nominal
-                data: float
+                data: decimal
             p38:
                 header: p38
                 type: nominal
-                data: float
+                data: decimal
             jnk:
                 header: jnk
                 type: nominal
-                data: float
+                data: decimal
     file2:
         type: csv
         data: graph.static

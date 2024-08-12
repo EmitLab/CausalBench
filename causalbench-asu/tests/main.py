@@ -47,7 +47,12 @@ def main():
     # dataset1 = Dataset(zip_file='data/abalone.zip')
     # dataset1.publish(public=True)
 
+    # dataset2 = Dataset(module_id=2, version=1)
     # dataset2 = Dataset(zip_file='data/time_series_simulated.zip')
+    # dataset2.publish()
+
+    # dataset3 = Dataset(zip_file='data/sachs.zip')
+    # dataset3.publish()
 
     # model1 = Model(module_id=4, version=1)
     # model1 = Model(zip_file='model/pc.zip')
@@ -57,9 +62,11 @@ def main():
     # model2 = Model(zip_file='model/ges.zip')
     # model2.publish(public=True)
 
+    # model3 = Model(module_id=3, version=1)
     # model3 = Model(zip_file='model/varlingam.zip')
     # model3.publish()
 
+    # model4 = Model(module_id=4, version=1)
     # model4 = Model(zip_file='model/pcmciplus.zip')
     # model4.publish()
 
@@ -71,11 +78,16 @@ def main():
     # metric2 = Metric(zip_file='metric/f1_static.zip')
     # metric2.publish(public=True)
 
+    # metric3 = Metric(module_id=3, version=1)
     # metric3 = Metric(zip_file='metric/accuracy_temporal.zip')
-    # metric4 = Metric(zip_file='metric/shd_temporal.zip')
+    # metric3.publish()
 
-    task: Task = Task(module_id='discovery.temporal')
-    task.load()
+    # metric4 = Metric(module_id=4, version=1)
+    # metric4 = Metric(zip_file='metric/shd_temporal.zip')
+    # metric4.publish()
+
+    # task: Task = Task(module_id='discovery.temporal')
+    # task.load()
 
     # static task
     # context1: Context = Context(module_id=10, version=6)
@@ -89,20 +101,22 @@ def main():
     # context1.publish(public=True)
 
     # run: Run = context1.execute()
-    # # run.publish(public=True)
-    # print(run)
-
-    # run: Run = Run(module_id=2)
+    # run.publish(public=True)
     # print(run)
 
     # temporal task
-    # context2: Context = Context.create(name='Context2',
-    #                                    description='Test temporal task',
+    # context2: Context = Context(module_id=3, version=1)
+    # context2: Context = Context.create(name='Temporal Context: VAR-LiNGAM, pcmciplus',
+    #                                    description='Test temporal context',
     #                                    task='discovery.temporal',
     #                                    datasets=[(dataset2, {'data': 'file1', 'ground_truth': 'file2'})],
     #                                    models=[model3, model4],
     #                                    metrics=[metric3, metric4])
-    # context2.execute()
+    # context2.publish(public=True)
+
+    # run: Run = context2.execute()
+    # run.publish()
+    # print(run)
 
 
 if __name__ == '__main__':
