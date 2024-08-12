@@ -1,0 +1,109 @@
+#dataset knowledge is a must: https://archive.ics.uci.edu/ml/datasets/abalone
+type: dataset
+name: abalone
+source: UCI
+url: https://archive.ics.uci.edu/dataset/1/abalone
+description: Predict the age of abalone from physical measurements
+files:
+    file1:
+        type: csv
+        data: dataframe
+        path: abalone.mixed.numeric.csv
+        headers: true
+        columns:
+            sex:
+                header: Sex
+                type: nominal
+                data: integer
+                labels:
+                    - 0
+                    - 1
+                    - 2
+            length:
+                header: Length
+                type: #ratio
+                data: decimal
+                unit: #
+            diam:
+                header: Diam
+                type: #ratio
+                data: decimal
+                range:
+                    start: 0.0
+                    end: 1.0
+                unit: #
+            height:
+                header: Height
+                type: #ratio
+                data: decimal
+                unit: #
+            whole:
+                header: Whole
+                type: #ratio
+                data: decimal
+                range:
+                    start: 0.0
+                    end: 3.0
+                unit: #
+            shucked:
+                header: Shucked
+                type: #ratio
+                data: decimal
+                unit: #
+            viscera:
+                header: Viscera
+                type: #ratio
+                data: decimal
+                unit: #
+            shell:
+                header: Shell
+                type: #ratio
+                data: decimal
+                unit: #
+            rings:
+                header: Rings
+                type: #ratio
+                data: integer
+                unit: #
+    file2:
+        type: csv
+        data: graph.static
+        path: causal_info_adjmat.csv
+        headers: true
+        columns:
+            sex:
+                header: Sex
+                type: nominal
+                data: integer
+            length:
+                header: Length
+                type: nominal
+                data: integer
+            diam:
+                header: Diam
+                type: nominal
+                data: integer
+            height:
+                header: Height
+                type: nominal
+                data: integer
+            whole:
+                header: Whole
+                type: nominal
+                data: integer
+            shucked:
+                header: Shucked
+                type: nominal
+                data: integer
+            viscera:
+                header: Viscera
+                type: nominal
+                data: integer
+            shell:
+                header: Shell
+                type: nominal
+                data: integer
+            rings:
+                header: Rings
+                type: nominal
+                data: integer

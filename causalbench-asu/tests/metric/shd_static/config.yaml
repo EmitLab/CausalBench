@@ -1,0 +1,7 @@
+type: metric
+name: SHD_static
+source: NA
+url: NA
+description: SHD metric for static causal graph.
+task: discovery.static
+path: shd_static.py

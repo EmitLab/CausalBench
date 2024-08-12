@@ -1,0 +1,57 @@
+type: dataset
+name: time_sim
+source: Kaggle
+url: https://www.kaggle.com/datasets/shenba/time-series-datasets
+description: Time series dataset for electric production
+files:
+    file1:
+        type: csv
+        data: dataframe
+        path: demo_dataset.csv
+        headers: true
+        index: 
+            time: index
+        columns:
+            index:
+                header: index
+                type: ratio
+                data: integer
+            var1:
+                header: var1
+                type: ratio
+                data: decimal
+            var2:
+                header: var2
+                type: ratio
+                data: decimal
+            var3:
+                header: var3
+                type: ratio
+                data: decimal
+            var4:
+                header: var4
+                type: ratio
+                data: decimal
+            
+    file2:
+        type: csv
+        data: graph.temporal
+        path: demo_groundtruth.csv
+        headers: true
+        index:
+            cause: cause
+            effect: effect
+            lag: timestep
+        columns:
+            cause:
+                header: cause
+                type: nominal
+                data: string
+            effect:
+                header: effect
+                type: nominal
+                data: string
+            timestep:
+                header: timestep
+                type: nominal
+                data: integer

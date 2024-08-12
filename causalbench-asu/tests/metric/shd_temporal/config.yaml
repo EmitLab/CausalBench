@@ -1,0 +1,7 @@
+type: metric
+name: SHD_temporal
+source: NA
+url: NA
+description: SHD metric for temporl causal graph.
+task: discovery.temporal
+path: shd_temporal.py

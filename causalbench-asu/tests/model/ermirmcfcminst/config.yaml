@@ -1,0 +1,7 @@
+type: model
+name: ermirmcfcminst
+source: GitHub
+url: https://github.com/IBM/OoD/tree/master/ERM-IRM
+description: Empirical Risk Minimization (ERM) and Invariant Risk Minimization (IRM) for Out-of-Distribution Generalization.
+task: classification
+path: ermirmcfcminst.py

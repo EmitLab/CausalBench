@@ -1,0 +1,4 @@
+type: task
+name: discovery.static
+path: discovery.static.py
+class_name: DiscoveryStatic

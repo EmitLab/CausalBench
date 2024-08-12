@@ -1,0 +1,8 @@
+type: model
+name: pcmciplus
+source: GitHub
+url: https://github.com/jakobrunge/tigramite
+description: PCMCIplus is a causal discovery framework for large-scale time series datasets that support both contemporaneous and lagged dependencies.
+task: discovery.temporal
+path: pcmciplus.py
+

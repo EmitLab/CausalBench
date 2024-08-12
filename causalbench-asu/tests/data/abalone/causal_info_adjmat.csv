@@ -1,0 +1,10 @@
+﻿,Sex,Length,Diam,Height,Whole,Shucked,Viscera,Shell,Rings
+Sex,0,1,1,1,0,0,0,0,0
+Length,0,0,0,0,0,0,0,0,0
+Diam,0,0,0,0,0,0,0,0,0
+Height,0,1,1,0,0,0,0,0,1
+Whole,0,0,0,0,0,0,0,0,0
+Shucked,0,0,0,0,1,0,0,0,0
+Viscera,0,0,0,0,1,0,0,0,0
+Shell,0,0,0,0,1,0,1,0,0
+Rings,1,1,1,1,1,1,1,1,0

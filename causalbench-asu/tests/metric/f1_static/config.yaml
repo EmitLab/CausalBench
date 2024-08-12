@@ -1,0 +1,7 @@
+type: metric
+name: f1_static
+source: NA
+url: NA
+description: F1 metric for static causal graph.
+task: discovery.static
+path: f1_static.py

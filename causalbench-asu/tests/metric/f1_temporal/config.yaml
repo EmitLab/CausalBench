@@ -1,0 +1,7 @@
+type: metric
+name: f1_temporal
+source: NA
+url: NA
+description: F1 metric for temporal causal graph.
+task: discovery.temporal
+path: f1_temporal.py

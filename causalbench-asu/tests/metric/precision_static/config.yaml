@@ -1,0 +1,7 @@
+type: metric
+name: precision_static
+source: NA
+url: NA
+description: Precision metric for static causal graph.
+task: discovery.static
+path: precision_static.py

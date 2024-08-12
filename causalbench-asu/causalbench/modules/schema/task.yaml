@@ -1,0 +1,15 @@
+type: object
+properties:
+    type:
+        const: task
+    name:
+        type: string
+    path:
+        type: string
+    class_name:
+        type: string
+required:
+    - type
+    - name
+    - path
+    - class_name

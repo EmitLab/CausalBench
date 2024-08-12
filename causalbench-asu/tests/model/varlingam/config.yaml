@@ -1,0 +1,7 @@
+type: model
+name: VAR-LiNGAM
+source: GitHub
+url: https://github.com/cdt15/lingam
+description: Discovery of non-gaussian linear causal models
+task: discovery.temporal
+path: varlingam.py

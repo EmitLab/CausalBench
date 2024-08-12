@@ -1,12 +1,14 @@
-[kpkc]
-TODO: Needs contact address, and usage wiki pages. 
----
-
 # CausalBench
+
+The up-to-date documentation regarding usage and features of CausalBench can be found at [https://docs.causalbench.org](https://docs.causalbench.org).
+
+Registration at [CausalBench website](https://causalbench.org) is required in order to utilize the CausalBench package.
+### Install CausalBench: 
+`pip install causalbench-asu`
 
 ## Overview
 
-CausalBench is a transparent, fair, and easy-to-use evaluation platform designed to advance research in causal learning. It facilitates scientific collaboration by providing a suite of tools for novel algorithms, datasets, and metrics. Our mission is to promote scientific objectivity, reproducibility, fairness, and awareness of bias in causal learning research. CausalBench serves as a comprehensive benchmarking resource, impacting a broad range of scientific and engineering disciplines.
+CausalBench is a flexible, fair, and easy-to-use evaluation platform designed to advance research in causal learning. It facilitates scientific collaboration by providing a suite of tools for novel algorithms, datasets, and metrics. Our mission is to promote scientific objectivity, reproducibility, fairness, and awareness of bias in causal learning research. CausalBench serves as a comprehensive benchmarking resource, impacting a broad range of scientific and engineering disciplines.
 
 ## Features
 
@@ -35,41 +37,43 @@ CausalBench meets the needs of various scientific and engineering disciplines by
 
 To start using CausalBench, follow these steps:
 
-1.  **Installation**: Instructions for installing CausalBench can be found [here](#).
-2.  **Documentation**: Comprehensive documentation for CausalBench, including API references and tutorials, is available [here](#).
-3.  **Contributing**: Information on how to contribute to the CausalBench project can be found [here](#).
+1.  **Installation**: Instructions for installing CausalBench can be found [here](https://docs.causalbench.org/install/).
+2.  **Documentation**: Comprehensive documentation for CausalBench, including CausalBench terms and tutorials, is available [here](https://docs.causalbench.org/).
 
 ## Contributing
 
-CausalBench is an open-source project and welcomes contributions from the community. Whether you are interested in developing new features, fixing bugs, or improving documentation, your input is valuable. Please refer to our [contribution guidelines](#) for more details.
+CausalBench is an open-source project and welcomes contributions from the community. We plan to announce the contribution guideline soon. 
 
 ## License
 
-CausalBench is licensed under the MIT License. See the [LICENSE](#) file for more information.
+CausalBench is licensed under the Apache License.
 
 ## Contact
 
-For questions, feedback, or further information, please contact us at email@example.com.
+For questions, feedback, or further information, please contact us at support@causalbench.org.
 
 ## Acknowledgments
-...
+This work is supported by NSF grant 2311716, "CausalBench: A Cyberinfrastructure
+for Causal-Learning Benchmarking for Efficacy, Reproducibility, and Scientific
+Collaboration".
 
 ## Support Benchmark Context
+CausalBench is structured to support different machine learning tasks and dataset types. With user contribution, the supported context will be expanded, currently, these models and tasks are provided.    
+
 | Dataset               | File                 |
 |-----------------------|----------------------|
 | Abalone               | data, static graph   |
 | Adult                 | data, static graph   |
+| Sachs                 | data, static graph   |
 | Time series simulated | data, temporal graph |
+| Telecom               | data, temporal graph |
 
 | Model      | Task     |
 |------------|----------|
 | PC         | Static   |
 | GES        | Static   |
 | VAR-LiNGAM | Temporal |
-| PCMCI*     | Temporal |
-
-* PCMCI is not working now
-
+| PCMCIplus  | Temporal |
 
 | Metric    | Task     |
 |-----------|----------|
@@ -83,4 +87,3 @@ For questions, feedback, or further information, please contact us at email@exam
 | Precision | Temporal |
 | Recall    | Temporal |
 | SHD       | Temporal |
-

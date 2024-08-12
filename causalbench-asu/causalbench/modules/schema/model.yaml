@@ -1,0 +1,28 @@
+type: object
+properties:
+    type:
+        const: model
+    name:
+        type: string
+    source:
+        type: string
+    url:
+        type: string
+    description:
+        type: string
+    task:
+        enum:
+            - discovery.static
+            - discovery.temporal
+            - discovery.spatiotemporal
+            - classification
+    path:
+        type: string
+required:
+    - type
+    - name
+    - source
+    - url
+    - description
+    - task
+    - path

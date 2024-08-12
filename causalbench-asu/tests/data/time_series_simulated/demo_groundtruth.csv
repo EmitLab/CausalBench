@@ -1,0 +1,4 @@
+cause,effect,timestep
+var1,var2,1
+var2,var3,2
+var4,var1,0

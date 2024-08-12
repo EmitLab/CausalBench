@@ -1,0 +1,7 @@
+type: model
+name: ges
+source: GitHub
+url: https://github.com/huawei-noah/trustworthyAI/tree/master/gcastle
+description: Greedy equivalence search (GES) for causal discovery.
+task: discovery.static
+path: ges.py

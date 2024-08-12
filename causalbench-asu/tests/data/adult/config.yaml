@@ -1,0 +1,139 @@
+#dataset knowledge is a must: https://archive.ics.uci.edu/dataset/2/adult
+type: dataset
+name: adult
+source: UCI
+url: https://archive.ics.uci.edu/dataset/2/adult
+description: Predict whether income exceeds $50K/yr based on census data. Also known as "Census Income" dataset
+files:
+    file1:
+        type: csv
+        data: dataframe
+        path: adult.data.mixed.numeric.csv
+        headers: true
+        columns:
+            age:
+                header: age
+                type: nominal
+                data: integer
+            workclass:
+                header: workclass
+                type: nominal
+                data: integer
+            fnlwgt:
+                header: fnlwgt
+                type: nominal
+                data: integer
+            education:
+                header: educ
+                type: nominal
+                data: integer
+            educationLevel:
+                header: educ-num
+                type: nominal
+                data: integer
+            maritalStatus:
+                header: mar-stat
+                type: nominal
+                data: integer
+            occupation:
+                header: occup
+                type: nominal
+                data: integer
+            relationship:
+                header: relat
+                type: nominal
+                data: integer
+            race:
+                header: race
+                type: nominal
+                data: integer
+            sex:
+                header: sex
+                type: nominal
+                data: integer
+            capitalGain:
+                header: cap-gain
+                type: nominal
+                data: integer
+            capitalLoss:
+                header: cap-loss
+                type: nominal
+                data: integer
+            hoursPerWeek:
+                header: hrs-wk
+                type: nominal
+                data: integer
+            nativeCountry:
+                header: nat-count
+                type: nominal
+                data: integer
+            income:
+                header: Income
+                type: nominal
+                data: integer
+    file2:
+        type: csv
+        data: graph.static
+        path: causal_info_adjmat.csv
+        headers: true
+        columns:
+            age:
+                header: age
+                type: nominal
+                data: integer
+            workclass:
+                header: workclass
+                type: nominal
+                data: integer
+            fnlwgt:
+                header: fnlwgt
+                type: nominal
+                data: integer
+            education:
+                header: educ
+                type: nominal
+                data: integer
+            educationLevel:
+                header: educ-num
+                type: nominal
+                data: integer
+            maritalStatus:
+                header: mar-stat
+                type: nominal
+                data: integer
+            occupation:
+                header: occup
+                type: nominal
+                data: integer
+            relationship:
+                header: relat
+                type: nominal
+                data: integer
+            race:
+                header: race
+                type: nominal
+                data: integer
+            sex:
+                header: sex
+                type: nominal
+                data: integer
+            capitalGain:
+                header: cap-gain
+                type: nominal
+                data: integer
+            capitalLoss:
+                header: cap-loss
+                type: nominal
+                data: integer
+            hoursPerWeek:
+                header: hrs-wk
+                type: nominal
+                data: integer
+            nativeCountry:
+                header: nat-count
+                type: nominal
+                data: integer
+            income:
+                header: Income
+                type: nominal
+                data: integer

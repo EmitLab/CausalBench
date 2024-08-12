@@ -1,0 +1,107 @@
+#dataset knowledge is a must: https://www.science.org/doi/10.1126/science.1105809
+type: dataset
+name: sachs
+source: Causal protein-signaling networks derived from multiparameter single-cell data.
+url: https://www.science.org/doi/10.1126/science.1105809
+description: The data consist in the simultaneous measurements of 11 phosphorylated proteins and phospholipids derived from thousands of individual primary immune system cells, subjected to both general and specific molecular interventions.
+files:
+    file1:
+        type: csv
+        data: dataframe
+        path: sachs.2005.continuous.csv
+        headers: true
+        columns:
+            raf:
+                header: raf
+                type: nominal
+                data: decimal
+            mek:
+                header: mek
+                type: nominal
+                data: decimal
+            plc:
+                header: plc
+                type: nominal
+                data: decimal
+            pip2:
+                header: pip2
+                type: nominal
+                data: decimal
+            pip3:
+                header: pip3
+                type: nominal
+                data: decimal
+            erk:
+                header: erk
+                type: nominal
+                data: decimal
+            akt:
+                header: akt
+                type: nominal
+                data: decimal
+            pka:
+                header: pka
+                type: nominal
+                data: decimal
+            pkc:
+                header: pkc
+                type: nominal
+                data: decimal
+            p38:
+                header: p38
+                type: nominal
+                data: decimal
+            jnk:
+                header: jnk
+                type: nominal
+                data: decimal
+    file2:
+        type: csv
+        data: graph.static
+        path: causal_info_adjmat.csv
+        headers: true
+        columns:
+            raf:
+                header: raf
+                type: nominal
+                data: integer
+            mek:
+                header: mek
+                type: nominal
+                data: integer
+            plc:
+                header: plc
+                type: nominal
+                data: integer
+            pip2:
+                header: pip2
+                type: nominal
+                data: integer
+            pip3:
+                header: pip3
+                type: nominal
+                data: integer
+            erk:
+                header: erk
+                type: nominal
+                data: integer
+            akt:
+                header: akt
+                type: nominal
+                data: integer
+            pka:
+                header: pka
+                type: nominal
+                data: integer
+            pkc:
+                header: pkc
+                type: nominal
+                data: integer
+            p38:
+                header: p38
+                type: nominal
+                data: integer
+            jnk:
+                header: jnk
+                type: nominal
+                data: integer

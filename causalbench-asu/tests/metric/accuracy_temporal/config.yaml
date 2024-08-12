@@ -1,0 +1,7 @@
+type: metric
+name: accuracy_temporal
+source: NA
+url: NA
+description: Accuracy metric for temporal causal graph.
+task: discovery.temporal
+path: accuracy_temporal.py
