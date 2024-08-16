@@ -46,7 +46,7 @@ class GPU:
 
     def get_memory_total(self):
         if self.vendor == 'NVIDIA':
-            return self.device.memoryTotal
+            return int(self.device.memoryTotal * 1048576)
         elif self.vendor == 'AMD':
             return None
 
