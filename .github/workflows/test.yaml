@@ -23,6 +23,7 @@ jobs:
 
     - name: Build the library
       run: |
+        cd causalbench-asu/        
         pip install .
 
     - name: Run Python file
