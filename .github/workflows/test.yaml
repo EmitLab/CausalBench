@@ -28,5 +28,5 @@ jobs:
 
     - name: Run Python file
       run: |
-        cd tests
+        cd causalbench-asu/tests
         python execute.py  # Replace with the path to your Python file
