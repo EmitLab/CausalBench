@@ -19,6 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         conda create -n causal-test python=3.10
+        conda init
         conda activate causal-test
         pip install torch
 
