@@ -1,7 +1,7 @@
 from castle.algorithms import PC
 
 
-def execute(data, helpers: any):
+def execute(data, helpers: any, alpha = 0.01):
     X = data.data
 
     pc = PC()

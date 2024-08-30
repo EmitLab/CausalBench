@@ -96,20 +96,20 @@ class Context(Module):
         for model in self.models:
             if 'object' not in model:
                 model.object = Model(module_id=model.id, version=model.version)
-            models.append(model.object)
+            models.append((model.object, model.hyperparameters))
 
         # load the metrics
         metrics = []
         for metric in self.metrics:
             if 'object' not in metric:
                 metric.object = Metric(module_id=metric.id, version=metric.version)
-            metrics.append(metric.object)
+            metrics.append((metric.object, metric.hyperparameters))
 
         # create the scenarios
         scenarios = []
         for dataset in datasets:
             for model in models:
-                scenario = Scenario(task, dataset[0], dataset[1], model, metrics)
+                scenario = Scenario(task, dataset, model, metrics)
                 scenarios.append(scenario)
 
         # execute the scenarios
@@ -204,13 +204,24 @@ class Context(Module):
                 self_model = Bunch()
                 self.models.append(self_model)
 
-                # model
-                if isinstance(model, Model):
-                    self_model.id = model.module_id
-                    self_model.version = model.version
-                    self_model.object = model
+                if isinstance(model, tuple):
+                    # model
+                    if isinstance(model[0], Model):
+                        self_model.id = model[0].module_id
+                        self_model.version = model[0].version
+                        self_model.object = model[0]
+                    else:
+                        raise ValueError('Invalid model instance')
+
+                    # hyperparameter mapping
+                    if isinstance(model[1], Bunch):
+                        self_model.hyperparameters = model[1]
+                    elif isinstance(model[1], dict):
+                        self_model.hyperparameters = bunchify(model[1])
+                    else:
+                        raise ValueError('Invalid model hyperparameter mapping')
                 else:
-                    raise ValueError('Invalid model instance')
+                    raise ValueError('Invalid model definition')
         else:
             raise ValueError('Invalid model definition')
 
@@ -221,13 +232,24 @@ class Context(Module):
                 self_metric = Bunch()
                 self.metrics.append(self_metric)
 
-                # metric
-                if isinstance(metric, Metric):
-                    self_metric.id = metric.module_id
-                    self_metric.version = metric.version
-                    self_metric.object = metric
+                if isinstance(metric, tuple):
+                    # metric
+                    if isinstance(metric[0], Metric):
+                        self_metric.id = metric[0].module_id
+                        self_metric.version = metric[0].version
+                        self_metric.object = metric[0]
+                    else:
+                        raise ValueError('Invalid metric instance')
+
+                    # hyperparameter mapping
+                    if isinstance(metric[1], Bunch):
+                        self_metric.hyperparameters = metric[1]
+                    elif isinstance(metric[1], dict):
+                        self_metric.hyperparameters = bunchify(metric[1])
+                    else:
+                        raise ValueError('Invalid metric hyperparameter mapping')
                 else:
-                    raise ValueError('Invalid metric instance')
+                    raise ValueError('Invalid metric definition')
         else:
             raise ValueError('Invalid metric definition')
 

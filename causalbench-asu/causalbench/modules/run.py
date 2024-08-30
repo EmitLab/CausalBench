@@ -45,11 +45,16 @@ class Run(Module):
             string += '-' * 80 + '\n'
 
             string += f'Dataset: {result.dataset.name}' + '\n'
+
             string += f'Model: {result.model.name}' + '\n'
+            for key, value in result.model.hyperparameters.items():
+                string += f'    {key}: {value}' + '\n'
 
             string += 'Metrics:' + '\n'
             for metric in result.metrics:
                 string += f'    {metric.name}: {metric.output["score"]}' + '\n'
+                for key, value in metric.hyperparameters.items():
+                    string += f'        {key}: {value}' + '\n'
 
         string += '=' * 80
 
