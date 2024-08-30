@@ -18,7 +18,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        conda create -n causal-test python=3.10
+        conda activate causal-test
         pip install torch
 
     - name: Build the library
