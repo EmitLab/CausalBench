@@ -20,7 +20,6 @@ jobs:
       run: |
         conda --version
         conda create -n causal-test python=3.10 -y
-        conda init
         conda activate causal-test
         pip install torch
 
