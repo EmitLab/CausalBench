@@ -18,4 +18,5 @@ jobs:
 
     - name: Run test.sh
       run: |
+        cd causalbench-asu/tests/
         bash test.sh
