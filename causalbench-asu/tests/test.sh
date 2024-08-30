@@ -3,6 +3,7 @@ source activate base
 conda activate causal-test
 pip install torch
 cd ../        
+pwd
 pip install .
 cd tests
 python execute.py 
