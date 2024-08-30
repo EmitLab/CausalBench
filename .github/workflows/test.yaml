@@ -16,20 +16,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install dependencies
+    - name: Run test.sh
       run: |
-        conda --version
-        conda create -n causal-test python=3.10 -y
-        source activate base 
-        conda activate causal-test
-        pip install torch
-
-    - name: Build the library
-      run: |
-        cd causalbench-asu/        
-        pip install .
-
-    - name: Run Python file
-      run: |
-        cd causalbench-asu/tests
-        python execute.py  # Replace with the path to your Python file
+        bash test.sh
