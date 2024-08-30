@@ -3,5 +3,5 @@ conda activate causal-test
 pip install torch
 cd ..      
 pip install .
-cd /tests
+cd tests
 python execute.py 
