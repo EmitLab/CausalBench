@@ -1,7 +1,9 @@
 conda create -n causal-test python=3.10 -y
 conda activate causal-test
 pip install torch
-cd ..      
-pip install .
+cd ../..    
+pip install build
+python -m build
+pip install dist/causalbench_asu-0.1rc1-py3-none-any.whl 
 cd tests
 python execute.py 
