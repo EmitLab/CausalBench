@@ -1,10 +1,9 @@
 conda create -n causal-test python=3.10 -y
 conda activate causal-test
-python -m pip install --upgrade pip
-pip install torch
+python3 -m pip install --upgrade pip
 cd ../..    
-pip install build
+pip3 install build
 python -m build
-pip install dist/causalbench_asu-0.1rc1-py3-none-any.whl 
+pip3 install dist/causalbench_asu-0.1rc1-py3-none-any.whl 
 cd causalbench-asu/tests
-python execute.py 
+python3 execute.py 
