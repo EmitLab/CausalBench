@@ -5,5 +5,5 @@ cd ../..
 pip install build
 python -m build
 pip install dist/causalbench_asu-0.1rc1-py3-none-any.whl 
-cd tests
+cd causalbench-asu/tests
 python execute.py 
