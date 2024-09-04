@@ -1,6 +1,7 @@
 conda create -n causal-test python=3.10 -y
 conda activate causal-test
-pip install torch==2.3.0
+python -m pip install --upgrade pip
+pip install torch
 cd ../..    
 pip install build
 python -m build
