@@ -19,4 +19,4 @@ jobs:
     - name: Install dependencies
       run: |
         cd causalbench-asu/tests/
-        bash test.sh
+        bash -l test.sh
