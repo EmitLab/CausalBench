@@ -105,18 +105,18 @@ def main():
     # print(run)
 
     # temporal task
-    # context2: Context = Context(module_id=3, version=1)
+    context2: Context = Context(module_id=3, version=1)
     # context2: Context = Context.create(name='Temporal Context: VAR-LiNGAM, pcmciplus',
     #                                    description='Test temporal context',
     #                                    task='discovery.temporal',
     #                                    datasets=[(dataset2, {'data': 'file1', 'ground_truth': 'file2'})],
     #                                    models=[model3, model4],
     #                                    metrics=[metric3, metric4])
-    # context2.publish(public=True)
+    context2.publish(public=True)
 
-    # run: Run = context2.execute()
-    # run.publish()
-    # print(run)
+    run: Run = context2.execute()
+    run.publish(public=True)
+    print(run)
 
 
 if __name__ == '__main__':
