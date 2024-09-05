@@ -3,7 +3,7 @@ conda create -n causal-test python=3.10 -y
 conda activate causal-test
 cd ../..    
 echo "Building package..."
-pip install castle
+pip install gcastle
 pip install build
 python -m build
 pip install dist/causalbench_asu-0.1rc3-py3-none-any.whl 
