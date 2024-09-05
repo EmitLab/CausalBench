@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "causalbench-asu"
-version = "0.1rc1"
+version = "0.1rc3"
 authors = [
   { name="CausalBench Team", email="support@causalbench.org"}
 ]
@@ -26,7 +26,6 @@ classifiers = [
 ]
 
 dependencies = [
-  "gputil",
     "requests",
     "pyyaml",
     "bunch_py3",
@@ -36,9 +35,8 @@ dependencies = [
     "psutil",
     "py-cpuinfo",
     "pip-system-certs",
-    "pyadl",
-    "gcastle",
-    "torch~=2.3.0"
+    "gputil",
+    "pyadl"
 ]
 
 [project.urls]
