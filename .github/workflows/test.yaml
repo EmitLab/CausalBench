@@ -11,7 +11,10 @@ on:
   workflow_dispatch:
 jobs:
   build:
-    runs-on: self-hosted
+    strategy:
+      matrix:
+        os: [self-hosted]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
