@@ -1,6 +1,8 @@
 echo Creating conda environment...
 conda create -n causal-test python=3.10 -y
+echo Conda environment is created
 conda activate causal-test
+echo Conda environment is activated
 
 cd ../..
 echo Building package...
