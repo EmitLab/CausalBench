@@ -30,4 +30,4 @@ jobs:
       if: matrix.os == 'Windows'
       run: |
         cd causalbench-asu/tests/
-        .\test.bat
+        .\test.cmd
