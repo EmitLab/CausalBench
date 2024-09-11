@@ -9,6 +9,7 @@ pip install build
 python -m build
 pip install dist/causalbench_asu-0.1rc3-py3-none-any.whl 
 pip install pytest
+pip install PyJWT
 cd causalbench-asu/tests
 echo "Test system"
 python test-execute.py 
