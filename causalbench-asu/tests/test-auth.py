@@ -26,5 +26,5 @@ def is_jwt(token):
 ## can be ignored for now as ertugrul's creds are already there.
 response = init_auth()
 
-assert is_jwt(response)==False, "Response is in JWT format and it is an access token." 
-assert is_jwt(response)==True, "Response is not in JWT format. Access token could not received"
+assert is_jwt(response), "Response is not in JWT format. Access token could not received"
+print("Response is in JWT format and it is an access token.")
