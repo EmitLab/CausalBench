@@ -10,7 +10,7 @@ python -m build
 pip install dist/causalbench_asu-0.1rc3-py3-none-any.whl 
 pip install pytest
 cd causalbench-asu/tests
-echo "Tests executing"
+echo "Test system"
 python test-execute.py 
-echo "Tests login function"
+echo "Test login function"
 python test-auth.py 
