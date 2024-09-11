@@ -15,4 +15,4 @@ pip install dist\causalbench_asu-0.1rc3-py3-none-any.whl
 
 cd causalbench-asu\tests
 echo Tests executing
-python execute.py
+python test-execute.py
