@@ -8,8 +8,9 @@ pip install torch
 pip install build
 python -m build
 pip install dist/causalbench_asu-0.1rc3-py3-none-any.whl 
+pip install pytest
 cd causalbench-asu/tests
 echo "Tests executing"
 python test-execute.py 
-echo "Test login function"
+echo "Tests login function"
 python test-auth.py 
