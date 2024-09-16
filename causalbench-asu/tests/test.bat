@@ -14,6 +14,7 @@ pip install torch
 pip install build
 python -m build
 for /f "delims=" %%f in ('dir /b /o-d dist\*.whl') do pip install dist\%%f & goto :end
+:end
 pip install PyJWT
 pip install pytest
 cd causalbench-asu\tests
