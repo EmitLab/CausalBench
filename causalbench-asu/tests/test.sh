@@ -15,3 +15,11 @@ echo "Test system"
 python test-execute.py 
 echo "Test login function"
 python test-auth.py 
+echo "Test dataset functions"
+python test-data.py 
+echo "Test model functions"
+python test-model.py 
+echo "Test metric functions"
+python test-metric.py 
+echo "Test task functions"
+python test-task.py 
