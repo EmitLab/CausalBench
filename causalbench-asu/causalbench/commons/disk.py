@@ -204,22 +204,15 @@ class DisksProfiler:
         return bunchify(usage)
 
 
-def get_disks():
-    return Disks()
-
-
-def get_disks_profiler():
-    return DisksProfiler(get_disks())
-
-
 if __name__ == "__main__":
-    disk: Disks = get_disks()
+    disk: Disks = Disks()
     for k, v in disk.disk_drives.items():
         print(k, v)
 
     profiler: DisksProfiler = DisksProfiler(disk)
 
     time.sleep(5)
+    print()
 
     for k, v in profiler.usage.items():
         print(k, v)
