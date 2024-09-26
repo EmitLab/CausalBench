@@ -2,10 +2,10 @@ import platform
 import re
 import subprocess
 import plistlib
+import time
 
 import psutil
 from bunch_py3 import Bunch, bunchify
-import os
 
 
 class Disks:
@@ -48,12 +48,10 @@ class Disks:
                     physical_drives[drive_id].usage.total += int(partition.Size)
                     physical_drives[drive_id].usage.free += int(partition.FreeSpace)
 
-            physical_drives[drive_id].usage.used = physical_drives[drive_id].usage.total - physical_drives[
-                drive_id].usage.free
+            physical_drives[drive_id].usage.used = physical_drives[drive_id].usage.total - physical_drives[drive_id].usage.free
 
-            result = subprocess.run(['powershell', '-Command',
-                                     f'Get-PhysicalDisk | Select-Object DeviceID, MediaType | Where-Object {{ $_.DeviceID -eq {drive.Index} }}'],
-                                    capture_output=True, text=True)
+            result = subprocess.run(['powershell', '-Command', f'Get-PhysicalDisk | Select-Object DeviceID, MediaType | Where-Object {{ $_.DeviceID -eq {drive.Index} }}'], capture_output=True, text=True)
+
             if 'SSD' in result.stdout:
                 physical_drives[drive_id].mediatype = 'SSD'
             elif 'HDD' in result.stdout:
@@ -61,7 +59,7 @@ class Disks:
             else:
                 physical_drives[drive_id].mediatype = 'Unknown'
 
-            physical_drives[drive_id].fusion = False
+            physical_drives[drive_id].fusion = None
 
         return physical_drives
 
@@ -95,77 +93,92 @@ class Disks:
             else:
                 physical_drives[drive_id].mediatype = 'Unknown'
 
-            physical_drives[drive_id].fusion = False
+            physical_drives[drive_id].fusion = None
 
         return physical_drives
 
     @staticmethod
     def get_physical_drives_macos():
-        result = subprocess.run(['diskutil', 'list', '-plist'], stdout=subprocess.PIPE, text=True)
-        plist = plistlib.loads(result.stdout.encode())
+        physical_drives = subprocess.run(['diskutil', 'list', '-plist'], stdout=subprocess.PIPE, text=True)
+        plist = plistlib.loads(physical_drives.stdout.encode())
 
-        disks = dict()
-        fusion_list = dict()
+        # map containers to partitions
+        partitions = dict()  # partition to container mapping
+        fusions = dict()     # partition to container mapping (for fusion drives)
+
         for disk in plist['AllDisks']:
             disk_info = subprocess.run(['diskutil', 'info', '-plist', disk], stdout=subprocess.PIPE, text=True)
             disk_plist = plistlib.loads(disk_info.stdout.encode())
 
             if disk_plist.get('MountPoint') and disk_plist.get('APFSPhysicalStores'):
+                for partition in disk_plist.get('APFSPhysicalStores'):
+                    partition = partition['APFSPhysicalStore']
 
-                for parent in disk_plist.get('APFSPhysicalStores'):
-                    parent = parent["APFSPhysicalStore"]
-                    if disk_plist.get('Fusion') and parent not in fusion_list:
-                        fusion_list[parent] = disk_plist.get('APFSContainerReference')
-                    if parent not in disks:
-                        disks[parent] = []
-                    disks[parent].append(disk)
-        physical_drives = Bunch()
+                    if partition not in partitions:
+                        partitions[partition] = []
+                    partitions[partition].append(disk)
 
-        for disk, partitions in disks.items():
-            disk_info = subprocess.run(['diskutil', 'info', '-plist', disk], stdout=subprocess.PIPE, text=True)
-            disk_plist = plistlib.loads(disk_info.stdout.encode())
-            physical_drives[disk] = Bunch()
-            physical_drives[disk].parent = disk_plist.get('ParentWholeDisk')
+                    if disk_plist.get('Fusion') and partition not in fusions:
+                        fusions[partition] = disk_plist.get('APFSContainerReference')
 
-            physical_drives[disk].usage = Bunch()
-            physical_drives[disk].usage.total = 0
-            physical_drives[disk].usage.used = 0
+        # map partitions to drives
+        physical_partitions = Bunch()
 
-            for partition in partitions:
-                part_info = subprocess.run(['diskutil', 'info', '-plist', partition], stdout=subprocess.PIPE, text=True)
-                part_plist = plistlib.loads(part_info.stdout.encode())
-                physical_drives[disk].usage.total = part_plist.get('TotalSize')
-                physical_drives[disk].usage.used += part_plist.get('CapacityInUse')
+        for partition, containers in partitions.items():
+            partition_info = subprocess.run(['diskutil', 'info', '-plist', partition], stdout=subprocess.PIPE, text=True)
+            partition_plist = plistlib.loads(partition_info.stdout.encode())
 
-            if 'SolidState' in disk_plist:
-                if disk_plist.get('SolidState'):
-                    physical_drives[disk].mediatype = 'SSD'
-                else:
-                    physical_drives[disk].mediatype = 'HDD'
-            else:
-                physical_drives[disk].mediatype = 'Unknown'
-        result = dict()
-        for name, disk in physical_drives.items():
-            if disk.parent not in result.keys():
-                result[disk.parent] = Bunch()
-                result[disk.parent].mediatype = disk.mediatype
-                result[disk.parent].total = 0
-                result[disk.parent].used = 0
-                if name in fusion_list:
-                    result[disk.parent].fusion = fusion_list[name]
-                else:
-                    result[disk.parent].fusion = None
+            physical_partitions[partition] = Bunch()
 
-            result[disk.parent].total = disk.usage.total
-            result[disk.parent].used += disk.usage.used
+            physical_partitions[partition].parent = partition_plist.get('ParentWholeDisk')
 
-        for disk in result:
-            result[disk].free = result[disk].total - result[disk].used
-            drive_info = subprocess.run(['diskutil', 'info', '-plist', disk], stdout=subprocess.PIPE, text=True)
+            physical_partitions[partition].usage = Bunch()
+            physical_partitions[partition].usage.total = partition_plist.get('TotalSize')
+            physical_partitions[partition].usage.used = 0
+
+            for container in containers:
+                container_info = subprocess.run(['diskutil', 'info', '-plist', container], stdout=subprocess.PIPE, text=True)
+                container_plist = plistlib.loads(container_info.stdout.encode())
+                physical_partitions[partition].usage.used += container_plist.get('CapacityInUse')
+
+        # aggregate partition usage for drives
+        physical_drives = dict()
+
+        for partition_id, partition in physical_partitions.items():
+            device_id = partition.parent
+
+            if device_id not in physical_drives.keys():
+                physical_drives[device_id] = Bunch()
+
+                physical_drives[device_id].total = 0
+                physical_drives[device_id].used = 0
+
+            physical_drives[device_id].total += partition.usage.total
+            physical_drives[device_id].used += partition.usage.used
+
+        # drive information
+        for device_id, physical_drive in physical_drives.items():
+            physical_drive.free = physical_drive.total - physical_drive.used
+
+            drive_info = subprocess.run(['diskutil', 'info', '-plist', device_id], stdout=subprocess.PIPE, text=True)
             drive_plist = plistlib.loads(drive_info.stdout.encode())
-            result[disk].mediaName = drive_plist.get('MediaName')
 
-        return result
+            physical_drive.model = drive_plist.get('MediaName')
+
+            if 'SolidState' in drive_plist:
+                if drive_plist.get('SolidState'):
+                    physical_drive.mediatype = 'SSD'
+                else:
+                    physical_drive.mediatype = 'HDD'
+            else:
+                physical_drive.mediatype = 'Unknown'
+
+            if device_id in fusions:
+                physical_drives[device_id].fusion = fusions[device_id]
+            else:
+                physical_drives[device_id].fusion = None
+
+        return physical_drives
 
 
 class DisksProfiler:
@@ -176,8 +189,7 @@ class DisksProfiler:
 
     def _get_usage(self) -> Bunch:
         usage: dict = psutil.disk_io_counters(perdisk=True)
-        usage: dict = {key: {'read_bytes': value.read_bytes, 'write_bytes': value.write_bytes} for key, value in
-                       usage.items() if key in self.disks}
+        usage: dict = {key: {'read_bytes': value.read_bytes, 'write_bytes': value.write_bytes} for key, value in usage.items() if key in self.disks}
         usage: dict = dict(sorted(usage.items()))
         return bunchify(usage)
 
@@ -185,7 +197,7 @@ class DisksProfiler:
     def usage(self) -> Bunch:
         current_usage = self._get_usage()
         usage: dict = dict()
-        for key in self._usage.keys():
+        for key in self.disks:
             usage[key] = dict()
             usage[key]['read_bytes'] = current_usage[key]['read_bytes'] - self._usage[key]['read_bytes']
             usage[key]['write_bytes'] = current_usage[key]['write_bytes'] - self._usage[key]['write_bytes']
@@ -206,27 +218,8 @@ if __name__ == "__main__":
         print(k, v)
 
     profiler: DisksProfiler = DisksProfiler(disk)
+
+    time.sleep(5)
+
     for k, v in profiler.usage.items():
         print(k, v)
-
-    # drives = get_physical_drives()
-    # print(drives)
-    # for drive in drives:
-    #     print(f"Device: {drive['device']}")
-    #     print(f"  Model: {drive.get('model', 'Unknown')}")
-    #     print(f"  Size: {drive.get('size', 'Unknown')}")
-    #     print(f"  Serial Number: {drive.get('serial_number', drive.get('serial', 'Unknown'))}")
-    #     print(f"  Total Size: {drive.get('total_size', 'Unknown')} bytes")
-    #     print(f"  Used Space: {drive.get('used_space', 'Unknown')} bytes")
-    #     print(f"  Free Space: {drive.get('free_space', 'Unknown')} bytes")
-    #     print(f"  Interface Type: {drive.get('interface_type', 'N/A')}")
-    #     print()
-
-    # usage_before: Bunch = get_usage()
-    #
-    # with open('C:\\Users\\prata\\Desktop\\out.txt', 'r') as file:
-    #     file.read()
-    #
-    # usage_after: Bunch = get_usage()
-    #
-    # print(usage_diff(usage_before, usage_after))
