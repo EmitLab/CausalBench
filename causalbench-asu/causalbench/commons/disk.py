@@ -65,7 +65,7 @@ class Disks:
 
     @staticmethod
     def get_physical_drives_linux():
-        result = subprocess.run(['lsblk', '-P', '-d', '-o', 'NAME,MODEL,ROTA'], stdout=subprocess.PIPE, text=True)
+        result = subprocess.run(['lsblk', '-S', '-P', '-d', '-o', 'NAME,MODEL,ROTA'], stdout=subprocess.PIPE, text=True)
         lines = result.stdout.splitlines()
         lines = [dict(re.findall(r'(\S+)=(".*?"|\S+)', line)) for line in lines]
         lines = [{k: v.strip('"') for k, v in line.items()} for line in lines]
