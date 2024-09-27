@@ -41,7 +41,7 @@ class Disks:
 
             physical_drives[drive_id] = Bunch()
 
-            physical_drives[drive_id].model = drive.Model
+            physical_drives[drive_id].model = drive.Model.strip()
 
             physical_drives[drive_id].usage = Bunch()
             physical_drives[drive_id].usage.total = 0
@@ -90,7 +90,7 @@ class Disks:
 
             physical_drives[drive_id] = Bunch()
 
-            physical_drives[drive_id].model = drive.model
+            physical_drives[drive_id].model = drive.model.strip()
 
             result = self._syscall(['lsblk', '-J', '-b', '-o', 'NAME,FSSIZE,FSAVAIL,FSUSED', f'/dev/{drive_id}'])
             device = json.loads(result)
@@ -191,7 +191,7 @@ class Disks:
             result = self._syscall(['diskutil', 'info', '-plist', device_id])
             drive_plist = plistlib.loads(result.encode())
 
-            physical_drive.model = drive_plist.get('MediaName')
+            physical_drive.model = drive_plist.get('MediaName').strip()
 
             if 'SolidState' in drive_plist:
                 if drive_plist.get('SolidState'):
