@@ -104,12 +104,10 @@ class Disks:
 
             recursive_usage(device)
 
-            if drive.rota == '0':
+            if not drive.rota:
                 physical_drives[drive_id].mediatype = 'SSD'
-            elif drive.rota == '1':
-                physical_drives[drive_id].mediatype = 'HDD'
             else:
-                physical_drives[drive_id].mediatype = 'Unknown'
+                physical_drives[drive_id].mediatype = 'HDD'
 
             physical_drives[drive_id].fusion = None
 
