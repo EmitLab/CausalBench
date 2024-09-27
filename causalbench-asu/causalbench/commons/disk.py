@@ -110,16 +110,20 @@ class Disks:
             disk_info = subprocess.run(['diskutil', 'info', '-plist', disk], stdout=subprocess.PIPE, text=True)
             disk_plist = plistlib.loads(disk_info.stdout.encode())
 
-            if disk_plist.get('MountPoint') and disk_plist.get('APFSPhysicalStores'):
-                for partition in disk_plist.get('APFSPhysicalStores'):
-                    partition = partition['APFSPhysicalStore']
+            if disk_plist.get('MountPoint'):
+                if disk_plist.get('APFSPhysicalStores'):
+                    for partition in disk_plist.get('APFSPhysicalStores'):
+                        partition = partition['APFSPhysicalStore']
 
-                    if partition not in partitions:
-                        partitions[partition] = []
-                    partitions[partition].append(disk)
+                        if partition not in partitions:
+                            partitions[partition] = []
+                        partitions[partition].append(disk)
 
-                    if disk_plist.get('Fusion') and partition not in fusions:
-                        fusions[partition] = disk_plist.get('APFSContainerReference')
+                        if disk_plist.get('Fusion') and partition not in fusions:
+                            fusions[partition] = disk_plist.get('APFSContainerReference')
+
+                else:
+                    partitions[disk] = []
 
         # map partitions to drives
         physical_partitions = Bunch()
@@ -136,10 +140,14 @@ class Disks:
             physical_partitions[partition].usage.total = partition_plist.get('TotalSize')
             physical_partitions[partition].usage.used = 0
 
-            for container in containers:
-                container_info = subprocess.run(['diskutil', 'info', '-plist', container], stdout=subprocess.PIPE, text=True)
-                container_plist = plistlib.loads(container_info.stdout.encode())
-                physical_partitions[partition].usage.used += container_plist.get('CapacityInUse')
+            if partition_plist.get('FreeSpace'):
+                physical_partitions[partition].usage.used = physical_partitions[partition].usage.total - partition_plist.get('FreeSpace')
+
+            else:
+                for container in containers:
+                    container_info = subprocess.run(['diskutil', 'info', '-plist', container], stdout=subprocess.PIPE, text=True)
+                    container_plist = plistlib.loads(container_info.stdout.encode())
+                    physical_partitions[partition].usage.used += container_plist.get('CapacityInUse')
 
         # aggregate partition usage for drives
         physical_drives = dict()
