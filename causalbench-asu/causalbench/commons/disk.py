@@ -177,15 +177,16 @@ class Disks:
             if device_id not in physical_drives.keys():
                 physical_drives[device_id] = Bunch()
 
-                physical_drives[device_id].total = 0
-                physical_drives[device_id].used = 0
+                physical_drives[device_id].usage = Bunch()
+                physical_drives[device_id].usage.total = 0
+                physical_drives[device_id].usage.used = 0
 
-            physical_drives[device_id].total += partition.usage.total
-            physical_drives[device_id].used += partition.usage.used
+            physical_drives[device_id].usage.total += partition.usage.total
+            physical_drives[device_id].usage.used += partition.usage.used
 
         # drive information
         for device_id, physical_drive in physical_drives.items():
-            physical_drive.free = physical_drive.total - physical_drive.used
+            physical_drive.usage.free = physical_drive.usage.total - physical_drive.usage.used
 
             result = self._syscall(['diskutil', 'info', '-plist', device_id])
             drive_plist = plistlib.loads(result.encode())
