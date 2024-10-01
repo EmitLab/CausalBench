@@ -1,0 +1,48 @@
+type: dataset
+name: NetSim-sim25-49
+source: FMRIB Analysis Group, Oxford
+url: https://www.sciencedirect.com/science/article/pii/S1053811910011602
+description: Network modelling methods for FMRI, Simulation 25, dataset 49
+files:
+  file1:
+    type: csv
+    data: dataframe
+    path: NetSim-sim25-49.csv
+    headers: true
+    columns:
+      c1:
+        header: c1
+        data: decimal
+      c2:
+        header: c2
+        data: decimal
+      c3:
+        header: c3
+        data: decimal
+      c4:
+        header: c4
+        data: decimal
+      c5:
+        header: c5
+        data: decimal
+  file2:
+    type: csv
+    data: graph.static
+    path: ground_truth.csv
+    headers: true
+    columns:
+      c1:
+        header: c1
+        data: integer
+      c2:
+        header: c2
+        data: integer
+      c3:
+        header: c3
+        data: integer
+      c4:
+        header: c4
+        data: integer
+      c5:
+        header: c5
+        data: integer

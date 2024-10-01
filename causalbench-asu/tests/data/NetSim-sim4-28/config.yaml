@@ -1,0 +1,318 @@
+type: dataset
+name: NetSim-sim4-28
+source: FMRIB Analysis Group, Oxford
+url: https://www.sciencedirect.com/science/article/pii/S1053811910011602
+description: Network modelling methods for FMRI, Simulation 4, dataset 28
+files:
+  file1:
+    type: csv
+    data: dataframe
+    path: NetSim-sim4-28.csv
+    headers: true
+    columns:
+      c1:
+        header: c1
+        data: decimal
+      c2:
+        header: c2
+        data: decimal
+      c3:
+        header: c3
+        data: decimal
+      c4:
+        header: c4
+        data: decimal
+      c5:
+        header: c5
+        data: decimal
+      c6:
+        header: c6
+        data: decimal
+      c7:
+        header: c7
+        data: decimal
+      c8:
+        header: c8
+        data: decimal
+      c9:
+        header: c9
+        data: decimal
+      c10:
+        header: c10
+        data: decimal
+      c11:
+        header: c11
+        data: decimal
+      c12:
+        header: c12
+        data: decimal
+      c13:
+        header: c13
+        data: decimal
+      c14:
+        header: c14
+        data: decimal
+      c15:
+        header: c15
+        data: decimal
+      c16:
+        header: c16
+        data: decimal
+      c17:
+        header: c17
+        data: decimal
+      c18:
+        header: c18
+        data: decimal
+      c19:
+        header: c19
+        data: decimal
+      c20:
+        header: c20
+        data: decimal
+      c21:
+        header: c21
+        data: decimal
+      c22:
+        header: c22
+        data: decimal
+      c23:
+        header: c23
+        data: decimal
+      c24:
+        header: c24
+        data: decimal
+      c25:
+        header: c25
+        data: decimal
+      c26:
+        header: c26
+        data: decimal
+      c27:
+        header: c27
+        data: decimal
+      c28:
+        header: c28
+        data: decimal
+      c29:
+        header: c29
+        data: decimal
+      c30:
+        header: c30
+        data: decimal
+      c31:
+        header: c31
+        data: decimal
+      c32:
+        header: c32
+        data: decimal
+      c33:
+        header: c33
+        data: decimal
+      c34:
+        header: c34
+        data: decimal
+      c35:
+        header: c35
+        data: decimal
+      c36:
+        header: c36
+        data: decimal
+      c37:
+        header: c37
+        data: decimal
+      c38:
+        header: c38
+        data: decimal
+      c39:
+        header: c39
+        data: decimal
+      c40:
+        header: c40
+        data: decimal
+      c41:
+        header: c41
+        data: decimal
+      c42:
+        header: c42
+        data: decimal
+      c43:
+        header: c43
+        data: decimal
+      c44:
+        header: c44
+        data: decimal
+      c45:
+        header: c45
+        data: decimal
+      c46:
+        header: c46
+        data: decimal
+      c47:
+        header: c47
+        data: decimal
+      c48:
+        header: c48
+        data: decimal
+      c49:
+        header: c49
+        data: decimal
+      c50:
+        header: c50
+        data: decimal
+  file2:
+    type: csv
+    data: graph.static
+    path: ground_truth.csv
+    headers: true
+    columns:
+      c1:
+        header: c1
+        data: integer
+      c2:
+        header: c2
+        data: integer
+      c3:
+        header: c3
+        data: integer
+      c4:
+        header: c4
+        data: integer
+      c5:
+        header: c5
+        data: integer
+      c6:
+        header: c6
+        data: integer
+      c7:
+        header: c7
+        data: integer
+      c8:
+        header: c8
+        data: integer
+      c9:
+        header: c9
+        data: integer
+      c10:
+        header: c10
+        data: integer
+      c11:
+        header: c11
+        data: integer
+      c12:
+        header: c12
+        data: integer
+      c13:
+        header: c13
+        data: integer
+      c14:
+        header: c14
+        data: integer
+      c15:
+        header: c15
+        data: integer
+      c16:
+        header: c16
+        data: integer
+      c17:
+        header: c17
+        data: integer
+      c18:
+        header: c18
+        data: integer
+      c19:
+        header: c19
+        data: integer
+      c20:
+        header: c20
+        data: integer
+      c21:
+        header: c21
+        data: integer
+      c22:
+        header: c22
+        data: integer
+      c23:
+        header: c23
+        data: integer
+      c24:
+        header: c24
+        data: integer
+      c25:
+        header: c25
+        data: integer
+      c26:
+        header: c26
+        data: integer
+      c27:
+        header: c27
+        data: integer
+      c28:
+        header: c28
+        data: integer
+      c29:
+        header: c29
+        data: integer
+      c30:
+        header: c30
+        data: integer
+      c31:
+        header: c31
+        data: integer
+      c32:
+        header: c32
+        data: integer
+      c33:
+        header: c33
+        data: integer
+      c34:
+        header: c34
+        data: integer
+      c35:
+        header: c35
+        data: integer
+      c36:
+        header: c36
+        data: integer
+      c37:
+        header: c37
+        data: integer
+      c38:
+        header: c38
+        data: integer
+      c39:
+        header: c39
+        data: integer
+      c40:
+        header: c40
+        data: integer
+      c41:
+        header: c41
+        data: integer
+      c42:
+        header: c42
+        data: integer
+      c43:
+        header: c43
+        data: integer
+      c44:
+        header: c44
+        data: integer
+      c45:
+        header: c45
+        data: integer
+      c46:
+        header: c46
+        data: integer
+      c47:
+        header: c47
+        data: integer
+      c48:
+        header: c48
+        data: integer
+      c49:
+        header: c49
+        data: integer
+      c50:
+        header: c50
+        data: integer
