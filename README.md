@@ -65,8 +65,10 @@ CausalBench is structured to support different machine learning tasks and datase
 | Abalone               | data, static graph   |
 | Adult                 | data, static graph   |
 | Sachs                 | data, static graph   |
+| NetSim                | data, static graph   |
 | Time series simulated | data, temporal graph |
 | Telecom               | data, temporal graph |
+
 
 | Model      | Task     |
 |------------|----------|
