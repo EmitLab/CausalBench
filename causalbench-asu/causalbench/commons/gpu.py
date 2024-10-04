@@ -115,7 +115,7 @@ class GPUsProfiler(Thread):
         self.stopped = False
         self.delay = delay
 
-        self.initial = dict()
+        self.idle = dict()
         self.peak = dict()
 
     def run(self):
@@ -124,15 +124,18 @@ class GPUsProfiler(Thread):
 
         for gpu in self.gpus.devices:
             gpu.refresh()
-            self.initial[gpu.id] = self.peak[gpu.id] = gpu.memory_used
+            self.idle[gpu.id] = self.peak[gpu.id] = gpu.memory_used
 
         while not self.stopped:
             for gpu in self.gpus.devices:
                 gpu.refresh()
                 memory = gpu.memory_used
 
-                if memory is not None and self.peak[gpu.id] is not None and memory > self.peak[gpu.id]:
-                    self.peak[gpu.id] = memory
+                if memory is not None:
+                    if self.idle[gpu.id] is not None and memory < self.idle[gpu.id]:
+                        self.idle[gpu.id] = memory
+                    if self.peak[gpu.id] is not None and memory > self.peak[gpu.id]:
+                        self.peak[gpu.id] = memory
 
             time.sleep(self.delay)
 
@@ -141,10 +144,9 @@ class GPUsProfiler(Thread):
 
     @property
     def usage(self) -> Bunch:
-        usage = dict()
+        usage = Bunch()
         for gpu in self.gpus.devices:
-            if self.initial[gpu.id] is not None and self.peak[gpu.id] is not None:
-                usage[gpu.id] = self.peak[gpu.id] - self.initial[gpu.id]
-            else:
-                usage[gpu.id] = None
-        return bunchify(usage)
+            usage[gpu.id] = Bunch()
+            usage[gpu.id].idle = self.idle[gpu.id]
+            usage[gpu.id].peak = self.peak[gpu.id]
+        return usage
