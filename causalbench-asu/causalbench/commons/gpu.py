@@ -3,6 +3,8 @@ import sys
 import time
 from threading import Thread
 
+from bunch_py3 import Bunch, bunchify
+
 try:
     import GPUtil
 except Exception as e:
@@ -20,112 +22,129 @@ class GPU:
         self.vendor = vendor
         self.device = device
 
-    def get_uuid(self):
+    @property
+    def id(self):
+        if self.vendor == 'NVIDIA':
+            return self.device.id
+        elif self.vendor == 'AMD':
+            return self.device.adapterIndex
+
+    @property
+    def uuid(self):
         if self.vendor == 'NVIDIA':
             return self.device.uuid
         elif self.vendor == 'AMD':
             return self.device.uuid.decode('utf-8')
 
-    def get_name(self):
+    @property
+    def name(self):
         if self.vendor == 'NVIDIA':
             return self.device.name
         elif self.vendor == 'AMD':
             return self.device.adapterName.decode('utf-8')
 
-    def get_memory_used(self):
+    @property
+    def memory_used(self):
         if self.vendor == 'NVIDIA':
             return int(self.device.memoryUsed * 1048576)
         elif self.vendor == 'AMD':
             return None
 
-    def get_memory_util(self):
+    @property
+    def memory_util(self):
         if self.vendor == 'NVIDIA':
             return self.device.memoryUtil
         elif self.vendor == 'AMD':
             return self.device.getCurrentUsage()
 
-    def get_memory_total(self):
+    @property
+    def memory_total(self):
         if self.vendor == 'NVIDIA':
             return int(self.device.memoryTotal * 1048576)
         elif self.vendor == 'AMD':
             return None
 
-    def get_driver(self):
+    @property
+    def driver(self):
         if self.vendor == 'NVIDIA':
             return self.device.driver
         elif self.vendor == 'AMD':
             return None
 
     def refresh(self):
-        gpus = get_gpus()
-        for gpu in gpus:
-            if gpu.get_uuid() == self.get_uuid():
-                self.device = gpu.device
+        if self.vendor == 'NVIDIA':
+            devices = GPUtil.getGPUs()
+            for device in devices:
+                if self.device.uuid == device.uuid:
+                    self.device = device
+                    break
+
+        elif self.vendor == 'AMD':
+            pass
 
 
-class GPUProfiler(Thread):
+class GPUs:
 
-    def __init__(self, gpu: GPU, delay: int=1):
-        super(GPUProfiler, self).__init__()
+    def __init__(self):
+        self._devices = []
 
-        self.gpu = gpu
+        if 'GPUtil' in sys.modules:
+            devices = GPUtil.getGPUs()
+            for device in devices:
+                self._devices.append(GPU('NVIDIA', device))
+
+        if 'pyadl' in sys.modules:
+            devices = ADLManager.getInstance().getDevices()
+            for device in devices:
+                self._devices.append(GPU('AMD', device))
+
+    @property
+    def devices(self) -> list[GPU]:
+        return self._devices
+
+
+class GPUsProfiler(Thread):
+
+    def __init__(self, gpus: GPUs = None, delay: int=1):
+        super(GPUsProfiler, self).__init__()
+
+        if gpus is None:
+            gpus = GPUs()
+
+        self.gpus = gpus
         self.stopped = False
         self.delay = delay
 
-        self.initial = None
-        self.peak = None
+        self.initial = dict()
+        self.peak = dict()
 
     def run(self):
         if self.stopped:
             return
 
-        self.gpu.refresh()
-        self.initial = self.peak = self.gpu.get_memory_used()
-
-        if self.initial is None or self.peak is None:
-            return
+        for gpu in self.gpus.devices:
+            gpu.refresh()
+            self.initial[gpu.id] = self.peak[gpu.id] = gpu.memory_used
 
         while not self.stopped:
-            self.gpu.refresh()
-            memory = self.gpu.get_memory_used()
+            for gpu in self.gpus.devices:
+                gpu.refresh()
+                memory = gpu.memory_used
 
-            if memory > self.peak:
-                self.peak = memory
+                if memory is not None and self.peak[gpu.id] is not None and memory > self.peak[gpu.id]:
+                    self.peak[gpu.id] = memory
 
             time.sleep(self.delay)
 
     def stop(self):
         self.stopped = True
-        if self.initial is None or self.peak is None:
-            return None
-        return self.peak - self.initial
 
-
-def get_gpus() -> list[GPU]:
-    gpus = []
-
-    if 'GPUtil' in sys.modules:
-        devices = GPUtil.getGPUs()
-        for device in devices:
-            gpus.append(GPU('NVIDIA', device))
-
-    if 'pyadl' in sys.modules:
-        devices = ADLManager.getInstance().getDevices()
-        for device in devices:
-            gpus.append(GPU('AMD', device))
-
-    return gpus
-
-
-def gpu_info() -> (str, int, int):
-    gpus = get_gpus()
-    if len(gpus) > 0:
-        return gpus[0].get_name(), gpus[0].get_driver(), gpus[0].get_memory_total()
-    return None, None, None
-
-
-def gpu_profiler() -> GPUProfiler | None:
-    gpus = get_gpus()
-    if len(gpus) > 0:
-        return GPUProfiler(gpus[0])
-    return None
+    @property
+    def usage(self) -> Bunch:
+        usage = dict()
+        for gpu in self.gpus.devices:
+            if self.initial[gpu.id] is not None and self.peak[gpu.id] is not None:
+                usage[gpu.id] = self.peak[gpu.id] - self.initial[gpu.id]
+            else:
+                usage[gpu.id] = None
+        return bunchify(usage)

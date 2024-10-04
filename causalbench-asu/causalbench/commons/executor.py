@@ -11,7 +11,8 @@ from importlib.util import module_from_spec, spec_from_file_location
 import pipreqs.pipreqs as pipreqs
 from bunch_py3 import Bunch, bunchify
 
-from causalbench.commons.gpu import gpu_profiler
+from causalbench.commons.disk import DisksProfiler
+from causalbench.commons.gpu import GPUsProfiler
 
 
 def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
@@ -26,12 +27,12 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     # define callable function
     newfunc = functools.partial(func, *args, **keywords)
 
-    # create gpu profiler
-    profiler = gpu_profiler()
+    # create GPU profiler
+    gpu_profiler = GPUsProfiler()
+    gpu_profiler.start()
 
-    # start GPU profiler
-    if profiler is not None:
-        profiler.start()
+    # create disk IO profiler
+    disk_io_profiler = DisksProfiler()
 
     # get start time
     start_time = time.time_ns()
@@ -51,10 +52,12 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     # get the end time
     end_time = time.time_ns()
 
-    # stop GPU profiler
-    gpu_memory = None
-    if profiler is not None:
-        gpu_memory = profiler.stop()
+    # get GPU usage
+    gpu_profiler.stop()
+    gpu_memory = gpu_profiler.usage
+
+    # get disk IO information
+    disk_io = disk_io_profiler.usage
 
     # get python information
     python = platform.python_version()
@@ -83,6 +86,7 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     response.profiling = Bunch()
     response.profiling.memory = memory
     response.profiling.gpu_memory = gpu_memory
+    response.profiling.disk_io = disk_io
     response.profiling.python = python
     response.profiling.imports = imports
 
