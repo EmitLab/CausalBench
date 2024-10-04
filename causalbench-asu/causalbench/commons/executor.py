@@ -127,4 +127,4 @@ def get_imports(module_path):
         # sort the imports
         imports = dict(sorted(imports.items()))
 
-        return imports
+        return bunchify(imports)
