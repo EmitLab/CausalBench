@@ -6,8 +6,12 @@ from threading import Thread
 
 from bunch_py3 import Bunch
 import pyopencl as cl
-from pyadl import ADLManager, ADLDevice
 from causalbench.commons import GPUtil
+
+try:
+    from pyadl import ADLManager, ADLDevice
+except Exception as e:
+    logging.warning(f'Failed to import \'pyadl\' library: {e}')
 
 
 class Vendor(Enum):
@@ -41,7 +45,7 @@ class GPU:
     @property
     def bus(self):
         if self.vendor == Vendor.NVIDIA:
-            return self.device.busId
+            return self.device.busNumber
 
         elif self.vendor == Vendor.AMD:
             return self.device.busNumber
@@ -129,10 +133,9 @@ class GPUs:
                     amd_cl[device.topology_amd.bus] = device
 
         # get NVIDIA devices using GPUtil
-        if 'GPUtil' in sys.modules:
-            devices: list[GPUtil.GPU] = GPUtil.getGPUs()
-            for index, device in enumerate(devices):
-                self._devices.append(GPU(Vendor.NVIDIA, device, nvidia_cl[device.busId]))
+        devices: list[GPUtil.GPU] = GPUtil.getGPUs()
+        for index, device in enumerate(devices):
+            self._devices.append(GPU(Vendor.NVIDIA, device, nvidia_cl[device.busNumber]))
 
         # get AMD devices using pyadl
         if 'pyadl' in sys.modules:

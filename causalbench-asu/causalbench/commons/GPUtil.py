@@ -34,10 +34,10 @@ import platform
 
 
 class GPU:
-    def __init__(self, ID, uuid, busId, load, memoryTotal, memoryUsed, memoryFree, driver, gpu_name, serial, display_mode, display_active, temp_gpu):
+    def __init__(self, ID, uuid, busNumber, load, memoryTotal, memoryUsed, memoryFree, driver, gpu_name, serial, display_mode, display_active, temp_gpu):
         self.id = ID
         self.uuid = uuid
-        self.busId = busId
+        self.busNumber = busNumber
         self.load = load
         self.memoryUtil = float(memoryUsed) / float(memoryTotal)
         self.memoryTotal = memoryTotal
@@ -72,7 +72,7 @@ def getGPUs() -> list[GPU]:
     # Get ID, processing and memory utilization for all GPUs
     try:
         p = Popen([nvidia_smi,
-                   "--query-gpu=index,uuid,pci.bus_id,utilization.gpu,memory.total,memory.used,memory.free,driver_version,name,gpu_serial,display_active,display_mode,temperature.gpu",
+                   "--query-gpu=index,uuid,pci.bus,utilization.gpu,memory.total,memory.used,memory.free,driver_version,name,gpu_serial,display_active,display_mode,temperature.gpu",
                    "--format=csv,noheader,nounits"], stdout=PIPE)
         stdout, stderror = p.communicate()
     except:
@@ -91,7 +91,7 @@ def getGPUs() -> list[GPU]:
 
         deviceIds = int(vals[0])
         uuid = vals[1]
-        busId = int(vals[2])
+        busNumber = int(vals[2], 16)
         gpuUtil = safeFloatCast(vals[3]) / 100
         memTotal = safeFloatCast(vals[4])
         memUsed = safeFloatCast(vals[5])
@@ -103,6 +103,6 @@ def getGPUs() -> list[GPU]:
         display_mode = vals[11]
         temp_gpu = safeFloatCast(vals[12])
 
-        gpus.append(GPU(deviceIds, uuid, busId, gpuUtil, memTotal, memUsed, memFree, driver, gpu_name, serial, display_mode, display_active, temp_gpu))
+        gpus.append(GPU(deviceIds, uuid, busNumber, gpuUtil, memTotal, memUsed, memFree, driver, gpu_name, serial, display_mode, display_active, temp_gpu))
 
     return gpus
