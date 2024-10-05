@@ -1,85 +1,110 @@
 import logging
 import sys
 import time
+from enum import Enum
 from threading import Thread
 
-from bunch_py3 import Bunch, bunchify
+from bunch_py3 import Bunch
+import pyopencl as cl
+from pyadl import ADLManager, ADLDevice
+from causalbench.commons import GPUtil
 
-try:
-    import GPUtil
-except Exception as e:
-    logging.warning(f'Failed to import \'GPUtil\' library: {e}')
 
-try:
-    from pyadl import ADLManager
-except Exception as e:
-    logging.warning(f'Failed to import \'pyadl\' library: {e}')
+class Vendor(Enum):
+    NVIDIA = 0x10DE
+    AMD = 0x1002
 
 
 class GPU:
 
-    def __init__(self, vendor, device):
+    def __init__(self, vendor: Vendor, device: any, cl_device: cl.Device):
         self.vendor = vendor
         self.device = device
+        self.cl_device = cl_device
 
     @property
     def id(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
             return self.device.id
-        elif self.vendor == 'AMD':
+
+        elif self.vendor == Vendor.AMD:
             return self.device.adapterIndex
 
     @property
     def uuid(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
             return self.device.uuid
-        elif self.vendor == 'AMD':
+
+        elif self.vendor == Vendor.AMD:
             return self.device.uuid.decode('utf-8')
 
     @property
+    def bus(self):
+        if self.vendor == Vendor.NVIDIA:
+            return self.device.busId
+
+        elif self.vendor == Vendor.AMD:
+            return self.device.busNumber
+
+    @property
     def name(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
             return self.device.name
-        elif self.vendor == 'AMD':
+
+        elif self.vendor == Vendor.AMD:
+            if self.cl_device:
+                return f'{self.cl_device.board_name_amd} [{self.cl_device.name}]'
             return self.device.adapterName.decode('utf-8')
 
     @property
     def memory_used(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
             return int(self.device.memoryUsed * 1048576)
-        elif self.vendor == 'AMD':
+
+        elif self.vendor == Vendor.AMD:
             return None
 
     @property
     def memory_util(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
             return self.device.memoryUtil
-        elif self.vendor == 'AMD':
+
+        elif self.vendor == Vendor.AMD:
             return self.device.getCurrentUsage()
 
     @property
     def memory_total(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
+            if self.cl_device:
+                return self.cl_device.global_mem_size
             return int(self.device.memoryTotal * 1048576)
-        elif self.vendor == 'AMD':
+
+        elif self.vendor == Vendor.AMD:
+            if self.cl_device:
+                return self.cl_device.global_mem_size
             return None
 
     @property
     def driver(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
+            if self.cl_device:
+                return self.cl_device.driver_version
             return self.device.driver
-        elif self.vendor == 'AMD':
+
+        elif self.vendor == Vendor.AMD:
+            if self.cl_device:
+                return self.cl_device.driver_version
             return None
 
     def refresh(self):
-        if self.vendor == 'NVIDIA':
+        if self.vendor == Vendor.NVIDIA:
             devices = GPUtil.getGPUs()
             for device in devices:
                 if self.device.uuid == device.uuid:
                     self.device = device
                     break
 
-        elif self.vendor == 'AMD':
+        elif self.vendor == Vendor.AMD:
             pass
 
 
@@ -87,16 +112,33 @@ class GPUs:
 
     def __init__(self):
         self._devices = []
+        nvidia_cl = dict()
+        amd_cl = dict()
 
+        # get devices using opencl
+        platforms = cl.get_platforms()
+        for platform in platforms:
+            devices: list[cl.Device] = platform.get_devices()
+            for device in devices:
+                # NVIDIA
+                if device.vendor_id == Vendor.NVIDIA.value:
+                    nvidia_cl[device.pci_bus_id_nv] = device
+
+                # AMD
+                elif device.vendor_id == Vendor.AMD.value:
+                    amd_cl[device.topology_amd.bus] = device
+
+        # get NVIDIA devices using GPUtil
         if 'GPUtil' in sys.modules:
-            devices = GPUtil.getGPUs()
-            for device in devices:
-                self._devices.append(GPU('NVIDIA', device))
+            devices: list[GPUtil.GPU] = GPUtil.getGPUs()
+            for index, device in enumerate(devices):
+                self._devices.append(GPU(Vendor.NVIDIA, device, nvidia_cl[device.busId]))
 
+        # get AMD devices using pyadl
         if 'pyadl' in sys.modules:
-            devices = ADLManager.getInstance().getDevices()
-            for device in devices:
-                self._devices.append(GPU('AMD', device))
+            devices: list[ADLDevice] = ADLManager.getInstance().getDevices()
+            for index, device in enumerate(devices):
+                self._devices.append(GPU(Vendor.AMD, device, amd_cl[device.busNumber]))
 
     @property
     def devices(self) -> list[GPU]:

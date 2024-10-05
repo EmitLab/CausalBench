@@ -2,7 +2,6 @@ import json
 import platform
 import plistlib
 import subprocess
-import time
 
 import psutil
 from bunch_py3 import Bunch, bunchify
