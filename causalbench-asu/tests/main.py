@@ -106,8 +106,8 @@ def main():
                                        description='Test static context',
                                        task='discovery.static',
                                        datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
-                                       models=[(model1, {})],
-                                       metrics=[(metric1, {})])
+                                       models=[(model1, {'alpha': 0.001})],
+                                       metrics=[(metric1, {'binarize': False})])
     # context1.publish()
     # context1.publish(public=True)
 

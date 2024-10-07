@@ -42,9 +42,6 @@ class Run(Module):
 
         string += f'Task: {self.task}' + '\n'
 
-        print(json.dumps(self.profiling, indent=4))
-        print()
-
         for result in self.results:
             string += '-' * 80 + '\n'
 
@@ -53,10 +50,6 @@ class Run(Module):
             string += f'Model: {result.model.name}' + '\n'
             for key, value in result.model.hyperparameters.items():
                 string += f'    {key}: {value}' + '\n'
-
-            print(f'[{result.model.name}]')
-            print(json.dumps(result.model.profiling, indent=4))
-            print()
 
             string += 'Metrics:' + '\n'
             for metric in result.metrics:
