@@ -1,8 +1,9 @@
 type: dataset
 name: NetSim-sim6-47
 source: FMRIB Analysis Group, Oxford
-url: https://www.sciencedirect.com/science/article/pii/S1053811910011602
-description: Network modelling methods for FMRI, Simulation 6, dataset 47
+url: https://www.fmrib.ox.ac.uk/datasets/netsim/
+description: 'Network modelling methods for FMRI, Simulation 6, dataset 47. Orginal
+  paper: https://www.sciencedirect.com/science/article/pii/S1053811910011602'
 files:
   file1:
     type: csv
