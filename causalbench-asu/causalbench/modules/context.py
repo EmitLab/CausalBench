@@ -210,14 +210,21 @@ class Context(Module):
                         self_model.id = model[0].module_id
                         self_model.version = model[0].version
                         self_model.object = model[0]
+
+                        self_model.hyperparameters = Bunch()
+                        if hasattr(model[0], 'hyperparameters'):
+                            for hyperparameter, defaults in model[0].hyperparameters.items():
+                                self_model.hyperparameters[hyperparameter] = defaults.value
                     else:
                         raise ValueError('Invalid model instance')
 
                     # hyperparameter mapping
-                    if isinstance(model[1], Bunch):
-                        self_model.hyperparameters = model[1]
-                    elif isinstance(model[1], dict):
-                        self_model.hyperparameters = bunchify(model[1])
+                    if isinstance(model[1], dict):
+                        for hyperparameter, value in model[1].items():
+                            if hyperparameter in self_model.hyperparameters:
+                                self_model.hyperparameters[hyperparameter] = value
+                            else:
+                                raise ValueError(f'Unknown model hyperparameter {hyperparameter}')
                     else:
                         raise ValueError('Invalid model hyperparameter mapping')
                 else:
@@ -238,14 +245,21 @@ class Context(Module):
                         self_metric.id = metric[0].module_id
                         self_metric.version = metric[0].version
                         self_metric.object = metric[0]
+
+                        self_metric.hyperparameters = Bunch()
+                        if hasattr(metric[0], 'hyperparameters'):
+                            for hyperparameter, defaults in metric[0].hyperparameters.items():
+                                self_metric.hyperparameters[hyperparameter] = defaults.value
                     else:
                         raise ValueError('Invalid metric instance')
 
                     # hyperparameter mapping
-                    if isinstance(metric[1], Bunch):
-                        self_metric.hyperparameters = metric[1]
-                    elif isinstance(metric[1], dict):
-                        self_metric.hyperparameters = bunchify(metric[1])
+                    if isinstance(metric[1], dict):
+                        for hyperparameter, value in metric[1].items():
+                            if hyperparameter in self_metric.hyperparameters:
+                                self_metric.hyperparameters[hyperparameter] = value
+                            else:
+                                raise ValueError(f'Unknown metric hyperparameter {hyperparameter}')
                     else:
                         raise ValueError('Invalid metric hyperparameter mapping')
                 else:
