@@ -1,4 +1,4 @@
-g# CausalBench
+# CausalBench
 
 The up-to-date documentation regarding usage and features of CausalBench can be found at [https://docs.causalbench.org](https://docs.causalbench.org).
 
