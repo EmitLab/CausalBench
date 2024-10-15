@@ -5,3 +5,8 @@ url: https://github.com/huawei-noah/trustworthyAI/tree/master/gcastle
 description: "PC algorithm: A classic causal discovery algorithm based on conditional independence tests."
 task: discovery.static
 path: pc.py
+hyperparameters:
+    alpha:
+        data: decimal
+        description: Alpha parameter for the PC algorithm
+        value: 0.01

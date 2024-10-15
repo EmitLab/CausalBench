@@ -18,6 +18,32 @@ properties:
             - classification
     path:
         type: string
+    hyperparameters:
+        type: object
+        patternProperties:
+            ^.*$:
+                type: object
+                properties:
+                    data:
+                        enum:
+                            - string
+                            - integer
+                            - decimal
+                            - boolean
+                    description:
+                        type: string
+                    value:
+                        type:
+                            - 'null'
+                            - boolean
+                            - integer
+                            - number
+                            - string
+                            - array
+                            - object
+                required:
+                    - data
+                    - value
 required:
     - type
     - name
