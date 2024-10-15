@@ -5,7 +5,7 @@ import numpy as np
 from causalbench.formats import SpatioTemporalGraph
 
 
-def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph, helpers: any, threshold = 0.05, binarize: bool = True):
+def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph, binarize: bool, helpers: any):
     # convert to adjacency matrix
     pred = helpers.graph_to_adjmat(prediction)
     truth = helpers.graph_to_adjmat(ground_truth)

@@ -2,7 +2,6 @@ import json
 import platform
 import plistlib
 import subprocess
-import time
 
 import psutil
 from bunch_py3 import Bunch, bunchify
@@ -22,7 +21,7 @@ class Disks:
             raise NotImplementedError(f'Unsupported operating system: {system}')
 
     @property
-    def disk_drives(self) -> Bunch:
+    def devices(self) -> Bunch:
         return self._physical_drives
 
     @staticmethod
@@ -209,8 +208,10 @@ class Disks:
 
 class DisksProfiler:
 
-    def __init__(self, disks: Disks):
-        self.disks = disks.disk_drives.keys()
+    def __init__(self, disks: Disks = None):
+        if disks is None:
+            disks = Disks()
+        self.disks = disks.devices.keys()
         self._usage = self._get_usage()
 
     def _get_usage(self) -> Bunch:
@@ -231,15 +232,15 @@ class DisksProfiler:
         return bunchify(usage)
 
 
-if __name__ == "__main__":
-    disk: Disks = Disks()
-    for k, v in disk.disk_drives.items():
-        print(k, v)
-
-    profiler: DisksProfiler = DisksProfiler(disk)
-
-    time.sleep(5)
-    print()
-
-    for k, v in profiler.usage.items():
-        print(k, v)
+# if __name__ == "__main__":
+#     disk: Disks = Disks()
+#     for k, v in disk.devices.items():
+#         print(k, v)
+#
+#     profiler: DisksProfiler = DisksProfiler(disk)
+#
+#     time.sleep(5)
+#     print()
+#
+#     for k, v in profiler.usage.items():
+#         print(k, v)

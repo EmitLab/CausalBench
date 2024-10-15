@@ -91,15 +91,24 @@ def main():
 
     # static task
     # context1: Context = Context(module_id=10, version=6)
+    # context1: Context = Context.create(module_id=10,
+    #                                    name='Context1',
+    #                                    description='Test static context',
+    #                                    task='discovery.static',
+    #                                    datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
+    #                                    models=[(model1, {'alpha': 0.001}),
+    #                                            (model2, {})],
+    #                                    metrics=[(metric1, {'threshold': 0.03}),
+    #                                             (metric2, {})])
+
     context1: Context = Context.create(module_id=10,
                                        name='Context1',
                                        description='Test static context',
                                        task='discovery.static',
                                        datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
-                                       models=[(model1, {'alpha': 0.001}),
-                                               (model2, {})],
-                                       metrics=[(metric1, {'threshold': 0.03}),
-                                                (metric2, {})])
+                                       models=[(model1, {'alpha': 0.001})],
+                                       metrics=[(metric1, {'binarize': False})])
+    # context1.publish()
     # context1.publish(public=True)
 
     run: Run = context1.execute()
@@ -107,18 +116,18 @@ def main():
     print(run)
 
     # temporal task
-    # context2: Context = Context(module_id=3, version=1)
+    context2: Context = Context(module_id=3, version=1)
     # context2: Context = Context.create(name='Temporal Context: VAR-LiNGAM, pcmciplus',
     #                                    description='Test temporal context',
     #                                    task='discovery.temporal',
     #                                    datasets=[(dataset2, {'data': 'file1', 'ground_truth': 'file2'})],
     #                                    models=[model3, model4],
     #                                    metrics=[metric3, metric4])
-    # context2.publish(public=True)
+    context2.publish(public=True)
 
-    # run: Run = context2.execute()
-    # run.publish()
-    # print(run)
+    run: Run = context2.execute()
+    run.publish(public=True)
+    print(run)
 
 
 if __name__ == '__main__':

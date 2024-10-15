@@ -1,3 +1,4 @@
+import json
 import logging
 
 from causalbench.commons.utils import package_module
