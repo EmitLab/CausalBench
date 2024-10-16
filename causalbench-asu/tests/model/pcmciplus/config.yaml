@@ -1,8 +1,66 @@
 type: model
 name: pcmciplus
 source: GitHub
-url: https://github.com/jakobrunge/tigramite
+url: https://jakobrunge.github.io/tigramite
 description: PCMCIplus is a causal discovery framework for large-scale time series datasets that support both contemporaneous and lagged dependencies.
 task: discovery.temporal
 path: pcmciplus.py
+hyperparameters:
+#    selected_links:
+#        data: dict or None
+#        description: Deprecated, replaced by `link_assumptions`.
+#        value: null
+#    link_assumptions:
+#        data: dict
+#        description: Dictionary specifying assumptions about links. Form {j:{(i, -tau): link_type, …}}. Valid link types are ‘o-o’, ‘–>’, ‘<–’, with optional ‘?’ for uncertain links. Must be consistent and acyclic.
+#        value: null
+    tau_min:
+        data: integer
+        description: Minimum time lag to test.
+        value: 0
+    tau_max:
+        data: integer
+        description: Maximum time lag. Must be ≥ tau_min.
+        value: 1
+    pc_alpha:
+        data: decimal
+        description: Significance level for the algorithm. If None or list, level is optimized for each graph from set values.
+        value: 0.01
+    contemp_collider_rule:
+        data: string
+        description: Rule for collider phase. Options are `majority`, `conservative`, `none`.
+        value: 'majority'
+    conflict_resolution:
+        data: boolean
+        description: Whether to mark conflicts in orientation rules. Ensures order-independence.
+        value: True
+    reset_lagged_links:
+        data: boolean
+        description: Restricts detection of lagged causal links in Step 2 to significant adjacencies found in Step 1 (PC1).
+        value: False
+    max_conds_dim:
+        data: integer
+        description: Maximum number of conditions to test. If None, this number is unrestricted.
+        value: null
+    max_combinations:
+        data: integer
+        description: Maximum number of combinations of conditions of current cardinality to test in PC1 step.
+        value: 1
+    max_conds_py:
+        data: integer
+        description: Maximum number of lagged conditions of Y to use in MCI tests. If None, unrestricted.
+        value: null
+    max_conds_px:
+        data: integer
+        description: Maximum number of lagged conditions of X to use in MCI tests. If None, unrestricted.
+        value: null
+    max_conds_px_lagged:
+        data: integer
+        description: Maximum number of lagged conditions of X when X is lagged in MCI tests. If None, equal to max_conds_px.
+        value: null
+    fdr_method:
+        data: string
+        description: Correction method for False Discovery Rate (default is Benjamini-Hochberg).
+        value: 'none'
+
 

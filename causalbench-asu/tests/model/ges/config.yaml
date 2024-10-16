@@ -5,3 +5,20 @@ url: https://github.com/huawei-noah/trustworthyAI/blob/master/gcastle/castle/alg
 description: Greedy equivalence search (GES) for causal discovery.
 task: discovery.static
 path: ges.py
+hyperparameters:
+    criterion:
+        data: string
+        description: string for DecomposableScore object scoring criterion, one of ['bic', 'bdeu'].
+        value: 'bic'
+    method:
+        data: string
+        description: effective when `criterion='bic'`, one of ['r2', 'scatter'].
+        value: 'scatter'
+    k:
+        data: decimal
+        description: structure prior, effective when `criterion='bdeu'`.
+        value: 0.001
+    N:
+        data: integer
+        description: prior equivalent sample size, effective when `criterion='bdeu'`
+        value: 10
