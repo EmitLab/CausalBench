@@ -60,13 +60,15 @@ Collaboration".
 ## Support Benchmark Context
 CausalBench is structured to support different machine learning tasks and dataset types. With user contribution, the supported context will be expanded, currently, these models and tasks are provided.    
 
-| Dataset               | File                 |
-|-----------------------|----------------------|
-| Abalone               | data, static graph   |
-| Adult                 | data, static graph   |
-| Sachs                 | data, static graph   |
-| Time series simulated | data, temporal graph |
-| Telecom               | data, temporal graph |
+| Dataset               | File                 | Description                                                                                                                                           |
+|-----------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Abalone               | data, static graph   |                                                                                                                                                       |
+| Adult                 | data, static graph   |                                                                                                                                                       |
+| Sachs                 | data, static graph   |                                                                                                                                                       |
+| NetSim                | data, static graph   | Brain FMRI scan<br/> - 28 simulations <br/> - Each has different DGPs, num of nodes (5, 50), num of observations (50 to 5000), 1400 datasets in total |
+| Time series simulated | data, temporal graph |                                                                                                                                                       |
+| Telecom               | data, temporal graph |                                                                                                                                                       |
+
 
 | Model      | Task     |
 |------------|----------|

@@ -127,7 +127,7 @@ def main():
     # context2.publish(public=True)
 
     run: Run = context2.execute()
-    run.publish(public=True)
+    # run.publish(public=True)
     print(run)
 
 
