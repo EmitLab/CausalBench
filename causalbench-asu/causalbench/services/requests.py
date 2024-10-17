@@ -38,14 +38,14 @@ def save_module(module_type, module_id, version, public, input_file, api_base, d
             return data.id, data.version_num
 
         else:
-            if version is None:
+            if version == 0:
                 print(f'Failed to publish {module_type} with module_id={module_id}: {data.msg} ({response.status_code})', file=sys.stderr)
             else:
                 print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {data.msg} ({response.status_code})', file=sys.stderr)
             sys.exit(1)
 
     except (RequestsJSONDecodeError, AttributeError):
-        if version is None:
+        if version == 0:
             print(f'Failed to publish {module_type} with module_id={module_id}: {response.text} ({response.status_code})', file=sys.stderr)
         else:
             print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {response.text} ({response.status_code})', file=sys.stderr)
@@ -73,24 +73,24 @@ def fetch_module(module_type, module_id, version, base_api, default_output_file)
         with open(file_path, 'wb') as file:
             file.write(response.content)
 
-        if version is None:
-            print(f'Fetched {module_type} with module_id={module_id} (location={file_path})', file=sys.stderr)
+        if version == 0:
+            print(f'Fetched {module_type} with module_id={module_id}', file=sys.stderr)
         else:
-            print(f'Fetched {module_type} with module_id={module_id} and version={version} (location={file_path})', file=sys.stderr)
+            print(f'Fetched {module_type} with module_id={module_id} and version={version}', file=sys.stderr)
         return file_path
 
     else:
         try:
             data = bunchify(response.json())
 
-            if version is None:
+            if version == 0:
                 print(f'Failed to fetch {module_type} with module_id={module_id}: {data.msg} ({response.status_code})', file=sys.stderr)
             else:
                 print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {data.msg} ({response.status_code})', file=sys.stderr)
             sys.exit(1)
 
         except (RequestsJSONDecodeError, AttributeError):
-            if version is None:
+            if version == 0:
                 print(f'Failed to fetch {module_type} with module_id={module_id}: {response.text} ({response.status_code})', file=sys.stderr)
             else:
                 print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {response.text} ({response.status_code})', file=sys.stderr)
