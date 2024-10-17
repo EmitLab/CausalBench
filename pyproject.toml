@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "causalbench-asu"
-version = "0.1rc3"
+version = "0.1rc5"
 authors = [
   { name="CausalBench Team", email="support@causalbench.org"}
 ]
@@ -35,8 +35,10 @@ dependencies = [
     "psutil",
     "py-cpuinfo",
     "pip-system-certs",
-    "gputil",
-    "pyadl"
+    "pyadl",
+    "nvidia-ml-py",
+    "pyopencl",
+    "siphash24"
 ]
 
 [project.urls]
