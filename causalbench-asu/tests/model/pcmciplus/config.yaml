@@ -22,7 +22,7 @@ hyperparameters:
         data: integer
         description: Maximum time lag. Must be ≥ tau_min.
         value: 1
-    pc_alpha:
+    alpha:
         data: decimal
         description: Significance level for the algorithm. If None or list, level is optimized for each graph from set values.
         value: 0.01

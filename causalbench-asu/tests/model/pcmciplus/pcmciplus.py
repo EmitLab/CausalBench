@@ -3,7 +3,7 @@ from tigramite.independence_tests.parcorr import ParCorr
 from tigramite.pcmci import PCMCI
 from tigramite import data_processing as pp
 
-def execute(data, tau_min, tau_max, pc_alpha,
+def execute(data, tau_min, tau_max, alpha,
             contemp_collider_rule, conflict_resolution, reset_lagged_links,
             max_conds_dim, max_combinations, max_conds_py, max_conds_px,
             max_conds_px_lagged, fdr_method, helpers: any):
@@ -13,7 +13,7 @@ def execute(data, tau_min, tau_max, pc_alpha,
     pcmci = PCMCI(dataframe=X_processed, cond_ind_test=ParCorr(significance='analytic'))
 
     results = pcmci.run_pcmciplus(tau_min=tau_min, tau_max=tau_max,
-                                  pc_alpha=pc_alpha,
+                                  pc_alpha=alpha,
                                   contemp_collider_rule=contemp_collider_rule,
                                   conflict_resolution=conflict_resolution,
                                   reset_lagged_links=reset_lagged_links,
