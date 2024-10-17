@@ -32,7 +32,7 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     gpu_profiler.start()
 
     # create disk IO profiler
-    disk_io_profiler = DisksProfiler()
+    disks_profiler = DisksProfiler()
 
     # get start time
     start_time = time.time_ns()
@@ -54,10 +54,10 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
 
     # get GPU usage
     gpu_profiler.stop()
-    gpu_memory = gpu_profiler.usage
+    gpu_utilization = gpu_profiler.utilization
 
     # get disk IO information
-    disk_io = disk_io_profiler.usage
+    disk_io = disks_profiler.usage
 
     # get python information
     python = platform.python_version()
@@ -85,8 +85,8 @@ def execute(module_path, function_name, /, *args, **keywords) -> Bunch:
     # profiling
     response.profiling = Bunch()
     response.profiling.memory = memory
-    response.profiling.gpu_memory = gpu_memory
-    response.profiling.disk_io = disk_io
+    response.profiling.gpu = gpu_utilization
+    response.profiling.disk = disk_io
     response.profiling.python = python
     response.profiling.imports = imports
 

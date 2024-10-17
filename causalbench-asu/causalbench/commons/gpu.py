@@ -165,17 +165,17 @@ class GPUsProfiler(Thread):
             return
 
         for gpu in self.gpus.devices:
-            self.idle[gpu.bus] = self.peak[gpu.bus] = gpu.memory_used
+            self.idle[gpu.bus] = self.peak[gpu.bus] = gpu.utilization
 
         while not self.stopped:
             for gpu in self.gpus.devices:
-                memory = gpu.memory_used
+                utilization = gpu.utilization
 
-                if memory is not None:
-                    if self.idle[gpu.bus] is not None and memory < self.idle[gpu.bus]:
-                        self.idle[gpu.bus] = memory
-                    if self.peak[gpu.bus] is not None and memory > self.peak[gpu.bus]:
-                        self.peak[gpu.bus] = memory
+                if utilization is not None:
+                    if self.idle[gpu.bus] is not None and utilization < self.idle[gpu.bus]:
+                        self.idle[gpu.bus] = utilization
+                    if self.peak[gpu.bus] is not None and utilization > self.peak[gpu.bus]:
+                        self.peak[gpu.bus] = utilization
 
             time.sleep(self.delay)
 
@@ -183,10 +183,10 @@ class GPUsProfiler(Thread):
         self.stopped = True
 
     @property
-    def usage(self) -> Bunch:
-        usage = Bunch()
+    def utilization(self) -> Bunch:
+        utilization = Bunch()
         for gpu in self.gpus.devices:
-            usage[gpu.bus] = Bunch()
-            usage[gpu.bus].idle = self.idle[gpu.bus]
-            usage[gpu.bus].peak = self.peak[gpu.bus]
-        return usage
+            utilization[gpu.bus] = Bunch()
+            utilization[gpu.bus].idle = self.idle[gpu.bus]
+            utilization[gpu.bus].peak = self.peak[gpu.bus]
+        return utilization

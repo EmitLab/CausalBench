@@ -230,17 +230,3 @@ class DisksProfiler:
             usage[key]['read_bytes'] = current_usage[key]['read_bytes'] - self._usage[key]['read_bytes']
             usage[key]['write_bytes'] = current_usage[key]['write_bytes'] - self._usage[key]['write_bytes']
         return bunchify(usage)
-
-
-# if __name__ == "__main__":
-#     disk: Disks = Disks()
-#     for k, v in disk.devices.items():
-#         print(k, v)
-#
-#     profiler: DisksProfiler = DisksProfiler(disk)
-#
-#     time.sleep(5)
-#     print()
-#
-#     for k, v in profiler.usage.items():
-#         print(k, v)

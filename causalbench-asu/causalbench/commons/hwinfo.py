@@ -23,18 +23,18 @@ def hwinfo() -> Bunch:
 
     # GPU information
     gpus = GPUs()
-    response.gpus = Bunch()
+    response.gpu = Bunch()
     for gpu in gpus.devices:
-        response.gpus[gpu.bus] = Bunch()
-        response.gpus[gpu.bus].name = gpu.name
-        response.gpus[gpu.bus].driver = gpu.driver
-        response.gpus[gpu.bus].memory_total = gpu.memory_total
+        response.gpu[gpu.bus] = Bunch()
+        response.gpu[gpu.bus].name = gpu.name
+        response.gpu[gpu.bus].driver = gpu.driver
+        response.gpu[gpu.bus].memory_total = gpu.memory_total
 
     # disk IO information
     disks: Disks = Disks()
-    response.disks = Bunch()
+    response.disk = Bunch()
     for name, disk in disks.devices.items():
-        response.disks[name] = disk
+        response.disk[name] = disk
 
     # memory information
     response.memory_total = psutil.virtual_memory().total
