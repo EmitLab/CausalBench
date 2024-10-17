@@ -18,7 +18,7 @@ except Exception as e:
     logging.warning(f'Failed to import \'pynvml\' library: {e}')
 
 try:
-    from pyadl import ADLManager, ADLDevice
+    from pyadl import ADLManager, ADLDevice, ADLError
 except Exception as e:
     logging.warning(f'Failed to import \'pyadl\' library: {e}')
 
@@ -85,7 +85,10 @@ class GPU:
             return pynvml.nvmlDeviceGetUtilizationRates(self.device).gpu
 
         elif self.vendor == Vendor.AMD:
-            return self.device.getCurrentUsage()
+            try:
+                return self.device.getCurrentUsage()
+            except ADLError:
+                return None
 
     @property
     def driver(self):
