@@ -25,10 +25,10 @@ def hwinfo() -> Bunch:
     gpus = GPUs()
     response.gpus = Bunch()
     for gpu in gpus.devices:
-        response.gpus[gpu.id] = Bunch()
-        response.gpus[gpu.id].name = gpu.name
-        response.gpus[gpu.id].driver = gpu.driver
-        response.gpus[gpu.id].memory_total = gpu.memory_total
+        response.gpus[gpu.bus] = Bunch()
+        response.gpus[gpu.bus].name = gpu.name
+        response.gpus[gpu.bus].driver = gpu.driver
+        response.gpus[gpu.bus].memory_total = gpu.memory_total
 
     # disk IO information
     disks: Disks = Disks()
