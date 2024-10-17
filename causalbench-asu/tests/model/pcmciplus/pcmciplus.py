@@ -3,12 +3,26 @@ from tigramite.independence_tests.parcorr import ParCorr
 from tigramite.pcmci import PCMCI
 from tigramite import data_processing as pp
 
-def execute(data, helpers: any):
+def execute(data, tau_min, tau_max, alpha,
+            contemp_collider_rule, conflict_resolution, reset_lagged_links,
+            max_conds_dim, max_combinations, max_conds_py, max_conds_px,
+            max_conds_px_lagged, fdr_method, helpers: any):
     X = data.data.drop(columns=data.time)
     X_processed = pp.DataFrame(X.to_numpy())
-    pcmci = PCMCI(dataframe=X_processed,
-                  cond_ind_test=ParCorr(significance='analytic'))
-    results = pcmci.run_pcmciplus(tau_min=0, tau_max=2)
+
+    pcmci = PCMCI(dataframe=X_processed, cond_ind_test=ParCorr(significance='analytic'))
+
+    results = pcmci.run_pcmciplus(tau_min=tau_min, tau_max=tau_max,
+                                  pc_alpha=alpha,
+                                  contemp_collider_rule=contemp_collider_rule,
+                                  conflict_resolution=conflict_resolution,
+                                  reset_lagged_links=reset_lagged_links,
+                                  max_conds_dim=max_conds_dim,
+                                  max_combinations=max_combinations,
+                                  max_conds_py=max_conds_py,
+                                  max_conds_px=max_conds_px,
+                                  max_conds_px_lagged=max_conds_px_lagged,
+                                  fdr_method=fdr_method)
     graphs = results['graph']
 
     # transform the graph to adjmatwlag format

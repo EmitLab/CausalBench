@@ -1,7 +1,20 @@
 type: model
 name: pc
 source: GitHub
-url: https://github.com/huawei-noah/trustworthyAI/tree/master/gcastle
+url: https://github.com/huawei-noah/trustworthyAI/blob/master/gcastle/castle/algorithms/pc/pc.py
 description: "PC algorithm: A classic causal discovery algorithm based on conditional independence tests."
 task: discovery.static
 path: pc.py
+hyperparameters:
+    variant:
+        data: string
+        description: A variant of PC-algorithm, one of [`original`, `stable`, `parallel`].
+        value: 'original'
+    alpha:
+        data: decimal
+        description: Significance level.
+        value: 0.05
+    ci_test :
+        data: string
+        description: ci_test method, if str, must be one of [`fisherz`, `g2`, `chi2`]
+        value: 'fisherz'

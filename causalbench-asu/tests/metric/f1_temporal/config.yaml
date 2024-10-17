@@ -5,3 +5,8 @@ url: NA
 description: F1 metric for temporal causal graph.
 task: discovery.temporal
 path: f1_temporal.py
+hyperparameters:
+    binarize:
+        data: boolean
+        description: Binarize the ground truth and predictions
+        value: true

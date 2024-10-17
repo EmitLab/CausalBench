@@ -75,4 +75,4 @@ def create_config(config_path: str):
     print()
 
     with open(config_path, 'w') as file:
-        yaml.safe_dump({'email': email, 'password': password}, file)
+        yaml.safe_dump({'email': email, 'password': password}, file, indent=4)

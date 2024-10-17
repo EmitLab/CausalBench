@@ -69,7 +69,7 @@ def package_module(state, package_path: str, entry_point: str = 'config.yaml') -
 
     with ZipFile(zip_file, 'w') as zipped:
         if entry_point:
-            zipped.writestr(entry_point, yaml.safe_dump(state, sort_keys=False))
+            zipped.writestr(entry_point, yaml.safe_dump(state, sort_keys=False, indent=4))
 
         if package_path is not None:
             for root, dirs, files in os.walk(package_path):

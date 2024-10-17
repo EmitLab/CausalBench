@@ -4,7 +4,8 @@ import psutil
 from bunch_py3 import Bunch
 from cpuinfo import cpuinfo
 
-from causalbench.commons.gpu import gpu_info
+from causalbench.commons.disk import Disks
+from causalbench.commons.gpu import GPUs
 
 
 def hwinfo() -> Bunch:
@@ -21,11 +22,19 @@ def hwinfo() -> Bunch:
     response.cpu.architecture = cpuinfo.get_cpu_info()['arch']
 
     # GPU information
-    gpu = gpu_info()
-    response.gpu = Bunch()
-    response.gpu.name = gpu[0]
-    response.gpu.driver = gpu[1]
-    response.gpu.memory_total = gpu[2]
+    gpus = GPUs()
+    response.gpus = Bunch()
+    for gpu in gpus.devices:
+        response.gpus[gpu.bus] = Bunch()
+        response.gpus[gpu.bus].name = gpu.name
+        response.gpus[gpu.bus].driver = gpu.driver
+        response.gpus[gpu.bus].memory_total = gpu.memory_total
+
+    # disk IO information
+    disks: Disks = Disks()
+    response.disks = Bunch()
+    for name, disk in disks.devices.items():
+        response.disks[name] = disk
 
     # memory information
     response.memory_total = psutil.virtual_memory().total

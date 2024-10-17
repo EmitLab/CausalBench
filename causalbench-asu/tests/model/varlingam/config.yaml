@@ -1,7 +1,32 @@
 type: model
 name: VAR-LiNGAM
 source: GitHub
-url: https://github.com/cdt15/lingam
+url: https://lingam.readthedocs.io/en/stable/reference/var_lingam.html
 description: Discovery of non-gaussian linear causal models
 task: discovery.temporal
 path: varlingam.py
+hyperparameters:
+    lags:
+        data: integer
+        description: Number of lags.
+        value: 1
+    criterion:
+        data: string
+        description: Criterion to decide the best lags within lags.
+        value: bic
+    prune:
+        data: boolean
+        description: Whether to prune the adjacency matrix of lags.
+        value: True
+#    ar_coefs:
+#        data: array-like
+#        description: Coefficients of AR model. Estimating AR model is skipped if specified ar_coefs. Shape must be (lags, n_features, n_features).
+#        value: null
+#    lingam_model:
+#        data: lingam object inherits 'lingam._BaseLiNGAM'
+#        description: LiNGAM model for causal discovery. If None, DirectLiNGAM algorithm is selected.
+#        value: null
+    random_state:
+        data: integer
+        description: random_state is the seed used by the random number generator.
+        value: null

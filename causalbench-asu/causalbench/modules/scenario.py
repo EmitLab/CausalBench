@@ -10,10 +10,13 @@ from causalbench.modules.task import Task
 
 class Scenario:
 
-    def __init__(self, task: Task, dataset: Dataset, mapping: Bunch, model: Model, metrics: list[Metric]):
+    def __init__(self,
+                 task: Task,
+                 dataset: tuple[Dataset, Bunch],
+                 model: tuple[Model, Bunch],
+                 metrics: list[tuple[Metric, Bunch]]):
         self.task = task
         self.dataset = dataset
-        self.mapping = mapping
         self.model = model
         self.metrics = metrics
 
@@ -25,48 +28,51 @@ class Scenario:
         task = self.task.load()
 
         # load data
-        data = self.dataset.load()
+        data = self.dataset[0].load()
 
         # # update indices
-        # if 'files' in self.dataset:
+        # if 'files' in self.dataset[0]:
         #     for file, data_object in data.items():
-        #         if file in self.dataset.files:
+        #         if file in self.dataset[0].files:
         #             if isinstance(data_object, SpatioTemporalData):
-        #                 data_object.update_index(self.dataset.files[file])
+        #                 data_object.update_index(self.dataset[0].files[file])
         #             if isinstance(data_object, SpatioTemporalGraph):
-        #                 data_object.update_index(self.dataset.files[file])
+        #                 data_object.update_index(self.dataset[0].files[file])
 
         # check model compatibility
-        if self.model.task != self.task.module_id:
-            raise TypeError(f'Model "{self.model.name}" not compatible with task "{self.task.module_id}"')
+        if self.model[0].task != self.task.module_id:
+            raise TypeError(f'Model "{self.model[0].name}" not compatible with task "{self.task.module_id}"')
 
         # check metric compatibility
         for metric in self.metrics:
-            if metric.task != self.task.module_id:
-                raise TypeError(f'Metric "{metric.name}" not compatible with task "{self.task.module_id}"')
+            if metric[0].task != self.task.module_id:
+                raise TypeError(f'Metric "{metric[0].name}" not compatible with task "{self.task.module_id}"')
 
         # map model parameters
         parameters: Bunch = Bunch()
-        parameters.update(self.map_parameters(task.model_data_inputs(), data, self.mapping))
+        parameters.update(self.map_parameters(task.model_data_inputs(), data, self.dataset[1]))
+        parameters.update(self.model[1])
         parameters.helpers = task.helpers()
 
         # execute the model
-        model_response: Bunch = self.model.execute(parameters)
+        model_response: Bunch = self.model[0].execute(parameters)
 
         # metrics
         scores = []
         for self_metric in self.metrics:
             # map metric parameters
             parameters: Bunch = Bunch()
-            parameters.update(self.map_parameters(task.metric_data_inputs(), data, self.mapping))
+            parameters.update(self.map_parameters(task.metric_data_inputs(), data, self.dataset[1]))
             parameters.update(self.map_parameters(task.metric_model_inputs(), model_response.output))
+            parameters.update(self_metric[1])
             parameters.helpers = task.helpers()
 
             # execute the metric
-            metric_response = self_metric.evaluate(parameters)
-            metric_response.id = self_metric.module_id
-            metric_response.version = self_metric.version
-            metric_response.name = self_metric.name
+            metric_response = self_metric[0].evaluate(parameters)
+            metric_response.id = self_metric[0].module_id
+            metric_response.version = self_metric[0].version
+            metric_response.name = self_metric[0].name
+            metric_response.hyperparameters = self_metric[1]
             scores.append(metric_response)
 
         # execution end time
@@ -77,15 +83,16 @@ class Scenario:
 
         # dataset
         response.dataset = Bunch()
-        response.dataset.id = self.dataset.module_id
-        response.dataset.version = self.dataset.version
-        response.dataset.name = self.dataset.name
+        response.dataset.id = self.dataset[0].module_id
+        response.dataset.version = self.dataset[0].version
+        response.dataset.name = self.dataset[0].name
 
         # model
         response.model = model_response
-        response.model.id = self.model.module_id
-        response.model.version = self.model.version
-        response.model.name = self.model.name
+        response.model.id = self.model[0].module_id
+        response.model.version = self.model[0].version
+        response.model.name = self.model[0].name
+        response.model.hyperparameters = self.model[1]
 
         # metrics
         response.metrics = scores

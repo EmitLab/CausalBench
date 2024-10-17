@@ -90,7 +90,7 @@ class Module(ABC):
         return self.save(self.__getstate__(), public)
 
     def __validate(self):
-        config = json.loads(json.dumps(self.__getstate__()))
+        config = json.loads(json.dumps(self.__getstate__(), indent=4))
         try:
             jsonschema.validate(instance=config, schema=self.schema)
             logging.debug('Configuration validated successfully')
