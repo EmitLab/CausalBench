@@ -1,12 +1,21 @@
+import atexit
 import logging
-import sys
 import time
 from enum import Enum
 from threading import Thread
 
 from bunch_py3 import Bunch
 import pyopencl as cl
-from causalbench.commons import GPUtil
+
+try:
+    import pynvml
+    try:
+        pynvml.nvmlInit()
+        atexit.register(lambda: pynvml.nvmlShutdown())
+    except Exception as e:
+        logging.warning(f'Failed to initialize \'pynvml\' library: {e}')
+except Exception as e:
+    logging.warning(f'Failed to import \'pynvml\' library: {e}')
 
 try:
     from pyadl import ADLManager, ADLDevice
@@ -27,17 +36,9 @@ class GPU:
         self.cl_device = cl_device
 
     @property
-    def id(self):
-        if self.vendor == Vendor.NVIDIA:
-            return self.device.id
-
-        elif self.vendor == Vendor.AMD:
-            return self.device.adapterIndex
-
-    @property
     def uuid(self):
         if self.vendor == Vendor.NVIDIA:
-            return self.device.uuid
+            return pynvml.nvmlDeviceGetUUID(self.device)
 
         elif self.vendor == Vendor.AMD:
             return self.device.uuid.decode('utf-8')
@@ -45,7 +46,7 @@ class GPU:
     @property
     def bus(self):
         if self.vendor == Vendor.NVIDIA:
-            return self.device.busNumber
+            return pynvml.nvmlDeviceGetPciInfo(self.device).bus
 
         elif self.vendor == Vendor.AMD:
             return self.device.busNumber
@@ -53,7 +54,7 @@ class GPU:
     @property
     def name(self):
         if self.vendor == Vendor.NVIDIA:
-            return self.device.name
+            return pynvml.nvmlDeviceGetName(self.device)
 
         elif self.vendor == Vendor.AMD:
             if self.cl_device:
@@ -63,53 +64,40 @@ class GPU:
     @property
     def memory_used(self):
         if self.vendor == Vendor.NVIDIA:
-            return int(self.device.memoryUsed * 1048576)
+            return pynvml.nvmlDeviceGetMemoryInfo(self.device).used
 
         elif self.vendor == Vendor.AMD:
             return None
-
-    @property
-    def memory_util(self):
-        if self.vendor == Vendor.NVIDIA:
-            return self.device.memoryUtil
-
-        elif self.vendor == Vendor.AMD:
-            return self.device.getCurrentUsage()
 
     @property
     def memory_total(self):
         if self.vendor == Vendor.NVIDIA:
-            if self.cl_device:
-                return self.cl_device.global_mem_size
-            return int(self.device.memoryTotal * 1048576)
+            return pynvml.nvmlDeviceGetMemoryInfo(self.device).total
 
         elif self.vendor == Vendor.AMD:
             if self.cl_device:
                 return self.cl_device.global_mem_size
             return None
+
+    @property
+    def utilization(self):
+        if self.vendor == Vendor.NVIDIA:
+            return pynvml.nvmlDeviceGetUtilizationRates(self.device).gpu
+
+        elif self.vendor == Vendor.AMD:
+            return self.device.getCurrentUsage()
 
     @property
     def driver(self):
         if self.vendor == Vendor.NVIDIA:
             if self.cl_device:
                 return self.cl_device.driver_version
-            return self.device.driver
+            return pynvml.nvmlSystemGetDriverVersion()
 
         elif self.vendor == Vendor.AMD:
             if self.cl_device:
                 return self.cl_device.driver_version
             return None
-
-    def refresh(self):
-        if self.vendor == Vendor.NVIDIA:
-            devices = GPUtil.getGPUs()
-            for device in devices:
-                if self.device.uuid == device.uuid:
-                    self.device = device
-                    break
-
-        elif self.vendor == Vendor.AMD:
-            pass
 
 
 class GPUs:
@@ -133,15 +121,24 @@ class GPUs:
                     amd_cl[device.topology_amd.bus] = device
 
         # get NVIDIA devices using GPUtil
-        devices: list[GPUtil.GPU] = GPUtil.getGPUs()
-        for index, device in enumerate(devices):
-            self._devices.append(GPU(Vendor.NVIDIA, device, nvidia_cl[device.busNumber]))
+        try:
+            device_count = pynvml.nvmlDeviceGetCount()
+            devices: list = [pynvml.nvmlDeviceGetHandleByIndex(i) for i in range(device_count)]
+            for index, device in enumerate(devices):
+                busNumber = pynvml.nvmlDeviceGetPciInfo(device).bus
+                if busNumber in nvidia_cl:
+                    self._devices.append(GPU(Vendor.NVIDIA, device, nvidia_cl[busNumber]))
+        except:
+            pass
 
         # get AMD devices using pyadl
-        if 'pyadl' in sys.modules:
+        try:
             devices: list[ADLDevice] = ADLManager.getInstance().getDevices()
             for index, device in enumerate(devices):
-                self._devices.append(GPU(Vendor.AMD, device, amd_cl[device.busNumber]))
+                if device.busNumber in amd_cl:
+                    self._devices.append(GPU(Vendor.AMD, device, amd_cl[device.busNumber]))
+        except:
+            pass
 
     @property
     def devices(self) -> list[GPU]:
@@ -168,19 +165,17 @@ class GPUsProfiler(Thread):
             return
 
         for gpu in self.gpus.devices:
-            gpu.refresh()
-            self.idle[gpu.id] = self.peak[gpu.id] = gpu.memory_used
+            self.idle[gpu.bus] = self.peak[gpu.bus] = gpu.memory_used
 
         while not self.stopped:
             for gpu in self.gpus.devices:
-                gpu.refresh()
                 memory = gpu.memory_used
 
                 if memory is not None:
-                    if self.idle[gpu.id] is not None and memory < self.idle[gpu.id]:
-                        self.idle[gpu.id] = memory
-                    if self.peak[gpu.id] is not None and memory > self.peak[gpu.id]:
-                        self.peak[gpu.id] = memory
+                    if self.idle[gpu.bus] is not None and memory < self.idle[gpu.bus]:
+                        self.idle[gpu.bus] = memory
+                    if self.peak[gpu.bus] is not None and memory > self.peak[gpu.bus]:
+                        self.peak[gpu.bus] = memory
 
             time.sleep(self.delay)
 
@@ -191,7 +186,7 @@ class GPUsProfiler(Thread):
     def usage(self) -> Bunch:
         usage = Bunch()
         for gpu in self.gpus.devices:
-            usage[gpu.id] = Bunch()
-            usage[gpu.id].idle = self.idle[gpu.id]
-            usage[gpu.id].peak = self.peak[gpu.id]
+            usage[gpu.bus] = Bunch()
+            usage[gpu.bus].idle = self.idle[gpu.bus]
+            usage[gpu.bus].peak = self.peak[gpu.bus]
         return usage
