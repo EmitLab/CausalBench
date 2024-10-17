@@ -1,28 +1,26 @@
 import atexit
 import logging
-import sys
 import time
 from enum import Enum
 from threading import Thread
 
-import pynvml
 from bunch_py3 import Bunch
 import pyopencl as cl
+
+try:
+    import pynvml
+    try:
+        pynvml.nvmlInit()
+        atexit.register(lambda: pynvml.nvmlShutdown())
+    except Exception as e:
+        logging.warning(f'Failed to initialize \'pynvml\' library: {e}')
+except Exception as e:
+    logging.warning(f'Failed to import \'pynvml\' library: {e}')
 
 try:
     from pyadl import ADLManager, ADLDevice
 except Exception as e:
     logging.warning(f'Failed to import \'pyadl\' library: {e}')
-
-
-pynvml_initialized = False
-
-def initialize_pynvml():
-    global pynvml_initialized
-    if not pynvml_initialized:
-        pynvml.nvmlInit()
-        atexit.register(pynvml.nvmlShutdown)
-        pynvml_initialized = True
 
 
 class Vendor(Enum):
@@ -56,7 +54,7 @@ class GPU:
     @property
     def name(self):
         if self.vendor == Vendor.NVIDIA:
-            return pynvml.nvmlDeviceGetName(self.device).decode('utf-8')
+            return pynvml.nvmlDeviceGetName(self.device)
 
         elif self.vendor == Vendor.AMD:
             if self.cl_device:
@@ -94,7 +92,7 @@ class GPU:
         if self.vendor == Vendor.NVIDIA:
             if self.cl_device:
                 return self.cl_device.driver_version
-            return pynvml.nvmlSystemGetDriverVersion(self.device).decode('utf-8')
+            return pynvml.nvmlSystemGetDriverVersion()
 
         elif self.vendor == Vendor.AMD:
             if self.cl_device:
@@ -123,20 +121,24 @@ class GPUs:
                     amd_cl[device.topology_amd.bus] = device
 
         # get NVIDIA devices using GPUtil
-        initialize_pynvml()
-        device_count = pynvml.nvmlDeviceGetCount()
-        devices: list = [pynvml.nvmlDeviceGetHandleByIndex(i) for i in range(device_count)]
-        for index, device in enumerate(devices):
-            busNumber = pynvml.nvmlDeviceGetPciInfo(device).bus
-            if busNumber in nvidia_cl:
-                self._devices.append(GPU(Vendor.NVIDIA, device, nvidia_cl[busNumber]))
+        try:
+            device_count = pynvml.nvmlDeviceGetCount()
+            devices: list = [pynvml.nvmlDeviceGetHandleByIndex(i) for i in range(device_count)]
+            for index, device in enumerate(devices):
+                busNumber = pynvml.nvmlDeviceGetPciInfo(device).bus
+                if busNumber in nvidia_cl:
+                    self._devices.append(GPU(Vendor.NVIDIA, device, nvidia_cl[busNumber]))
+        except:
+            pass
 
         # get AMD devices using pyadl
-        if 'pyadl' in sys.modules:
+        try:
             devices: list[ADLDevice] = ADLManager.getInstance().getDevices()
             for index, device in enumerate(devices):
                 if device.busNumber in amd_cl:
                     self._devices.append(GPU(Vendor.AMD, device, amd_cl[device.busNumber]))
+        except:
+            pass
 
     @property
     def devices(self) -> list[GPU]:
