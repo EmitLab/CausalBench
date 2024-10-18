@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "causalbench-asu"
-version = "0.1rc5"
+version = "0.1rc7"
 authors = [
   { name="CausalBench Team", email="support@causalbench.org"}
 ]
@@ -49,6 +49,7 @@ Issues = "https://github.com/EmitLab/CausalBench/issues"
 
 [tool.hatch.build.targets.sdist]
 only-include = ["causalbench-asu"]
+exclude = ["causalbench-asu/tests/*"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["causalbench-asu/causalbench"]
