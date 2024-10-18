@@ -50,7 +50,7 @@ temporal_db = [time_sim]#, telecom]
 temporal_model = [varlingam_hp, pcmciplus_hp]
 temporal_metric = [prec_temp, recall_temp, acc_temp, f1_temp] #, shd_temp]
 
-static_db = [abalone, fashion_minst, adult, sachs]
+static_db = [abalone, adult, sachs]#, fashion_minst]
 static_model = [ges_hp, pc_hp]
 static_metric = [acc_stat, f1_stat, prec_stat, recall_stat] #, shd_stat]
 #static_db = static_db+numbers
@@ -68,13 +68,13 @@ temp_metric_set = [(Metric(module_id=num, version=1), {}) for num in temporal_me
 
 
 #Creation of contexts
-print("temp context create-publish")
-temp_context: Context = Context.create(name='Temporal Benchmark',
-                                    description='This context runs currently available temporal models and metrics with available datasets.',
-                                    task='discovery.temporal',
-                                    datasets=temp_all_dataset_set,
-                                    models=temp_model_set,
-                                    metrics=temp_metric_set)
+# print("temp context create-publish")
+# temp_context: Context = Context.create(name='Temporal Benchmark',
+#                                     description='This context runs currently available temporal models and metrics with available datasets.',
+#                                     task='discovery.temporal',
+#                                     datasets=temp_all_dataset_set,
+#                                     models=temp_model_set,
+#                                     metrics=temp_metric_set)
 # temp_context.publish() #id 8
 
 print("static context create-publish")
@@ -84,6 +84,6 @@ static_context: Context = Context.create(name='Static Benchmark',
                                     datasets=stat_all_dataset_set,
                                     models=stat_model_set,
                                     metrics=stat_metric_set)
-static_context.publish() #id 12
+static_context.publish(public=True) #id 12
 
 
