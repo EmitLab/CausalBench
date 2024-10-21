@@ -111,17 +111,20 @@ class GPUs:
         amd_cl = dict()
 
         # get devices using opencl
-        platforms = cl.get_platforms()
-        for platform in platforms:
-            devices: list[cl.Device] = platform.get_devices()
-            for device in devices:
-                # NVIDIA
-                if device.vendor_id == Vendor.NVIDIA.value:
-                    nvidia_cl[device.pci_bus_id_nv] = device
+        try:
+            platforms = cl.get_platforms()
+            for platform in platforms:
+                devices: list[cl.Device] = platform.get_devices()
+                for device in devices:
+                    # NVIDIA
+                    if device.vendor_id == Vendor.NVIDIA.value:
+                        nvidia_cl[device.pci_bus_id_nv] = device
 
-                # AMD
-                elif device.vendor_id == Vendor.AMD.value:
-                    amd_cl[device.topology_amd.bus] = device
+                    # AMD
+                    elif device.vendor_id == Vendor.AMD.value:
+                        amd_cl[device.topology_amd.bus] = device
+        except:
+            pass
 
         # get NVIDIA devices using GPUtil
         try:
