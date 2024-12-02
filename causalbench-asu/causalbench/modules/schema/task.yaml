@@ -1,5 +1,18 @@
 type: object
 properties:
+    causalbench:
+        type: object
+        properties:
+            major:
+                type: string
+            minor:
+                type: string
+            build:
+                type: string
+        required:
+            - major
+            - minor
+            - build
     type:
         const: task
     name:
@@ -9,6 +22,7 @@ properties:
     class_name:
         type: string
 required:
+    - causalbench
     - type
     - name
     - path

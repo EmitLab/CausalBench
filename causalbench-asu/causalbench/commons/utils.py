@@ -1,13 +1,22 @@
 import atexit
 import logging
 import os
+import re
 import shutil
+import sys
 import tempfile
+from importlib.metadata import version
 from pathlib import Path
 from zipfile import ZipFile
 
 import yaml
 from bunch_py3 import bunchify, Bunch
+
+
+def causalbench_version() -> Bunch:
+    ver = Bunch()
+    ver.major, ver.minor, ver.build = re.split(r'\.|(?<=\d)(?=\D)', version('causalbench-asu'))
+    return ver
 
 
 def parse_arguments(args, keywords):
@@ -21,7 +30,7 @@ def parse_arguments(args, keywords):
             return bunchify(args[0])
     else:
         logging.error('Invalid arguments')
-        return
+        sys.exit(1)
 
 
 def causal_bench_path(*path_list) -> str:

@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import sys
 from abc import ABC, abstractmethod
 from importlib import resources
 
@@ -9,7 +10,7 @@ import yaml
 from bunch_py3 import bunchify, Bunch
 from jsonschema.exceptions import ValidationError
 
-from causalbench.commons.utils import extract_module, extract_module_temporary
+from causalbench.commons.utils import causalbench_version, extract_module, extract_module_temporary
 
 
 class Module(ABC):
@@ -19,6 +20,9 @@ class Module(ABC):
         self.module_id = module_id
         self.version = version
         self.type = self.__class__.__name__.lower()
+
+        # set library version
+        self.causalbench = causalbench_version()
 
         # load the schema
         self.__load_schema()
@@ -38,22 +42,19 @@ class Module(ABC):
         # get package
         self.__get_package(zip_file)
 
-        # package path not defined
-        if self.package_path is None:
-            self.__dict__.update(Bunch())
-            return
+        # load from package path
+        if self.package_path is not None:
+            # load configuration
+            config_path = os.path.join(self.package_path, 'config.yaml')
+            with open(config_path) as f:
+                entries = yaml.safe_load(f)
+                entries = bunchify(entries)
 
-        # load configuration
-        config_path = os.path.join(self.package_path, 'config.yaml')
-        with open(config_path) as f:
-            entries = yaml.safe_load(f)
-            entries = bunchify(entries)
+            # update object structure
+            self.__dict__.update(entries)
 
-        # set object structure
-        self.__dict__.update(entries)
-
-        # validate object structure
-        self.__validate()
+            # validate object structure
+            self.__validate()
 
     def __get_package(self, zip_file):
         # load directly from zip file
@@ -96,12 +97,19 @@ class Module(ABC):
             logging.debug('Configuration validated successfully')
         except ValidationError as e:
             logging.error(f'Configuration validation error: {e}')
+            sys.exit(1)
+
+        cb_ver = causalbench_version()
+        if self.causalbench.major != cb_ver.major or self.causalbench.minor != cb_ver.minor:
+            logging.error(f'CausalBench {self.causalbench.major}:{self.causalbench.minor} is incompatible with {cb_ver.major}:{cb_ver.minor}')
+            sys.exit(1)
 
         try:
             self.validate()
             logging.debug('Logic validated successfully')
         except Exception as e:
             logging.error(f'Logic validation error: {e}')
+            sys.exit(1)
 
     def __getstate__(self):
         state = bunchify(self.__dict__)

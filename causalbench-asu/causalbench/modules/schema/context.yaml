@@ -1,5 +1,18 @@
 type: object
 properties:
+    causalbench:
+        type: object
+        properties:
+            major:
+                type: string
+            minor:
+                type: string
+            build:
+                type: string
+        required:
+            - major
+            - minor
+            - build
     type:
         const: context
     name:
@@ -88,6 +101,7 @@ properties:
                 - version
 #                - parameters
 required:
+    - causalbench
     - type
     - name
     - description

@@ -1,5 +1,18 @@
 type: object
 properties:
+    causalbench:
+        type: object
+        properties:
+            major:
+                type: string
+            minor:
+                type: string
+            build:
+                type: string
+        required:
+            - major
+            - minor
+            - build
     type:
         const: dataset
     name:
@@ -83,6 +96,7 @@ properties:
                     - path
                     - columns
 required:
+    - causalbench
     - type
     - name
     - source
