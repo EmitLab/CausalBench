@@ -1,11 +1,54 @@
 import os
 import sys
+from datetime import datetime, timezone
+from getpass import getpass
 from pathlib import Path
 
+import jwt
 import requests
 import yaml
 
 from causalbench.commons.utils import causal_bench_path
+
+
+__access_token = None
+
+def get_access_token() -> str | None:
+    global __access_token
+    if __access_token is None or is_token_expired(__access_token):
+        __access_token = init_auth()
+    return __access_token
+
+
+def is_token_expired(token):
+    exp_timestamp = jwt.decode(token, options={"verify_signature": False})["exp"]
+    return datetime.now(timezone.utc).timestamp() >= exp_timestamp
+
+
+def init_auth() -> str | None:
+    # load config from file
+    config_path = causal_bench_path('config.yaml')
+
+    # config file does not exist
+    if not os.path.isfile(config_path):
+        print('Credentials required')
+        create_config(config_path)
+
+    # validate config
+    while True:
+        with open(config_path, 'r') as f:
+            config = yaml.safe_load(f)
+
+        # authenticate
+        access_token = authenticate(config)
+
+        # authentication successful
+        if access_token is not None:
+            return access_token
+
+        # authentication failed
+        print('Incorrect credentials')
+        create_config(config_path)
 
 
 def authenticate(config) -> str | None:
@@ -41,37 +84,13 @@ def authenticate(config) -> str | None:
         sys.exit(1)
 
 
-def init_auth():
-    # load config from file
-    config_path = causal_bench_path('config.yaml')
-
-    # config file does not exist
-    if not os.path.isfile(config_path):
-        print('Credentials required')
-        create_config(config_path)
-
-    # validate config
-    while True:
-        with open(config_path, 'r') as f:
-            config = yaml.safe_load(f)
-
-        # authenticate
-        access_token = authenticate(config)
-
-        # authentication successful
-        if access_token is not None:
-            return access_token
-
-        # authentication failed
-        print('Incorrect credentials')
-        create_config(config_path)
-
-
 def create_config(config_path: str):
     Path(config_path).parent.mkdir(parents=True, exist_ok=True)
 
+    input_pass = getpass if sys.stdin.isatty() else input
+
     email: str = input('email: ')
-    password: str = input('password: ')
+    password: str = input_pass('password: ')
     print()
 
     with open(config_path, 'w') as file:
