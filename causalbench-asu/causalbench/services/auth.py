@@ -89,8 +89,8 @@ def create_config(config_path: str):
 
     input_pass = getpass if sys.stdin.isatty() else input
 
-    email: str = input('email: ')
-    password: str = input_pass('password: ')
+    email: str = input('Email: ')
+    password: str = input_pass('Password: ')
     print()
 
     with open(config_path, 'w') as file:
