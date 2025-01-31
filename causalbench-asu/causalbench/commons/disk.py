@@ -36,7 +36,7 @@ class Disks:
         physical_drives = Bunch()
 
         for drive in c.Win32_DiskDrive():
-            drive_id = drive.DeviceID.strip("\\\\.\\").replace("PHYSICALDRIVE", "PhysicalDrive")
+            drive_id = drive.DeviceID
 
             physical_drives[drive_id] = Bunch()
 
@@ -51,8 +51,7 @@ class Disks:
                     physical_drives[drive_id].usage.total += int(partition.Size)
                     physical_drives[drive_id].usage.free += int(partition.FreeSpace)
 
-            physical_drives[drive_id].usage.used = physical_drives[drive_id].usage.total - physical_drives[
-                drive_id].usage.free
+            physical_drives[drive_id].usage.used = physical_drives[drive_id].usage.total - physical_drives[drive_id].usage.free
 
             result = self._syscall(['powershell', '-Command', f'Get-PhysicalDisk | Select-Object DeviceID, MediaType | Where-Object {{ $_.DeviceID -eq {drive.Index} }}'])
 
@@ -78,7 +77,7 @@ class Disks:
                 physical_drives[drive_id].usage.free += int(device.fsavail)
                 physical_drives[drive_id].usage.used += int(device.fsused)
 
-        result = self._syscall(['lsblk', '-S', '-J', '-o', 'NAME,MODEL,ROTA'])
+        result = self._syscall(['lsblk', '-S', '-J', '-p', '-o', 'NAME,MODEL,ROTA'])
         drives = json.loads(result)
         drives = bunchify(drives)
 
@@ -91,7 +90,7 @@ class Disks:
 
             physical_drives[drive_id].model = drive.model.strip()
 
-            result = self._syscall(['lsblk', '-J', '-b', '-o', 'NAME,FSSIZE,FSAVAIL,FSUSED', f'/dev/{drive_id}'])
+            result = self._syscall(['lsblk', '-J', '-b', '-o', 'NAME,FSSIZE,FSAVAIL,FSUSED', f'{drive_id}'])
             device = json.loads(result)
             device = bunchify(device)
             device = device.blockdevices[0]
@@ -155,9 +154,7 @@ class Disks:
             physical_partitions[partition].usage.used = 0
 
             if partition_plist.get('FreeSpace'):
-                physical_partitions[partition].usage.used = physical_partitions[
-                                                                partition].usage.total - partition_plist.get(
-                    'FreeSpace')
+                physical_partitions[partition].usage.used = physical_partitions[partition].usage.total - partition_plist.get('FreeSpace')
 
             else:
                 for container in containers:
@@ -230,3 +227,7 @@ class DisksProfiler:
             usage[key]['read_bytes'] = current_usage[key]['read_bytes'] - self._usage[key]['read_bytes']
             usage[key]['write_bytes'] = current_usage[key]['write_bytes'] - self._usage[key]['write_bytes']
         return bunchify(usage)
+
+
+disks: Disks = Disks()
+print(disks.devices)
