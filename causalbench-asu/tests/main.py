@@ -5,6 +5,8 @@ from matplotlib import pyplot as plt
 from causalbench.modules import Dataset, Metric, Model, Context, Run
 from causalbench.modules.task import Task, AbstractTask
 
+from importlib.metadata import version
+
 
 # from causalbench.commons.utils import display_report
 # from causalbench.modules.scenario import Pipeline
@@ -43,47 +45,47 @@ def plot_graph(matrix, nodes, pos=None, title=None, figsize=(10, 6), dpi=None):
 
 
 def main():
-    # dataset1 = Dataset(module_id=9, version=3)
-    dataset1 = Dataset(zip_file='data/abalone.zip')
-    # dataset1.publish(public=True)
+    # dataset1 = Dataset(module_id=1, version=1)
+    # dataset1 = Dataset(zip_file='data/abalone.zip')
+    # dataset1.publish()
 
     # dataset2 = Dataset(module_id=2, version=1)
-    dataset2 = Dataset(zip_file='data/time_series_simulated.zip')
+    # dataset2 = Dataset(zip_file='data/time_series_simulated.zip')
     # dataset2.publish()
 
     # dataset3 = Dataset(zip_file='data/sachs.zip')
     # dataset3.publish()
 
-    # model1 = Model(module_id=4, version=1)
-    model1 = Model(zip_file='model/pc.zip')
-    # model1.publish(public=True)
+    # model1 = Model(module_id=1, version=1)
+    # model1 = Model(zip_file='model/pc.zip')
+    # model1.publish()
 
-    # model2 = Model(module_id=5, version=1)
-    model2 = Model(zip_file='model/ges.zip')
-    # model2.publish(public=True)
+    # model2 = Model(module_id=2, version=1)
+    # model2 = Model(zip_file='model/ges.zip')
+    # model2.publish()
 
     # model3 = Model(module_id=3, version=1)
-    model3 = Model(zip_file='model/varlingam.zip')
+    # model3 = Model(zip_file='model/varlingam.zip')
     # model3.publish()
 
     # model4 = Model(module_id=4, version=1)
-    model4 = Model(zip_file='model/pcmciplus.zip')
+    # model4 = Model(zip_file='model/pcmciplus.zip')
     # model4.publish()
 
-    # metric1 = Metric(module_id=8, version=1)
-    metric1 = Metric(zip_file='metric/accuracy_static.zip')
-    # metric1.publish(public=True)
+    # metric1 = Metric(module_id=1, version=1)
+    # metric1 = Metric(zip_file='metric/accuracy_static.zip')
+    # metric1.publish()
 
-    # metric2 = Metric(module_id=9, version=1)
+    # metric2 = Metric(module_id=2, version=1)
     # metric2 = Metric(zip_file='metric/f1_static.zip')
-    # metric2.publish(public=True)
+    # metric2.publish()
 
     # metric3 = Metric(module_id=3, version=1)
-    metric3 = Metric(zip_file='metric/accuracy_temporal.zip')
+    # metric3 = Metric(zip_file='metric/accuracy_temporal.zip')
     # metric3.publish()
 
     # metric4 = Metric(module_id=4, version=1)
-    metric4 = Metric(zip_file='metric/shd_temporal.zip')
+    # metric4 = Metric(zip_file='metric/shd_temporal.zip')
     # metric4.publish()
 
     # task: Task = Task(module_id='discovery.temporal')
@@ -91,44 +93,85 @@ def main():
 
     # static task
     # context1: Context = Context(module_id=10, version=6)
-    # context1: Context = Context.create(module_id=10,
-    #                                    name='Context1',
+    # context1: Context = Context.create(name='Context2',
     #                                    description='Test static context',
     #                                    task='discovery.static',
     #                                    datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
     #                                    models=[(model1, {'alpha': 0.001}),
     #                                            (model2, {})],
-    #                                    metrics=[(metric1, {'threshold': 0.03}),
+    #                                    metrics=[(metric1, {}),
     #                                             (metric2, {})])
 
-    context1: Context = Context.create(module_id=10,
-                                       name='Context1',
-                                       description='Test static context',
-                                       task='discovery.static',
-                                       datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
-                                       models=[(model1, {'alpha': 0.001, 'variant': 'stable'}),],
-                                       metrics=[(metric1, {'binarize': False})])
+    # context1: Context = Context.create(module_id=10,
+    #                                    name='Context1',
+    #                                    description='Test static context',
+    #                                    task='discovery.static',
+    #                                    datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'})],
+    #                                    models=[(model1, {'alpha': 0.001, 'variant': 'stable'}),],
+    #                                    metrics=[(metric1, {'binarize': False})])
     # context1.publish()
     # context1.publish(public=True)
 
-    run: Run = context1.execute()
-    # run.publish(public=True)
-    print(run)
+    # run: Run = context1.execute()
+    # # run.publish(public=True)
+    # print(run)
+    #
+    # # temporal task
+    # # context2: Context = Context(module_id=3, version=1)
+    # context2: Context = Context.create(module_id=11,
+    #                                    name='Temporal Context: VAR-LiNGAM, pcmciplus',
+    #                                    description='Test temporal context',
+    #                                    task='discovery.temporal',
+    #                                    datasets=[(dataset2, {'data': 'file1', 'ground_truth': 'file2'})],
+    #                                    models=[(model3, {}), (model4, {'tau_min': 1})],
+    #                                    metrics=[(metric3, {}), (metric4, {})])
+    # # context2.publish(public=True)
+    #
+    # run: Run = context2.execute()
+    # # run.publish(public=True)
+    # print(run)
 
-    # temporal task
-    # context2: Context = Context(module_id=3, version=1)
-    context2: Context = Context.create(module_id=11,
-                                       name='Temporal Context: VAR-LiNGAM, pcmciplus',
-                                       description='Test temporal context',
+    # print(version('causalbench-asu'))
+
+    # context: Context = Context(module_id=2, version=1)
+    # run: Run = context.execute()
+    # print(run)
+    # run.publish()
+
+    # run: Run = context.execute()
+    # print(run)
+    # run.publish()
+
+    # dataset: Dataset = Dataset(zip_file='data/panama.zip', module_id=1447)
+    # dataset.publish()
+
+    # model: Model = Model(zip_file='model/ges.zip', module_id=2)
+    # model.publish()
+
+    dataset1: Dataset = Dataset(module_id=1444, version=1)
+    dataset2: Dataset = Dataset(module_id=1446, version=6)
+    dataset3: Dataset = Dataset(module_id=1447, version=2)
+
+    model1: Model = Model(module_id=4, version=1)
+    model2: Model = Model(module_id=5, version=1)
+
+    metric1: Metric = Metric(module_id=2, version=1)
+    metric2: Metric = Metric(module_id=4, version=1)
+    metric3: Metric = Metric(module_id=6, version=1)
+    metric4: Metric = Metric(module_id=8, version=1)
+    metric5: Metric = Metric(module_id=10, version=1)
+
+    context1: Context = Context.create(module_id=11,
                                        task='discovery.temporal',
-                                       datasets=[(dataset2, {'data': 'file1', 'ground_truth': 'file2'})],
-                                       models=[(model3, {}), (model4, {'tau_min': 1})],
-                                       metrics=[(metric3, {}), (metric4, {})])
-    # context2.publish(public=True)
+                                       name='Benchmark: VAR-LiNGAM, PCMCIplus',
+                                       description='Benchmark temporal causal discovery algorithms across multiple datasets',
+                                       datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'}),
+                                                 (dataset2, {'data': 'file1', 'ground_truth': 'file2'}),
+                                                 (dataset3, {'data': 'file1', 'ground_truth': 'file2'})],
+                                       models=[(model1, {'tau_min': 1}), (model2, {})],
+                                       metrics=[(metric1, {}), (metric2, {}), (metric3, {}), (metric4, {}), (metric5, {})])
 
-    run: Run = context2.execute()
-    # run.publish(public=True)
-    print(run)
+    context1.execute()
 
 
 if __name__ == '__main__':

@@ -36,7 +36,7 @@ class Disks:
         physical_drives = Bunch()
 
         for drive in c.Win32_DiskDrive():
-            drive_id = drive.DeviceID
+            drive_id = drive.DeviceID.strip('\\\\.\\').replace('PHYSICALDRIVE', 'PhysicalDrive')
 
             physical_drives[drive_id] = Bunch()
 
@@ -227,7 +227,3 @@ class DisksProfiler:
             usage[key]['read_bytes'] = current_usage[key]['read_bytes'] - self._usage[key]['read_bytes']
             usage[key]['write_bytes'] = current_usage[key]['write_bytes'] - self._usage[key]['write_bytes']
         return bunchify(usage)
-
-
-disks: Disks = Disks()
-print(disks.devices)

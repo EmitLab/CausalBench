@@ -1,3 +1,4 @@
+from .task import Task
 from .dataset import Dataset
 from .metric import Metric
 from .model import Model

@@ -1,468 +1,261 @@
 #dataset knowledge is a must: https://www.science.org/doi/10.1126/science.1105809
 type: dataset
 name: Telecom
-source: gCatsle
+source: gCastle
 url: https://github.com/huawei-noah/trustworthyAI/blob/master/datasets/README.md
-description: Real world data from telecommunication networks.
+description: Real world time-series data from telecommunication networks.
 files:
     file1:
         type: csv
         data: dataframe
         path: real_dataset_processed.csv
         headers: true
+        index:
+            time: timestep
         columns:
-        A_17:
-            header: A_17
-            type: nominal
-            data: float
-        A_31:
-            header: A_31
-            type: nominal
-            data: float
-        A_29:
-            header: A_29
-            type: nominal
-            data: float
-        A_42:
-            header: A_42
-            type: nominal
-            data: float
-        A_52:
-            header: A_52
-            type: nominal
-            data: float
-        A_51:
-            header: A_51
-            type: nominal
-            data: float
-        A_5:
-            header: A_5
-            type: nominal
-            data: float
-        A_6:
-            header: A_6
-            type: nominal
-            data: float
-        A_7:
-            header: A_7
-            type: nominal
-            data: float
-        A_0:
-            header: A_0
-            type: nominal
-            data: float
-        A_45:
-            header: A_45
-            type: nominal
-            data: float
-        A_32:
-            header: A_32
-            type: nominal
-            data: float
-        A_55:
-            header: A_55
-            type: nominal
-            data: float
-        A_39:
-            header: A_39
-            type: nominal
-            data: float
-        A_44:
-            header: A_44
-            type: nominal
-            data: float
-        A_13:
-            header: A_13
-            type: nominal
-            data: float
-        A_14:
-            header: A_14
-            type: nominal
-            data: float
-        A_2:
-            header: A_2
-            type: nominal
-            data: float
-        A_12:
-            header: A_12
-            type: nominal
-            data: float
-        A_50:
-            header: A_50
-            type: nominal
-            data: float
-        A_46:
-            header: A_46
-            type: nominal
-            data: float
-        A_25:
-            header: A_25
-            type: nominal
-            data: float
-        A_36:
-            header: A_36
-            type: nominal
-            data: float
-        A_16:
-            header: A_16
-            type: nominal
-            data: float
-        A_4:
-            header: A_4
-            type: nominal
-            data: float
-        A_47:
-            header: A_47
-            type: nominal
-            data: float
-        A_54:
-            header: A_54
-            type: nominal
-            data: float
-        A_22:
-            header: A_22
-            type: nominal
-            data: float
-        A_56:
-            header: A_56
-            type: nominal
-            data: float
-        A_30:
-            header: A_30
-            type: nominal
-            data: float
-        A_11:
-            header: A_11
-            type: nominal
-            data: float
-        A_49:
-            header: A_49
-            type: nominal
-            data: float
-        A_9:
-            header: A_9
-            type: nominal
-            data: float
-        A_1:
-            header: A_1
-            type: nominal
-            data: float
-        A_24:
-            header: A_24
-            type: nominal
-            data: float
-        A_43:
-            header: A_43
-            type: nominal
-            data: float
-        A_27:
-            header: A_27
-            type: nominal
-            data: float
-        A_10:
-            header: A_10
-            type: nominal
-            data: float
-        A_18:
-            header: A_18
-            type: nominal
-            data: float
-        A_3:
-            header: A_3
-            type: nominal
-            data: float
-        A_53:
-            header: A_53
-            type: nominal
-            data: float
-        A_19:
-            header: A_19
-            type: nominal
-            data: float
-        A_33:
-            header: A_33
-            type: nominal
-            data: float
-        A_28:
-            header: A_28
-            type: nominal
-            data: float
-        A_23:
-            header: A_23
-            type: nominal
-            data: float
-        A_20:
-            header: A_20
-            type: nominal
-            data: float
-        A_41:
-            header: A_41
-            type: nominal
-            data: float
-        A_38:
-            header: A_38
-            type: nominal
-            data: float
-        A_35:
-            header: A_35
-            type: nominal
-            data: float
-        A_48:
-            header: A_48
-            type: nominal
-            data: float
-        A_8:
-            header: A_8
-            type: nominal
-            data: float
-        A_26:
-            header: A_26
-            type: nominal
-            data: float
-        A_40:
-            header: A_40
-            type: nominal
-            data: float
-        A_15:
-            header: A_15
-            type: nominal
-            data: float
-        A_37:
-            header: A_37
-            type: nominal
-            data: float
+            timestep:
+                header: timestep
+                type: ratio
+                data: integer
+            A_17:
+                header: A_17
+                type: nominal
+                data: integer
+            A_31:
+                header: A_31
+                type: nominal
+                data: integer
+            A_29:
+                header: A_29
+                type: nominal
+                data: integer
+            A_42:
+                header: A_42
+                type: nominal
+                data: integer
+            A_52:
+                header: A_52
+                type: nominal
+                data: integer
+            A_51:
+                header: A_51
+                type: nominal
+                data: integer
+            A_5:
+                header: A_5
+                type: nominal
+                data: integer
+            A_6:
+                header: A_6
+                type: nominal
+                data: integer
+            A_7:
+                header: A_7
+                type: nominal
+                data: integer
+            A_0:
+                header: A_0
+                type: nominal
+                data: integer
+            A_45:
+                header: A_45
+                type: nominal
+                data: integer
+            A_32:
+                header: A_32
+                type: nominal
+                data: integer
+            A_55:
+                header: A_55
+                type: nominal
+                data: integer
+            A_39:
+                header: A_39
+                type: nominal
+                data: integer
+            A_44:
+                header: A_44
+                type: nominal
+                data: integer
+            A_13:
+                header: A_13
+                type: nominal
+                data: integer
+            A_14:
+                header: A_14
+                type: nominal
+                data: integer
+            A_2:
+                header: A_2
+                type: nominal
+                data: integer
+            A_12:
+                header: A_12
+                type: nominal
+                data: integer
+            A_50:
+                header: A_50
+                type: nominal
+                data: integer
+            A_46:
+                header: A_46
+                type: nominal
+                data: integer
+            A_25:
+                header: A_25
+                type: nominal
+                data: integer
+            A_36:
+                header: A_36
+                type: nominal
+                data: integer
+            A_16:
+                header: A_16
+                type: nominal
+                data: integer
+            A_4:
+                header: A_4
+                type: nominal
+                data: integer
+            A_47:
+                header: A_47
+                type: nominal
+                data: integer
+            A_54:
+                header: A_54
+                type: nominal
+                data: integer
+            A_22:
+                header: A_22
+                type: nominal
+                data: integer
+            A_56:
+                header: A_56
+                type: nominal
+                data: integer
+            A_30:
+                header: A_30
+                type: nominal
+                data: integer
+            A_11:
+                header: A_11
+                type: nominal
+                data: integer
+            A_49:
+                header: A_49
+                type: nominal
+                data: integer
+            A_9:
+                header: A_9
+                type: nominal
+                data: integer
+            A_1:
+                header: A_1
+                type: nominal
+                data: integer
+            A_24:
+                header: A_24
+                type: nominal
+                data: integer
+            A_43:
+                header: A_43
+                type: nominal
+                data: integer
+            A_27:
+                header: A_27
+                type: nominal
+                data: integer
+            A_10:
+                header: A_10
+                type: nominal
+                data: integer
+            A_18:
+                header: A_18
+                type: nominal
+                data: integer
+            A_3:
+                header: A_3
+                type: nominal
+                data: integer
+            A_53:
+                header: A_53
+                type: nominal
+                data: integer
+            A_19:
+                header: A_19
+                type: nominal
+                data: integer
+            A_33:
+                header: A_33
+                type: nominal
+                data: integer
+            A_28:
+                header: A_28
+                type: nominal
+                data: integer
+            A_23:
+                header: A_23
+                type: nominal
+                data: integer
+            A_20:
+                header: A_20
+                type: nominal
+                data: integer
+            A_41:
+                header: A_41
+                type: nominal
+                data: integer
+            A_38:
+                header: A_38
+                type: nominal
+                data: integer
+            A_35:
+                header: A_35
+                type: nominal
+                data: integer
+            A_48:
+                header: A_48
+                type: nominal
+                data: integer
+            A_8:
+                header: A_8
+                type: nominal
+                data: integer
+            A_26:
+                header: A_26
+                type: nominal
+                data: integer
+            A_40:
+                header: A_40
+                type: nominal
+                data: integer
+            A_15:
+                header: A_15
+                type: nominal
+                data: integer
+            A_37:
+                header: A_37
+                type: nominal
+                data: integer
     file2:
         type: csv
-        data: graph.static
+        data: graph.temporal
         path: causal_info_adjmat.csv
         headers: true
+        index:
+            cause: cause
+            effect: effect
+            lag: lag
         columns:
-    columns:
-        A_0:
-            header: A_0
-            type: nominal
-            data: int
-        A_1:
-            header: A_1
-            type: nominal
-            data: int
-        A_2:
-            header: A_2
-            type: nominal
-            data: int
-        A_3:
-            header: A_3
-            type: nominal
-            data: int
-        A_4:
-            header: A_4
-            type: nominal
-            data: int
-        A_5:
-            header: A_5
-            type: nominal
-            data: int
-        A_6:
-            header: A_6
-            type: nominal
-            data: int
-        A_7:
-            header: A_7
-            type: nominal
-            data: int
-        A_8:
-            header: A_8
-            type: nominal
-            data: int
-        A_9:
-            header: A_9
-            type: nominal
-            data: int
-        A_10:
-            header: A_10
-            type: nominal
-            data: int
-        A_11:
-            header: A_11
-            type: nominal
-            data: int
-        A_12:
-            header: A_12
-            type: nominal
-            data: int
-        A_13:
-            header: A_13
-            type: nominal
-            data: int
-        A_14:
-            header: A_14
-            type: nominal
-            data: int
-        A_15:
-            header: A_15
-            type: nominal
-            data: int
-        A_16:
-            header: A_16
-            type: nominal
-            data: int
-        A_17:
-            header: A_17
-            type: nominal
-            data: int
-        A_18:
-            header: A_18
-            type: nominal
-            data: int
-        A_19:
-            header: A_19
-            type: nominal
-            data: int
-        A_20:
-            header: A_20
-            type: nominal
-            data: int
-        A_21:
-            header: A_21
-            type: nominal
-            data: int
-        A_22:
-            header: A_22
-            type: nominal
-            data: int
-        A_23:
-            header: A_23
-            type: nominal
-            data: int
-        A_24:
-            header: A_24
-            type: nominal
-            data: int
-        A_25:
-            header: A_25
-            type: nominal
-            data: int
-        A_26:
-            header: A_26
-            type: nominal
-            data: int
-        A_27:
-            header: A_27
-            type: nominal
-            data: int
-        A_28:
-            header: A_28
-            type: nominal
-            data: int
-        A_29:
-            header: A_29
-            type: nominal
-            data: int
-        A_30:
-            header: A_30
-            type: nominal
-            data: int
-        A_31:
-            header: A_31
-            type: nominal
-            data: int
-        A_32:
-            header: A_32
-            type: nominal
-            data: int
-        A_33:
-            header: A_33
-            type: nominal
-            data: int
-        A_34:
-            header: A_34
-            type: nominal
-            data: int
-        A_35:
-            header: A_35
-            type: nominal
-            data: int
-        A_36:
-            header: A_36
-            type: nominal
-            data: int
-        A_37:
-            header: A_37
-            type: nominal
-            data: int
-        A_38:
-            header: A_38
-            type: nominal
-            data: int
-        A_39:
-            header: A_39
-            type: nominal
-            data: int
-        A_40:
-            header: A_40
-            type: nominal
-            data: int
-        A_41:
-            header: A_41
-            type: nominal
-            data: int
-        A_42:
-            header: A_42
-            type: nominal
-            data: int
-        A_43:
-            header: A_43
-            type: nominal
-            data: int
-        A_44:
-            header: A_44
-            type: nominal
-            data: int
-        A_45:
-            header: A_45
-            type: nominal
-            data: int
-        A_46:
-            header: A_46
-            type: nominal
-            data: int
-        A_47:
-            header: A_47
-            type: nominal
-            data: int
-        A_48:
-            header: A_48
-            type: nominal
-            data: int
-        A_49:
-            header: A_49
-            type: nominal
-            data: int
-        A_50:
-            header: A_50
-            type: nominal
-            data: int
-        A_51:
-            header: A_51
-            type: nominal
-            data: int
-        A_52:
-            header: A_52
-            type: nominal
-            data: int
-        A_53:
-            header: A_53
-            type: nominal
-            data: int
-        A_54:
-            header: A_54
-            type: nominal
-            data: int
-        A_55:
-            header: A_55
-            type: nominal
-            data: int
-        A_56:
-            header: A_56
-            type: nominal
-            data: int
+            cause:
+                header: cause
+                type: nominal
+                data: string
+            effect:
+                header: effect
+                type: nominal
+                data: string
+            lag:
+                header: lag
+                type: nominal
+                data: integer

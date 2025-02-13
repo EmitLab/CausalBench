@@ -1,0 +1,104 @@
+type: dataset
+name: Short-term electricity load forecasting (Panama)
+source: Kaggle
+url: https://www.kaggle.com/datasets/ernestojaguilar/shortterm-electricity-load-forecasting-panama
+description: This dataset is framed on predicting the short-term electricity. This forecasting problem is known in the research field as short-term load forecasting (STLF). These datasets address the STLF problem for the Panama power system, in which the forecasting horizon is one week, with hourly steps, which is a total of 168 hours.
+files:
+    file1:
+        type: csv
+        data: dataframe
+        path: continuous_dataset.csv
+        headers: true
+        index:
+            time: timestep
+        columns:
+            timestep:
+                header: timestep
+                type: ratio
+                data: integer
+            nat_demand:
+                header: nat_demand
+                type: ratio
+                data: decimal
+            T2M_toc:
+                header: T2M_toc
+                type: ratio
+                data: decimal
+            QV2M_toc:
+                header: QV2M_toc
+                type: ratio
+                data: decimal
+            TQL_toc:
+                header: TQL_toc
+                type: ratio
+                data: decimal
+            W2M_toc:
+                header: W2M_toc
+                type: ratio
+                data: decimal
+            T2M_san:
+                header: T2M_san
+                type: ratio
+                data: decimal
+            QV2M_san:
+                header: QV2M_san
+                type: ratio
+                data: decimal
+            TQL_san:
+                header: TQL_san
+                type: ratio
+                data: decimal
+            W2M_san:
+                header: W2M_san
+                type: ratio
+                data: decimal
+            T2M_dav:
+                header: T2M_dav
+                type: ratio
+                data: decimal
+            QV2M_dav:
+                header: QV2M_dav
+                type: ratio
+                data: decimal
+            TQL_dav:
+                header: TQL_dav
+                type: ratio
+                data: decimal
+            W2M_dav:
+                header: W2M_dav
+                type: ratio
+                data: decimal
+            Holiday_ID:
+                header: Holiday_ID
+                type: ratio
+                data: integer
+            holiday:
+                header: holiday
+                type: ratio
+                data: integer
+            school:
+                header: school
+                type: ratio
+                data: integer
+    file2:
+        type: csv
+        data: graph.temporal
+        path: ground_truth.csv
+        headers: true
+        index:
+            cause: cause
+            effect: effect
+            lag: lag
+        columns:
+            cause:
+                header: cause
+                type: nominal
+                data: string
+            effect:
+                header: effect
+                type: nominal
+                data: string
+            lag:
+                header: lag
+                type: nominal
+                data: integer
