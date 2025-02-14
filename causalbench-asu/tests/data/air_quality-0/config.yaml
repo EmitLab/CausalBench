@@ -1,0 +1,185 @@
+type: dataset
+name: air_quality-0
+source: CausalTime
+url: https://www.causaltime.cc/dataset/
+description: Air quality dataset, first sample.
+files:
+    file1:
+        type: csv
+        data: dataframe
+        path: dataset.csv
+        headers: true
+        index: 
+            time: index
+        columns:
+            index:
+                header: index
+                type: ratio
+                data: integer
+            c0:
+                header: c0
+                type: ratio
+                data: decimal
+            c1:
+                header: c1
+                type: ratio
+                data: decimal
+            c2:
+                header: c2
+                type: ratio
+                data: decimal
+            c3:
+                header: c3
+                type: ratio
+                data: decimal
+            c4:
+                header: c4
+                type: ratio
+                data: decimal
+            c5:
+                header: c5
+                type: ratio
+                data: decimal
+            c6:
+                header: c6
+                type: ratio
+                data: decimal
+            c7:
+                header: c7
+                type: ratio
+                data: decimal
+            c8:
+                header: c8
+                type: ratio
+                data: decimal
+            c9:
+                header: c9
+                type: ratio
+                data: decimal
+            c10:
+                header: c10
+                type: ratio
+                data: decimal
+            c11:
+                header: c11
+                type: ratio
+                data: decimal
+            c12:
+                header: c12
+                type: ratio
+                data: decimal
+            c13:
+                header: c13
+                type: ratio
+                data: decimal
+            c14:
+                header: c14
+                type: ratio
+                data: decimal
+            c15:
+                header: c15
+                type: ratio
+                data: decimal
+            c16:
+                header: c16
+                type: ratio
+                data: decimal
+            c17:
+                header: c17
+                type: ratio
+                data: decimal
+            c18:
+                header: c18
+                type: ratio
+                data: decimal
+            c19:
+                header: c19
+                type: ratio
+                data: decimal
+            c20:
+                header: c20
+                type: ratio
+                data: decimal
+            c21:
+                header: c21
+                type: ratio
+                data: decimal
+            c22:
+                header: c22
+                type: ratio
+                data: decimal
+            c23:
+                header: c23
+                type: ratio
+                data: decimal
+            c24:
+                header: c24
+                type: ratio
+                data: decimal
+            c25:
+                header: c25
+                type: ratio
+                data: decimal
+            c26:
+                header: c26
+                type: ratio
+                data: decimal
+            c27:
+                header: c27
+                type: ratio
+                data: decimal
+            c28:
+                header: c28
+                type: ratio
+                data: decimal
+            c29:
+                header: c29
+                type: ratio
+                data: decimal
+            c30:
+                header: c30
+                type: ratio
+                data: decimal
+            c31:
+                header: c31
+                type: ratio
+                data: decimal
+            c32:
+                header: c32
+                type: ratio
+                data: decimal
+            c33:
+                header: c33
+                type: ratio
+                data: decimal
+            c34:
+                header: c34
+                type: ratio
+                data: decimal
+            c35:
+                header: c35
+                type: ratio
+                data: decimal
+            
+    file2:
+        type: csv
+        data: graph.temporal
+        path: adjacency_matrix.csv
+        headers: true
+        index:
+            cause: cause
+            effect: effect
+            lag: timestep
+        columns:
+            cause:
+                header: cause
+                type: nominal
+                data: string
+            effect:
+                header: effect
+                type: nominal
+                data: string
+            timestep:
+                header: timestep
+                type: nominal
+                data: integer
