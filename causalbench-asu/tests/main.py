@@ -142,36 +142,44 @@ def main():
     # print(run)
     # run.publish()
 
-    # dataset: Dataset = Dataset(zip_file='data/panama.zip', module_id=1447)
+    # dataset: Dataset = Dataset(zip_file='data/time_series_simulated.zip', module_id=1444)
     # dataset.publish()
 
     # model: Model = Model(zip_file='model/ges.zip', module_id=2)
     # model.publish()
 
-    dataset1: Dataset = Dataset(module_id=1444, version=1)
-    dataset2: Dataset = Dataset(module_id=1446, version=6)
-    dataset3: Dataset = Dataset(module_id=1447, version=2)
+    # metric: Metric = Metric(zip_file='metric/accuracy_temporal.zip', module_id=2)
+    # metric.publish(public=True)
 
-    model1: Model = Model(module_id=4, version=1)
-    model2: Model = Model(module_id=5, version=1)
+    # dataset1: Dataset = Dataset(module_id=1444, version=2)
+    # dataset2: Dataset = Dataset(module_id=1447, version=2)
+    #
+    # model1: Model = Model(module_id=4, version=1)
+    # model2: Model = Model(module_id=5, version=1)
+    #
+    # metric1: Metric = Metric(module_id=2, version=2)
+    # metric2: Metric = Metric(module_id=4, version=4)
+    # metric3: Metric = Metric(module_id=6, version=3)
+    # metric4: Metric = Metric(module_id=8, version=3)
+    # metric5: Metric = Metric(module_id=10, version=2)
+    #
+    # context1: Context = Context.create(module_id=6,
+    #                                    task='discovery.temporal',
+    #                                    name='Benchmark: VAR-LiNGAM, PCMCIplus',
+    #                                    description='Benchmark temporal causal discovery algorithms across multiple datasets',
+    #                                    datasets=[
+    #                                        (dataset1, {'data': 'file1', 'ground_truth': 'file2'}),
+    #                                        (dataset2, {'data': 'file1', 'ground_truth': 'file2'})
+    #                                    ],
+    #                                    models=[(model1, {'tau_min': 1}), (model2, {})],
+    #                                    metrics=[(metric1, {}), (metric2, {}), (metric3, {}), (metric4, {}), (metric5, {})])
+    #
+    # context1.publish()
 
-    metric1: Metric = Metric(module_id=2, version=1)
-    metric2: Metric = Metric(module_id=4, version=1)
-    metric3: Metric = Metric(module_id=6, version=1)
-    metric4: Metric = Metric(module_id=8, version=1)
-    metric5: Metric = Metric(module_id=10, version=1)
-
-    context1: Context = Context.create(module_id=11,
-                                       task='discovery.temporal',
-                                       name='Benchmark: VAR-LiNGAM, PCMCIplus',
-                                       description='Benchmark temporal causal discovery algorithms across multiple datasets',
-                                       datasets=[(dataset1, {'data': 'file1', 'ground_truth': 'file2'}),
-                                                 (dataset2, {'data': 'file1', 'ground_truth': 'file2'}),
-                                                 (dataset3, {'data': 'file1', 'ground_truth': 'file2'})],
-                                       models=[(model1, {'tau_min': 1}), (model2, {})],
-                                       metrics=[(metric1, {}), (metric2, {}), (metric3, {}), (metric4, {}), (metric5, {})])
-
-    context1.execute()
+    context1: Context = Context(module_id=6, version=3)
+    run: Run = context1.execute()
+    print(run)
+    run.publish(public=True)
 
 
 if __name__ == '__main__':

@@ -5,7 +5,6 @@ from causalbench.formats import SpatioTemporalGraph
 
 
 def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph, helpers: any, binarize: bool = True):
-
     # convert to adjacency matrix
     preds = helpers.graph_to_adjmatwlag(prediction)
     truths = helpers.graph_to_adjmatwlag(ground_truth)
@@ -13,6 +12,9 @@ def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph,
     # align the adjacency matrices
     # this step make sure that the adjacency matrices match in shape, and have the same nodes
     preds, truths = helpers.align_adjmatswlag(preds, truths)
+
+    print(len(preds), len(truths))
+
     score = 0
     for pred, truth in zip(preds, truths):
         # convert to numpy matrix
@@ -35,5 +37,8 @@ def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph,
                 warnings.warn("prediction is not binary.")
 
         score += np.mean(pred == truth)
+
+    # compute the average across the discovered causal graphs
+    score /= len(truths)
 
     return {'score': score}

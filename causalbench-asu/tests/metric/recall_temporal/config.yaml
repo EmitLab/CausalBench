@@ -2,7 +2,7 @@ type: metric
 name: recall_temporal
 source: NA
 url: NA
-description: Recall metric for temporal causal graph.
+description: Average recall metric for temporal causal graph.
 task: discovery.temporal
 path: recall_temporal.py
 hyperparameters:
