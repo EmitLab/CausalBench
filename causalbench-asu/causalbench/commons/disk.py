@@ -93,14 +93,21 @@ class Disks:
             result = self._syscall(['lsblk', '-J', '-b', '-o', 'NAME,FSSIZE,FSAVAIL,FSUSED', f'{drive_id}'])
             device = json.loads(result)
             device = bunchify(device)
-            device = device.blockdevices[0]
 
-            physical_drives[drive_id].usage = Bunch()
-            physical_drives[drive_id].usage.total = 0
-            physical_drives[drive_id].usage.free = 0
-            physical_drives[drive_id].usage.used = 0
+            if device.blockdevices:
+                physical_drives[drive_id].usage = Bunch()
+                physical_drives[drive_id].usage.total = 0
+                physical_drives[drive_id].usage.free = 0
+                physical_drives[drive_id].usage.used = 0
 
-            recursive_usage(device)
+                device = device.blockdevices[0]
+                recursive_usage(device)
+
+            else:
+                physical_drives[drive_id].usage = Bunch()
+                physical_drives[drive_id].usage.total = None
+                physical_drives[drive_id].usage.free = None
+                physical_drives[drive_id].usage.used = None
 
             if not drive.rota:
                 physical_drives[drive_id].mediatype = 'SSD'
@@ -213,8 +220,7 @@ class DisksProfiler:
 
     def _get_usage(self) -> Bunch:
         usage: dict = psutil.disk_io_counters(perdisk=True)
-        usage: dict = {key: {'read_bytes': value.read_bytes, 'write_bytes': value.write_bytes} for key, value in
-                       usage.items() if key in self.disks}
+        usage: dict = {key: {'read_bytes': value.read_bytes, 'write_bytes': value.write_bytes} for key, value in usage.items() if key in self.disks}
         usage: dict = dict(sorted(usage.items()))
         return bunchify(usage)
 
