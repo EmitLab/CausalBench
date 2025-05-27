@@ -8,8 +8,7 @@ import jwt
 import requests
 import yaml
 
-from causalbench.commons.utils import causal_bench_path
-
+from causalbench.commons.utils import causal_bench_path, causalbench_version
 
 __access_token = None
 
@@ -57,27 +56,42 @@ def authenticate(config) -> str | None:
     if 'email' in config:
         email = config['email']
     else:
-        return
+        return None
 
     if 'password' in config:
         password = config['password']
     else:
-        return
+        return None
+
+    cb_ver = causalbench_version()
 
     # Payload for login request
     payload = {
         'email_id': email,
-        'password': password
+        'password': password,
+        'python_package_version': f'{cb_ver.major}.{cb_ver.minor}'
     }
 
     try:
         # Sending login request
         response = requests.post(login_url, json=payload)
-        response.raise_for_status()  # Raise an exception for HTTP errors
-        data = response.json()['data']
 
-        if data is not None:
-            return data['access_token']
+        # Successful login
+        if response.status_code == 200:
+            data = response.json()['data']
+            if data is not None:
+                return data['access_token']
+            return None
+
+        # Potential version mismatch
+        if response.status_code == 403:
+            message = response.json()['message']
+            if message is not None:
+                print(message, file=sys.stderr)
+                sys.exit(1)
+
+        # Raise an exception for HTTP errors
+        response.raise_for_status()
 
     except requests.exceptions.RequestException as e:
         print(f'Error occurred: {e}', file=sys.stderr)
