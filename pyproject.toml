@@ -4,14 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "causalbench-asu"
-version = "0.1rc9"
+version = "0.2.2"
 authors = [
-  { name="CausalBench Team", email="support@causalbench.org"}
+    { name="CausalBench Team", email="support@causalbench.org"}
 ]
 
 maintainers = [
     { name="Ahmet Kapkiç", email="akapkic@asu.edu"},
-  { name="Pratanu Mandal", email="pmandal5@asu.edu"}
+    { name="Pratanu Mandal", email="pmandal5@asu.edu"}
 ]
 description = "Spatio Temporal Causal Benchmarking Platform"
 readme = "README.md"

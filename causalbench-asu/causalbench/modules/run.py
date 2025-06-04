@@ -1,4 +1,3 @@
-import json
 import logging
 
 from causalbench.commons.utils import package_module
@@ -8,8 +7,8 @@ from causalbench.services.requests import save_module, fetch_module
 
 class Run(Module):
 
-    def __init__(self, module_id: int = None):
-        super().__init__(module_id, 0, None)
+    def __init__(self, module_id: int = None, zip_file: str = None):
+        super().__init__(module_id, 0, zip_file)
 
     def validate(self):
         # TODO: To be implemented

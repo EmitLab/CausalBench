@@ -1,0 +1,1821 @@
+id,name,description,samples,score,multicore_score,icon,family
+228,Intel Core 2 Duo E7400,2.8 GHz (2 cores),40,323,523,intel,Wolfdale
+229,Intel Core 2 Duo E7500,2.9 GHz (2 cores),162,345,566,intel,Wolfdale
+230,Intel Core 2 Duo E7600,3.1 GHz (2 cores),20,376,625,intel,Wolfdale
+235,Intel Core 2 Duo E8300,2.8 GHz (2 cores),12,343,579,intel,Wolfdale
+239,Intel Core 2 Duo E8500,3.2 GHz (2 cores),85,391,635,intel,Wolfdale
+247,Intel Core 2 Duo L9400,1.9 GHz (2 cores),5,251,393,intel,Penryn
+251,Intel Core 2 Duo P7450,2.1 GHz (2 cores),17,261,443,intel,Penryn
+256,Intel Core 2 Duo P8400,2.3 GHz (2 cores),44,277,449,intel,Penryn
+257,Intel Core 2 Duo P8600,2.4 GHz (2 cores),74,283,467,intel,Penryn
+258,Intel Core 2 Duo P8700,2.5 GHz (2 cores),60,305,495,intel,Penryn
+265,Intel Core 2 Duo SU7300,1.3 GHz (2 cores),7,170,292,intel,Penryn
+283,Intel Core 2 Duo T6570,2.1 GHz (2 cores),17,252,420,intel,Penryn
+284,Intel Core 2 Duo T6600,2.2 GHz (2 cores),44,254,408,intel,Penryn
+285,Intel Core 2 Duo T6670,2.2 GHz (2 cores),16,251,388,intel,Penryn
+298,Intel Core 2 Duo T9400,2.5 GHz (2 cores),29,321,512,intel,Penryn
+301,Intel Core 2 Duo T9600,2.8 GHz (2 cores),23,330,541,intel,Penryn
+324,Intel Core 2 Quad Q8300,2.5 GHz (4 cores),58,313,883,intel,Yorkfield
+325,Intel Core 2 Quad Q8400,2.7 GHz (4 cores),67,328,893,intel,Yorkfield
+329,Intel Core 2 Quad Q9400,2.7 GHz (4 cores),117,337,938,intel,Yorkfield
+333,Intel Core 2 Quad Q9550,2.8 GHz (4 cores),139,371,1046,intel,Yorkfield
+334,Intel Core 2 Quad Q9650,3.0 GHz (4 cores),101,377,1053,intel,Yorkfield
+359,Intel Core i3-2100,3.1 GHz (2 cores),384,463,942,intel,Sandy Bridge
+360,Intel Core i3-2120,3.3 GHz (2 cores),513,495,1021,intel,Sandy Bridge
+361,Intel Core i3-2310M,2.1 GHz (2 cores),159,322,644,intel,Sandy Bridge
+364,Intel Core i3-350M,2.3 GHz (2 cores),62,295,596,intel,Arrandale
+365,Intel Core i3-370M,2.4 GHz (2 cores),174,316,635,intel,Arrandale
+366,Intel Core i3-380M,2.5 GHz (2 cores),131,331,645,intel,Arrandale
+370,Intel Core i3-540,3.1 GHz (2 cores),116,407,843,intel,Clarkdale
+373,Intel Core i5-2300,2.8 GHz (4 cores),96,511,1504,intel,Sandy Bridge
+374,Intel Core i5-2400,3.1 GHz (4 cores),1092,551,1601,intel,Sandy Bridge
+376,Intel Core i5-2410M,2.3 GHz (2 cores),366,430,847,intel,Sandy Bridge
+378,Intel Core i5-2500,3.3 GHz (4 cores),511,590,1685,intel,Sandy Bridge
+379,Intel Core i5-2500K,3.3 GHz (4 cores),648,652,1921,intel,Sandy Bridge
+380,Intel Core i5-2500S,2.7 GHz (4 cores),69,582,1509,intel,Sandy Bridge
+381,Intel Core i5-2520M,2.5 GHz (2 cores),614,469,933,intel,Sandy Bridge
+384,Intel Core i5-430M,2.3 GHz (2 cores),82,326,652,intel,Arrandale
+389,Intel Core i5-480M,2.7 GHz (2 cores),101,366,691,intel,Arrandale
+390,Intel Core i5-520M,2.4 GHz (2 cores),179,360,696,intel,Arrandale
+393,Intel Core i5-560M,2.7 GHz (2 cores),175,393,747,intel,Arrandale
+396,Intel Core i5-650,3.2 GHz (2 cores),215,454,930,intel,Clarkdale
+402,Intel Core i5-750,2.7 GHz (4 cores),170,423,1180,intel,Lynnfield
+404,Intel Core i5-760,2.8 GHz (4 cores),131,451,1266,intel,Lynnfield
+405,Intel Core i7-2600,3.4 GHz (4 cores),1182,611,2048,intel,Sandy Bridge
+406,Intel Core i7-2600K,3.4 GHz (4 cores),839,665,2287,intel,Sandy Bridge
+408,Intel Core i7-2620M,2.7 GHz (2 cores),193,511,1018,intel,Sandy Bridge
+409,Intel Core i7-2630QM,2.0 GHz (4 cores),290,445,1391,intel,Sandy Bridge
+412,Intel Core i7-2720QM,2.2 GHz (4 cores),102,484,1537,intel,Sandy Bridge
+413,Intel Core i7-2820QM,2.3 GHz (4 cores),114,519,1637,intel,Sandy Bridge
+416,Intel Core i7-620M,2.7 GHz (2 cores),133,442,825,intel,Arrandale
+418,Intel Core i7-640M,2.8 GHz (2 cores),105,430,813,intel,Arrandale
+421,Intel Core i7-720QM,1.6 GHz (4 cores),91,303,846,intel,Clarksfield
+422,Intel Core i7-740QM,1.7 GHz (4 cores),102,351,974,intel,Clarksfield
+424,Intel Core i7-840QM,1.9 GHz (4 cores),17,388,1043,intel,Clarksfield
+425,Intel Core i7-860,2.8 GHz (4 cores),266,451,1478,intel,Lynnfield
+427,Intel Core i7-870,2.9 GHz (4 cores),282,476,1557,intel,Lynnfield
+431,Intel Core i7-920,2.7 GHz (4 cores),265,414,1427,intel,Bloomfield
+432,Intel Core i7-920XM,2.0 GHz (4 cores),22,373,1064,intel-i7x,Clarksfield
+433,Intel Core i7-930,2.8 GHz (4 cores),83,423,1435,intel,Bloomfield
+436,Intel Core i7-950,3.1 GHz (4 cores),157,468,1563,intel,Bloomfield
+437,Intel Core i7-960,3.2 GHz (4 cores),72,490,1660,intel,Bloomfield
+439,Intel Core i7-970,3.2 GHz (6 cores),21,502,2313,intel,Gulftown
+441,Intel Core i7-980X,3.3 GHz (6 cores),87,544,2542,intel-i7x,Gulftown
+442,Intel Core i7-990X,3.5 GHz (6 cores),66,560,2626,intel-i7x,Gulftown
+550,AMD FX-4100,3.6 GHz (4 cores),64,400,1005,amd,Zambezi
+551,AMD FX-6100,3.3 GHz (6 cores),112,385,1233,amd,Zambezi
+569,Intel Core i5-2310,2.9 GHz (4 cores),84,521,1503,intel,Sandy Bridge
+573,Intel Core i7-2670QM,2.2 GHz (4 cores),461,465,1439,intel,Sandy Bridge
+575,Intel Core i7-2760QM,2.4 GHz (4 cores),187,532,1622,intel,Sandy Bridge
+577,Intel Pentium B940,2.0 GHz (2 cores),26,318,548,intel-pentium,Sandy Bridge
+578,Intel Pentium G620,2.6 GHz (2 cores),54,389,672,intel-pentium,Sandy Bridge
+596,Intel Core i3-2105,3.1 GHz (2 cores),11,485,992,intel,Sandy Bridge
+601,Intel Core i5-2320,3.0 GHz (4 cores),201,537,1544,intel,Sandy Bridge
+604,Intel Core i5-2430M,2.4 GHz (2 cores),288,433,864,intel,Sandy Bridge
+629,Intel Xeon X5670,2.9 GHz (6 cores),59,490,2280,intel-xeon,Westmere-EP
+633,Intel Xeon E5620,2.4 GHz (4 cores),27,366,1451,intel-xeon,Westmere-EP
+636,Intel Xeon W3680,3.3 GHz (6 cores),59,544,2507,intel-xeon,Westmere-EP
+637,Intel Xeon W3530,2.8 GHz (4 cores),47,439,1527,intel-xeon,Bloomfield
+639,Intel Core i7-2860QM,2.5 GHz (4 cores),79,557,1674,intel,Sandy Bridge
+640,Intel Xeon X5650,2.7 GHz (6 cores),81,447,2229,intel-xeon,Westmere-EP
+648,Intel Core i7-2700K,3.5 GHz (4 cores),221,672,2292,intel,Sandy Bridge
+650,Intel Core i7-3930K,3.2 GHz (6 cores),249,615,2982,intel,Sandy Bridge E
+653,Intel Xeon E3-1230,3.2 GHz (4 cores),31,585,1975,intel-xeon,Sandy Bridge
+662,Intel Core i7-3960X,3.3 GHz (6 cores),41,656,3197,intel-i7x,Sandy Bridge E
+668,Intel Xeon X5680,3.3 GHz (6 cores),94,531,2490,intel-xeon,Westmere-EP
+725,Intel Core i7-3770K,3.5 GHz (4 cores),1220,710,2492,intel,Ivy Bridge
+734,AMD A10-4600M,2.3 GHz (4 cores),67,340,722,amd,Trinity
+740,Intel Core i5-3427U,1.8 GHz (2 cores),73,434,882,intel,Ivy Bridge
+741,Intel Core i7-3615QM,2.3 GHz (4 cores),141,553,1905,intel,Ivy Bridge
+743,Intel Core i7-3720QM,2.6 GHz (4 cores),248,595,2005,intel,Ivy Bridge
+745,Intel Core i5-3210M,2.5 GHz (2 cores),848,492,999,intel,Ivy Bridge
+746,Intel Core i7-3520M,2.9 GHz (2 cores),301,570,1156,intel,Ivy Bridge
+747,Intel Core i5-3317U,1.7 GHz (2 cores),260,403,813,intel,Ivy Bridge
+748,Intel Core i7-3770,3.4 GHz (4 cores),2845,673,2313,intel,Ivy Bridge
+750,Intel Core i5-3570K,3.4 GHz (4 cores),860,687,2061,intel,Ivy Bridge
+751,Intel Core i5-2450M,2.5 GHz (2 cores),416,455,876,intel,Sandy Bridge
+752,Intel Core i7-3820,3.6 GHz (4 cores),171,626,2304,intel,Sandy Bridge E
+753,Intel Core i7-3610QM,2.3 GHz (4 cores),313,537,1825,intel,Ivy Bridge
+754,Intel Core i3-2350M,2.3 GHz (2 cores),182,336,672,intel,Sandy Bridge
+758,Intel Xeon E3-1230V2,3.3 GHz (4 cores),322,641,2238,intel-xeon,Ivy Bridge
+760,Intel Xeon E5-2690,2.9 GHz (8 cores),106,585,3493,intel-xeon,Sandy Bridge-EP
+761,Intel Core i5-3550,3.3 GHz (4 cores),162,643,1915,intel,Ivy Bridge
+762,Intel Xeon X5460,3.2 GHz (4 cores),25,411,1175,intel-xeon,Harpertown
+763,Intel Core i5-3450,3.1 GHz (4 cores),197,607,1774,intel,Ivy Bridge
+766,Intel Xeon W3690,3.5 GHz (6 cores),71,560,2607,intel-xeon,Gulftown
+768,Intel Xeon X5690,3.5 GHz (6 cores),144,544,2527,intel-xeon,Westmere-EP
+803,Intel Core i5-2550K,3.4 GHz (4 cores),27,693,2077,intel,Sandy Bridge
+806,Intel Core i5-3320M,2.6 GHz (2 cores),648,515,1048,intel,Ivy Bridge
+808,Intel Core i5-3360M,2.8 GHz (2 cores),57,516,1108,intel,Ivy Bridge
+812,Intel Core i7-3770S,3.1 GHz (4 cores),181,656,2227,intel,Ivy Bridge
+818,Intel Xeon E3-1220,3.1 GHz (4 cores),33,522,1563,intel-xeon,Sandy Bridge
+821,Intel Xeon E3-1270,3.4 GHz (4 cores),61,611,2066,intel-xeon,Sandy Bridge
+825,AMD A8-4500M,1.9 GHz (4 cores),63,290,649,amd,Trinity
+858,AMD A10-5700,3.4 GHz (4 cores),33,403,987,amd,Trinity
+859,AMD A10-5800B,3.8 GHz (4 cores),6,459,1128,amd,Trinity
+874,AMD FX-8350,4.0 GHz (8 cores),760,487,1984,amd,Vishera
+875,Intel Core i5-3570,3.4 GHz (4 cores),898,654,1917,intel,Ivy Bridge
+878,Intel Core i5-3470S,2.9 GHz (4 cores),246,597,1720,intel,Ivy Bridge
+879,Intel Core i5-3470,3.2 GHz (4 cores),1969,620,1840,intel,Ivy Bridge
+883,Intel Core i7-3630QM,2.4 GHz (4 cores),570,561,1901,intel,Ivy Bridge
+884,Intel Core i3-3220,3.3 GHz (2 cores),577,531,1091,intel,Ivy Bridge
+886,AMD A10-5800K,3.8 GHz (2 cores),80,453,1099,amd,Trinity
+887,Intel Core i5-3350P,3.1 GHz (4 cores),107,584,1729,intel,Ivy Bridge
+888,Intel Core i7-3632QM,2.2 GHz (4 cores),352,505,1707,intel,Ivy Bridge
+889,Intel Core i3-2370M,2.4 GHz (2 cores),91,360,709,intel,Sandy Bridge
+890,Intel Core i3-3217U,1.8 GHz (2 cores),273,293,616,intel,Ivy Bridge
+893,Intel Core i5-3330,3.0 GHz (4 cores),315,559,1651,intel,Ivy Bridge
+894,AMD FX-8320,3.5 GHz (8 cores),285,458,1795,amd,Vishera
+896,Intel Xeon E5-2670,2.6 GHz (8 cores),64,507,3069,intel-xeon,Sandy Bridge-EP/EX
+898,Intel Xeon E3-1240 v2,3.4 GHz (4 cores),115,660,2301,intel-xeon,Ivy Bridge
+904,Intel Pentium G630,2.7 GHz (2 cores),107,403,692,intel-pentium,Sandy Bridge
+905,Intel Pentium B960,2.2 GHz (2 cores),100,324,533,intel-pentium,Sandy Bridge
+906,Intel Pentium B950,2.1 GHz (2 cores),41,312,513,intel-pentium,Sandy Bridge
+910,Intel Core i3-3110M,2.4 GHz (2 cores),464,392,816,intel,Ivy Bridge
+911,Intel Pentium G860,3.0 GHz (2 cores),25,436,718,intel-pentium,Sandy Bridge
+922,Intel Xeon E3-1260L,2.4 GHz (4 cores),17,462,1493,intel-xeon,Sandy Bridge
+923,Intel Core i3-3120M,2.5 GHz (2 cores),196,401,831,intel,Ivy Bridge
+926,Intel Pentium B980,2.4 GHz (2 cores),32,369,623,intel-pentium,Sandy Bridge
+927,AMD FX-6300,3.5 GHz (6 cores),550,454,1426,amd,Vishera
+928,Intel Core i7-3740QM,2.7 GHz (4 cores),273,601,1992,intel,Ivy Bridge
+929,Intel Core i7-3840QM,2.8 GHz (4 cores),80,626,2103,intel,Ivy Bridge
+935,Intel Pentium G645,2.9 GHz (2 cores),21,451,753,intel-pentium,Sandy Bridge
+938,Intel Xeon E5-1650,3.2 GHz (6 cores),116,593,2936,intel-xeon,Sandy Bridge-EP
+942,Intel Xeon E3-1270 V2,3.5 GHz (4 cores),121,675,2346,intel-xeon,Ivy Bridge
+943,Intel Core i7-3970X,3.5 GHz (6 cores),29,727,3643,intel-i7x,Sandy Bridge E
+944,Intel Core i3-3240,3.4 GHz (2 cores),309,543,1107,intel,Ivy Bridge
+945,AMD A8-5600K,3.6 GHz (4 cores),51,424,1017,amd,Trinity
+947,Intel Xeon E5-2680,2.7 GHz (8 cores),31,541,3377,intel-xeon,Sandy Bridge-EP
+951,Intel Core i5-3230M,2.6 GHz (2 cores),646,506,1020,intel,Ivy Bridge
+959,Intel Core i5-4250U,1.3 GHz (2 cores),97,739,1427,intel-4g-i5,Haswell
+960,Intel Core i7-4650U,1.7 GHz (2 cores),96,839,1478,intel-4g-i7,Haswell
+961,Intel Core i7-4770K,3.5 GHz (4 cores),1207,1284,4093,intel-4g-i7,Haswell
+962,Intel Core i7-4702MQ,2.2 GHz (4 cores),307,959,2958,intel-4g-i7,Haswell
+964,Intel Core i5-3337U,1.8 GHz (2 cores),346,399,801,intel,Ivy Bridge
+965,Intel Core i7-3537U,2.0 GHz (2 cores),143,481,960,intel,Ivy Bridge
+971,Intel Core i5-4670K,3.4 GHz (4 cores),705,1302,3699,intel-4g-i5,Haswell
+972,Intel Core i7-4700MQ,2.4 GHz (4 cores),523,1015,3060,intel-4g-i7,Haswell
+973,Intel Core i7-4770,3.4 GHz (4 cores),1752,1207,3806,intel-4g-i7,Haswell
+974,Intel Core i5-4570,3.2 GHz (4 cores),1610,1114,3104,intel-4g-i5,Haswell
+975,Intel Core i5-4670,3.4 GHz (4 cores),432,1188,3283,intel-4g-i5,Haswell
+976,Intel Core i7-4771,3.5 GHz (4 cores),159,1226,3887,intel-4g-i7,Haswell
+977,Intel Core i7-4700HQ,2.4 GHz (4 cores),270,998,3050,intel-4g-i7,Haswell
+978,Intel Core i5-4430,3.0 GHz (4 cores),218,1017,2854,intel-4g-i5,Haswell
+979,Intel Core i5-4200U,1.6 GHz (2 cores),735,733,1404,intel-4g-i5,Haswell
+984,AMD A8-5550M,2.1 GHz (4 cores),15,281,663,amd,Richland
+985,Intel Core i7-4500U,1.8 GHz (2 cores),370,815,1557,intel-4g-i7,Haswell
+986,Intel Core i5-4570R,2.7 GHz (4 cores),88,941,2875,intel-4g-i5,Crystal Well
+987,Intel Core i3-3227U,1.9 GHz (2 cores),89,301,645,intel,Ivy Bridge
+988,Intel Core i7-4930K,3.4 GHz (6 cores),168,657,3322,intel-4g-i7,Ivy Bridge E
+989,Intel Core i7-4800MQ,2.7 GHz (4 cores),284,1066,3186,intel-4g-i7,Haswell
+990,Intel Core i7-4960X,3.6 GHz (6 cores),35,695,3435,intel-i7x,Ivy Bridge E
+996,Intel Core i7-4850HQ,2.3 GHz (4 cores),80,1008,3197,intel-4g-i7,Crystal Well
+999,Intel Core i5-4288U,2.6 GHz (2 cores),28,906,1749,intel-4g-i5,Haswell
+1005,Intel Core i7-4770S,3.1 GHz (4 cores),199,1176,3650,intel-4g-i7,Haswell
+1006,Intel Xeon E3-1230 v3,3.3 GHz (4 cores),182,1154,3700,intel-xeon,Haswell
+1008,Intel Core i5-4570S,2.9 GHz (4 cores),260,1083,2941,intel-4g-i5,Haswell
+1013,Intel Celeron B830,1.8 GHz (2 cores),26,263,460,intel-celeron,Sandy Bridge
+1014,Intel Xeon E5-1620,3.6 GHz (4 cores),152,612,2247,intel-xeon,Sandy Bridge-EP
+1021,Intel Core i5-4440,3.1 GHz (4 cores),549,1045,2933,intel-4g-i5,Haswell
+1027,AMD A8-6600K,3.9 GHz (4 cores),69,451,1079,amd,Richland
+1028,Intel Xeon E3-1245 v3,3.4 GHz (4 cores),67,1213,3869,intel-xeon,Haswell
+1031,Intel Xeon E5-1620 v2,3.7 GHz (4 cores),208,648,2387,intel-xeon,Ivy Bridge
+1032,Intel Xeon E5-1650 v2,3.5 GHz (6 cores),386,674,3314,intel-xeon,Ivy Bridge
+1034,Intel Xeon E5-2697 v2,2.7 GHz (12 cores),403,559,4336,intel-xeon,Ivy Bridge
+1047,Intel Core i7-4820K,3.7 GHz (4 cores),108,678,2527,intel-4g-i7,Ivy Bridge E
+1049,AMD A6-5200,2.0 GHz (4 cores),62,204,582,amd,Kabini
+1057,Intel Core i5-3340M,2.7 GHz (2 cores),180,526,1057,intel,Ivy Bridge
+1059,Intel Core i3-4330,3.5 GHz (2 cores),68,1053,2084,intel-4g-i3,Haswell
+1060,Intel Pentium G3220,3.0 GHz (2 cores),127,529,895,intel-pentium,Haswell
+1061,Intel Core i3-4130,3.4 GHz (2 cores),621,1019,2000,intel-4g-i3,Haswell
+1064,Intel Core i3-3210,3.2 GHz (2 cores),68,510,1029,intel,Ivy Bridge
+1070,AMD FX-4300,3.8 GHz (4 cores),151,452,1108,amd,Vishera
+1071,Intel Xeon E5-2687W v2,3.4 GHz (8 cores),23,632,4139,intel-xeon,Ivy Bridge
+1072,Intel Xeon E5-2680 v2,2.8 GHz (10 cores),102,563,3857,intel-xeon,Ivy Bridge EP
+1073,Intel Core i5-4200M,2.5 GHz (2 cores),376,872,1701,intel-4g-i5,Haswell
+1076,Intel Core i7-4600U,2.1 GHz (2 cores),464,885,1639,intel-4g-i7,Haswell
+1078,Intel Pentium 2117U,1.8 GHz (2 cores),21,293,500,intel-pentium,Ivy Bridge
+1080,Intel Xeon E3-1240 v3,3.4 GHz (4 cores),83,1194,3758,intel-xeon,Haswell
+1083,Intel Core i3-4010U,1.7 GHz (2 cores),189,522,1064,intel-4g-i3,Haswell
+1085,Intel Celeron 1037U,1.8 GHz (2 cores),37,307,524,intel-celeron,Ivy Bridge
+1089,Intel Xeon E5-2690 v2,3.0 GHz (10 cores),95,589,4115,intel-xeon,Ivy Bridge EP
+1094,Intel Core i5-3437U,1.9 GHz (2 cores),62,444,893,intel,Ivy Bridge
+1096,Intel Xeon E3-1225 v3,3.2 GHz (4 cores),111,1116,3170,intel-xeon,Haswell
+1098,Intel Xeon E3-1220 v2,3.1 GHz (4 cores),78,583,1802,intel-xeon,Ivy Bridge
+1100,Intel Pentium 987,1.5 GHz (2 cores),5,228,392,intel-pentium,Sandy Bridge
+1105,AMD Athlon X4 760K,3.8 GHz (4 cores),12,447,1075,amd,Richland
+1110,Intel Xeon E3-1240,3.3 GHz (4 cores),32,568,1930,intel-xeon,Sandy Bridge
+1111,Intel Xeon E5-1603,2.8 GHz (4 cores),30,468,1474,intel-xeon,Sandy Bridge-EP
+1112,Intel Core i5-4300U,1.9 GHz (2 cores),794,792,1468,intel-4g-i5,Haswell
+1116,Intel Celeron 1005M,1.9 GHz (2 cores),39,323,560,intel-celeron,Ivy Bridge
+1122,Intel Xeon E5-2650 v2,2.6 GHz (8 cores),255,518,3141,intel-xeon,Ivy Bridge EP
+1128,AMD FX-8300,3.3 GHz (8 cores),203,460,1724,amd,Vishera
+1133,Intel Xeon E5-1660,3.3 GHz (6 cores),35,618,3043,intel-xeon,Sandy Bridge-EP
+1135,Intel Core i3-4130T,2.9 GHz (2 cores),87,903,1787,intel-4g-i3,Haswell
+1140,Intel Xeon E5-2630 v2,2.6 GHz (6 cores),49,485,2436,intel-xeon,Ivy Bridge EP
+1146,Intel Core i5-3340,3.1 GHz (4 cores),71,561,1681,intel,Ivy Bridge
+1148,Intel Core i3-4005U,1.7 GHz (2 cores),566,518,1046,intel-4g-i3,Haswell
+1150,Intel Xeon E3-1270 v3,3.5 GHz (4 cores),290,1223,3892,intel-xeon,Haswell
+1156,Intel Core i3-3250,3.5 GHz (2 cores),22,581,1181,intel,Ivy Bridge
+1160,Intel Xeon E5-2670 v2,2.5 GHz (10 cores),83,502,3400,intel-xeon,Ivy Bridge EP
+1162,Intel Xeon E5-2430,2.2 GHz (6 cores),8,390,1766,intel-xeon,Sandy Bridge-EN
+1165,Intel Core i5-4570T,2.9 GHz (2 cores),247,1042,2015,intel-4g-i5,Haswell
+1167,Intel Xeon E5-2640 v2,2.0 GHz (8 cores),15,395,2377,intel-xeon,Ivy Bridge EP
+1439,Intel Pentium G645T,2.5 GHz (2 cores),7,357,591,intel-pentium,Sandy Bridge
+1461,Intel Core i3-4000M,2.4 GHz (2 cores),139,717,1445,intel-4g-i3,Haswell
+1479,Intel Core i3-4100M,2.5 GHz (2 cores),37,767,1548,intel-4g-i3,Haswell
+1480,Intel Core i5-4300M,2.6 GHz (2 cores),477,952,1845,intel-4g-i5,Haswell
+1489,Intel Pentium 3556U,1.7 GHz (2 cores),14,302,503,intel-pentium,Haswell
+1522,Intel Celeron N2815,1.9 GHz (2 cores),7,151,251,intel-celeron,Bay Trail
+1526,AMD A10-7850K,3.7 GHz (4 cores),63,452,1137,amd,Kaveri
+1530,Intel Core i5-4260U,1.4 GHz (2 cores),59,769,1461,intel-4g-i5,Haswell
+1531,Intel Core i7-4770HQ,2.2 GHz (4 cores),170,1021,3433,intel-4g-i7,Haswell
+1532,Intel Core i5-4308U,2.8 GHz (2 cores),40,947,1867,intel-4g-i5,Haswell
+1533,Intel Core i5-4278U,2.6 GHz (2 cores),107,903,1769,intel-4g-i5,Haswell
+1535,Intel Core i7-4980HQ,2.8 GHz (4 cores),138,1240,3892,intel-4g-i7,Haswell
+1536,Intel Core i7-4790,3.6 GHz (4 cores),2827,1240,3887,intel-4g-i7,Haswell
+1537,Intel Core i7-4790K,4.0 GHz (4 cores),2747,1404,4399,intel-4g-i7,Haswell
+1538,Intel Core i5-4690K,3.5 GHz (4 cores),919,1307,3660,intel-4g-i5,Haswell
+1539,Intel Pentium G3258,3.2 GHz (2 cores),71,601,1050,intel-pentium,Haswell
+1540,Intel Core i5-4590,3.3 GHz (4 cores),1888,1142,3158,intel-4g-i5,Haswell
+1541,Intel Core i5-4690,3.5 GHz (4 cores),661,1213,3341,intel-4g-i5,Haswell
+1542,Intel Core i5-4460,3.2 GHz (4 cores),1471,1067,2958,intel-4g-i5,Haswell
+1543,Intel Core i7-4710MQ,2.5 GHz (4 cores),294,1020,3057,intel-4g-i7,Haswell
+1544,Intel Atom Z3795,1.6 GHz (4 cores),9,180,527,intel,Bay Trail
+1546,Intel Core i7-4510U,2.0 GHz (2 cores),581,885,1663,intel-4g-i7,Haswell
+1547,Intel Core i7-4810MQ,2.8 GHz (4 cores),452,1106,3205,intel-4g-i7,Haswell
+1551,Intel Core i7-4710HQ,2.5 GHz (4 cores),472,1007,3081,intel-4g-i7,Haswell
+1554,Intel Xeon E3-1231 v3,3.4 GHz (4 cores),235,1195,3771,intel-xeon,Haswell
+1560,Intel Core i7-4578U,3.0 GHz (2 cores),55,996,1948,intel-4g-i7,Haswell
+1561,Intel Core i5-4210U,1.7 GHz (2 cores),993,763,1456,intel-4g-i5,Haswell
+1562,Intel Core i7-5930K,3.5 GHz (6 cores),220,1228,5724,intel-5g-i7,Haswell E
+1563,Intel Core i3-4150,3.5 GHz (2 cores),393,1056,2050,intel-4g-i3,Haswell
+1565,Intel Celeron G1820,2.7 GHz (2 cores),28,491,832,intel-celeron,Haswell
+1568,AMD Athlon 5350,2.0 GHz (4 cores),37,217,636,amd,Kabini
+1570,Intel Pentium G3240,3.1 GHz (2 cores),98,527,889,intel-pentium,Haswell
+1571,Intel Core i7-4712HQ,2.3 GHz (4 cores),67,933,2760,intel-4g-i7,Haswell
+1573,Intel Core i7-5960X,3.0 GHz (8 cores),375,1306,7430,intel-i7x,Haswell E
+1574,AMD A8-6410,2.0 GHz (4 cores),134,225,597,amd,Beema
+1576,Intel Xeon E5-2667 v2,3.3 GHz (8 cores),216,644,3999,intel-xeon,Ivy Bridge EP
+1578,Intel Xeon E5-2650 v3,2.3 GHz (10 cores),90,901,5422,intel-xeon,Haswell
+1580,Intel Xeon E5-2683 v3,2.0 GHz (14 cores),36,834,6008,intel-xeon,Haswell
+1581,Intel Xeon E5-2697 v3,2.6 GHz (14 cores),330,1089,7437,intel-xeon,Haswell
+1582,Intel Core i3-4030U,1.9 GHz (2 cores),307,576,1179,intel-4g-i3,Haswell
+1583,Intel Xeon E3-1220 v3,3.1 GHz (4 cores),131,1122,3226,intel-xeon,Haswell
+1584,Intel Xeon E3-1241 v3,3.5 GHz (4 cores),92,1226,3898,intel-xeon,Haswell
+1594,Intel Xeon E5-2660 v2,2.2 GHz (10 cores),29,451,3206,intel-xeon,Ivy Bridge EP
+1601,Intel Xeon E5-1660 v2,3.7 GHz (6 cores),11,655,3278,intel-xeon,Ivy Bridge EP
+1624,Intel Xeon E5-2696 v3,2.3 GHz (18 cores),656,1135,8208,intel-xeon,Haswell E
+1625,AMD A6-6310,1.8 GHz (4 cores),75,226,594,amd,Beema
+1628,AMD A4-6300,3.7 GHz (2 cores),28,396,562,amd,Richland
+1632,Intel Core i7-5820K,3.3 GHz (6 cores),590,1172,5457,intel-5g-i7,Haswell E
+1644,Intel Core i7-4790S,3.2 GHz (4 cores),248,1203,3763,intel-4g-i7,Haswell
+1648,Intel Core i3-4160,3.6 GHz (2 cores),485,1074,2088,intel-4g-i3,Haswell
+1649,Intel Celeron N2930,1.8 GHz (4 cores),25,161,477,intel-celeron,Bay Trail
+1656,Intel Core M-5Y10c,800 MHz (2 cores),63,628,1218,intel,Broadwell
+1659,AMD FX-8320E,3.2 GHz (8 cores),100,438,1688,amd,Vishera
+1662,Intel Core i5-5200U,2.2 GHz (2 cores),1654,787,1514,intel-5g-i5,Broadwell
+1663,Intel Core i7-5500U,2.4 GHz (2 cores),791,880,1689,intel-5g-i7,Broadwell
+1665,Intel Core i5-5300U,2.3 GHz (2 cores),1058,827,1580,intel-5g-i5,Broadwell
+1667,Intel Core i7-5600U,2.6 GHz (2 cores),541,917,1746,intel-5g-i7,Broadwell
+1668,Intel Core i3-5005U,2.0 GHz (2 cores),1109,619,1241,intel-5g-i3,Broadwell
+1669,Intel Core i3-5010U,2.1 GHz (2 cores),227,662,1341,intel-5g-i3,Broadwell
+1670,Intel Core i7-5650U,2.2 GHz (2 cores),45,953,1844,intel-5g-i7,Broadwell
+1671,Intel Core i5-5257U,2.7 GHz (2 cores),214,917,1757,intel-5g-i5,Broadwell
+1673,Intel Core i5-5287U,2.9 GHz (2 cores),54,1031,2004,intel-5g-i5,Broadwell
+1685,Intel Core i7-4720HQ,2.6 GHz (4 cores),443,1034,3096,intel-4g-i7,Haswell
+1687,Intel Core i5-4210M,2.6 GHz (2 cores),285,902,1756,intel-4g-i5,Haswell
+1688,Intel Core i5-4310U,2.0 GHz (2 cores),277,804,1562,intel-4g-i5,Haswell
+1689,Intel Core i7-4910MQ,2.9 GHz (4 cores),110,1127,3382,intel-4g-i7,Haswell
+1690,Intel Pentium N3540,2.2 GHz (4 cores),153,190,543,intel-pentium,Bay Trail
+1692,AMD A8-7600,3.1 GHz (4 cores),140,433,1056,amd,Kaveri
+1693,Intel Core i5-4210H,2.9 GHz (2 cores),62,1008,1901,intel-4g-i5,Haswell
+1695,Intel Core i5-4590S,3.0 GHz (4 cores),286,1097,2999,intel-4g-i5,Haswell
+1697,AMD FX-8370,4.0 GHz (8 cores),67,494,1994,amd,Vishera
+1698,Intel Core i7-4712MQ,2.3 GHz (4 cores),102,945,2881,intel-4g-i7,Haswell
+1705,Intel Core i7-6700K,4.0 GHz (4 cores),3553,1504,4929,intel-6g-i7,Skylake
+1706,Intel Core i5-6600K,3.5 GHz (4 cores),1521,1429,4037,intel-6g-i5,Skylake
+1707,Intel Core i7-5775C,3.3 GHz (4 cores),208,1447,5012,intel-5g-i7,Broadwell
+1708,Intel Atom x7-Z8700,1.6 GHz (4 cores),89,179,515,intel,Cherry Trail
+1709,Intel Core i5-6500,3.2 GHz (4 cores),3407,1199,3278,intel-6g-i5,Skylake
+1710,Intel Core i5-6600,3.3 GHz (4 cores),931,1295,3564,intel-6g-i5,Skylake
+1711,Intel Core i7-6700HQ,2.6 GHz (4 cores),2359,1098,3440,intel-6g-i7,Skylake
+1715,Intel Core i7-6700,3.4 GHz (4 cores),3575,1319,4201,intel-6g-i7,Skylake
+1716,Intel Core i3-4170,3.7 GHz (2 cores),319,1120,2168,intel-4g-i3,Haswell
+1717,Intel Core i3-6100,3.7 GHz (2 cores),1092,1207,2365,intel-6g-i3,Skylake
+1718,Intel Core i5-6400,2.7 GHz (4 cores),1204,1117,3045,intel-6g-i5,Skylake
+1723,Intel Core i7-6700T,2.8 GHz (4 cores),431,1206,3559,intel-6g-i7,Skylake
+1730,Intel Atom x5-Z8300,1.4 GHz (4 cores),22,133,356,intel,Cherry Trail
+1731,Intel Atom x5-Z8500,1.4 GHz (4 cores),53,168,467,intel,Cherry Trail
+1732,Intel Core i7-6800K,3.4 GHz (6 cores),315,1237,5685,intel-6g-i7,Broadwell-E
+1733,Intel Core i5-6300HQ,2.3 GHz (4 cores),468,1025,2775,intel-6g-i5,Skylake
+1734,Intel Core i3-6100U,2.3 GHz (2 cores),644,756,1547,intel-6g-i3,Skylake
+1735,Intel Core i7-6650U,2.2 GHz (2 cores),161,1004,2048,intel-6g-i7,Skylake
+1737,Intel Core i7-6560U,2.2 GHz (2 cores),144,1022,2131,intel-6g-i7,Skylake
+1738,Intel Core i7-6900K,3.2 GHz (8 cores),140,1284,7298,intel-6g-i7,Broadwell-E
+1739,Intel Core i7-6950X,3.0 GHz (10 cores),302,1352,8722,intel-i7x,Broadwell-E
+1740,Intel Celeron N3150,1.6 GHz (4 cores),52,165,502,intel-celeron,Braswell
+1747,Intel Core i7-6820HQ,2.7 GHz (4 cores),1279,1123,3486,intel-6g-i7,Skylake
+1751,Intel Xeon E5-2630 v3,2.4 GHz (8 cores),154,949,5067,intel-xeon,Haswell
+1752,Intel Xeon E5-1650 v3,3.5 GHz (6 cores),286,1211,5510,intel-xeon,Haswell
+1753,Intel Xeon E5-2620 v3,2.4 GHz (6 cores),219,948,4127,intel-xeon,Haswell-E
+1754,AMD Athlon X4 860K,3.7 GHz (4 cores),64,463,1149,amd,Kaveri
+1755,Intel Core i5-4460S,2.9 GHz (4 cores),110,1024,2752,intel-4g-i5,Haswell
+1759,Intel Pentium G4400,3.3 GHz (2 cores),330,685,1166,intel-pentium,Skylake
+1760,AMD A10-7800,3.5 GHz (4 cores),103,435,1088,amd,Kaveri
+1762,AMD A8-7410,2.2 GHz (4 cores),185,243,632,amd,Carrizo-L
+1774,Intel Core i7-6850K,3.6 GHz (6 cores),150,1281,5813,intel-6g-i7,Broadwell E
+1776,Intel Core i7-6820HK,2.7 GHz (4 cores),121,1226,3969,intel-6g-i7,Skylake
+1777,Intel Core i7-6770HQ,2.6 GHz (4 cores),135,1165,3918,intel-6g-i7,Skylake
+1779,Intel Core i7-7700K,4.2 GHz (4 cores),3322,1592,5156,intel-7g-i7,Kaby Lake
+1782,Intel Core i7-6920HQ,2.9 GHz (4 cores),129,1178,3795,intel-6g-i7,Skylake
+1783,Intel Core i5-6267U,2.9 GHz (2 cores),46,1036,2187,intel-6g-i5,Skylake
+1786,AMD Ryzen 7 1800X,3.6 GHz (8 cores),297,1140,5671,amd-ryzen7,Summit Ridge
+1787,AMD Ryzen 7 1700,3.0 GHz (8 cores),734,1027,5195,amd-ryzen7,Summit Ridge
+1788,AMD Ryzen 7 1700X,3.4 GHz (8 cores),420,1100,5590,amd-ryzen7,Summit Ridge
+1790,Intel Core i5-7600K,3.8 GHz (4 cores),893,1523,4241,intel-7g-i5,Kaby Lake
+1791,Intel Core i7-7700HQ,2.8 GHz (4 cores),4212,1164,3617,intel-7g-i7,Kaby Lake
+1792,Intel Core i7-7700,3.6 GHz (4 cores),2994,1405,4481,intel-7g-i7,Kaby Lake
+1793,Intel Core i5-7500,3.4 GHz (4 cores),2049,1281,3521,intel-7g-i5,Kaby Lake
+1798,Intel Pentium G4560,3.5 GHz (2 cores),319,715,1462,intel-pentium,Kaby Lake
+1799,Intel Atom x5-Z8550,1.4 GHz (4 cores),40,171,484,intel,Cherry Trail
+1804,Intel Xeon E5-2670 v3,2.3 GHz (12 cores),583,940,5977,intel-xeon,"Gainestown, Haswell-E/EP, Sandy Bridge-EP/EX"
+1807,Intel Core i3-7100U,2.4 GHz (2 cores),960,769,1568,intel-7g-i3,Kaby Lake-U/Y
+1808,Intel Core i5-7400,3.0 GHz (4 cores),1886,1193,3286,intel-7g-i5,Kaby Lake
+1815,Intel Celeron N2940,1.8 GHz (4 cores),30,166,496,intel-celeron,"Bay Trail-M, Silvermont"
+1820,Intel Xeon E5-1620 v3,3.5 GHz (4 cores),264,1100,3898,intel-xeon,Haswell-E/EP
+1825,Intel Core i5-5675C,3.1 GHz (4 cores),26,1388,4159,intel-5g-i5,Broadwell
+1826,Intel Core i5-6440HQ,2.6 GHz (4 cores),272,1097,2946,intel-6g-i5,Skylake
+1828,Intel Xeon E3-1271 v3,3.6 GHz (4 cores),121,1196,3845,intel-xeon,"Haswell, Haswell-WS"
+1830,Intel Celeron N3160,1.6 GHz (4 cores),26,172,530,intel-celeron,Braswell
+1831,Intel Xeon E5-1650 v4,3.6 GHz (6 cores),379,1188,5466,intel-xeon,Broadwell-E/EP
+1833,Intel Core i3-6100T,3.2 GHz (2 cores),288,1055,2091,intel-6g-i3,Skylake
+1834,Intel Pentium N4200,1.1 GHz (4 cores),261,274,724,intel-pentium,Apollo Lake
+1835,Intel Xeon E5-2640 v4,2.4 GHz (10 cores),255,1047,5637,intel-xeon,"Broadwell-E/EP, Dempsey, Sandy Bridge-EP/EX"
+1836,Intel Core i7-7820HK,2.9 GHz (4 cores),119,1278,4198,intel-7g-i7,Kaby Lake
+1837,Intel Core i5-6500T,2.5 GHz (4 cores),1108,1044,2827,intel-6g-i5,Skylake
+1841,Intel Xeon E3-1245 v5,3.5 GHz (4 cores),129,1314,4177,intel-xeon,Skylake
+1842,Intel Xeon E3-1226 v3,3.3 GHz (4 cores),85,1152,3291,intel-xeon,"Haswell, Haswell-WS"
+1846,Intel Core i3-6006U,2.0 GHz (2 cores),1255,653,1344,intel-6g-i3,Skylake-U/Y
+1847,Intel Core i5-4310M,2.7 GHz (2 cores),442,1006,1897,intel-4g-i5,Haswell
+1848,Intel Xeon E5-2678 v3,2.5 GHz (12 cores),268,1016,6748,intel-xeon,Haswell-E/EP
+1857,Intel Pentium G4600,3.6 GHz (2 cores),104,737,1527,intel-pentium,Kaby Lake
+1859,Intel Xeon E5-2697 v4,2.3 GHz (18 cores),170,1068,7964,intel-xeon,Broadwell
+1865,Intel Xeon E5-2640 v3,2.6 GHz (8 cores),284,1048,5435,intel-xeon,"Haswell-E/EP, Sandy Bridge-EP/EX"
+1870,Intel Core i7-4610M,3.0 GHz (2 cores),74,1027,1901,intel-4g-i7,Haswell
+1879,Intel Pentium J3710,1.6 GHz (4 cores),54,195,561,intel-pentium,Braswell
+1881,Intel Xeon E5-2687W v4,3.0 GHz (12 cores),55,1103,7884,intel-xeon,Broadwell
+1883,AMD A10-7870K,3.9 GHz (2 cores),40,478,1225,amd,Kaveri
+1884,AMD Ryzen 5 1600,3.2 GHz (6 cores),1871,1084,4640,amd-ryzen5,Summit Ridge
+1887,AMD A6-7310,2.0 GHz (4 cores),112,228,594,amd,Mullins
+1894,AMD Ryzen 5 1600X,3.6 GHz (6 cores),458,1136,4765,amd-ryzen5,Summit Ridge
+1902,AMD Ryzen 5 1400,3.2 GHz (4 cores),232,962,3136,amd-ryzen5,Summit Ridge
+1908,AMD Ryzen 5 1500X,3.5 GHz (4 cores),249,1111,3685,amd-ryzen5,Summit Ridge
+1945,AMD A12-9800,3.8 GHz (4 cores),28,698,1682,amd,Bristol Ridge
+1953,AMD A4-4020,3.2 GHz (2 cores),12,336,438,amd,Richland
+1957,AMD A10-8750,3.6 GHz (4 cores),15,452,1077,amd,
+1966,Intel Xeon E5-2680 v3,2.5 GHz (12 cores),257,1000,6369,intel-xeon,Haswell
+1967,Intel Celeron N2840,2.2 GHz (2 cores),158,177,296,intel-celeron,"Bay Trail-M, Silvermont"
+1968,Intel Xeon E5-2620 v4,2.1 GHz (8 cores),85,850,4509,intel-xeon,"Broadwell-E/EP, Haswell-E/EP"
+1969,Intel Atom x5-Z8350,1.4 GHz (4 cores),151,134,364,intel,Cherry Trail
+1970,Intel Celeron G3900,2.8 GHz (2 cores),58,580,990,intel-celeron,Skylake
+1971,Intel Core i5-7600,3.5 GHz (4 cores),426,1392,3832,intel-7g-i5,Kaby Lake
+1972,Intel Celeron N3450,1.1 GHz (4 cores),164,243,679,intel-celeron,Apollo Lake
+1974,Intel Core i3-7100,3.9 GHz (2 cores),984,1269,2483,intel-7g-i3,Kaby Lake
+1975,Intel Xeon E5-2690 v4,2.6 GHz (14 cores),561,1065,7451,intel-xeon,Broadwell-E/EP
+1977,Intel Core i5-6400T,2.2 GHz (4 cores),259,936,2549,intel-6g-i5,Skylake
+1978,Intel Core i5-7300HQ,2.5 GHz (4 cores),1292,1120,3042,intel-7g-i5,Kaby Lake
+1979,Intel Xeon E5-2696 v4,2.2 GHz (22 cores),72,1118,8869,intel-xeon,Broadwell-E/EP
+1980,Intel Core i3-5020U,2.2 GHz (2 cores),51,698,1380,intel-5g-i3,Broadwell-U
+1984,Intel Core i5-4590T,2.0 GHz (4 cores),337,912,2538,intel-4g-i5,Haswell
+1985,Intel Pentium 3825U,1.9 GHz (2 cores),45,341,694,intel-pentium,Broadwell-U
+1991,Intel Core i3-7300,4.0 GHz (2 cores),7,1369,2703,intel-7g-i3,Kaby Lake
+1993,Intel Xeon E3-1505M v6,3.0 GHz (4 cores),126,1253,3535,intel-xeon,Kaby Lake
+1994,Intel Pentium 3805U,1.9 GHz (2 cores),25,330,608,intel-pentium,Broadwell-U
+1995,Intel Core i7-7700T,2.9 GHz (4 cores),334,1252,3939,intel-7g-i7,Kaby Lake
+1997,Intel Core i7-7820HQ,2.9 GHz (4 cores),921,1187,3613,intel-7g-i7,Kaby Lake
+2001,Intel Xeon E3-1545M v5,2.9 GHz (4 cores),37,1211,3960,intel-xeon,Skylake
+2005,Intel Core i5-6600T,2.7 GHz (4 cores),148,1173,3115,intel-6g-i5,Skylake
+2039,Intel Core i7-7567U,3.5 GHz (2 cores),86,1299,2623,intel-7g-i7,Kaby Lake
+2041,Intel Core i7-7660U,2.5 GHz (2 cores),130,1153,2296,intel-7g-i7,Kaby Lake-U/Y
+2042,Intel Core i9-7900X,3.3 GHz (10 cores),282,1434,8820,intel-i9x,Skylake-E/EP
+2044,Intel Core i7-7820X,3.6 GHz (8 cores),332,1423,7849,intel-i7x,Skylake-E/EP
+2045,Intel Core i7-7800X,3.5 GHz (6 cores),169,1352,6132,intel-i7x,Skylake-E/EP
+2046,Intel Core i3-7100T,3.4 GHz (2 cores),177,1111,2234,intel-7g-i3,Kaby Lake
+2050,AMD Ryzen Threadripper 1950X,3.4 GHz (16 cores),298,1184,7986,amd-threadripper,Whitehaven
+2051,AMD Ryzen 3 1200,3.1 GHz (4 cores),367,995,2844,amd-ryzen3,Summit Ridge
+2052,AMD Ryzen 3 1300X,3.5 GHz (4 cores),93,1102,3135,amd-ryzen3,Summit Ridge
+2059,Intel Xeon E5-1620 v4,3.5 GHz (4 cores),136,1128,4048,intel-xeon,Broadwell-E/EP
+2062,Intel Core i7-8700K,3.7 GHz (6 cores),4717,1615,6534,intel-8g-i7,Coffee Lake
+2063,Intel Core i7-8700,3.2 GHz (6 cores),5093,1534,5964,intel-8g-i7,Coffee Lake
+2065,Intel Core i5-8600K,3.6 GHz (6 cores),1271,1581,5740,intel-8g-i5,Coffee Lake
+2066,Intel Core i5-8400,2.8 GHz (6 cores),2897,1376,4836,intel-8g-i5,Coffee Lake
+2067,Intel Core i3-8350K,4.0 GHz (4 cores),146,1507,4346,intel-8g-i3,Coffee Lake
+2068,Intel Core i3-8100,3.6 GHz (4 cores),1410,1266,3468,intel-8g-i3,Coffee Lake
+2070,Intel Xeon W-2150B,3.0 GHz (10 cores),35,1314,8491,intel-xeon,
+2071,Intel Xeon W-2140B,3.2 GHz (8 cores),105,1298,7367,intel-xeon,
+2073,Intel Core i9-7980XE,2.6 GHz (18 cores),214,1435,11192,intel-i9x,Skylake
+2074,Intel Core i9-7920X,2.9 GHz (12 cores),102,1394,9326,intel-i9x,Skylake
+2075,AMD Ryzen 5 2400G,3.6 GHz (4 cores),817,1035,3226,amd-ryzen5,Raven Ridge
+2077,AMD Ryzen 5 2500U,2.0 GHz (4 cores),1055,814,2386,amd-ryzen5,Raven Ridge
+2078,AMD Ryzen 3 2200G,3.5 GHz (4 cores),878,997,2837,amd-ryzen3,Raven Ridge
+2079,Intel Core i9-7940X,3.1 GHz (14 cores),158,1446,10522,intel-i9x,Skylake
+2080,AMD Ryzen 7 2700X,3.7 GHz (8 cores),2770,1254,6106,amd-ryzen7,Pinnacle Ridge
+2082,AMD Ryzen 5 2600X,3.6 GHz (6 cores),1770,1243,5259,amd-ryzen5,Pinnacle Ridge
+2084,Intel Xeon W-2191B,2.3 GHz (18 cores),25,1185,9592,intel-xeon,Skylake
+2088,Intel Xeon E3-1220 v5,3.0 GHz (4 cores),62,1198,3326,intel-xeon,Skylake
+2090,Intel Xeon E3-1240 v6,3.7 GHz (4 cores),72,1414,4329,intel-xeon,Kaby Lake
+2091,Intel Xeon E3-1535M v6,3.1 GHz (4 cores),89,1244,3789,intel-xeon,Kaby Lake
+2092,Intel Xeon E3-1230 v6,3.5 GHz (4 cores),39,1325,4471,intel-xeon,Kaby Lake
+2098,Intel Xeon E3-1575M v5,3.0 GHz (4 cores),15,1337,4506,intel-xeon,Skylake
+2126,AMD Ryzen 5 2600,3.4 GHz (6 cores),4001,1164,4894,amd-ryzen5,Pinnacle Ridge
+2127,AMD Ryzen 3 2200U,2.5 GHz (2 cores),316,793,1597,amd-ryzen3,Raven Ridge
+2128,AMD Ryzen 7 2700,3.2 GHz (8 cores),1082,1117,5520,amd-ryzen7,Pinnacle Ridge
+2129,AMD Ryzen 3 2300U,2.0 GHz (4 cores),55,786,2253,amd-ryzen3,Raven Ridge
+2132,AMD Ryzen 7 PRO 1700,3.0 GHz (8 cores),9,1036,5214,amd-ryzen7,Summit Ridge
+2144,Intel Core i7-8750H,2.2 GHz (6 cores),6224,1310,4664,intel-8g-i7,Coffee Lake
+2145,Intel Core i9-8950HK,2.9 GHz (6 cores),571,1434,5243,intel-8g-i9,Coffee Lake
+2146,Intel Core i7-8086K,4.0 GHz (6 cores),456,1693,6952,intel-8g-i7,Coffee Lake
+2147,Intel Core i7-8850H,2.6 GHz (6 cores),1915,1345,4699,intel-8g-i7,Coffee Lake
+2148,Intel Core i5-8259U,2.3 GHz (4 cores),544,1238,4109,intel-8g-i5,Coffee Lake
+2149,Intel Core i7-8559U,2.7 GHz (4 cores),261,1382,4286,intel-8g-i7,Coffee Lake
+2194,AMD A12-9720P,2.7 GHz (4 cores),118,532,1198,amd,Bristol Ridge
+2195,Intel Pentium G4620,3.7 GHz (2 cores),20,775,1592,intel-pentium,Kaby Lake 
+2198,Intel Celeron G3930,2.9 GHz (2 cores),101,605,1040,intel-celeron,Kaby Lake
+2199,Intel Core i5-8500,3.0 GHz (6 cores),2243,1395,4868,intel-8g-i5,Coffee Lake
+2200,Intel Core i5-8600,3.1 GHz (6 cores),381,1460,5047,intel-8g-i5,Coffee Lake
+2201,Intel Core i5-7500T,2.7 GHz (4 cores),679,1109,3065,intel-7g-i5,Kaby Lake
+2202,Intel Celeron N4000 ,1.1 GHz (2 cores),495,323,530,intel-celeron,Gemini Lake
+2205,Intel Core i5-7400T,2.4 GHz (4 cores),184,1029,2842,intel-7g-i5,Kaby Lake
+2206,Intel Core i5-8300H,2.3 GHz (4 cores),2141,1268,3728,intel-8g-i5,Coffee Lake
+2208,Intel Core i7-8705G,3.1 GHz (4 cores),178,1288,3990,intel-8g-i7,Kaby Lake
+2211,Intel Celeron 3865U,1.8 GHz (2 cores),420,392,689,intel-celeron,Kaby Lake
+2213,Intel Core i3-7130U,2.7 GHz (2 cores),182,874,1772,intel-7g-i3,Kaby Lake
+2214,AMD A10-9620P,2.5 GHz (4 cores),81,496,1111,amd,Bristol Ridge
+2216,Intel Pentium Silver N5000,1.1 GHz (4 cores),313,345,863,intel-pentium,Gemini Lake
+2217,Intel Celeron N4100,1.1 GHz (4 cores),274,309,823,intel-celeron,Gemini Lake
+2222,Intel Xeon E5-2623 v4,2.6 GHz (4 cores),15,725,2976,intel-xeon,Broadwell
+2226,Intel Xeon E5-1660 v3,3.0 GHz (8 cores),225,1290,6935,intel-xeon,Haswell
+2229,Intel Core i3-4160T,3.1 GHz (2 cores),85,934,1849,intel-4g-i3,Haswell
+2234,AMD PRO A10-8730B,2.4 GHz (4 cores),27,461,964,amd,Carrizo PRO
+2244,Intel Xeon E5-1630 v3,3.7 GHz (4 cores),62,1140,4097,intel-xeon,Haswell
+2246,Intel Core i3-8130U ,2.2 GHz (2 cores),1037,1014,1888,intel-8g-i3,Kaby Lake
+2248,Intel Pentium Silver J5005,1.5 GHz (4 cores),151,371,1067,intel-pentium,Gemini Lake
+2287,Intel Xeon Silver 4110,2.1 GHz (8 cores),65,817,4547,intel-xeon,Skylake
+2323,Intel Atom x7-E3950,1.6 GHz (4 cores),21,229,714,intel,Apollo Lake
+2326,Intel Xeon W-2155,3.3 GHz (10 cores),99,1383,8757,intel-xeon,Skylake
+2336,Intel Pentium Gold G5400,3.7 GHz (2 cores),238,742,1521,intel-pentium,Coffee Lake
+2341,Intel Xeon Gold 6128,3.4 GHz (6 cores),9,1159,5960,intel-xeon,Skylake
+2357,Intel Core i3-7020U,2.3 GHz (2 cores),1254,735,1494,intel-7g-i3,Kaby Lake
+2361,Intel Xeon W-2133,3.6 GHz (6 cores),186,1240,5834,intel-xeon,Skylake
+2450,Intel Xeon W-2145,3.7 GHz (8 cores),221,1419,7947,intel-xeon,Skylake
+2457,Intel Xeon W-2135 ,3.7 GHz (6 cores),287,1406,6564,intel-xeon,Skylake
+2460,Intel Xeon W-2125,4.0 GHz (4 cores),162,1368,5002,intel-xeon,Skylake
+2486,AMD R-Series RX-427BB,2.7 GHz (4 cores),7,407,935,amd,Bald Eagle
+2500,Intel Xeon E-2176M,2.7 GHz (6 cores),319,1361,4775,intel-xeon,Coffee Lake
+2544,Intel Core i7-8700B,3.2 GHz (6 cores),172,1480,5736,intel-8g-i7,Coffee Lake
+2545,AMD Ryzen Threadripper 2950X,3.5 GHz (16 cores),169,1254,8481,amd-threadripper,Colfax
+2546,AMD Ryzen Threadripper 2990WX,3.0 GHz (32 cores),122,1203,7646,amd-threadripper,Colfax
+2548,Intel Core i9-9900K,3.6 GHz (8 cores),5394,1702,8048,intel-9g-i9,Coffee Lake
+2549,Intel Core i7-9700K,3.6 GHz (8 cores),4886,1696,7224,intel-9g-i7,Coffee Lake
+2550,Intel Core i5-9600K,3.7 GHz (6 cores),3317,1692,6282,intel-9g-i5,Coffee Lake
+2551,Intel Core i3-8100B,3.6 GHz (4 cores),27,1232,3505,intel-8g-i3,
+2552,Intel Core i5-8210Y,1.6 GHz (2 cores),58,972,1680,intel-8g-i5,Amber Lake
+2553,Intel Core i5-8500B,3.0 GHz (6 cores),89,1405,4988,intel-8g-i5,Coffee Lake
+2554,AMD Ryzen Threadripper 2970WX,3.0 GHz (24 cores),47,1240,7179,amd-threadripper,Colfax
+2555,AMD Athlon 200GE,3.2 GHz (2 cores),143,926,1909,amd,Raven Ridge
+2557,Intel Pentium 4415Y,1.6 GHz (2 cores),159,313,659,intel-pentium,Kaby Lake
+2559,Intel Core i7-8700T,2.4 GHz (6 cores),494,1338,4716,intel-8g-i7,Coffee Lake
+2561,Intel Core i5-8500T,2.1 GHz (6 cores),922,1192,4140,intel-8g-i5,Coffee Lake
+2568,Intel Core i5-9400F,2.9 GHz (6 cores),3738,1405,4930,intel-9g-i5,Coffee Lake
+2569,Intel Core i9-9900X,3.5 GHz (10 cores),84,1432,9132,intel-i9x,Skylake
+2570,Intel Core i9-9980XE,3.0 GHz (18 cores),66,1436,11268,intel-i9x,Skylake
+2571,Intel Core i7-9800X,3.8 GHz (8 cores),64,1398,7471,intel-i7x,Skylake
+2573,Intel Core i9-9940X,3.3 GHz (14 cores),69,1469,10454,intel-i9x,Skylake
+2575,Intel Core i3-8109U,3.0 GHz (2 cores),162,1188,2455,intel-8g-i3,Coffee Lake
+2578,Intel Core i3-8100T,3.1 GHz (4 cores),408,1104,3142,intel-8g-i3,Coffee Lake
+2579,AMD Ryzen Threadripper 2920X,3.5 GHz (12 cores),60,1265,7460,amd-threadripper,Colfax
+2580,AMD Ryzen 5 3550H,2.1 GHz (4 cores),1617,946,2876,amd-ryzen5,Raven Ridge
+2583,Intel Core i7-9750H,2.6 GHz (6 cores),7856,1362,4986,intel-9g-i7,Coffee Lake
+2584,Intel Core i9-9880H,2.3 GHz (8 cores),918,1366,6085,intel-9g-i9,Kaby Lake
+2585,Intel Core i9-9980HK,2.4 GHz (8 cores),899,1416,6309,intel-9g-i9,Kaby Lake
+2586,AMD Ryzen 5 3600,3.6 GHz (6 cores),12173,1614,6913,amd-ryzen5,Matisse
+2587,AMD Ryzen 9 3900X,3.8 GHz (12 cores),4182,1708,9925,amd-ryzen9,Matisse
+2588,AMD Ryzen 7 3700X,3.6 GHz (8 cores),7355,1672,8088,amd-ryzen7,Matisse
+2590,AMD Ryzen 5 3500U,2.1 GHz (4 cores),4675,863,2483,amd-ryzen5,Raven Ridge
+2591,AMD Ryzen 7 3750H,2.3 GHz (4 cores),1078,988,3073,amd-ryzen7,Picasso
+2592,AMD Ryzen 7 3700U,2.3 GHz (4 cores),1486,922,2680,amd-ryzen7,Picasso
+2593,AMD Ryzen 3 3200U,2.6 GHz (2 cores),750,787,1512,amd-ryzen3,Picasso
+2595,AMD Ryzen 3 3200G,3.6 GHz (4 cores),1428,1074,3064,amd-ryzen3,Picasso
+2596,AMD Ryzen 5 3400G,3.7 GHz (4 cores),1348,1137,3636,amd-ryzen5,Picasso
+2597,AMD Ryzen 5 3600X,3.8 GHz (6 cores),2199,1667,7097,amd-ryzen5,Matisse
+2598,AMD Ryzen 7 3800X,3.9 GHz (8 cores),2080,1704,8236,amd-ryzen7,Matisse
+2599,Intel Core i9-9900KF,3.6 GHz (8 cores),874,1713,8074,intel-9g-i9,Coffee Lake
+2600,Intel Core i9-9900KS,4.0 GHz (8 cores),189,1807,8644,intel-9g-i9,Coffee Lake
+2601,Intel Core i9-9900,3.1 GHz (8 cores),365,1611,7250,intel-9g-i9,Coffee Lake
+2604,Intel Core i5-8279U,2.4 GHz (4 cores),135,1209,3764,intel-8g-i5,Coffee Lake
+2605,Intel Core i7-8569U,2.8 GHz (4 cores),29,1479,4654,intel-8g-i7,Coffee Lake
+2608,Intel Core i5-9400,2.9 GHz (6 cores),1286,1398,4822,intel-9g-i5,Coffee Lake
+2609,Intel Core i5-9300H,2.4 GHz (4 cores),3565,1291,3741,intel-9g-i5,Coffee Lake
+2611,Intel Core i5-8400T,1.7 GHz (6 cores),251,1116,3929,intel-8g-i5,Coffee Lake
+2612,Intel Core i9-9960X,3.1 GHz (16 cores),27,1393,10583,intel-i9x,Skylake
+2613,Intel Core i7-9700KF,3.6 GHz (8 cores),520,1693,7156,intel-9g-i7,Coffee Lake
+2614,Intel Core i3-9100F,3.6 GHz (4 cores),1046,1399,3748,intel-9g-i3,Coffee Lake
+2615,Intel Core i5-8400H,2.5 GHz (4 cores),210,1278,3666,intel-8g-i5,Coffee Lake
+2616,Intel Core i7-9700,3.0 GHz (8 cores),2359,1573,6246,intel-9g-i7,Coffee Lake
+2621,Intel Core i7-9850H,2.6 GHz (6 cores),1592,1387,5066,intel-9g-i7,Coffee Lake
+2624,Intel Core i5-9600KF,3.7 GHz (6 cores),898,1637,5918,intel-9g-i5,Coffee Lake
+2625,Intel Core i7-9700F,3.0 GHz (8 cores),722,1586,6376,intel-9g-i7,Coffee Lake
+2627,Intel Core i5-9500,3.0 GHz (6 cores),1193,1465,4962,intel-9g-i5,Coffee Lake
+2628,Intel Core i3-9100,3.6 GHz (4 cores),520,1393,3634,intel-9g-i3,Coffee Lake
+2631,AMD EPYC 7742,2.2 GHz (64 cores),8,1279,12161,amd,Rome
+2637,AMD Ryzen 9 3950X,3.5 GHz (16 cores),1306,1726,10743,amd-ryzen9,Matisse
+2639,AMD Ryzen 5 PRO 3500U,2.1 GHz (4 cores),572,901,2608,amd-ryzen5,Picasso
+2640,AMD Ryzen 7 PRO 3700U,2.3 GHz (4 cores),794,937,2989,amd-ryzen7,Picasso
+2641,AMD Ryzen 5 3580U Microsoft Surface Edition,2.1 GHz (4 cores),100,888,2581,amd-ryzen5,Picasso
+2642,Intel Xeon W-3175X,3.1 GHz (28 cores),16,1466,14191,intel-xeon,Skylake
+2644,AMD Ryzen Threadripper 3960X,3.8 GHz (24 cores),391,1680,13305,amd-threadripper,Castle Peak
+2645,AMD Ryzen Threadripper 3970X,3.7 GHz (32 cores),356,1663,13783,amd-threadripper,Castle Peak
+2646,AMD Ryzen 7 3780U Microsoft Surface Edition,2.3 GHz (4 cores),48,862,2610,amd-ryzen7,Picasso
+2647,AMD Ryzen 5 PRO 2500U,2.0 GHz (4 cores),320,868,2547,amd-ryzen5,Raven Ridge
+1579,Intel Xeon E5-2660 v3,2.6 GHz (10 cores),158,984,5952,intel-xeon,Haswell
+2667,Intel Xeon W-3275M,2.5 GHz (28 cores),14,1187,12096,intel-xeon,Cascade Lake
+2665,Intel Xeon W-3245,3.2 GHz (16 cores),113,1378,11512,intel-xeon,Cascade Lake
+2528,Intel Xeon E5-2470 v2,2.4 GHz (10 cores),36,476,3137,intel-xeon,Ivy Bridge EN
+1115,Intel Xeon E5-2643,3.3 GHz (4 cores),14,569,2117,intel-xeon,Sandy Bridge-EP
+2663,Intel Xeon W-3223,3.5 GHz (8 cores),27,1360,8024,intel-xeon,Cascade Lake
+2668,Intel Core i9-10980XE,3.0 GHz (18 cores),486,1595,12153,intel-i9x,Cascade Lake
+2669,Intel Core i9-10900X,3.7 GHz (10 cores),311,1580,9561,intel-i9x,Cascade Lake
+2670,Intel Core i9-10920X,3.5 GHz (12 cores),236,1676,11197,intel-i9x,Cascade Lake
+2671,Intel Core i9-10940X,3.3 GHz (14 cores),146,1557,10451,intel-i9x,Cascade Lake
+2672,AMD Ryzen 5 3500X,3.6 GHz (6 cores),947,1578,5921,amd-ryzen5,Matisse
+2673,AMD Ryzen 5 3500,3.6 GHz (6 cores),697,1517,5423,amd-ryzen5,Matisse
+2400,Intel Xeon E5-2630L v3,1.8 GHz (8 cores),27,855,4311,intel-xeon,Haswell
+2387,Intel Core i3-8121U,2.2 GHz (2 cores),20,1176,2364,intel-8g-i3,Cannon Lake
+1645,Intel Core i3-4360,3.7 GHz (2 cores),16,1176,2324,intel-4g-i3,Haswell
+1845,Intel Xeon E5-2699 v4,2.2 GHz (22 cores),66,1044,8468,intel-xeon,Broadwell
+1986,Intel Xeon E5-2680 v4,2.4 GHz (14 cores),1462,1021,6872,intel-xeon,"Broadwell-E/EP, Haswell-E/EP"
+2674,AMD Ryzen Threadripper 3990X,2.9 GHz (64 cores),114,1614,13966,amd-threadripper,Castle Peak
+2678,Intel Core i3-1005G1,1.2 GHz (2 cores),2743,1292,2401,intel,Ice Lake
+2679,Intel Core i3-1000NG4,1.1 GHz (2 cores),88,1253,2252,intel,Ice Lake
+1868,Intel Xeon E5-2667 v4,3.2 GHz (8 cores),398,1170,6625,intel-xeon,"Broadwell-E/EP, Haswell-E/EP"
+1454,Intel Pentium G2030T,2.6 GHz (2 cores),12,424,739,intel-pentium,Ivy Bridge
+2684,Intel Core i9-10900K,3.7 GHz (10 cores),1748,1779,9143,intel-10g-i9,Comet Lake
+2685,Intel Core i7-10750H,2.6 GHz (6 cores),7292,1456,5386,intel-10g-i7,Comet Lake
+2687,Intel Core i5-1038NG7,2.0 GHz (4 cores),168,1524,4947,intel,Ice Lake
+2688,AMD Ryzen 7 4800H,2.9 GHz (8 cores),5740,1481,6075,amd-ryzen7,Renoir
+2689,AMD Ryzen 9 4900HS,3.0 GHz (8 cores),528,1449,6352,amd-ryzen9,Renoir
+2690,Intel Core i7-10875H,2.3 GHz (8 cores),1861,1526,6610,intel-10g-i7,Comet Lake
+2691,AMD Ryzen 3 3300X,3.8 GHz (4 cores),427,1705,5896,amd-ryzen3,Matisse
+2692,Intel Core i7-10700K,3.8 GHz (8 cores),2842,1721,8148,intel-10g-i7,Comet Lake
+2694,AMD Ryzen 3 3100,3.6 GHz (4 cores),811,1494,5102,amd-ryzen3,Matisse
+2695,AMD Ryzen 7 4700U,2.0 GHz (8 cores),1593,1351,4914,amd-ryzen7,Renoir
+2696,Intel Core i5-9600,3.1 GHz (6 cores),120,1539,5081,intel-9g-i5,Coffee Lake
+2238,Intel Xeon E5-2660 v4,2.0 GHz (14 cores),73,953,6344,intel-xeon,Broadwell
+2697,Intel Core i5-10400,2.9 GHz (6 cores),2966,1448,5543,intel,Comet Lake
+2698,Intel Core i7-10700,2.9 GHz (8 cores),2926,1627,7137,intel,Comet Lake
+2699,Intel Core i5-10600K,4.1 GHz (6 cores),1208,1690,6926,intel,Comet Lake
+2700,Intel Core i3-10100,3.6 GHz (4 cores),1191,1435,4237,intel,Comet Lake
+2701,AMD Ryzen 9 3900,3.1 GHz (12 cores),341,1675,9510,amd,Matisse
+2702,AMD Ryzen 7 4800U,1.8 GHz (8 cores),513,1402,5623,amd,Renoir
+2704,AMD Ryzen 7 4800HS,2.9 GHz (8 cores),773,1495,6370,amd,Renoir
+2705,AMD Ryzen 5 4600H,3.0 GHz (6 cores),3976,1376,5134,amd,Renoir
+2708,Intel Xeon E-2276M,2.8 GHz (6 cores),145,1446,5179,intel-xeon,Coffee Lake
+2709,AMD Ryzen 7 PRO 4750U,1.7 GHz (8 cores),794,1355,5127,amd,Renoir
+2710,AMD Ryzen 9 3900XT,3.8 GHz (12 cores),549,1739,9961,amd,Matisse
+2711,Intel Core i9-10900,2.8 GHz (10 cores),658,1718,8382,intel,Comet Lake
+2712,Intel Core i5-10500,3.1 GHz (6 cores),981,1528,5506,intel,Comet Lake
+2713,AMD Ryzen 7 3800XT,3.9 GHz (8 cores),325,1773,8585,amd,Matisse
+2714,AMD Ryzen 5 3600XT,3.8 GHz (6 cores),460,1721,7184,amd,Matisse
+2715,Intel Core i5-10600,3.3 GHz (6 cores),240,1616,6196,intel,Comet Lake
+2717,Intel Core i9-10850K,3.6 GHz (10 cores),1707,1757,9024,intel,Comet Lake
+2718,Intel Core i9-10900KF,3.7 GHz (10 cores),577,1770,9016,intel,Comet Lake
+2719,Intel Core i7-1165G7,2.8 GHz (4 cores),10013,1730,4910,intel,Tiger Lake
+2721,Intel Core i7-10700KF,3.8 GHz (8 cores),854,1723,8174,intel,Comet Lake
+2722,Intel Core i5-10600KF,4.1 GHz (6 cores),634,1692,6811,intel,Comet Lake
+249,Intel Core 2 Duo P7350,2.0 GHz (2 cores),19,240,399,intel,Penryn
+2723,AMD Ryzen 9 5900X,3.7 GHz (12 cores),16061,2203,11886,amd,Vermeer
+2724,AMD Ryzen 7 5800X,3.8 GHz (8 cores),17011,2193,10204,amd,Vermeer
+2725,AMD Ryzen 9 5950X,3.4 GHz (16 cores),11425,2211,12078,amd,Vermeer
+2726,AMD Ryzen 5 5600X,3.7 GHz (6 cores),17920,2113,8681,amd,Vermeer
+2727,Intel Core i5-10300H,2.5 GHz (4 cores),4912,1378,4041,intel,Comet Lake
+2729,Intel Core i5-10400F,2.9 GHz (6 cores),4370,1454,5781,intel,Comet Lake
+2730,AMD Athlon 3000G,3.5 GHz (2 cores),304,957,1976,amd,Picasso
+2735,Intel Xeon Silver 4214,2.2 GHz (12 cores),21,1014,6424,intel,Cascade Lake
+1832,Intel Xeon E5-2623 v3,3.0 GHz (4 cores),7,1035,3675,intel-xeon,Haswell-E/EP
+2394,Intel Xeon Silver 4108,1.8 GHz (8 cores),17,805,4352,intel-xeon,Skylake
+2473,Intel Celeron G3900T,2.6 GHz (2 cores),16,555,986,intel-celeron,Skylake
+1585,Intel Xeon E3-1280 v3,3.6 GHz (4 cores),17,1225,3857,intel-xeon,Haswell
+2744,Intel Core i5-1135G7,2.4 GHz (4 cores),16440,1595,4507,intel,Tiger Lake-U
+2745,Intel Core i7-1185G7,3.0 GHz (4 cores),3492,1735,5274,intel,Tiger Lake
+2746,Intel Core i3-1115G4,3.0 GHz (2 cores),5651,1593,3115,intel,Tiger Lake
+2747,Intel Core i7-11370H,3.3 GHz (4 cores),2113,1775,5522,intel,Tiger Lake
+2748,Intel Core i5-11300H,3.1 GHz (4 cores),2307,1677,4881,intel,Tiger Lake
+2751,Intel Core i9-10885H,2.4 GHz (8 cores),766,1487,6331,intel,Comet Lake
+2752,Intel Core i7-10700F,2.9 GHz (8 cores),1325,1637,7253,intel,Comet Lake
+2754,AMD Ryzen 5 PRO 4650G,3.7 GHz (6 cores),905,1562,6107,amd,Renoir
+2755,AMD Ryzen 5 PRO 4650U,2.1 GHz (6 cores),1042,1309,4559,amd,Renoir
+2756,AMD Ryzen 7 PRO 4750G,3.6 GHz (8 cores),286,1633,7569,amd,Renoir
+2757,AMD Ryzen 3 3250U,2.6 GHz (2 cores),1372,751,1458,amd,Picasso
+2758,Intel Xeon W-2295,3.0 GHz (18 cores),64,1501,11045,intel,Cascade Lake
+2759,Intel Core i7-10850H,2.7 GHz (6 cores),1258,1455,5394,intel,Comet Lake
+2760,AMD Ryzen 5 4600U,2.1 GHz (6 cores),112,1356,4731,amd,Renoir
+2761,AMD Ryzen 3 4300U,2.7 GHz (4 cores),384,1260,3371,amd,Renoir
+2763,Intel Core i9-10900F,2.8 GHz (10 cores),416,1706,8443,intel,Comet Lake
+2764,Intel Core i3-10100F,3.6 GHz (4 cores),1346,1449,4501,intel,Comet Lake
+2765,Intel Core i7-9700T,2.0 GHz (8 cores),236,1396,5209,intel,Coffee Lake
+2633,Intel Core i3-10110U,2.1 GHz (2 cores),12,1174,2143,intel-10g-i3,Comet Lake
+2775,Intel Core i3-9100T,3.1 GHz (4 cores),140,1226,3234,intel,Coffee Lake
+2777,Intel Core i3-10100T,3.0 GHz (4 cores),99,1263,3741,intel,Comet Lake
+2780,AMD Ryzen 9 4900H,3.3 GHz (8 cores),217,1558,6763,amd,Renoir
+2781,Intel Core i5-9300HF,2.4 GHz (4 cores),351,1287,3656,intel,Coffee Lake
+2782,Intel Celeron J4125,2.0 GHz (4 cores),428,345,960,intel,Gemini Lake
+2783,Intel Core i5-9500T,2.2 GHz (6 cores),511,1247,4241,intel,Coffee Lake
+2784,Intel Core i7-10870H,2.2 GHz (8 cores),1233,1454,6137,intel,Comet Lake
+2785,Intel Celeron N4020,1.1 GHz (2 cores),934,342,545,intel,Gemini Lake
+2786,Intel Xeon E-2146G,3.5 GHz (6 cores),25,1538,6258,intel,Coffee Lake
+2787,AMD Ryzen 5 4600HS,3.0 GHz (6 cores),88,1285,5096,amd,Renoir
+2790,AMD Ryzen 7 5800H,3.2 GHz (8 cores),12455,1757,7212,amd,Cezanne
+2791,Intel Core i5-L16G7,1.4 GHz (5 cores),119,604,1190,intel,Lakefield
+2794,Intel Core i9-11900K,3.5 GHz (8 cores),2785,2389,10924,intel,Rocket Lake
+2795,Intel Core i7-11700K,3.6 GHz (8 cores),2371,2249,9917,intel,Rocket Lake
+2796,Intel Core i5-11400,2.6 GHz (6 cores),1878,1961,7276,intel,Rocket Lake
+2797,Intel Core i5-11600K,3.9 GHz (6 cores),1279,2208,8535,intel,Rocket Lake
+2798,Intel Core i7-11700,2.5 GHz (8 cores),1537,2127,8630,intel,Rocket Lake
+2799,Intel Core i5-1145G7,2.6 GHz (4 cores),1594,1669,4859,intel,Tiger Lake-U
+2800,Intel Core i5-11400F,2.6 GHz (6 cores),3544,1980,7594,intel,Rocket Lake
+2801,Intel Core i7-11700KF,3.6 GHz (8 cores),987,2285,10289,intel,Rocket Lake
+2802,Intel Core i5-11500,2.7 GHz (6 cores),662,2006,7248,intel,Rocket Lake
+2803,AMD Ryzen 9 5900HX,3.3 GHz (8 cores),3922,1845,7588,amd,Cezanne
+2804,AMD Ryzen 5 5500U,2.1 GHz (6 cores),8145,1298,4535,amd,Lucienne
+2805,AMD Ryzen 7 5700U,1.8 GHz (8 cores),5699,1399,5421,amd,Lucienne
+2807,Intel Core i5-11600KF,3.9 GHz (6 cores),393,2222,8652,intel,Rocket Lake
+2808,Intel Core i9-11900KF,3.5 GHz (8 cores),990,2321,10017,intel,Rocket Lake
+2809,Intel Core i7-11700F,2.5 GHz (8 cores),1642,2132,8692,intel,Rocket Lake
+2810,Intel Core i9-11900,2.5 GHz (8 cores),250,2192,9186,intel,Rocket Lake
+2811,Intel Core i5-11600,2.8 GHz (6 cores),185,2106,7950,intel,Rocket Lake
+2815,Intel Core i5-11400H,2.7 GHz (6 cores),6223,1821,6405,intel,Tiger Lake
+2816,Intel Core i7-11800H,2.3 GHz (8 cores),10114,1901,7830,intel,Tiger Lake
+2817,Intel Core i7-11375H,3.3 GHz (4 cores),95,1797,5375,intel,Tiger Lake
+2819,Intel Core i3-1125G4,2.0 GHz (4 cores),533,1426,4039,intel,Tiger Lake
+2823,Intel Core i5-11260H,2.6 GHz (6 cores),945,1729,6069,intel,Tiger Lake
+2832,AMD Ryzen 7 5700G,3.8 GHz (8 cores),6787,2015,8960,amd,Cezanne
+2833,AMD Ryzen 5 5600G,3.9 GHz (6 cores),10521,1934,7703,amd,Cezanne
+2835,Intel Core i9-12900K,3.2 GHz (16 cores),5965,2642,15547,intel,Alder Lake
+2837,Intel Core i9-12900KF,3.2 GHz (16 cores),1346,2606,14969,intel,Alder Lake
+2838,Intel Core i7-12700K,3.6 GHz (12 cores),7499,2564,13911,intel,Alder Lake
+2839,Intel Core i7-12700KF,3.6 GHz (12 cores),3971,2532,13633,intel,Alder Lake
+2845,AMD Ryzen 5 5600H,3.3 GHz (6 cores),11000,1584,5653,amd,Cezanne
+2846,AMD Ryzen 7 5800U,1.9 GHz (8 cores),2197,1748,6919,amd,Cezanne
+2847,Intel Core i5-12600K,3.7 GHz (10 cores),5637,2482,11858,intel,Alder Lake
+2848,AMD Ryzen 3 5300U,2.6 GHz (4 cores),1229,1218,3630,amd,Lucienne
+2849,AMD Ryzen 7 PRO 5850U,1.9 GHz (8 cores),896,1701,6220,amd,Cezanne
+2850,Intel Core i7-1195G7,2.9 GHz (4 cores),925,1812,5198,intel,Tiger Lake
+2851,AMD Ryzen 5 5600U,2.3 GHz (6 cores),1170,1632,5770,amd,Cezanne
+2873,Intel Core i5-11320H,3.2 GHz (4 cores),1038,1832,5349,intel,Tiger Lake
+2875,Intel Core i5-12400,2.5 GHz (6 cores),5055,2207,8864,intel,Alder Lake
+2876,Intel Core i5-12600KF,3.7 GHz (10 cores),3659,2529,12370,intel,Alder Lake
+2888,Intel Core i9-12900KS,3.4 GHz (16 cores),817,2705,15975,intel,Alder Lake
+2922,AMD Ryzen 7 7700X,4.5 GHz (8 cores),13763,2986,15552,amd,Raphael
+2923,AMD Ryzen 5 7600X,4.7 GHz (6 cores),9657,2891,12915,amd,Raphael
+2924,AMD Ryzen 9 7900X,4.7 GHz (12 cores),7891,2953,17854,amd,Raphael
+2925,AMD Ryzen 9 7950X,4.5 GHz (16 cores),11710,2980,19379,amd,Raphael
+2916,AMD Ryzen Threadripper PRO 5995WX,2.7 GHz (64 cores),114,1940,16434,amd,Chagall
+2904,AMD Ryzen 7 5700X,3.4 GHz (8 cores),15409,2147,9709,amd,Vermeer
+2926,Intel Core i9-13900K,3.0 GHz (24 cores),19988,2989,20067,intel,Raptor Lake
+2927,Intel Core i9-13900KF,3.0 GHz (24 cores),5148,2920,19591,intel,Raptor Lake
+2928,Intel Core i7-13700K,3.4 GHz (16 cores),12741,2854,17755,intel,Raptor Lake
+2929,Intel Core i7-13700KF,3.4 GHz (16 cores),8326,2894,17520,intel,Raptor Lake
+2930,Intel Core i5-13600K,3.5 GHz (14 cores),6692,2690,15061,intel,Raptor Lake
+2931,Intel Core i5-13600KF,3.5 GHz (14 cores),8168,2766,15565,intel,Raptor Lake
+2878,Intel Core i5-12400F,2.5 GHz (6 cores),12543,2221,9142,intel,Alder Lake
+2879,Intel Core i7-12700F,2.1 GHz (12 cores),2299,2399,11834,intel,Alder Lake
+2880,Intel Core i5-12500,3.0 GHz (6 cores),1563,2323,9022,intel,Alder Lake
+2881,Intel Core i3-12100,3.3 GHz (4 cores),1521,2155,6807,intel,Alder Lake
+2883,Intel Core i3-12100F,3.3 GHz (4 cores),3474,2227,7423,intel,Alder Lake
+2884,Intel Core i5-12600,3.3 GHz (6 cores),380,2382,9641,intel,Alder Lake
+2892,Intel Core i9-12900,2.4 GHz (16 cores),792,2515,13144,intel,Alder Lake
+2894,AMD Ryzen 7 5800,3.4 GHz (8 cores),317,2080,8746,,Vermeer
+2896,AMD Ryzen 9 5900,3.0 GHz (12 cores),176,2131,10756,amd,Vermeer
+2897,AMD Ryzen 3 5300G,4.0 GHz (4 cores),117,1763,5426,amd,Cezanne
+2899,AMD Ryzen Threadripper PRO 3955WX,3.9 GHz (16 cores),200,1685,12538,amd,Castle Peak
+2900,AMD Ryzen Threadripper PRO 3975WX,3.5 GHz (32 cores),109,1648,14944,amd,Castle Peak
+2901,AMD Ryzen Threadripper PRO 3995WX,2.7 GHz (64 cores),59,1578,14066,amd,Castle Peak
+2902,AMD Ryzen Threadripper PRO 3945WX,4.0 GHz (12 cores),50,1680,10985,amd,Castle Peak
+2903,AMD Ryzen 7 5800X3D,3.4 GHz (8 cores),9737,2117,11070,amd,Vermeer
+2905,AMD Ryzen 5 5600,3.5 GHz (6 cores),12076,2054,8621,amd,Vermeer
+2906,AMD Ryzen 5 5500,3.6 GHz (6 cores),5756,1874,7684,amd,Vermeer
+2907,AMD Ryzen 5 PRO 5650G,3.9 GHz (6 cores),83,1912,7181,amd,Cezanne
+2912,AMD Ryzen Threadripper PRO 5945WX,4.1 GHz (12 cores),82,2059,13384,amd,Chagall
+2913,AMD Ryzen Threadripper PRO 5955WX,4.0 GHz (16 cores),334,2127,15888,amd,Chagall
+2914,AMD Ryzen Threadripper PRO 5965WX,3.8 GHz (24 cores),81,2016,14995,amd,Chagall
+2915,AMD Ryzen Threadripper PRO 5975WX,3.6 GHz (32 cores),203,2048,16356,amd,Chagall
+2917,AMD Ryzen 9 6900HS,3.3 GHz (8 cores),2123,1849,8787,amd,Rembrandt
+2918,AMD Ryzen 7 6800H,3.2 GHz (8 cores),6145,1854,8922,amd,Rembrandt
+2919,AMD Ryzen 7 6800HS,3.2 GHz (8 cores),1549,1820,8676,amd,Rembrandt
+2920,AMD Ryzen 9 6900HX,3.3 GHz (8 cores),3158,1985,9516,amd,Rembrandt
+2921,AMD Ryzen 7 6800U,2.7 GHz (8 cores),1515,1708,7377,amd,Rembrandt
+2941,AMD Ryzen 9 7900,3.7 GHz (12 cores),2814,2868,16842,amd,Raphael
+2942,AMD Ryzen 7 7700,3.8 GHz (8 cores),8236,2887,14937,amd,Raphael
+2943,AMD Ryzen 5 7600,3.8 GHz (6 cores),7289,2748,12229,amd,Raphael
+2944,Intel Core i3-1215U,1.2 GHz (6 cores),3378,1828,4856,intel,Alder Lake
+2945,Intel Core i5-1235U,1.3 GHz (10 cores),8354,1838,5665,intel,Alder Lake
+2946,Intel Core i5-1230U,1.0 GHz (10 cores),300,1610,5544,intel,Alder Lake
+2948,Intel Core i7-1250U,1.1 GHz (10 cores),681,1663,5785,intel,Alder Lake
+2950,Intel Core i7-1265U,1.8 GHz (10 cores),813,1937,6294,intel,Alder Lake
+2951,Intel Core i9-13900KS,3.2 GHz (24 cores),4967,3128,21443,intel,Raptor Lake
+237,Intel Core 2 Duo E8400,3.0 GHz (2 cores),212,373,613,intel,Wolfdale
+570,Intel Core i5-2467M,1.6 GHz (2 cores),41,331,643,intel,Sandy Bridge
+603,Intel Core i5-2405S,2.5 GHz (4 cores),17,541,1425,intel,Sandy Bridge
+652,Intel Xeon W3565,3.2 GHz (4 cores),46,491,1680,intel-xeon,Bloomfield
+1086,Intel Xeon E5-2620 v2,2.1 GHz (6 cores),45,418,2112,intel-xeon,Ivy Bridge EP
+1108,Intel Pentium G3420,3.2 GHz (2 cores),22,588,998,intel-pentium,Haswell
+1118,Intel Pentium 2127U,1.9 GHz (2 cores),16,310,538,intel-pentium,Ivy Bridge
+1134,Intel Core i3-4020Y,1.5 GHz (2 cores),35,458,877,intel-4g-i3,Haswell
+1652,Intel Core i5-4690S,3.2 GHz (4 cores),39,1163,3251,intel-4g-i5,Haswell
+1871,Intel Xeon E3-1535M v5,2.9 GHz (4 cores),84,1284,3765,intel-xeon,Skylake
+2224,Intel Core i5-7640X,4.0 GHz (4 cores),19,1736,5137,intel-7g-i5,Kaby Lake
+2256,AMD A6-9500,3.5 GHz (2 cores),22,637,957,amd,Bristol Ridge
+2376,Intel Core i3-6300T,3.3 GHz (2 cores),8,1118,2339,intel-6g-i3,Skylake
+2676,Intel Core i5-1030NG7,1.1 GHz (4 cores),235,1314,3321,intel,Ice Lake
+362,Intel Core i3-330M,2.1 GHz (2 cores),95,275,575,intel,Arrandale
+375,Intel Core i5-2400S,2.5 GHz (4 cores),172,504,1361,intel,Sandy Bridge
+571,Intel Core i5-2557M,1.7 GHz (2 cores),12,382,776,intel,Sandy Bridge
+815,Intel Core i3-2130,3.4 GHz (2 cores),71,519,1063,intel,Sandy Bridge
+1007,Intel Celeron G1610,2.6 GHz (2 cores),26,409,690,intel-celeron,Ivy Bridge
+1030,AMD A4-4300M,2.5 GHz (2 cores),20,290,386,amd,Trinity
+1074,AMD FX-9370,4.4 GHz (8 cores),36,512,2009,amd,Vishera
+1075,AMD A4-5000,1.5 GHz (4 cores),49,158,473,amd,Kabini
+1090,AMD A8-5545M,1.7 GHz (4 cores),19,226,519,amd,Richland
+1157,Intel Core i7-4765T,2.0 GHz (4 cores),63,927,2979,intel-4g-i7,Haswell
+1437,Intel Celeron 887,1.5 GHz (2 cores),9,239,434,intel-celeron,Sandy Bridge
+1464,Intel Celeron 1017U,1.6 GHz (2 cores),19,264,455,intel-celeron,Ivy Bridge
+1569,Intel Celeron N2830,2.2 GHz (2 cores),60,166,275,intel-celeron,Bay Trail
+1587,Intel Xeon E3-1265L v3,2.5 GHz (4 cores),62,1138,3508,intel-xeon,Haswell
+1595,Intel Xeon E5-2696 v2,2.5 GHz (12 cores),70,535,4076,intel-xeon,Ivy Bridge EP
+1602,Intel Xeon E3-1280 V2,3.6 GHz (4 cores),21,698,2386,intel-xeon,Ivy Bridge
+1666,Intel Core i5-5250U,1.6 GHz (2 cores),181,822,1578,intel-5g-i5,Broadwell
+1764,Intel Xeon E3-1505M v5,2.8 GHz (4 cores),193,1177,3645,intel-xeon,Skylake
+1778,Intel Core i7-5700HQ,2.7 GHz (4 cores),65,1101,3155,intel-5g-i7,Broadwell
+1796,Intel Xeon E5-2686 v4,2.3 GHz (8 cores),10,654,4031,intel-xeon,Broadwell-E/EP
+1806,Intel Xeon E3-1230 v5,3.4 GHz (4 cores),75,1310,4187,intel-xeon,Skylake
+1855,Intel Core i3-7350K,4.2 GHz (2 cores),46,1477,2986,intel-7g-i3,Kaby Lake
+1890,AMD Athlon X4 845,3.5 GHz (2 cores),18,662,1611,amd,Carrizo
+1960,AMD PRO A8-8600B,1.6 GHz (4 cores),16,383,920,amd,Carrizo
+2058,AMD Ryzen Threadripper 1920X,3.5 GHz (12 cores),121,1184,7203,amd-threadripper,Whitehaven
+2081,AMD Ryzen 7 2700U,2.2 GHz (4 cores),136,794,2412,amd-ryzen7,Raven Ridge
+2086,Intel Xeon E3-1225 v5,3.3 GHz (4 cores),117,1230,3472,intel-xeon,Skylake
+2197,Intel Pentium 4415U,2.3 GHz (2 cores),164,443,921,intel-pentium,Kaby Lake
+2212,Intel Core i7-8809G,3.1 GHz (4 cores),272,1404,4600,intel-8g-i7,Kaby Lake G
+2254,Intel Xeon E5-2603 v4,1.7 GHz (6 cores),7,589,2620,intel-xeon,Broadwell
+2303,Intel Celeron G1850,2.9 GHz (2 cores),6,529,901,intel-celeron,Haswell
+303,Intel Core 2 Duo T9900,3.1 GHz (2 cores),18,399,642,intel,Penryn
+319,Intel Core 2 Extreme X9770,3.2 GHz (4 cores),6,428,1259,intel,Yorkfield
+330,Intel Core 2 Quad Q9450,2.7 GHz (4 cores),31,347,971,intel,Yorkfield
+331,Intel Core 2 Quad Q9500,2.8 GHz (4 cores),29,363,1009,intel,Yorkfield
+369,Intel Core i3-530,2.9 GHz (2 cores),81,365,761,intel,Clarkdale
+371,Intel Core i3-550,3.2 GHz (2 cores),84,437,894,intel,Clarkdale
+386,Intel Core i5-450M,2.4 GHz (2 cores),44,342,675,intel,Arrandale
+387,Intel Core i5-460M,2.5 GHz (2 cores),131,346,683,intel,Arrandale
+395,Intel Core i5-580M,2.7 GHz (2 cores),16,452,817,intel,Arrandale
+552,AMD FX-8120,3.1 GHz (8 cores),56,408,1515,amd,Zambezi
+677,AMD Opteron 3280,2.4 GHz (8 cores),6,366,1413,amd,
+744,Intel Core i7-3820QM,2.7 GHz (4 cores),56,602,2041,intel,Ivy Bridge
+816,Intel Core i3-2367M,1.4 GHz (2 cores),28,220,475,intel,Sandy Bridge
+860,AMD A8-5500,3.2 GHz (4 cores),34,379,914,amd,Trinity
+937,Intel Xeon E3-1245 V2,3.4 GHz (4 cores),67,658,2270,intel-xeon,Ivy Bridge
+1010,Intel Pentium G2020,2.9 GHz (2 cores),102,474,814,intel-pentium,Ivy Bridge
+1016,Intel Core i3-2348M,2.3 GHz (2 cores),29,345,701,intel,Sandy Bridge
+1058,Intel Core i7-4900MQ,2.8 GHz (4 cores),91,1115,3362,intel-4g-i7,Haswell
+1079,AMD A10-5745M,2.1 GHz (4 cores),31,279,618,amd,Richland
+1101,Intel Core i5-3380M,2.9 GHz (2 cores),40,494,1030,intel,Ivy Bridge
+1459,Intel Core i5-4670S,3.1 GHz (4 cores),19,1184,3300,intel-4g-i5,Haswell
+1500,Intel Pentium G3220T,2.6 GHz (2 cores),22,455,817,intel-pentium,Haswell
+1586,Intel Xeon E3-1246 v3,3.5 GHz (4 cores),104,1190,3668,intel-xeon,Haswell
+1672,Intel Core i7-5557U,3.1 GHz (2 cores),82,1061,2116,intel-5g-i7,Broadwell
+1699,Intel Core i3-4370,3.8 GHz (2 cores),28,1210,2387,intel-4g-i3,Haswell
+1741,Intel Celeron N3050,1.6 GHz (2 cores),107,156,270,intel-celeron,Braswell
+1756,Intel Pentium N3700,1.6 GHz (4 cores),130,174,502,intel-pentium,Braswell
+1757,Intel Xeon E5-2690 v3,2.6 GHz (12 cores),287,1069,7066,intel-xeon,Haswell
+1873,Intel Core i7-4860HQ,2.4 GHz (4 cores),7,1045,3527,intel-4g-i7,Crystal Well
+1874,Intel Celeron J3455,1.5 GHz (4 cores),170,253,753,intel-celeron,Apollo Lake
+1893,AMD E2-7110,1.8 GHz (4 cores),46,184,533,amd,Mullins
+1913,AMD FX-9830P,3.0 GHz (4 cores),31,609,1463,amd,Bristol Ridge
+2055,Intel Core i5-7260U,2.2 GHz (2 cores),142,1107,2337,intel-7g-i5,Kaby Lake-U/Y
+2105,AMD Ryzen Threadripper 1900X,3.8 GHz (8 cores),37,1190,5928,amd-threadripper,Whitehaven
+2204,Intel Core i5-7440HQ,2.8 GHz (4 cores),107,1184,3043,intel-7g-i5,Kaby Lake
+2218,AMD A8-9600,3.1 GHz (4 cores),76,612,1498,amd,Bristol Ridge
+2221,AMD Athlon X4 950,3.5 GHz (4 cores),22,622,1543,amd,Bristol Ridge
+2237,Intel Xeon Silver 4114,2.2 GHz (10 cores),60,866,5313,intel-xeon,Skylake
+2278,Intel Xeon E5-1630 v4,3.7 GHz (4 cores),87,1185,4191,intel-xeon,Broadwell
+2285,Intel Celeron J4005,2.0 GHz (2 cores),67,342,578,intel-celeron,Gemini Lake
+2302,Intel Xeon W-2123 ,3.6 GHz (4 cores),222,1202,4339,intel-xeon,Skylake
+2327,Intel Celeron 3955U,2.0 GHz (2 cores),14,426,754,intel-celeron,Skylake
+2716,Intel Core i9-10910,3.6 GHz (10 cores),36,1741,8500,intel,Comet Lake
+2898,AMD Ryzen 7 PRO 5750G,3.8 GHz (8 cores),89,1976,8009,amd,Cezanne
+392,Intel Core i5-540M,2.5 GHz (2 cores),121,397,770,intel,Arrandale
+642,Intel Xeon X5570,2.9 GHz (4 cores),13,494,1804,intel-xeon,Gainestown
+809,Intel Core i7-3517U,1.9 GHz (2 cores),95,454,923,intel,Ivy Bridge
+863,AMD A6-4400M,2.7 GHz (2 cores),37,314,404,amd,Trinity
+1455,Intel Core i5-4200H,2.8 GHz (2 cores),83,1011,1951,intel-4g-i5,Haswell
+1548,AMD A10-7700K,3.4 GHz (4 cores),5,447,1155,amd,Kaveri
+1898,AMD A4-6210,1.8 GHz (4 cores),32,189,532,amd,Mullins
+1976,Intel Core i5-6402P,2.8 GHz (4 cores),101,1126,3033,intel-6g-i5,Skylake
+2040,Intel Core i7-7920HQ,3.1 GHz (4 cores),61,1284,4089,intel-7g-i7,Kaby Lake
+2094,Intel Xeon E3-1225 v6,3.3 GHz (4 cores),65,1274,3599,intel-xeon,Kaby Lake
+2243,Intel Core i5-7600T,2.8 GHz (4 cores),58,1248,3457,intel-7g-i5,Kaby Lake
+2417,AMD PRO A8-8650B,3.2 GHz (4 cores),30,438,1045,amd,Godavari PRO
+2812,Intel Core i9-11900F,2.5 GHz (8 cores),542,2218,9416,intel,Rocket Lake
+407,Intel Core i7-2600S,2.8 GHz (4 cores),52,582,1768,intel,Sandy Bridge
+599,Intel Core i3-2330M,2.2 GHz (2 cores),149,332,675,intel,Sandy Bridge
+919,Intel Xeon W3670,3.2 GHz (6 cores),17,519,2341,intel-xeon,Westmere-EP
+1095,AMD FX-4350,4.2 GHz (4 cores),23,466,1147,amd,Vishera
+1114,Intel Core i5-4210Y,1.5 GHz (2 cores),9,551,997,intel-4g-i5,Haswell
+1839,Intel Celeron N3350,1.1 GHz (2 cores),262,250,414,intel-celeron,Apollo Lake
+2038,Intel Core i5-7267U,3.1 GHz (2 cores),52,1107,2375,intel-7g-i5,Kaby Lake
+2223,Intel Xeon E5-2698 v3,2.3 GHz (16 cores),128,1054,7423,intel-xeon,Haswell
+240,Intel Core 2 Duo E8600,3.3 GHz (2 cores),23,400,656,intel,Wolfdale
+398,Intel Core i5-660,3.3 GHz (2 cores),38,484,985,intel,Clarkdale
+399,Intel Core i5-661,3.3 GHz (2 cores),6,502,1028,intel,Clarkdale
+742,Intel Core i7-3667U,2.0 GHz (2 cores),60,479,983,intel,Ivy Bridge
+819,Intel Xeon E5440,2.8 GHz (4 cores),23,361,1018,intel-xeon,Harpertown
+823,Intel Xeon E5-2650,2.0 GHz (8 cores),32,403,2564,intel-xeon,Sandy Bridge-EP
+903,Intel Pentium B970,2.3 GHz (2 cores),18,359,582,intel-pentium,Sandy Bridge
+1015,Intel Core i7-4930MX,3.0 GHz (4 cores),171,1256,3641,intel-4g-i7,Haswell
+1019,AMD FX-6350,3.9 GHz (6 cores),59,479,1525,amd,Vishera
+1033,Intel Xeon E5-1680 v2,3.0 GHz (8 cores),113,684,4182,intel-xeon,Ivy Bridge
+1082,Intel Core i3-2375M,1.5 GHz (2 cores),10,217,484,intel,Sandy Bridge
+1641,Intel Core M-5Y70,1.1 GHz (2 cores),10,692,1118,intel,Broadwell
+1840,Intel Xeon E3-1240 v5,3.5 GHz (4 cores),88,1314,4282,intel-xeon,Skylake
+1939,AMD A10-9700,3.5 GHz (4 cores),52,644,1576,amd,Bristol Ridge
+1973,AMD A10-7860K,3.6 GHz (4 cores),33,445,1100,amd,Godavari
+2219,Intel Xeon Gold 6140,2.3 GHz (18 cores),12,1112,8630,intel-xeon,Skylake
+2602,Intel Core i5-8257U,1.4 GHz (4 cores),91,1214,3954,intel-8g-i5,Coffee Lake
+2686,Intel Core i7-1068NG7,2.3 GHz (4 cores),88,1578,5321,intel,Ice Lake
+2778,Intel Core i3-10320,3.8 GHz (4 cores),18,1571,4793,intel,Comet Lake
+654,Intel Xeon E5530,2.4 GHz (8 cores),7,380,1588,intel-xeon,Gainestown
+895,Intel Xeon W3550,3.1 GHz (4 cores),32,470,1602,intel-xeon,Bloomfield
+913,Intel Celeron B815,1.6 GHz (2 cores),14,232,393,intel-celeron,Sandy Bridge
+983,AMD FX-4130,3.8 GHz (4 cores),20,414,1059,amd,Zambezi
+1001,Intel Core i7-4750HQ,2.0 GHz (4 cores),79,1004,3259,intel-4g-i7,Crystal Well
+1055,Intel Xeon E5-2609,2.4 GHz (4 cores),10,410,1290,intel-xeon,Sandy Bridge-EP
+1081,Intel Core i3-3220T,2.8 GHz (2 cores),47,466,962,intel,Ivy Bridge
+1092,Intel Core i7-4770R,3.2 GHz (4 cores),9,1244,3833,intel-4g-i7,Crystal Well
+1161,Intel Core i7-4600M,2.9 GHz (2 cores),98,1023,1945,intel-4g-i7,Haswell
+1447,Intel Pentium 2030M,2.5 GHz (2 cores),5,424,708,intel-pentium,Ivy Bridge
+1476,Intel Core i5-3340S,2.8 GHz (4 cores),8,555,1567,intel,Ivy Bridge
+1691,Intel Celeron G1840,2.8 GHz (2 cores),63,488,822,intel-celeron,Haswell
+1749,Intel Core i3-6098P,3.6 GHz (2 cores),53,1075,2112,intel-6g-i3,Skylake
+1899,AMD FX-9800P,2.7 GHz (4 cores),16,498,1127,amd,Bristol Ridge
+1981,Intel Xeon E5-2667 v3,3.2 GHz (8 cores),40,946,4026,intel-xeon,"Gainestown, Haswell-E/EP, Ivy Bridge, Sandy Bridge-EP/EX"
+1988,Intel Pentium 4405U,2.1 GHz (2 cores),50,414,854,intel-pentium,Skylake-U/Y
+2022,Intel Core i7-6700TE,2.4 GHz (4 cores),5,986,2980,intel-6g-i7,Skylake
+2207,Intel Xeon E5-2695 v4,2.1 GHz (18 cores),79,952,7280,intel-xeon,Broadwell
+2350,Intel Celeron J4105,1.5 GHz (4 cores),140,324,924,intel-celeron,Gemini Lake
+2482,AMD Ryzen 7 PRO 2700U,2.2 GHz (4 cores),136,849,2520,amd-ryzen7,Raven Ridge PRO
+2776,Intel Core i3-9350KF,4.0 GHz (4 cores),32,1516,4005,intel,Coffee Lake
+2829,Intel Core i9-11900T,1.5 GHz (8 cores),25,2137,8038,intel,Rocket Lake
+2830,Intel Core i7-11700T,1.4 GHz (8 cores),63,1818,6578,intel,Rocket Lake
+925,Intel Core i3-2328M,2.2 GHz (2 cores),76,332,667,intel,Sandy Bridge
+1592,Intel Xeon E3-1276 v3,3.6 GHz (4 cores),9,1276,3993,intel-xeon,Haswell
+1742,Intel Core i5-6260U,1.8 GHz (2 cores),63,944,1962,intel-6g-i5,Skylake
+2035,Intel Core i5-7360U,2.3 GHz (2 cores),145,1136,2357,intel-7g-i5,Kaby Lake
+2069,Intel Core i5-5350U,1.8 GHz (2 cores),120,875,1679,intel-5g-i5,Broadwell
+2093,Intel Xeon E3-1220 v6,3.0 GHz (4 cores),49,1223,3507,intel-xeon,Kaby Lake
+2345,Intel Xeon E3-1220L v2,2.3 GHz (2 cores),8,498,997,intel-xeon,Ivy Bridge
+2737,AMD EPYC 7282,2.8 GHz (16 cores),35,1116,8177,amd,Rome
+2886,Intel Xeon W-1290P,3.7 GHz (10 cores),18,1703,8852,intel,Comet Lake
+2953,Intel Core i5-13500,2.5 GHz (14 cores),4174,2425,12249,intel,Raptor Lake
+2954,Intel Core i9-13900,2.0 GHz (24 cores),1033,2734,16391,intel,Raptor Lake
+2955,Intel Core i7-13700,2.1 GHz (16 cores),2600,2649,14667,intel,Raptor Lake
+2956,Intel Core i5-13600,2.7 GHz (14 cores),113,2519,12379,intel,Raptor Lake
+2957,Intel Core i3-13100,3.4 GHz (4 cores),350,2258,7288,intel,Raptor Lake
+411,Intel Core i7-2635QM,2.0 GHz (4 cores),28,442,1371,intel,Sandy Bridge
+440,Intel Core i7-975,3.3 GHz (4 cores),24,540,1889,intel,Bloomfield
+626,Intel Xeon E5520,2.3 GHz (4 cores),8,359,1474,intel-xeon,Gainestown
+645,Intel Xeon W3540,2.9 GHz (4 cores),7,469,1615,intel-xeon,Bloomfield
+811,Intel Core i7-3612QM,2.1 GHz (4 cores),140,501,1690,intel,Ivy Bridge
+820,Intel Xeon E5-2620,2.0 GHz (6 cores),51,390,1909,intel-xeon,Sandy Bridge-EP
+1153,AMD A4-4000,3.0 GHz (2 cores),21,327,465,amd,Richland
+1534,Intel Core i7-4870HQ,2.5 GHz (4 cores),179,1147,3724,intel-4g-i7,Haswell
+1664,Intel Core i7-4790T,2.7 GHz (4 cores),59,1192,3519,intel-4g-i7,Haswell
+1702,AMD FX-7500,2.1 GHz (4 cores),22,315,685,amd,Kaveri
+1724,Intel Core i5-5675R,3.1 GHz (4 cores),21,1231,3724,intel-5g-i5,Broadwell
+1811,Intel Xeon E5-2630 v4,2.2 GHz (10 cores),203,968,5282,intel-xeon,Broadwell-E/EP
+2267,AMD A4-5300B ,3.4 GHz (2 cores),6,383,515,amd,Trinity
+2681,Intel Pentium Gold 4417U,2.3 GHz (2 cores),77,423,883,intel-pentium,Kaby Lake R
+323,Intel Core 2 Quad Q8200,2.3 GHz (4 cores),79,292,831,intel,Yorkfield
+383,Intel Core i5-2540M,2.6 GHz (2 cores),237,486,973,intel,Sandy Bridge
+585,AMD FX-8150,3.6 GHz (8 cores),64,443,1756,amd,Zambezi
+661,Intel Xeon E5645,2.4 GHz (6 cores),21,373,1821,intel-xeon,Westmere-EP
+749,Intel Xeon X5675,3.1 GHz (6 cores),113,502,2445,intel-xeon,Westmere-EP
+765,Intel Core i5-3450S,2.8 GHz (4 cores),29,581,1712,intel,Ivy Bridge
+885,Intel Core i5-3330S,2.7 GHz (4 cores),86,548,1621,intel,Ivy Bridge
+907,Intel Celeron G540,2.5 GHz (2 cores),8,378,639,intel-celeron,Sandy Bridge
+953,Intel Core i7-3635QM,2.4 GHz (4 cores),34,531,1779,intel,Ivy Bridge
+1062,Intel Core i7-4702HQ,2.2 GHz (4 cores),62,937,2962,intel-4g-i7,Haswell
+1099,Intel Xeon E3-1275 v3,3.5 GHz (4 cores),41,1172,3861,intel-xeon,Haswell
+1382,Intel Pentium G870,3.1 GHz (2 cores),5,449,733,intel-pentium,Sandy Bridge
+1423,Intel Core i7-3610QE,2.3 GHz (4 cores),7,560,1954,intel,Ivy Bridge
+1440,Intel Pentium G2020T,2.5 GHz (2 cores),8,415,702,intel-pentium,Ivy Bridge
+1843,Intel Core i7-4785T,2.2 GHz (4 cores),83,974,3124,intel-4g-i7,Haswell
+1989,Intel Atom x7-Z8750,1.6 GHz (4 cores),30,179,512,intel,Cherry Trail
+2276,Intel Core i3-6157U,2.4 GHz (2 cores),13,820,1681,intel-6g-i3,Skylake
+2496,Intel Celeron G4900,3.1 GHz (2 cores),61,597,1016,intel-celeron,Coffee Lake
+326,Intel Core 2 Quad Q9000,2.0 GHz (4 cores),6,274,677,intel,Penryn
+377,Intel Core i5-2415M,2.3 GHz (2 cores),25,443,882,intel,Sandy Bridge
+595,Intel Core i3-2100T,2.5 GHz (2 cores),5,406,887,intel,Sandy Bridge
+807,Intel Core i5-3470T,2.9 GHz (2 cores),79,562,1108,intel,Ivy Bridge
+1084,Intel Core i7-3687U,2.1 GHz (2 cores),47,523,1037,intel,Ivy Bridge
+1102,AMD A10-6700,3.7 GHz (4 cores),64,452,1099,amd,Richland
+1120,Intel Xeon E5-2420,1.9 GHz (6 cores),29,377,1819,intel-xeon,Sandy Bridge-EN
+1130,AMD A10-5757M,2.5 GHz (4 cores),8,373,803,amd,Richland
+1419,Intel Core i5-3570S,3.1 GHz (4 cores),64,632,1794,intel,Ivy Bridge
+1485,Intel Core i5-4202Y,1.6 GHz (2 cores),22,582,924,intel-4g-i5,Haswell
+1761,AMD A10-9600P,2.4 GHz (4 cores),108,460,1032,amd,Bristol Ridge
+1876,Intel Core i7-4940MX,3.1 GHz (4 cores),45,1227,3869,intel-4g-i7,Haswell
+1996,Intel Xeon E3-1270 v5,3.6 GHz (4 cores),112,1350,4406,intel-xeon,Skylake
+2003,Intel Xeon E5-2609 v3,1.9 GHz (6 cores),7,617,2743,intel-xeon,"Haswell-E/EP, Sandy Bridge-EP/EX"
+2190,Intel Xeon E5-2697A v4,2.6 GHz (16 cores),243,1059,8217,intel-xeon,Broadwell
+2252,Intel Core i3-4150T ,3.0 GHz (2 cores),35,889,1745,intel-4g-i3,Haswell
+2382,AMD A10 PRO-7800B ,3.5 GHz (4 cores),41,435,1057,amd,Kaveri
+2733,AMD EPYC 7542,2.9 GHz (32 cores),10,1122,9536,amd,Rome
+644,Intel Xeon X5550,2.7 GHz (4 cores),9,440,1822,intel-xeon,Gainestown
+1023,Intel Pentium 2020M,2.4 GHz (2 cores),111,392,668,intel-pentium,Ivy Bridge
+1097,Intel Pentium G640,2.8 GHz (2 cores),12,436,739,intel-pentium,Sandy Bridge
+1126,Intel Celeron 2955U,1.4 GHz (2 cores),25,266,458,intel-celeron,Haswell
+1572,Intel Pentium N3530,2.2 GHz (4 cores),34,186,530,intel-pentium,Bay Trail
+1814,Intel Pentium G3260,3.3 GHz (2 cores),93,582,999,intel-pentium,Haswell
+1863,AMD A10-7400P,2.5 GHz (4 cores),5,329,742,amd,Bald Eagle
+1895,AMD Athlon X4 840,3.1 GHz (4 cores),41,456,1151,amd,Kaveri
+2325,Intel Xeon E3-1281 v3,3.7 GHz (4 cores),60,1291,4098,intel-xeon,Haswell
+2519,AMD GX-415GA,1.5 GHz (4 cores),9,148,423,amd,eKabini
+2524,AMD Ryzen 3 PRO 1300,3.5 GHz (4 cores),12,1035,2698,amd-ryzen3,Summit Ridge
+915,Intel Pentium G2120,3.1 GHz (2 cores),19,527,914,intel-pentium,Ivy Bridge
+1117,Intel Xeon E3-1265L v2,2.5 GHz (4 cores),15,500,1772,intel-xeon,Ivy Bridge
+1129,AMD E1-2500,1.4 GHz (2 cores),26,138,237,amd,Kabini
+1745,AMD A10-8700P,1.8 GHz (4 cores),63,496,1105,amd,Carrizo
+2076,Intel Core i9-7960X,2.8 GHz (16 cores),105,1322,10307,intel-i9x,Skylake
+2386,Intel Xeon E5-2637 v3,3.5 GHz (4 cores),11,1142,4512,intel-xeon,Haswell
+2476,Intel Xeon E3-1285L v4,3.4 GHz (4 cores),13,1248,4379,intel-xeon,Broadwell
+540,AMD Athlon II X4 640,3.0 GHz (4 cores),84,313,952,amd,Propus
+598,Intel Core i3-2125,3.3 GHz (2 cores),7,504,1043,intel,Sandy Bridge
+897,Intel Xeon E5450,3.0 GHz (4 cores),55,390,1104,intel-xeon,Harpertown
+980,AMD A10-6800K,4.1 GHz (4 cores),56,479,1140,amd,Richland
+1744,Intel Pentium G3250,3.2 GHz (2 cores),83,578,988,intel-pentium,Haswell
+2196,Intel Core i7-7740X,4.3 GHz (4 cores),42,1634,5282,intel-i7x,Kaby Lake
+2298,Intel Xeon Processor E5-1680 v3,3.2 GHz (8 cores),18,1248,7219,intel-xeon,Haswell
+90,AMD Phenom II X4 955 Black Edition,3.2 GHz (4 cores),140,347,1046,amd,Deneb
+288,Intel Core 2 Duo T7250,2.0 GHz (2 cores),18,216,345,intel,Merom
+321,Intel Core 2 Quad Q6600,2.4 GHz (4 cores),155,268,761,intel,Kentsfield
+496,Intel Pentium T4300,2.1 GHz (2 cores),41,231,380,intel-pentium,Penryn
+497,Intel Pentium T4400,2.2 GHz (2 cores),36,250,399,intel-pentium,Penryn
+611,Intel Pentium G850,2.9 GHz (2 cores),17,455,784,intel-pentium,Sandy Bridge
+659,Intel Xeon X3440,2.5 GHz (4 cores),26,385,1215,intel-xeon,
+946,Intel Xeon E3-1225,3.1 GHz (4 cores),37,562,1637,intel-xeon,Sandy Bridge
+1599,Intel Xeon E5-2630L v2,2.4 GHz (6 cores),6,432,2218,intel-xeon,Ivy Bridge EP
+1885,AMD A8-7650K,3.3 GHz (4 cores),55,421,1052,amd,Kaveri
+2589,AMD Ryzen 3 2300X,3.5 GHz (4 cores),58,1221,3364,amd-ryzen3,Pinnacle Ridge
+2610,Intel Core i9-9920X,3.5 GHz (12 cores),33,1393,9422,intel-i9x,Skylake
+2620,Intel Core i7-10510U,1.8 GHz (4 cores),8,1032,2648,intel-10g-i7,Comet Lake
+2664,Intel Xeon W-3235,3.3 GHz (12 cores),57,1445,10508,intel-xeon,Cascade Lake
+2677,Intel Core i7-1060NG7,1.2 GHz (4 cores),87,1140,3160,intel,Ice Lake
+178,Intel Celeron 900,2.2 GHz (1 core),10,217,233,intel-celeron,Penryn
+216,Intel Core 2 Duo E6300,1.9 GHz (2 cores),12,191,314,intel,Conroe
+233,Intel Core 2 Duo E8200,2.7 GHz (2 cores),10,313,522,intel,Wolfdale
+467,Intel Pentium E5500,2.8 GHz (2 cores),18,305,487,intel-pentium,Wolfdale
+494,Intel Pentium T3400,2.2 GHz (2 cores),6,225,362,intel-pentium,Merom
+528,AMD Athlon II X2 255,3.1 GHz (2 cores),7,293,452,amd,Regor
+597,Intel Core i3-2120T,2.6 GHz (2 cores),16,398,749,intel,Sandy Bridge
+967,Intel Xeon E5-2640,2.5 GHz (6 cores),56,453,2281,intel-xeon,Sandy Bridge-EP
+998,Intel Core i5-4258U,2.4 GHz (2 cores),49,844,1664,intel-4g-i5,Haswell
+1012,Intel Pentium G2030,3.0 GHz (2 cores),101,481,819,intel-pentium,Ivy Bridge
+1623,AMD Athlon II X3 460,3.4 GHz (3 cores),5,335,689,amd,Rana
+1772,Intel Core i5-6360U,2.0 GHz (2 cores),38,843,1761,intel-6g-i5,Skylake
+1910,AMD A4-7210,1.8 GHz (4 cores),10,204,528,amd,Mullins
+1931,AMD PRO A12-8800B,2.1 GHz (4 cores),76,526,1141,amd,Carrizo
+2131,AMD Ryzen 7 PRO 1700X,3.4 GHz (8 cores),15,1076,5355,amd-ryzen7,Summit Ridge
+2290,Intel Xeon Gold 6154,3.0 GHz (18 cores),7,1176,10128,intel-xeon,Skylake
+2331,Intel Xeon E5-2420 v2,2.2 GHz (6 cores),29,438,2142,intel-xeon,Ivy Bridge EN
+91,AMD Phenom II X4 965 Black Edition,3.4 GHz (4 cores),98,385,1165,amd,Deneb
+464,Intel Pentium E5200,2.5 GHz (2 cores),36,285,450,intel-pentium,Wolfdale
+495,Intel Pentium T4200,2.0 GHz (2 cores),29,215,361,intel-pentium,Penryn
+1513,Intel Celeron J1900,2.0 GHz (4 cores),138,174,523,intel-celeron,Bay Trail
+107,AMD Phenom II X6 1100T Black Edition,3.7 GHz (6 cores),10,453,1824,amd,Thuban
+296,Intel Core 2 Duo T8300,2.4 GHz (2 cores),24,304,484,intel,Penryn
+434,Intel Core i7-940,2.9 GHz (4 cores),11,453,1500,intel,Bloomfield
+508,AMD A6-3650,2.6 GHz (4 cores),15,295,911,amd,Llano
+522,AMD Athlon II X2 215,2.7 GHz (2 cores),13,274,475,amd,Regor
+732,AMD A4-3400,2.7 GHz (2 cores),10,289,485,amd,Llano
+2507,Intel Core i5-8305G ,2.8 GHz (4 cores),8,1150,3536,intel-8g-i5,Kaby Lake G
+2594,AMD Ryzen 5 2500X,3.6 GHz (4 cores),33,1126,3813,amd-ryzen5,Pinnacle Ridge
+2706,Intel Xeon Silver 4214R,2.4 GHz (12 cores),26,1221,7696,intel,Cascade Lake
+2707,Intel Xeon Gold 5218R,2.1 GHz (20 cores),5,1359,9133,intel,Cascade Lake
+221,Intel Core 2 Duo E6550,2.3 GHz (2 cores),30,249,409,intel,Conroe
+282,Intel Core 2 Duo T6500,2.1 GHz (2 cores),20,245,388,intel,Penryn
+470,Intel Pentium E6300,2.8 GHz (2 cores),9,295,465,intel-pentium,Wolfdale
+506,AMD A4-3300M,1.9 GHz (2 cores),9,228,391,amd,Llano
+525,AMD Athlon II X2 240,2.8 GHz (2 cores),20,297,510,amd,Regor
+864,AMD A6-4455M,2.1 GHz (2 cores),10,225,307,amd,Trinity
+1025,AMD Athlon II X2 270,3.4 GHz (2 cores),23,346,594,amd,Regor
+1869,AMD Athlon 5150,1.6 GHz (4 cores),5,176,496,amd,Kabini
+2261,AMD A8 PRO-7600B,3.1 GHz (4 cores),26,423,1043,amd,Kaveri
+2408,Intel Celeron N3010,1.0 GHz (2 cores),6,166,288,intel-celeron,Braswell
+469,Intel Pentium E5800,3.2 GHz (2 cores),35,351,558,intel-pentium,Wolfdale
+481,Intel Pentium P6100,2.0 GHz (2 cores),52,274,460,intel-pentium,Arrandale
+1125,Intel Core i5-4670T,2.3 GHz (4 cores),32,966,2504,intel-4g-i5,Haswell
+1457,Intel Core i5-4430S,2.7 GHz (4 cores),22,981,2764,intel-4g-i5,Haswell
+1598,Intel Xeon E5-1607 v2,3.0 GHz (4 cores),20,546,1740,intel-xeon,Ivy Bridge EP
+2320,Intel Xeon E5-1660 v4,3.2 GHz (8 cores),115,1154,6351,intel-xeon,Broadwell
+2402,AMD PRO A10-8770E,2.8 GHz (4 cores),21,572,1291,amd,Carrizo PRO
+270,Intel Core 2 Duo T5450,1.7 GHz (2 cores),8,190,319,intel,Merom
+862,AMD A6-3620,2.2 GHz (4 cores),12,256,782,amd,Llano
+2085,Intel Xeon E3-1270 v6,3.8 GHz (4 cores),92,1420,4567,intel-xeon,Kaby Lake
+2291,AMD A12-9800E,3.1 GHz (4 cores),5,640,1519,amd,Bristol Ridge
+208,Intel Celeron T3500,2.1 GHz (2 cores),6,234,350,intel-celeron,Penryn
+222,Intel Core 2 Duo E6600,2.4 GHz (2 cores),17,260,417,intel,Conroe
+607,Intel Core i7-2640M,2.8 GHz (2 cores),147,510,1014,intel,Sandy Bridge
+924,Intel Celeron B820,1.7 GHz (2 cores),20,280,490,intel-celeron,Sandy Bridge
+997,Intel Core i7-4960HQ,2.6 GHz (4 cores),26,1127,3712,intel-4g-i7,Crystal Well
+1011,AMD Athlon X4 750K,3.4 GHz (4 cores),13,443,1029,amd,Trinity
+1077,Intel Celeron G1620,2.7 GHz (2 cores),25,425,743,intel-celeron,Ivy Bridge
+1427,Intel Core i3-3240T,2.9 GHz (2 cores),27,461,980,intel,Ivy Bridge
+1520,Intel Pentium N3520,2.2 GHz (4 cores),16,174,493,intel-pentium,Bay Trail
+1829,Intel Core i3-6320,3.9 GHz (2 cores),22,1293,2601,intel-6g-i3,Skylake
+2395,Intel Core i3-8300,3.7 GHz (4 cores),54,1333,3665,intel-8g-i3,Coffee Lake
+2623,Intel Core i5-10210U,1.6 GHz (4 cores),27,1208,3059,intel-10g-i5,Comet Lake
+2834,Intel Core i7-12700,2.1 GHz (8 cores),67,2387,11147,intel,Alder Lake
+78,AMD Phenom II X4 810,2.6 GHz (4 cores),9,295,891,amd,Deneb
+106,AMD Phenom II X6 1090T Black Edition,3.2 GHz (6 cores),91,386,1460,amd,Thuban
+123,AMD Phenom X4 9550,2.2 GHz (4 cores),7,237,729,amd,Agena
+227,Intel Core 2 Duo E7300,2.7 GHz (2 cores),15,304,491,intel,Wolfdale
+465,Intel Pentium E5300,2.6 GHz (2 cores),30,299,492,intel-pentium,Wolfdale
+507,AMD A6-3400M,1.4 GHz (4 cores),13,222,567,amd,Llano
+548,AMD E-350,1.6 GHz (2 cores),17,107,184,amd,Zacate
+918,Intel Xeon E3-1245,3.3 GHz (4 cores),22,594,2059,intel-xeon,Sandy Bridge
+1018,Intel Celeron 1007U,1.5 GHz (2 cores),48,247,412,intel-celeron,Ivy Bridge
+295,Intel Core 2 Duo T8100,2.1 GHz (2 cores),25,260,423,intel,Penryn
+498,Intel Pentium T4500,2.3 GHz (2 cores),47,249,385,intel-pentium,Penryn
+538,AMD Athlon II X4 630,2.8 GHz (4 cores),22,297,893,amd,Propus
+1088,Intel Xeon E3-1225 V2,3.2 GHz (4 cores),60,630,1890,intel-xeon,Ivy Bridge
+1810,Intel Xeon E5-2683 v4,2.1 GHz (16 cores),129,932,7031,intel-xeon,Broadwell-E/EP
+2949,Intel Core i7-1260U,1.1 GHz (10 cores),157,1936,6320,intel,Alder Lake
+38,AMD Athlon II X2 250,3.0 GHz (2 cores),69,302,520,amd,Regor
+576,Intel Core i7-2960XM,2.7 GHz (4 cores),20,581,1851,intel-i7x,Sandy Bridge
+593,Intel Celeron 847,1.1 GHz (2 cores),23,157,264,intel-celeron,Sandy Bridge
+1725,Intel Core i5-5575R,2.8 GHz (4 cores),18,1072,3247,intel-5g-i5,Broadwell
+2143,AMD EPYC 7551P,2.0 GHz (32 cores),31,919,6296,amd,Naples
+2371,Intel Xeon E5-1603 v4,2.8 GHz (4 cores),8,987,3132,intel-xeon,Broadwell
+297,Intel Core 2 Duo T9300,2.5 GHz (2 cores),52,314,506,intel,Penryn
+466,Intel Pentium E5400,2.7 GHz (2 cores),37,308,500,intel-pentium,Wolfdale
+952,Intel Core i7-3540M,3.0 GHz (2 cores),78,564,1157,intel,Ivy Bridge
+981,AMD A10-5750M,2.5 GHz (4 cores),35,304,669,amd,Richland
+1026,AMD FX-9590,4.7 GHz (8 cores),50,535,2158,amd,Vishera
+1138,Intel Xeon E5-1607,3.0 GHz (4 cores),18,512,1642,intel-xeon,Sandy Bridge-EP
+1900,AMD A4-7300,3.8 GHz (2 cores),14,366,562,amd,Richland
+279,Intel Core 2 Duo T5870,2.0 GHz (2 cores),7,217,357,intel,Merom
+293,Intel Core 2 Duo T7700,2.4 GHz (2 cores),12,260,420,intel,Merom
+468,Intel Pentium E5700,3.0 GHz (2 cores),56,318,513,intel-pentium,Wolfdale
+482,Intel Pentium P6200,2.1 GHz (2 cores),32,284,483,intel-pentium,Arrandale
+1627,AMD A4-3330MX,2.2 GHz (2 cores),7,258,432,amd,Llano
+1999,Intel Celeron 3205U,1.5 GHz (2 cores),22,275,491,intel-celeron,Broadwell
+2260,Intel Core i3-5157U,2.5 GHz (2 cores),10,778,1568,intel-5g-i3,Broadwell
+2328,Intel Pentium G4560T,2.9 GHz (2 cores),24,592,1233,intel-pentium,Kaby Lake
+2732,AMD EPYC 7302P,3.0 GHz (16 cores),11,1162,7836,amd,Rome
+2961,AMD Ryzen 9 7900X3D,4.4 GHz (12 cores),2689,2862,17555,amd,Raphael
+2962,AMD Ryzen 9 7950X3D,4.2 GHz (16 cores),13425,2928,19656,amd,Raphael
+224,Intel Core 2 Duo E6750,2.7 GHz (2 cores),26,301,498,intel,Conroe
+281,Intel Core 2 Duo T6400,2.0 GHz (2 cores),30,236,373,intel,Penryn
+537,AMD Athlon II X4 620,2.6 GHz (4 cores),22,282,866,amd,Propus
+1750,AMD FX-8800P,2.1 GHz (4 cores),27,528,1226,amd,Carrizo
+2337,Intel Xeon Gold 6134,3.2 GHz (8 cores),13,1151,6756,intel-xeon,Skylake
+2813,Intel Core i5-11500T,1.5 GHz (6 cores),48,1696,5748,intel,Rocket Lake
+1736,AMD A10-7300,1.9 GHz (4 cores),34,281,637,amd,Kaveri
+1818,Intel Core i3-5015U,2.1 GHz (2 cores),43,690,1411,intel-5g-i3,Broadwell-U
+1856,Intel Celeron J3160,1.6 GHz (4 cores),22,172,510,intel-celeron,Braswell
+89,AMD Phenom II X4 945,3.0 GHz (4 cores),67,342,1035,amd,Deneb
+225,Intel Core 2 Duo E6850,3.0 GHz (2 cores),13,320,532,intel,Conroe
+328,Intel Core 2 Quad Q9300,2.5 GHz (4 cores),41,318,883,intel,Yorkfield
+417,Intel Core i7-640LM,2.1 GHz (2 cores),10,371,686,intel,Arrandale
+630,Intel Xeon W3520,2.7 GHz (4 cores),42,417,1444,intel-xeon,Bloomfield
+968,Intel Core i7-3940XM,3.0 GHz (4 cores),29,667,2111,intel-i7x,Ivy Bridge
+982,AMD A6-5400K,3.6 GHz (2 cores),18,383,514,amd,Trinity
+2047,Intel Core i5-4460T,1.9 GHz (4 cores),36,809,2174,intel-4g-i5,Haswell
+2266,Intel Xeon Gold 6146,3.2 GHz (12 cores),8,1192,8856,intel-xeon,Skylake
+2297,Intel Core i4-4690T ,2.5 GHz (4 cores),27,1042,2841,intel,Haswell
+87,AMD Phenom II X4 925,2.8 GHz (4 cores),22,321,981,amd,Deneb
+290,Intel Core 2 Duo T7400,2.2 GHz (2 cores),5,234,388,intel,Merom
+429,Intel Core i7-875K,2.9 GHz (4 cores),16,497,1694,intel,Lynnfield
+539,AMD Athlon II X4 635,2.9 GHz (4 cores),14,296,866,amd,Propus
+738,AMD A8-3820,2.5 GHz (4 cores),6,304,929,amd,Llano
+813,Intel Core i7-2637M,1.7 GHz (2 cores),5,426,824,intel,Sandy Bridge
+932,AMD E1-1200,1.4 GHz (2 cores),20,94,164,amd,Zacate
+1992,Intel Xeon D-1541,2.1 GHz (8 cores),13,810,4578,intel-xeon,Broadwell
+2264,Intel Xeon Silver 4116,2.1 GHz (12 cores),10,923,5860,intel-xeon,Skylake
+97,AMD Phenom II X4 P920,1.6 GHz (4 cores),7,161,488,amd,Caspian
+291,Intel Core 2 Duo T7500,2.2 GHz (2 cores),19,235,371,intel,Merom
+736,AMD A4-3420,2.8 GHz (2 cores),5,299,531,amd,Llano
+948,Intel Core i3-2365M,1.4 GHz (2 cores),29,211,459,intel,Sandy Bridge
+1486,Intel Core i5-4300Y,1.6 GHz (2 cores),6,483,710,intel-4g-i5,Haswell
+2294,Intel Xeon E5-1607 v3,3.1 GHz (4 cores),21,1043,3225,intel-xeon,Haswell
+2351,Intel Xeon Gold 5122,3.6 GHz (4 cores),16,1213,4574,intel-xeon,Skylake
+332,Intel Core 2 Quad Q9505,2.8 GHz (4 cores),17,360,1051,intel,Yorkfield
+882,Intel Core i3-3225,3.3 GHz (2 cores),31,535,1131,intel,Ivy Bridge
+1889,AMD A6-7400K,3.5 GHz (1 core),14,402,569,amd,Kaveri
+2087,Intel Xeon E3-1245 v6,3.7 GHz (4 cores),45,1394,4575,intel-xeon,Kaby Lake
+2191,Intel Xeon E5-2673 v4,2.3 GHz (20 cores),49,975,7307,intel-xeon,Broadwell EP
+2227,Intel Xeon E5-2698 v4,2.2 GHz (20 cores),75,1053,7927,intel-xeon,Broadwell
+916,Intel Celeron B800,1.5 GHz (2 cores),14,244,412,intel-celeron,Sandy Bridge
+1056,Intel Xeon E5-2609 v2,2.5 GHz (4 cores),14,392,1214,intel-xeon,Ivy Bridge
+2130,AMD Ryzen 5 PRO 1500,3.5 GHz (4 cores),13,1146,3580,amd-ryzen5,Summit Ridge
+1785,Intel Core i7-6567U,3.3 GHz (2 cores),24,1114,2370,intel-6g-i7,Skylake
+1880,Intel Xeon E5-2637 v4,3.5 GHz (4 cores),8,1110,4154,intel-xeon,Broadwell
+2089,Intel Xeon E3-1275 v6,3.8 GHz (4 cores),36,1473,4889,intel-xeon,Kaby Lake
+2455,AMD PRO A6-9500B,2.3 GHz (2 cores),6,483,668,amd,Bristol Ridge PRO
+81,AMD Phenom II X4 840,3.2 GHz (4 cores),15,335,979,amd,Propus
+94,AMD Phenom II X4 N930,2.0 GHz (4 cores),5,221,696,amd,Caspian
+278,Intel Core 2 Duo T5850,2.2 GHz (2 cores),12,214,336,intel,Merom
+900,Intel Xeon E5540,2.5 GHz (4 cores),10,376,1376,intel-xeon,Nehalem-EP
+1891,AMD E1-6010,1.4 GHz (2 cores),27,126,220,amd,Mullins
+2000,Intel Xeon E5-2687W v3,3.1 GHz (10 cores),43,1082,6797,intel-xeon,Haswell-E/EP
+2272,Intel Xeon E3-1275L v3,2.7 GHz (4 cores),23,1225,3466,intel-xeon,Haswell
+2635,Intel Xeon Silver 4112,2.6 GHz (4 cores),15,929,3544,intel-xeon,Skylake
+1050,AMD A6-6400K,3.9 GHz (2 cores),20,411,577,amd,Richland
+1063,AMD A4-5300,3.4 GHz (2 cores),25,372,512,amd,Trinity
+1813,Intel Core i3-6300,3.8 GHz (2 cores),33,1255,2500,intel-6g-i3,Skylake
+2203,Intel Pentium J4205,1.5 GHz (4 cores),20,278,759,intel-pentium,Apollo Lake 
+226,Intel Core 2 Duo E7200,2.5 GHz (2 cores),11,297,482,intel,Wolfdale
+272,Intel Core 2 Duo T5500,1.7 GHz (2 cores),6,143,249,intel,Merom
+533,AMD Athlon II X3 440,3.0 GHz (3 cores),6,308,721,amd,Rana
+610,Intel Pentium G840,2.8 GHz (2 cores),15,445,777,intel-pentium,Sandy Bridge
+764,Intel Xeon X3450,2.7 GHz (4 cores),24,437,1469,intel-xeon,Lynnfield
+1928,AMD E1-7010,1.5 GHz (2 cores),11,129,219,amd,"Carrizo-L, Mullins"
+1962,AMD A8-5500B,3.2 GHz (4 cores),18,394,961,amd,Trinity
+322,Intel Core 2 Quad Q6700,2.7 GHz (4 cores),45,299,826,intel,Kentsfield
+534,AMD Athlon II X3 445,3.1 GHz (3 cores),10,302,676,amd,Rana
+579,AMD A6-3500,2.1 GHz (3 cores),5,265,622,amd,Llano
+583,AMD E-300,1.3 GHz (2 cores),9,85,149,amd,Zacate
+1106,AMD E1-1500,1.5 GHz (2 cores),9,107,190,amd,Zacate
+1726,Intel Core i7-5775R,3.3 GHz (4 cores),11,1196,3910,intel-5g-i7,Broadwell
+2209,Intel Celeron J3060,1.6 GHz (2 cores),20,180,313,intel-celeron,Braswell
+2275,Intel Core i3-6100H,2.7 GHz (2 cores),8,824,1657,intel-6g-i3,Skylake
+2502,Intel Pentium Gold G5500,3.8 GHz (2 cores),11,786,1598,intel-pentium,Coffee Lake
+2963,AMD Ryzen 9 7945HX,2.5 GHz (16 cores),5156,2769,16138,amd,Dragon Range
+2964,AMD Ryzen 9 7845HX,3.0 GHz (12 cores),1276,2638,13913,amd,Dragon Range
+277,Intel Core 2 Duo T5800,2.0 GHz (2 cores),8,216,346,intel,Merom
+472,Intel Pentium E6600,3.1 GHz (2 cores),15,337,560,intel-pentium,Wolfdale
+914,Intel Celeron G550,2.6 GHz (2 cores),10,389,644,intel-celeron,Sandy Bridge
+1921,AMD Phenom II X4 B95,3.0 GHz (4 cores),7,340,989,amd,Deneb
+368,Intel Core i3-390M,2.7 GHz (2 cores),5,332,624,intel,Arrandale
+456,Intel Pentium D 945/950,3.4 GHz (2 cores),8,159,284,intel-pentium,Presler
+1009,Intel Core i7-4770T,2.5 GHz (4 cores),9,1182,3538,intel-4g-i7,Haswell
+941,Intel Core i3-2377M,1.5 GHz (2 cores),12,238,481,intel,Sandy Bridge
+1029,AMD Sempron 145,2.8 GHz (1 core),5,258,281,amd,Sargas
+933,Intel Xeon E5-2687W,3.1 GHz (8 cores),43,595,3447,intel-xeon,Sandy Bridge-EP
+1121,AMD A8-6500,3.5 GHz (4 cores),65,442,1040,amd,Richland
+1143,Intel Xeon E3-1275 v2,3.5 GHz (4 cores),57,653,2281,intel-xeon,Ivy Bridge
+594,Intel Celeron G530,2.4 GHz (2 cores),30,368,624,intel-celeron,Sandy Bridge
+461,Intel Pentium E2200,2.2 GHz (2 cores),7,241,386,intel-pentium,Conroe
+881,Intel Xeon E5-2650L,1.8 GHz (8 cores),5,342,1936,intel-xeon,Sandy Bridge-EP
+423,Intel Core i7-820QM,1.7 GHz (4 cores),22,382,975,intel,Clarksfield
+523,AMD Athlon II X2 220,2.8 GHz (2 cores),21,287,499,amd,Regor
+2310,Intel Pentium G4400T,2.9 GHz (2 cores),52,595,1052,intel-pentium,Skylake
+510,AMD A8-3850,2.9 GHz (4 cores),16,317,907,amd,Llano
+727,AMD A8-3870,3.0 GHz (4 cores),39,338,1042,amd,Llano
+1020,Intel Core i3-3245,3.4 GHz (2 cores),6,518,1177,intel,Ivy Bridge
+1920,AMD PRO A10-8700B,1.8 GHz (4 cores),35,459,987,amd,Carrizo
+2249,Intel Xeon Gold 6148,2.4 GHz (20 cores),43,1081,7993,intel-xeon,Skylake
+299,Intel Core 2 Duo T9500,2.6 GHz (2 cores),15,335,551,intel,Penryn
+1141,AMD E1-2100,1.0 GHz (2 cores),14,98,172,amd,Kabini
+1155,Intel Xeon E5-2667,2.9 GHz (6 cores),8,557,2737,intel-xeon,Sandy Bridge-EP
+1748,Intel Pentium G3450,3.4 GHz (2 cores),10,614,1046,intel-pentium,Haswell
+1817,Intel Pentium G4500,3.5 GHz (2 cores),19,716,1172,intel-pentium,Skylake
+1903,AMD A8-7100,1.8 GHz (4 cores),11,270,586,amd,Bald Eagle
+126,AMD Phenom X4 9650,2.3 GHz (4 cores),8,240,759,amd,Agena
+529,AMD Athlon II X2 260,3.2 GHz (2 cores),13,348,613,amd,Regor
+729,AMD A6-3410MX,1.6 GHz (4 cores),9,218,614,amd,Llano
+1904,AMD E2-6110,1.5 GHz (4 cores),10,155,433,amd,Mullins
+1922,AMD FX-7600P,2.7 GHz (4 cores),9,363,807,amd,Bald Eagle
+1958,AMD A6-9210,1.4 GHz (2 cores),5,485,663,amd,Stoney Ridge
+871,AMD FX-6200,3.8 GHz (3 cores),19,417,1327,amd,Zambezi
+2348,AMD Athlon X4 730,2.8 GHz (4 cores),5,338,849,amd,
+547,AMD C-50,1.0 GHz (2 cores),7,71,124,amd,Ontario
+2446,AMD PRO A8-9600B,2.4 GHz (4 cores),5,419,1038,amd,Bristol Ridge PRO
+520,AMD Athlon II P340,2.2 GHz (2 cores),9,187,308,amd,Champlain
+1805,Intel Xeon,2.2 GHz (4 cores),15,924,3441,intel-xeon,Broadwell-E/EP
+312,Intel Core 2 Extreme Q9300,2.5 GHz (4 cores),10,382,996,intel,Penryn
+473,Intel Pentium E6700,3.2 GHz (2 cores),15,357,578,intel-pentium,Wolfdale
+728,AMD A8-3520M,1.6 GHz (4 cores),7,255,687,amd,Llano
+767,Intel Xeon X5660,2.8 GHz (6 cores),30,461,2162,intel-xeon,Westmere-EP
+2233,Intel Celeron 3855U,1.6 GHz (2 cores),11,309,548,intel-celeron,Skylake
+549,AMD E-450,1.6 GHz (2 cores),32,111,186,amd,Zacate
+930,AMD E2-1800,1.7 GHz (2 cores),20,109,184,amd,Zacate
+2215,Intel Celeron J3355,2.0 GHz (2 cores),22,251,431,intel-celeron,Apollo Lake
+2381,Intel Pentium G3240T,2.7 GHz (2 cores),6,500,852,intel-pentium,Haswell
+739,AMD A4-3300,2.5 GHz (2 cores),5,253,474,amd,
+231,Intel Core 2 Duo E8135,2.7 GHz (2 cores),10,330,570,intel,Penryn
+535,AMD Athlon II X3 450,3.2 GHz (3 cores),14,306,746,amd,Rana
+2443,AMD PRO A6-9500,3.5 GHz (2 cores),5,602,882,amd,Bristol Ridge PRO
+635,Intel Core i5-2435M,2.4 GHz (2 cores),36,455,890,intel,Sandy Bridge
+1103,Intel Core i5-3550S,3.0 GHz (4 cores),11,623,1716,intel,Ivy Bridge
+1017,Intel Celeron 1000M,1.8 GHz (2 cores),30,299,516,intel-celeron,Ivy Bridge
+1136,AMD A10-4655M,2.0 GHz (4 cores),10,275,585,amd,Trinity
+454,Intel Pentium D 830/925/930,3.0 GHz (2 cores),5,148,257,intel-pentium,"Presler, SmithField"
+1773,Intel Core i7-6660U,2.4 GHz (2 cores),7,1072,2175,intel-6g-i7,Skylake
+2284,Intel Xeon Gold 5118,2.3 GHz (12 cores),5,991,6790,intel-xeon,Skylake
+471,Intel Pentium E6500,2.9 GHz (2 cores),22,339,555,intel-pentium,Wolfdale
+2391,Intel Core i5-4340M,2.9 GHz (2 cores),14,975,1885,intel-4g-i5,Haswell
+1677,Intel Core M-5Y51,1.1 GHz (2 cores),22,645,1125,intel,Broadwell
+1696,Intel Celeron N2807,1.6 GHz (2 cores),10,150,239,intel-celeron,Bay Trail
+608,Intel Core i7-2675QM,2.2 GHz (4 cores),6,446,1412,intel,Sandy Bridge
+1998,Intel Core i7-7560U,2.4 GHz (2 cores),32,1109,2094,intel-7g-i7,Kaby Lake-U/Y
+218,Intel Core 2 Duo E6400,2.1 GHz (2 cores),13,233,376,intel,Conroe
+483,Intel Pentium SU2700,1.3 GHz (1 core),10,147,150,intel-pentium,Penryn
+602,Intel Core i5-2390T,2.7 GHz (2 cores),14,463,924,intel,Sandy Bridge
+1901,AMD Athlon X4 870K,3.9 GHz (2 cores),15,466,1200,amd,Godavari
+2270,AMD PRO A12-9800B,2.7 GHz (4 cores),21,525,1134,amd,Bristol Ridge PRO
+2370,AMD GX-420CA,2.0 GHz (4 cores),5,214,630,amd,eKabini
+318,Intel Core 2 Extreme X9650,3.0 GHz (4 cores),6,389,1139,intel,Yorkfield
+553,AMD Phenom II X4 960T,3.0 GHz (4 cores),18,365,1021,amd,Thuban
+1588,Intel Xeon E3-1268L v3,2.3 GHz (4 cores),14,1009,2982,intel-xeon,Haswell
+2315,Intel Xeon E5-2450 v2,2.5 GHz (8 cores),6,522,3073,intel-xeon,Ivy Bridge EN
+382,Intel Core i5-2537M,1.4 GHz (2 cores),6,307,583,intel,Sandy Bridge
+458,Intel Pentium E2140,1.6 GHz (2 cores),5,165,280,intel-pentium,Conroe
+939,Intel Xeon E5-2665,2.4 GHz (8 cores),26,481,2940,intel-xeon,Sandy Bridge-EP
+1107,Intel Pentium G2130,3.2 GHz (2 cores),19,545,932,intel-pentium,Ivy Bridge
+63,AMD Phenom II X2 560 Black Edition,3.3 GHz (2 cores),7,376,658,amd,Callisto
+289,Intel Core 2 Duo T7300,2.0 GHz (2 cores),15,217,352,intel,Merom
+772,Intel Xeon E5-2630,2.3 GHz (6 cores),12,443,2389,intel-xeon,Sandy Bridge-EP
+2821,Intel Core i3-1115G4E,2.2 GHz (2 cores),5,1702,2972,intel,Tiger Lake
+259,Intel Core 2 Duo P8800,2.7 GHz (2 cores),13,332,539,intel,Penryn
+536,AMD Athlon II X3 455,3.3 GHz (3 cores),6,347,848,amd,Rana
+2965,AMD Ryzen 7 7800X3D,4.2 GHz (8 cores),24760,2725,15114,amd,Raphael
+2680,Intel Xeon E-2136,3.3 GHz (6 cores),31,1527,6265,intel-xeon,Coffee Lake
+1844,Intel Core i3-4170T,3.2 GHz (2 cores),30,972,1945,intel-4g-i3,Haswell
+253,Intel Core 2 Duo P7550,2.3 GHz (2 cores),17,257,411,intel,Penryn
+2366,Intel Xeon E5-1607 v4,3.1 GHz (4 cores),10,1005,2982,intel-xeon,Broadwell
+726,AMD A6-3420M,1.5 GHz (4 cores),15,237,631,amd,Llano
+2002,Intel Celeron 3215U,1.7 GHz (2 cores),23,329,582,intel-celeron,Broadwell
+27,AMD Athlon 64 X2 5000+,2.6 GHz (2 cores),9,195,339,amd,Windsor
+430,Intel Core i7-880,3.1 GHz (4 cores),12,516,1678,intel,Lynnfield
+675,Intel Xeon X3460,2.8 GHz (4 cores),9,478,1498,intel-xeon,Lynnfield
+2301,AMD A8-6500B ,3.5 GHz (4 cores),16,453,1008,amd,Richland
+155,Intel Atom N455,1.7 GHz (1 core),5,53,80,intel,Pineview
+217,Intel Core 2 Duo E6320,1.9 GHz (2 cores),5,206,339,intel,Conroe
+1068,AMD A8-4555M,1.6 GHz (4 cores),13,254,525,amd,Trinity
+1564,AMD Athlon X4 740,3.2 GHz (4 cores),12,379,884,amd,Trinity
+188,Intel Celeron E3300,2.5 GHz (2 cores),7,245,395,intel-celeron,Wolfdale
+671,Intel Xeon X5450,3.0 GHz (4 cores),11,389,1123,intel-xeon,Harpertown
+2274,Intel Core i5-6500TE ,2.3 GHz (4 cores),21,1062,2751,intel-6g-i5,Skylake
+2292,Intel Xeon Gold 6132,2.6 GHz (14 cores),11,1122,8966,intel-xeon,Skylake
+731,AMD A6-3600,2.1 GHz (4 cores),5,257,789,amd,Llano
+1119,Intel Xeon E5-2660,2.2 GHz (8 cores),27,459,2744,intel-xeon,Sandy Bridge-EP
+1597,Intel Xeon E5-2695 v2,2.4 GHz (12 cores),14,451,3907,intel-xeon,Ivy Bridge EP
+23,AMD Athlon 64 X2 4200+,2.2 GHz (2 cores),6,147,245,amd,Manchester
+733,AMD A8-3800,2.4 GHz (4 cores),7,291,889,amd,Llano
+519,AMD Athlon II P320,2.1 GHz (2 cores),7,174,320,amd,Champlain
+213,Intel Core 2 Duo E4500,2.2 GHz (2 cores),21,231,376,intel,Conroe
+2703,Intel Xeon E-2288G,3.7 GHz (8 cores),9,1635,7682,intel,Coffee Lake
+62,AMD Phenom II X2 555 Black Edition,3.2 GHz (2 cores),15,356,616,amd,Callisto
+949,Intel Core i5-3475S,2.9 GHz (4 cores),38,609,1736,intel,Ivy Bridge
+480,Intel Pentium P6000,1.9 GHz (2 cores),10,263,450,intel-pentium,Arrandale
+2441,Intel Celeron G3920,2.9 GHz (2 cores),8,607,1031,intel-celeron,Skylake
+2242,Intel Xeon Gold 6144,3.5 GHz (8 cores),5,1358,8361,intel-xeon,Skylake
+1596,Intel Xeon E5-2643 v2,3.5 GHz (6 cores),24,642,3212,intel-xeon,Ivy Bridge EP
+2054,Intel Xeon Platinum 8168,2.7 GHz (24 cores),25,1155,10636,intel-xeon,Skylake-E/EP
+1867,Intel Xeon E5-2643 v4,3.4 GHz (6 cores),24,1222,5850,intel-xeon,
+2288,Intel Xeon Gold 6136 ,3.0 GHz (12 cores),40,1071,9063,intel-xeon,Skylake
+2305,AMD A8-7500,3.0 GHz (4 cores),11,351,934,amd,Kaveri
+2133,AMD Ryzen 3 PRO 1200,3.1 GHz (4 cores),6,876,2139,amd-ryzen3,Summit Ridge
+2425,Intel Xeon E5-1680 v4,3.4 GHz (8 cores),66,1230,6795,intel-xeon,Broadwell
+276,Intel Core 2 Duo T5750,2.0 GHz (2 cores),14,195,330,intel,Merom
+2083,Intel Xeon E3-1275 v5,3.6 GHz (4 cores),36,1331,4367,intel-xeon,Skylake
+2309,Intel Xeon Gold 6142,2.6 GHz (16 cores),7,1136,8703,intel-xeon,Skylake
+2318,Intel Xeon Platinum 8180,2.5 GHz (28 cores),14,1260,11241,intel-xeon,Skylake
+527,AMD Athlon II X2 245,2.9 GHz (2 cores),30,301,523,amd,Regor
+2134,AMD EPYC 7401P,2.0 GHz (24 cores),6,787,4666,amd,Naples
+311,Intel Core 2 Extreme Q6850,3.0 GHz (4 cores),5,343,961,intel,Kentsfield
+1651,Intel Core i3-4350,3.6 GHz (2 cores),7,949,2129,intel-4g-i3,Haswell
+1877,AMD FX-8310,3.4 GHz (4 cores),7,458,1742,amd,Vishera
+861,AMD A6-3670,2.7 GHz (4 cores),12,304,878,amd,Llano
+294,Intel Core 2 Duo T7800,2.6 GHz (2 cores),5,237,364,intel,Merom
+460,Intel Pentium E2180,2.0 GHz (2 cores),7,214,349,intel-pentium,Conroe
+2779,Intel Core i3-10300,3.7 GHz (4 cores),8,1537,4784,intel,Comet Lake
+286,Intel Core 2 Duo T7100,1.8 GHz (2 cores),5,211,355,intel,Merom
+541,AMD Athlon II X4 645,3.1 GHz (4 cores),14,317,949,amd,Propus
+287,Intel Core 2 Duo T7200,2.0 GHz (2 cores),11,213,341,intel,Merom
+509,AMD A8-3500M,1.5 GHz (4 cores),8,231,620,amd,Llano
+302,Intel Core 2 Duo T9800,2.9 GHz (2 cores),10,357,615,intel,Penryn
+477,Intel Pentium G6950,2.8 GHz (2 cores),23,307,526,intel-pentium,Clarkdale
+1780,Intel Core i7-5950HQ,2.9 GHz (4 cores),11,1353,4601,intel-5g-i7,Broadwell
+2432,AMD A6-9500E,3.0 GHz (2 cores),7,611,908,amd,Bristol Ridge
+2491,AMD PRO A12-8830B,2.5 GHz (4 cores),13,455,966,amd,Carrizo PRO
+891,Intel Core i7-3770T,2.5 GHz (4 cores),16,592,1916,intel,Ivy Bridge
+2240,Intel Core i3-4025U ,1.9 GHz (2 cores),17,602,1198,intel-4g-i3,Haswell
+2307,Intel Xeon E3-1290 v2,3.7 GHz (4 cores),8,715,2502,intel-xeon,Ivy Bridge
+1000,Intel Core i7-4558U,2.8 GHz (2 cores),14,1027,1973,intel-4g-i7,Haswell
+2427,Intel Xeon Gold 6138,2.0 GHz (20 cores),53,1087,8097,intel-xeon,Skylake
+658,Intel Xeon E5430,2.7 GHz (4 cores),10,356,1041,intel-xeon,Harpertown
+969,Intel Xeon E3-1280,3.5 GHz (4 cores),10,655,2198,intel-xeon,Sandy Bridge-EP
+151,Intel Atom D525,1.8 GHz (2 cores),19,76,181,intel,Pineview
+2314,Intel Celeron 3965Y,1.5 GHz (2 cores),14,318,542,intel-celeron,Kaby Lake
+2447,Intel Xeon Gold 6152,2.1 GHz (22 cores),6,1092,7533,intel-xeon,Skylake
+2316,Intel Core i7-6820EQ,2.8 GHz (4 cores),6,1160,3746,intel-6g-i7,Skylake
+300,Intel Core 2 Duo T9550,2.7 GHz (2 cores),18,325,527,intel,Penryn
+414,Intel Core i7-2920XM,2.5 GHz (4 cores),15,430,1452,intel-i7x,Sandy Bridge
+264,Intel Core 2 Duo P9700,2.8 GHz (2 cores),8,361,600,intel,Penryn
+1914,AMD Sempron 2650,1.4 GHz (2 cores),5,145,234,amd,Kabini
+2409,AMD PRO A10-8750B,3.6 GHz (4 cores),12,416,985,amd,Godavari PRO
+2908,AMD EPYC 7443P,2.8 GHz (24 cores),25,1672,13400,amd,Milan
+1051,AMD A6-5350M,2.9 GHz (2 cores),8,313,444,amd,Richland
+214,Intel Core 2 Duo E4600,2.4 GHz (2 cores),18,239,384,intel,Conroe
+1940,AMD Athlon X2 340,3.2 GHz (1 core),11,332,451,amd,Trinity
+2253,Intel Xeon E5-2689 v4,3.1 GHz (10 cores),42,1141,7027,intel-xeon,Broadwell
+531,AMD Athlon II X3 425,2.7 GHz (3 cores),8,276,639,amd,Rana
+647,Intel Xeon E5640,2.7 GHz (4 cores),9,359,1492,intel-xeon,
+1593,Intel Xeon E5-2637 v2,3.5 GHz (4 cores),6,623,2667,intel-xeon,Ivy Bridge EP
+400,Intel Core i5-670,3.5 GHz (2 cores),7,494,1032,intel,Clarkdale
+2102,Intel Xeon E3-1280 v5,3.7 GHz (4 cores),26,1298,4430,intel-xeon,Skylake
+2259,Intel Xeon Gold 6130,2.1 GHz (16 cores),6,1052,6876,intel-xeon,Skylake
+2375,Intel Xeon E5-2673 v2,3.3 GHz (8 cores),10,622,4025,intel-xeon,Ivy Bridge EP
+1860,Intel Xeon E3-1260L v5,2.9 GHz (4 cores),15,1341,4276,intel-xeon,Skylake
+2113,Intel Xeon D-1521,2.4 GHz (4 cores),7,827,2963,intel-xeon,Broadwell
+1944,AMD Phenom II X4 B97,3.2 GHz (4 cores),5,330,947,amd,Deneb
+61,AMD Phenom II X2 550 Black Edition,3.1 GHz (2 cores),9,360,617,amd,Callisto
+463,Intel Pentium E2220,2.4 GHz (2 cores),7,218,378,intel-pentium,Conroe
+877,Intel Core i5-3335S,2.7 GHz (4 cores),7,562,1647,intel,Ivy Bridge
+1065,AMD Athlon II X4 631,2.6 GHz (4 cores),7,278,866,amd,Llano
+2388,AMD A4 Pro-3350B,2.0 GHz (4 cores),10,213,545,amd,Carrizo-L
+657,Intel Xeon X3430,2.4 GHz (4 cores),16,369,1115,intel-xeon,Lynnfield
+1911,AMD Athlon II X2 B24,3.0 GHz (2 cores),19,296,482,amd,Regor
+870,AMD FX-4170,4.2 GHz (2 cores),9,462,1197,amd,Zambezi
+2061,AMD EPYC 7551,2.0 GHz (32 cores),11,903,5903,amd,Naples
+79,AMD Phenom II X4 820,2.8 GHz (4 cores),8,314,923,amd,Deneb
+1066,Intel Pentium G2010,2.8 GHz (2 cores),36,437,637,intel-pentium,Ivy Bridge
+1600,Intel Xeon E5-2430 v2,2.5 GHz (6 cores),6,409,2041,intel-xeon,Ivy Bridge EN
+116,AMD Phenom X3 8650,2.3 GHz (3 cores),5,252,619,amd,Toliman
+189,Intel Celeron E3400,2.6 GHz (2 cores),11,290,485,intel-celeron,Wolfdale
+646,Intel Xeon L5640,2.3 GHz (6 cores),5,398,1934,intel-xeon,
+2358,AMD PRO A10-9700E,3.0 GHz (4 cores),5,577,1430,amd,Bristol Ridge
+211,Intel Core 2 Duo E4300,1.8 GHz (2 cores),5,208,351,intel,Conroe
+1758,Intel Xeon E5-2603 v3,1.6 GHz (6 cores),8,540,2189,intel-xeon,Haswell
+2431,AMD A9-9425,3.1 GHz (2 cores),20,571,757,amd,Stoney Ridge
+2972,AMD Ryzen 7 7735HS,3.2 GHz (8 cores),5534,1935,9040,amd,
+2974,AMD Ryzen 5 5625U,2.3 GHz (6 cores),2853,1589,5501,amd,
+2976,Intel Core i5-13400F,2.5 GHz (10 cores),3872,2303,10997,intel,Raptor Lake
+2977,AMD Ryzen Z1 Extreme,3.3 GHz (8 cores),7447,2174,9625,amd,
+2980,AMD EPYC 7763,2.4 GHz (64 cores),9,1251,10481,amd,
+2981,AMD Ryzen 7 5825U,2.0 GHz (8 cores),2595,1720,6394,amd,
+2983,AMD Ryzen 7 PRO 6850U,2.7 GHz (8 cores),990,1748,7413,amd,
+2984,Intel Core i7-13700F,2.1 GHz (16 cores),4237,2686,15875,intel,Raptor Lake
+2986,Intel Celeron N5105,2.0 GHz (4 cores),705,470,1270,intel,Jasper Lake
+2988,Intel Core i5-13400,2.5 GHz (10 cores),1724,2293,10123,intel,Raptor Lake
+2989,Intel Core i5-1155G7,2.5 GHz (4 cores),1858,1729,4808,intel,Tiger Lake
+2990,Intel Core i5-10500H,2.5 GHz (6 cores),1022,1452,5094,intel,Comet Lake
+2991,Intel Core i7-11850H,2.5 GHz (8 cores),1664,1929,7960,intel,Tiger Lake
+2992,AMD EPYC 7543,2.8 GHz (32 cores),5,1502,13502,amd,
+2994,AMD EPYC 7402,2.8 GHz (24 cores),10,1315,11865,amd,
+2996,Intel Core i3-10105,3.7 GHz (4 cores),581,1476,4317,intel,Comet Lake
+2997,AMD Ryzen 5 6600H,3.3 GHz (6 cores),2222,1824,7515,amd,
+2998,AMD Ryzen 5 4600G,3.7 GHz (6 cores),1405,1575,6094,amd,
+2999,Intel Core i3-10105F,3.7 GHz (4 cores),902,1474,4552,intel,Comet Lake
+3000,AMD Ryzen 5 4500,3.6 GHz (6 cores),1199,1560,6229,amd,
+3001,AMD EPYC 7402P,2.8 GHz (24 cores),9,1204,10476,amd,
+3003,AMD EPYC 7713,2.0 GHz (64 cores),32,1511,14401,amd,
+3004,Intel Xeon Silver 4210,2.2 GHz (10 cores),40,981,5676,intel,Cascade Lake
+3007,Intel Core i7-11390H,3.4 GHz (4 cores),392,1987,5484,intel,Tiger Lake
+3008,Intel Pentium Silver N6000,1.1 GHz (4 cores),703,479,1102,intel,Jasper Lake
+3009,AMD Ryzen 5 7530U,2.0 GHz (6 cores),3076,1638,5665,amd,
+3010,AMD EPYC 7452,2.4 GHz (32 cores),8,1112,8946,amd,
+3012,Intel Core i7-12700T,1.4 GHz (12 cores),322,2272,9575,intel,Alder Lake
+3014,AMD Ryzen 7 7730U,2.0 GHz (8 cores),2631,1635,6304,amd,
+3016,Intel Core i3-13100F,3.4 GHz (4 cores),410,2270,7658,intel,Raptor Lake
+3018,AMD EPYC 7502P,2.5 GHz (32 cores),8,963,7822,amd,
+3019,Intel Core i9-13900F,2.0 GHz (24 cores),493,2805,17370,intel,Raptor Lake
+3023,AMD Ryzen 9 5980HX,3.3 GHz (8 cores),424,1932,7742,amd,
+3024,Intel Celeron N5100,1.1 GHz (4 cores),313,435,1081,intel,Jasper Lake
+3027,Intel Core i5-10500T,2.3 GHz (6 cores),545,1284,4649,intel,Comet Lake
+3028,AMD EPYC 7302,3.0 GHz (16 cores),31,1189,8549,amd,
+3029,Intel Xeon E-2236,3.4 GHz (6 cores),27,1574,6310,intel,Coffee Lake
+3032,AMD Ryzen 5 PRO 5650U,2.3 GHz (6 cores),667,1605,5549,amd,
+3033,Intel Celeron N4120,1.1 GHz (4 cores),442,319,766,intel,Gemini Lake Refresh
+3034,AMD Ryzen 5 7520U,2.8 GHz (4 cores),2043,1186,3741,amd,
+3035,Intel Core i5-12500T,2.0 GHz (6 cores),471,2164,7517,intel,Alder Lake
+3036,Intel Xeon E-2388G,3.2 GHz (8 cores),35,2245,9704,intel,Rocket Lake
+3037,Intel Core i9-12900F,2.4 GHz (16 cores),290,2529,13733,intel,Alder Lake
+3038,Intel Xeon Gold 6226R,2.9 GHz (16 cores),12,1359,9902,intel,Cascade Lake
+3039,AMD Ryzen 7 7735U,2.7 GHz (8 cores),934,1775,7683,amd,
+3040,AMD EPYC 7642,2.3 GHz (48 cores),7,1204,9849,amd,
+3044,AMD Athlon Silver 3050U,2.3 GHz (2 cores),503,771,1341,amd,
+3045,Intel Pentium Silver N5030,1.1 GHz (4 cores),388,358,786,intel,Gemini Lake Refresh
+3046,AMD Ryzen 3 7320U,2.4 GHz (4 cores),1074,1157,3600,amd,
+3047,AMD EPYC 7643,2.3 GHz (48 cores),7,1292,12182,amd,
+3049,AMD Ryzen 7 PRO 6850H,3.2 GHz (8 cores),266,1864,8738,amd,
+3050,Intel Celeron N4500,1.1 GHz (2 cores),677,442,723,intel,Jasper Lake
+3051,Intel Xeon E-2278G,3.4 GHz (8 cores),10,1633,7354,intel,Coffee Lake
+3052,AMD Ryzen 7 7745HX,3.6 GHz (8 cores),944,2632,12838,amd,
+3053,Intel Core i9-10900T,1.9 GHz (10 cores),31,1470,6551,intel,Comet Lake
+3054,Intel Pentium Gold 7505,2.0 GHz (2 cores),268,1341,2596,intel,Tiger Lake
+3055,AMD Ryzen 5 5560U,2.3 GHz (6 cores),744,1668,6316,amd,
+3057,Intel Core i5-10200H,2.4 GHz (4 cores),303,1350,4109,intel,Comet Lake
+3058,Intel Core i5-12500TE,1.9 GHz (6 cores),13,1900,7452,intel,Alder Lake
+3059,Intel Pentium Silver N6005,2.0 GHz (4 cores),79,546,1432,intel,Jasper Lake
+3060,AMD Ryzen 5 PRO 6650U,2.9 GHz (6 cores),226,1742,6659,amd,
+3061,AMD Ryzen 3 PRO 5350G,4.0 GHz (4 cores),35,1813,5357,amd,
+3062,Intel Xeon Silver 4216,2.1 GHz (16 cores),11,1011,7721,intel,Cascade Lake
+3066,Intel Xeon Gold 6248R,3.0 GHz (24 cores),18,1386,11535,intel,Cascade Lake
+3067,Intel Core i5-13500T,1.6 GHz (14 cores),428,2280,8947,intel,Raptor Lake
+3068,Intel Pentium Gold G6405,4.1 GHz (2 cores),148,846,1719,intel,Comet Lake
+3069,Intel Core i5-8600T,2.3 GHz (6 cores),77,1277,4262,intel,Coffee Lake
+3071,AMD Athlon Gold 3150U,2.4 GHz (2 cores),215,816,1670,amd,
+3072,Intel Pentium Gold G7400,3.7 GHz (2 cores),108,1974,4149,intel,Alder Lake
+3073,AMD Ryzen 9 PRO 5945,3.0 GHz (12 cores),20,2183,9102,amd,
+3074,Intel Xeon E-2286G,4.0 GHz (6 cores),26,1600,6652,intel,Coffee Lake
+3075,Intel Core i7-10700T,2.0 GHz (8 cores),267,1424,5727,intel,Comet Lake
+3076,Intel Xeon Silver 4208,2.1 GHz (8 cores),30,925,4848,intel,Cascade Lake
+3077,Intel Core i5-10400T,2.0 GHz (6 cores),190,1173,4280,intel,Comet Lake
+3078,AMD EPYC 9354P,3.2 GHz (32 cores),16,1574,13733,amd,
+3081,AMD Ryzen 5 6600U,2.9 GHz (6 cores),138,1657,6556,amd,
+3082,AMD 3020e,1.2 GHz (2 cores),265,658,1074,amd,
+3084,AMD Ryzen 7 PRO 6860Z,2.7 GHz (8 cores),187,1460,6429,amd,
+3085,Intel Xeon w7-2495X,2.5 GHz (24 cores),64,2090,16328,intel,Sapphire Rapids
+3087,Intel Xeon Gold 5218,2.3 GHz (16 cores),8,1157,8111,intel,Cascade Lake
+3088,Intel Xeon W-11955M,2.6 GHz (8 cores),183,2052,8750,intel,Tiger Lake
+3089,AMD Ryzen 3 PRO 4350G,3.8 GHz (4 cores),159,1470,4609,amd,
+3090,Intel Xeon E-2286M,2.4 GHz (8 cores),180,1547,6782,intel,Coffee Lake
+3091,Intel Core i5-13400T,1.3 GHz (10 cores),84,2192,8560,intel,Raptor Lake
+3092,AMD Ryzen 3 5425U,2.7 GHz (4 cores),209,1510,4309,amd,
+3094,AMD Ryzen 3 4100,3.8 GHz (4 cores),186,1513,4865,amd,
+3095,Intel Xeon w9-3475X,2.2 GHz (36 cores),63,1914,15523,intel,Sapphire Rapids
+3096,AMD Ryzen 7 PRO 5875U,2.0 GHz (8 cores),106,1590,5647,amd,
+3097,Intel Xeon E-2276G,3.8 GHz (6 cores),7,1610,6551,intel,Coffee Lake
+3099,Intel Core i9-12900T,1.4 GHz (16 cores),88,2255,11606,intel,Alder Lake
+3100,Intel Xeon W-2195,2.3 GHz (18 cores),77,1307,9613,intel,Skylake
+3101,Intel Core i5-10505,3.2 GHz (6 cores),229,1564,5399,intel,Comet Lake
+3103,Intel Celeron J6412,2.0 GHz (4 cores),205,440,1253,intel,Elkhart Lake
+3104,AMD Ryzen 5 PRO 4650GE,3.3 GHz (6 cores),144,1512,5733,amd,
+3106,Intel Xeon Gold 6230R,2.1 GHz (26 cores),14,1186,9267,intel,Cascade Lake
+3107,AMD Ryzen 5 5600X3D,3.3 GHz (6 cores),230,2085,9388,amd,
+3108,Intel Xeon w9-3495X,1.9 GHz (56 cores),89,2101,18471,intel,Sapphire Rapids
+3109,AMD Ryzen 5 PRO 5650GE,3.4 GHz (6 cores),251,1918,6980,amd,
+3110,Intel Xeon Silver 4210R,2.4 GHz (10 cores),26,1079,6116,intel,Cascade Lake
+3111,Intel Atom x6425E,2.0 GHz (4 cores),43,461,1296,intel,Elkhart Lake
+3113,AMD Ryzen 7 PRO 4750GE,3.1 GHz (8 cores),73,1610,6380,amd,
+3114,AMD Ryzen 5 7535U,2.9 GHz (6 cores),413,1766,6632,amd,
+3117,AMD Ryzen 7 PRO 3700,3.6 GHz (8 cores),73,1645,7923,amd,
+3118,AMD Ryzen 5 7535HS,3.3 GHz (6 cores),2748,1770,7005,amd,
+3120,AMD Ryzen 7 PRO 6850HS,3.2 GHz (8 cores),35,1869,8429,amd,
+3121,Intel Pentium Silver J5040,2.0 GHz (4 cores),52,419,1124,intel,Gemini Lake Refresh
+3122,Intel Xeon W-11855M,3.2 GHz (6 cores),97,1999,7762,intel,Tiger Lake
+3123,Intel Xeon W-2245,3.9 GHz (8 cores),106,1565,8550,intel,Cascade Lake
+3124,Intel Pentium Gold G6400,4.0 GHz (2 cores),126,802,1646,intel,Comet Lake
+3126,Intel Core i5-9400H,2.5 GHz (4 cores),198,1372,4219,intel,Coffee Lake
+3127,Intel Core i5-11500H,2.9 GHz (6 cores),130,1821,6290,intel,Tiger Lake
+3128,AMD Ryzen 9 PRO 6950H,3.3 GHz (8 cores),220,1995,9576,amd,
+3130,Intel Xeon E5-2699A v4,2.4 GHz (22 cores),55,1144,9570,intel,Broadwell
+3131,AMD Ryzen 3 5400U,2.6 GHz (4 cores),66,1470,4389,amd,
+3133,Intel Xeon Silver 4314,2.4 GHz (16 cores),16,1277,9424,intel,Ice Lake
+3136,Intel Core i5-10600T,2.4 GHz (6 cores),28,1367,4848,intel,Comet Lake
+3137,AMD EPYC 7313,3.0 GHz (16 cores),15,1502,11288,amd,
+3138,AMD EPYC 9654,2.4 GHz (96 cores),21,1837,18836,amd,
+3140,Intel Core i9-13900E,1.8 GHz (24 cores),54,1646,8337,intel,Raptor Lake
+3141,Intel Xeon Silver 4310,2.1 GHz (12 cores),57,1226,7825,intel,Ice Lake
+3142,Intel Xeon W-10855M,2.8 GHz (6 cores),153,1493,5742,intel,Comet Lake
+3143,Intel Core i5-13600T,1.8 GHz (14 cores),61,2382,10852,intel,Raptor Lake
+3145,AMD Ryzen 7 7736U,2.7 GHz (8 cores),36,1729,7557,amd,
+3146,Intel Core i5-9400T,1.8 GHz (6 cores),177,1152,3965,intel,Coffee Lake
+3148,AMD EPYC 7702,2.0 GHz (64 cores),26,1167,11417,amd,
+3149,Intel Xeon Gold 6150,2.7 GHz (18 cores),6,1195,9176,intel,Skylake
+3150,Intel Xeon E-2274G,4.0 GHz (4 cores),18,1597,5192,intel,Coffee Lake
+3151,Intel Core i3-12100T,2.2 GHz (4 cores),114,1951,6033,intel,Alder Lake
+3152,AMD EPYC 7313P,3.0 GHz (16 cores),23,1558,10636,amd,
+3153,Intel Core i7-9750HF,2.6 GHz (6 cores),103,1364,4840,intel,Coffee Lake
+3155,AMD Ryzen 5 PRO 3400GE,3.3 GHz (4 cores),161,1113,3322,amd,
+3158,AMD Ryzen 5 PRO 5675U,2.3 GHz (6 cores),242,1636,5500,amd,
+3159,AMD Ryzen 5 PRO 3600,3.6 GHz (6 cores),79,1631,6602,amd,
+3160,Intel Xeon W-2235,3.8 GHz (6 cores),167,1548,7053,intel,Cascade Lake
+3161,Intel Core i7-13700T,1.4 GHz (16 cores),240,2493,11584,intel,Raptor Lake
+3162,Intel Celeron G5905,3.5 GHz (2 cores),122,739,1261,intel,Comet Lake
+3163,Intel Xeon W-10885M,2.4 GHz (8 cores),72,1567,6966,intel,Comet Lake
+3165,AMD EPYC 7532,2.4 GHz (32 cores),20,1116,9574,amd,
+3166,Intel Xeon W-3245M,3.2 GHz (16 cores),22,1475,11985,intel,Cascade Lake
+3170,Intel Xeon E5-2650L v2,1.7 GHz (10 cores),5,358,2533,intel,Ivy Bridge EP
+3171,Intel Core i3-13100T,2.5 GHz (4 cores),104,1768,4937,intel,Raptor Lake
+3173,Intel Core i5-10400H,2.6 GHz (4 cores),186,1399,3994,intel,Comet Lake
+3174,Intel Celeron G6900,3.4 GHz (2 cores),92,1678,2829,intel,Alder Lake
+3176,AMD Ryzen 5 PRO 7530U,2.0 GHz (6 cores),297,1719,5915,amd,
+3177,Intel Celeron J4025,2.0 GHz (2 cores),41,334,552,intel,Gemini Lake Refresh
+3179,AMD EPYC 9124,3.0 GHz (16 cores),26,1801,12630,amd,
+3180,Intel Core i9-9900T,2.1 GHz (8 cores),133,1503,6640,intel,Coffee Lake
+3181,Intel Xeon Gold 6248,2.5 GHz (20 cores),6,1320,10491,intel,Cascade Lake
+3184,Intel Xeon E-2224,3.4 GHz (4 cores),33,1485,4156,intel,Coffee Lake
+3186,AMD Athlon Silver 3050e,1.4 GHz (2 cores),44,697,1316,amd,
+3187,Intel Xeon W-2255,3.7 GHz (10 cores),72,1555,9488,intel,Cascade Lake
+3188,Intel Xeon w5-2445,3.1 GHz (10 cores),51,1834,10841,intel,Sapphire Rapids
+3189,Intel Core i5-12400T,1.8 GHz (6 cores),111,2042,7131,intel,Alder Lake
+3190,Intel Xeon E-2186M,2.9 GHz (6 cores),145,1439,5332,intel,Coffee Lake
+3191,AMD Ryzen 3 PRO 4450U,2.5 GHz (4 cores),174,1300,3985,amd,
+3192,Intel Xeon D-2123IT,2.2 GHz (4 cores),18,446,1131,intel,Skylake
+3193,Intel Xeon W-1250,3.3 GHz (6 cores),53,1511,6141,intel,Comet Lake
+3194,Intel Core i5-11400T,1.3 GHz (6 cores),37,1593,5549,intel,Rocket Lake
+3195,Intel Core i5-12600T,2.1 GHz (6 cores),25,2048,7374,intel,Alder Lake
+3196,AMD EPYC 74F3,3.2 GHz (24 cores),5,1438,12689,amd,
+3197,AMD Ryzen 7 PRO 5750GE,3.2 GHz (8 cores),55,1941,6935,amd,
+3199,Intel Pentium Gold G5420,3.8 GHz (2 cores),103,750,1520,intel,Coffee Lake
+3202,Intel Celeron 6305,1.8 GHz (2 cores),47,741,1262,intel,Tiger Lake
+3206,Intel Xeon W-2225,4.1 GHz (4 cores),43,1505,5430,intel,Cascade Lake
+3210,Intel Core i3-12300,3.5 GHz (4 cores),27,2240,7301,intel,Alder Lake
+3211,AMD Ryzen 9 PRO 3900,3.1 GHz (12 cores),31,1680,9122,amd,
+3212,Intel Atom x6413E,1.5 GHz (4 cores),14,493,1354,intel,Elkhart Lake
+3213,Intel Xeon W-2223,3.6 GHz (4 cores),71,1300,4667,intel,Cascade Lake
+3216,Intel Core i5-9500F,3.0 GHz (6 cores),66,1507,5170,intel,Coffee Lake
+3219,Intel Core i5-9600T,2.3 GHz (6 cores),44,1302,4375,intel,Coffee Lake
+3221,Intel Xeon Gold 5317,3.0 GHz (12 cores),10,1176,9034,intel,Ice Lake
+3222,Intel Core i7-12700E,2.1 GHz (12 cores),10,2094,10676,intel,Alder Lake
+3224,Intel Xeon W-1350,3.3 GHz (6 cores),39,2128,8126,intel,Rocket Lake
+3225,Intel Xeon Gold 6242,2.8 GHz (16 cores),9,1336,10522,intel,Cascade Lake
+3226,Intel Atom x6211E,1.3 GHz (2 cores),7,401,709,intel,Elkhart Lake
+3227,AMD EPYC 9554,3.1 GHz (64 cores),15,1829,17853,amd,
+3228,Intel Celeron J6413,1.8 GHz (4 cores),28,449,1240,intel,Elkhart Lake
+3229,Intel Xeon Silver 4215R,3.2 GHz (8 cores),23,1303,6969,intel,Cascade Lake
+3230,Intel Xeon W-3375,2.5 GHz (38 cores),10,1818,17713,intel,Ice Lake
+3232,Intel Xeon Silver 4309Y,2.8 GHz (8 cores),6,1251,7055,intel,Ice Lake
+3233,Intel Xeon E-2176G,3.7 GHz (6 cores),37,1577,6346,intel,Coffee Lake
+3234,Intel Xeon W-2175,2.5 GHz (14 cores),46,1309,8807,intel,Skylake
+3237,Intel Xeon Silver 4215,2.5 GHz (8 cores),6,1030,6610,intel,Cascade Lake
+3239,AMD Ryzen 3 PRO 5450U,2.6 GHz (4 cores),91,1520,4777,amd,
+3240,AMD Ryzen 5 PRO 6650H,3.3 GHz (6 cores),26,1736,6903,amd,
+3241,Intel Core i7-11600H,2.9 GHz (6 cores),91,1922,6561,intel,Tiger Lake
+3244,Intel Xeon E-2124G,3.4 GHz (4 cores),38,1471,4154,intel,Coffee Lake
+3246,Intel Xeon E-2224G,3.5 GHz (4 cores),40,1547,4362,intel,Coffee Lake
+3247,Intel Xeon W-1290,3.2 GHz (10 cores),17,1764,8733,intel,Comet Lake
+3249,AMD EPYC 7F52,3.5 GHz (16 cores),10,1391,10634,amd,
+3250,AMD 3015e,1.2 GHz (2 cores),52,539,986,amd,
+3251,Intel Xeon w5-2455X,3.2 GHz (12 cores),44,2102,13557,intel,Sapphire Rapids
+3252,AMD EPYC 75F3,3.0 GHz (32 cores),5,1637,15056,amd,
+3254,Intel Core i7-9700E,2.6 GHz (8 cores),12,1497,5661,intel,Coffee Lake
+3256,Intel Xeon W-2275,3.3 GHz (14 cores),89,1587,10448,intel,Cascade Lake
+3257,Intel Xeon W-2265,3.5 GHz (12 cores),20,1511,9989,intel,Cascade Lake
+3258,Intel Xeon E-2144G,3.6 GHz (4 cores),43,1508,4869,intel,Coffee Lake
+3261,Intel Xeon W-1270,3.4 GHz (8 cores),20,1718,7945,intel,Comet Lake
+3262,Intel Celeron 5205U,1.9 GHz (2 cores),48,390,677,intel,Comet Lake
+3263,Intel Celeron 4205U,1.8 GHz (2 cores),31,349,591,intel,Whiskey Lake
+3264,Intel Xeon W-1270P,3.8 GHz (8 cores),7,1770,8589,intel,Comet Lake
+3265,Intel Xeon E-2378,2.6 GHz (8 cores),22,1937,7704,intel,Rocket Lake
+3266,Intel Xeon E-2336,2.9 GHz (6 cores),5,2048,7454,intel,Rocket Lake
+3268,AMD Ryzen 7 PRO 7730U,2.0 GHz (8 cores),85,1560,5661,amd,
+3259,Intel Xeon Gold 6430,2.1 GHz (32 cores),9,1417,11212,intel,Sapphire Rapids
+1912,AMD A10 PRO-7350B,2.1 GHz (4 cores),17,284,663,amd,Bald Eagle
+493,Intel Pentium T3200,2.0 GHz (2 cores),10,194,327,intel-pentium,Merom
+1067,Intel Core i3-4340,3.6 GHz (2 cores),7,982,2043,intel-4g-i3,Haswell
+2250,Intel Core i3-7320,4.1 GHz (2 cores),16,1389,2732,intel-7g-i3,Kaby Lake
+2439,AMD A10 PRO-7850B,3.7 GHz (4 cores),5,462,1194,amd,Kaveri
+670,Intel Xeon E5504,2.0 GHz (4 cores),5,289,847,intel-xeon,Gainestown
+2750,Intel Core i7-1185G7E,2.8 GHz (4 cores),5,1756,5459,intel,Tiger Lake
+2530,Intel Core i7-7820EQ,3.0 GHz (4 cores),12,746,1922,intel-7g-i7,Kaby Lake
+2513,Intel Pentium G5600,3.9 GHz (2 cores),10,794,1621,intel-pentium,Coffee Lake S
+223,Intel Core 2 Duo E6700,2.7 GHz (2 cores),7,300,501,intel,Conroe
+3583,AMD Ryzen 9 7940HS,4.0 GHz (8 cores),8541,2452,11540,AMD,
+3584,AMD Ryzen 7 7840HS,3.8 GHz (8 cores),10153,2359,10996,AMD,
+3585,AMD Ryzen 7 7840U,3.3 GHz (8 cores),2048,2076,8754,AMD,
+3586,AMD Ryzen 5 7640HS,4.3 GHz (6 cores),1409,2294,9198,AMD,
+3587,AMD Ryzen 7 PRO 7840HS,3.8 GHz (8 cores),322,2221,10587,AMD,
+3588,AMD Ryzen 7 PRO 7840U,3.3 GHz (8 cores),1956,2146,9432,AMD,
+2405,Intel Celeron G1830,2.8 GHz (2 cores),5,526,924,intel-celeron,Haswell
+489,Intel Pentium T2330,1.6 GHz (2 cores),8,152,240,intel-pentium,Merom
+737,AMD A6-3430MX,1.7 GHz (4 cores),8,254,681,amd,Llano
+158,Intel Atom N550,1.5 GHz (2 cores),10,64,141,intel,Pineview
+2734,Intel Xeon Gold 6254,3.1 GHz (18 cores),7,1374,10612,intel,Cascade Lake
+438,Intel Core i7-965,3.2 GHz (4 cores),15,489,1702,intel,Bloomfield
+131,AMD Turion 64 X2 TL-50,1.6 GHz (2 cores),6,94,147,amd,Taylor
+459,Intel Pentium E2160,1.8 GHz (2 cores),18,176,275,intel-pentium,Conroe
+275,Intel Core 2 Duo T5670,1.8 GHz (2 cores),5,190,314,intel,Merom
+262,Intel Core 2 Duo P9500,2.5 GHz (2 cores),5,343,583,intel,Penryn
+426,Intel Core i7-860S,2.5 GHz (4 cores),8,424,1286,intel,Lynnfield
+317,Intel Core 2 Extreme X9100,3.1 GHz (2 cores),5,286,422,intel,Penryn
+574,Intel Core i7-2677M,1.8 GHz (2 cores),7,338,673,intel,Sandy Bridge
+1416,Intel Core i5-3570T,2.3 GHz (4 cores),7,588,1700,intel,Ivy Bridge
+32,AMD Athlon 64 X2 6000+,3.0 GHz (2 cores),12,232,394,amd,"Brisbane, Windsor"
+491,Intel Pentium T2390,1.9 GHz (2 cores),6,179,287,intel-pentium,Merom
+372,Intel Core i3-560,3.3 GHz (2 cores),9,445,940,intel,Clarkdale
+1626,AMD E2-3800,1.3 GHz (4 cores),8,136,389,amd,Kabini
+292,Intel Core 2 Duo T7600,2.3 GHz (2 cores),8,254,423,intel,Merom
+484,Intel Pentium SU4100,1.3 GHz (2 cores),6,166,290,intel-pentium,Penryn
+88,AMD Phenom II X4 940 Black Edition,3.0 GHz (4 cores),7,338,1035,amd,Deneb
+3218,Intel Xeon Gold 6438Y+,2.0 GHz (32 cores),5,1358,12068,intel,Sapphire Rapids
+2451,Intel Atom x5-E8000,1.0 GHz (4 cores),7,151,430,intel,Braswell
+415,Intel Core i7-620LM,2.0 GHz (2 cores),5,379,636,intel,Arrandale
+940,Intel Xeon E5606,2.1 GHz (4 cores),6,329,1035,intel-xeon,Westmere-EP
+2438,Intel Celeron G1840T,2.5 GHz (2 cores),8,423,665,intel-celeron,Haswell
+171,Intel Celeron 450,2.2 GHz (1 core),5,159,161,intel-celeron,Conroe
+756,Intel Xeon E7-4830,2.1 GHz (8 cores),5,233,1703,intel-xeon,Westmere EX
+2258,AMD Phenom II X3 B75,3.0 GHz (3 cores),7,339,810,amd,Heka
+3112,Intel Xeon E-2356G,3.2 GHz (6 cores),26,2044,7213,intel,Rocket Lake
+1872,Intel Pentium G3460,3.5 GHz (2 cores),12,621,1067,intel-pentium,Haswell
+30,AMD Athlon 64 X2 5600+,2.8 GHz (2 cores),5,231,401,amd,"Brisbane, Windsor"
+730,AMD A8-3510MX,1.8 GHz (4 cores),10,252,696,amd,Llano
+3125,Intel Xeon Gold 6348,2.6 GHz (28 cores),5,1490,14816,intel,Ice Lake
+1142,Intel Xeon E5-2407,2.2 GHz (4 cores),5,310,1151,intel-xeon,Sandy Bridge-EN
+479,Intel Pentium II/III,0 MHz (1 core),8,2231,2187,intel-pentium,Yorkfield
+532,AMD Athlon II X3 435,2.9 GHz (3 cores),5,304,725,amd,Rana
+8,AMD Athlon 64 3500+,2.2 GHz (1 core),5,129,116,amd,"Lima, NewCastle, Orleans, Venice"
+822,Intel Xeon E3-1235,3.2 GHz (4 cores),6,588,1995,intel-xeon,Sandy Bridge
+3599,AMD EPYC 9554P,3.1 GHz (64 cores),8,1911,17978,AMD,
+3600,AMD Ryzen 5 7500F,3.7 GHz (6 cores),7880,2757,12675,AMD,
+3602,AMD Ryzen 7 7840U,3.3 GHz (8 cores),805,2251,10351,AMD,
+3604,AMD Ryzen 5 7640U,3.5 GHz (6 cores),404,2129,8685,AMD,
+3605,AMD EPYC 9754,2.2 GHz (128 cores),7,1603,15552,AMD,
+3606,Intel Xeon Gold 5220R,2.2 GHz (24 cores),5,1328,9982,intel,Cascade Lake
+3607,AMD Ryzen 7 8700G,4.2 GHz (8 cores),1484,2649,13644,AMD,
+3608,Intel Core Ultra 9 185H,2.3 GHz (16 cores),2822,2238,11975,intel,Meteor Lake
+3609,AMD Ryzen 9 PRO 7940HS,4.0 GHz (8 cores),247,2325,10994,AMD,
+3610,AMD Ryzen 7 7840U,3.3 GHz (8 cores),387,2148,9143,AMD,
+3614,AMD Ryzen 7 5700X3D,3.0 GHz (8 cores),6525,1924,10112,AMD,
+3616,AMD Ryzen 7 5700,3.7 GHz (8 cores),400,2001,8830,AMD,
+3617,Intel Xeon Gold 6426Y,2.5 GHz (16 cores),5,1706,13172,intel,Sapphire Rapids
+3618,Intel Xeon w5-3435X,3.1 GHz (16 cores),89,2077,15713,intel,Sapphire Rapids
+3619,Intel Xeon w5-2465X,3.1 GHz (16 cores),178,2117,14534,intel,Sapphire Rapids
+3620,AMD Ryzen Z1,3.2 GHz (6 cores),333,2244,8274,AMD,
+3621,Intel Xeon E-2174G,3.8 GHz (4 cores),38,1557,5098,intel,Coffee Lake
+3625,AMD Ryzen 5 PRO 7540U,3.2 GHz (6 cores),247,2107,7637,AMD,
+3626,AMD Ryzen 5 7540U,3.2 GHz (6 cores),103,2230,8188,AMD,
+3627,AMD Ryzen 9 7945HX3D,2.3 GHz (16 cores),309,2768,16772,AMD,
+3628,AMD Ryzen 9 8945HS,4.0 GHz (8 cores),2848,2388,11624,AMD,
+3632,AMD EPYC 9254,2.9 GHz (24 cores),7,2132,17488,AMD,
+3633,AMD Ryzen 3 7330U,2.3 GHz (4 cores),183,1502,4098,AMD,
+3635,AMD Athlon Silver 7120U,2.4 GHz (2 cores),101,968,1605,AMD,
+3636,Intel Core Ultra 5 134U,700 MHz (12 cores),49,1987,8004,intel,Meteor Lake
+3637,Intel Xeon w7-3465X,2.5 GHz (28 cores),87,1947,16274,intel,Sapphire Rapids
+3641,AMD Ryzen 7 8845HS,3.8 GHz (8 cores),6567,2337,11034,AMD,
+3642,AMD EPYC 7F72,3.2 GHz (24 cores),6,1278,11274,AMD,
+3643,Intel Xeon Gold 5315Y,3.2 GHz (8 cores),5,1422,8127,intel,Ice Lake
+3644,Intel Core i9-12900E,2.3 GHz (16 cores),32,1748,10176,intel,Alder Lake
+3646,AMD EPYC 9174F,4.1 GHz (16 cores),10,2244,17363,AMD,
+3647,AMD Ryzen 5 5500H,3.3 GHz (4 cores),285,1528,4149,AMD,
+3648,AMD EPYC 9454P,2.8 GHz (48 cores),18,2005,19832,AMD,
+3649,Intel Xeon Gold 6244,3.6 GHz (8 cores),9,1468,8297,intel,Cascade Lake
+3650,AMD Ryzen 3 PRO 5350GE,3.6 GHz (4 cores),34,1779,5300,AMD,
+3651,Intel Xeon Bronze 3204,1.9 GHz (6 cores),12,682,2872,intel,Cascade Lake
+3652,AMD Ryzen 7 PRO 2700,3.2 GHz (8 cores),60,1109,5355,AMD,
+3653,Intel Xeon Silver 4410Y,2.0 GHz (12 cores),17,1526,9750,intel,Sapphire Rapids
+3656,Intel Xeon Platinum 8462Y+,2.8 GHz (32 cores),6,1982,20762,intel,Sapphire Rapids
+3657,Intel Xeon E-2124,3.3 GHz (4 cores),31,1447,3961,intel,Coffee Lake
+3661,Intel Xeon Gold 6334,3.6 GHz (8 cores),22,1525,10241,intel,Ice Lake
+3662,Intel Xeon E-2334,3.4 GHz (4 cores),16,1603,5132,intel,Rocket Lake
+3663,Intel Xeon w7-3445,2.6 GHz (20 cores),47,1994,14993,intel,Sapphire Rapids
+3666,Intel Core i3-10105T,3.0 GHz (4 cores),27,1267,3682,intel,Comet Lake
+3668,AMD Ryzen 3 PRO 4350GE,3.5 GHz (4 cores),49,1434,4577,AMD,
+3669,Intel Xeon E-2246G,3.6 GHz (6 cores),17,1613,5988,intel,Coffee Lake
+3672,Intel Celeron G4930,3.2 GHz (2 cores),30,643,1075,intel,Coffee Lake
+3673,Intel Celeron N4505,2.0 GHz (2 cores),16,446,762,intel,Jasper Lake
+3674,AMD EPYC 7773X,2.2 GHz (64 cores),7,1536,15554,AMD,
+3676,Intel Xeon w3-2425,3.0 GHz (6 cores),26,1800,8264,intel,Sapphire Rapids
+3677,Intel Xeon E-2314,2.8 GHz (4 cores),19,1498,3818,intel,Rocket Lake
+3678,Intel Xeon w7-2475X,2.6 GHz (20 cores),29,2078,15311,intel,Sapphire Rapids
+3679,Intel Core i3-12100E,3.2 GHz (4 cores),27,2200,7709,intel,Alder Lake
+3680,Intel Core i5-12500E,2.9 GHz (6 cores),5,1776,8507,intel,Alder Lake
+3681,AMD Ryzen 9 PRO 6950HS,3.3 GHz (8 cores),18,1903,8756,AMD,
+3682,Intel Xeon Gold 5215,2.5 GHz (10 cores),12,1095,6573,intel,Cascade Lake
+3683,AMD Ryzen 5 7540U,3.2 GHz (6 cores),45,2083,7956,AMD,
+3684,Intel Core i5-9500E,3.0 GHz (6 cores),11,1251,4485,intel,Coffee Lake
+3689,Intel Celeron 3965U,2.2 GHz (2 cores),39,449,799,intel,Kaby Lake
+3691,AMD EPYC 7343,3.2 GHz (16 cores),9,1533,11934,AMD,
+3694,Intel Core i3-8300T,3.2 GHz (4 cores),11,1171,3436,intel,Coffee Lake
+3698,Intel Xeon E-2134,3.5 GHz (4 cores),37,1495,5011,intel,Coffee Lake
+3699,Intel Pentium Gold G5400T,3.1 GHz (2 cores),32,643,1323,intel,Coffee Lake
+3704,Intel Xeon E-2324G,3.1 GHz (4 cores),12,2069,5340,intel,Rocket Lake
+3707,AMD Ryzen 3 PRO 3200GE,3.3 GHz (4 cores),33,1049,2940,AMD,
+3716,Intel Xeon Bronze 3106,1.7 GHz (8 cores),10,578,3102,intel,Skylake
+3718,Intel Celeron 3867U,1.8 GHz (2 cores),21,354,630,intel,Kaby Lake R
+3719,AMD Athlon PRO 300GE,3.4 GHz (2 cores),20,925,1894,AMD,
+3720,AMD EPYC 9654P,2.4 GHz (96 cores),6,1981,22141,AMD,
+3722,Intel Celeron G5905T,3.3 GHz (2 cores),12,670,1076,intel,Comet Lake
+3725,Intel Atom x6425RE,1.9 GHz (4 cores),7,324,919,intel,Elkhart Lake
+3726,Intel Pentium J6426,2.0 GHz (4 cores),6,479,1322,intel,Elkhart Lake
+3728,AMD Ryzen 7 5700GE,3.2 GHz (8 cores),38,2008,7095,AMD,
+3738,Intel Xeon w3-2423,2.1 GHz (6 cores),34,1644,7222,intel,Sapphire Rapids
+3745,AMD Ryzen 3 PRO 7330U,2.3 GHz (4 cores),51,1567,4515,AMD,
+3748,AMD Athlon Gold 7220U,2.4 GHz (2 cores),14,1024,2176,AMD,
+3750,Intel Core i7-11850HE,2.6 GHz (8 cores),18,1984,8576,intel,Tiger Lake
+3751,AMD Ryzen 3 PRO 5475U,2.7 GHz (4 cores),16,1612,4525,AMD,
+3752,AMD Ryzen 5 5600GE,3.4 GHz (6 cores),20,1895,6302,AMD,
+3753,Intel Pentium 6805,1.1 GHz (2 cores),11,1209,2212,intel,Ice Lake
+3754,Intel Xeon Gold 6234,3.3 GHz (8 cores),19,1395,8546,intel,Cascade Lake
+3757,Intel Core i7-10700TE,2.0 GHz (8 cores),6,1457,7140,intel,Comet Lake
+3759,AMD Athlon Gold 3150C,2.4 GHz (2 cores),7,852,1634,AMD,
+3762,Intel Core i5-4570TE,2.7 GHz (2 cores),8,966,1857,intel,Haswell
+3763,Intel Celeron 4305UE,2.0 GHz (2 cores),9,668,1086,intel,Whiskey Lake
+3764,AMD Ryzen 5 PRO 7640HS,4.3 GHz (6 cores),61,2247,9170,AMD,
+3765,AMD Ryzen 7 8840U,3.3 GHz (8 cores),1061,2191,9344,AMD,
+3766,Intel Xeon E-2186G,3.8 GHz (6 cores),12,1550,6204,intel,Coffee Lake
+3767,Intel Pentium Gold G5420T,3.2 GHz (2 cores),11,679,1388,intel,Coffee Lake
+3772,Intel Xeon w7-3455,2.5 GHz (24 cores),14,1852,13472,intel,Sapphire Rapids
+3773,Intel Core i3-12300T,2.3 GHz (4 cores),33,2123,6782,intel,Alder Lake
+3776,AMD Ryzen 5 7645HX,4.0 GHz (6 cores),12,2657,11586,AMD,
+3781,Intel Celeron G5925,3.6 GHz (2 cores),6,774,1266,intel,Comet Lake
+3785,Intel Core i7-13700E,1.9 GHz (16 cores),74,2437,12728,intel,Raptor Lake
+3791,Intel Xeon E-2244G,3.8 GHz (4 cores),7,1527,5060,intel,Coffee Lake
+3792,Intel Xeon w5-3425,3.2 GHz (12 cores),52,1877,12191,intel,Sapphire Rapids
+3793,Intel Core i5-11600T,1.7 GHz (6 cores),12,1791,6653,intel,Rocket Lake
+3800,Intel Core i3-13100E,3.3 GHz (4 cores),17,2001,7025,intel,Raptor Lake
+3805,Intel Xeon W-11865MRE,2.6 GHz (8 cores),7,2113,8075,intel,Tiger Lake
+3807,Intel Xeon Gold 5418Y,2.0 GHz (24 cores),8,1377,11943,intel,Sapphire Rapids
+3809,AMD Ryzen 5 PRO 2600,3.4 GHz (6 cores),21,1175,4979,AMD,
+3810,AMD EPYC 9684X,2.6 GHz (96 cores),15,1586,15668,AMD,
+3816,AMD Ryzen 5 5600GT,3.6 GHz (6 cores),1053,2034,7951,AMD,
+3817,Intel Core i9-10900E,2.8 GHz (10 cores),6,1575,8162,intel,Comet Lake
+3822,AMD Ryzen 9 PRO 7945,3.7 GHz (12 cores),10,2920,16722,AMD,
+3826,Intel Celeron G5900,3.4 GHz (2 cores),15,662,1086,intel,Comet Lake
+3828,Intel Core i3-13100TE,2.4 GHz (4 cores),7,1739,5703,intel,Raptor Lake
+3831,AMD Ryzen 5 8640U,3.5 GHz (6 cores),81,2138,8189,AMD,
+3832,Intel Pentium Gold G6400T,3.4 GHz (2 cores),9,704,1406,intel,Comet Lake
+3833,Intel Core i3-9300,3.7 GHz (4 cores),5,1486,3968,intel,Coffee Lake
+3840,Intel Xeon Platinum 8351N,2.4 GHz (36 cores),6,1617,15233,intel,Ice Lake
+3842,Intel Core i7-12700TE,1.4 GHz (12 cores),9,1567,7217,intel,Alder Lake
+3843,Intel Celeron G4900T,2.9 GHz (2 cores),8,566,940,intel,Coffee Lake
+3844,Intel Xeon W-3345,3.0 GHz (24 cores),7,1417,13107,intel,Ice Lake
+3845,Intel Core i3-10300T,3.0 GHz (4 cores),10,1333,4218,intel,Comet Lake
+3847,Intel Core 7 150U,1.8 GHz (10 cores),656,2147,7438,intel,Raptor Lake
+3848,Intel Celeron 6305E,1.8 GHz (2 cores),12,813,1377,intel,Tiger Lake
+3852,Intel Xeon E3-1286 v3,3.7 GHz (4 cores),11,1365,4472,intel,Haswell
+3856,Intel Core i3-9100TE,2.2 GHz (4 cores),17,1105,3214,intel,Coffee Lake
+3861,Intel Xeon E-2126G,3.3 GHz (6 cores),19,1565,5743,intel,Coffee Lake
+3867,Intel Core i3-10325,3.9 GHz (4 cores),6,1697,5712,intel,Comet Lake
+3870,Intel Celeron G6900T,2.8 GHz (2 cores),7,1422,2460,intel,Alder Lake
+3872,AMD Ryzen 7 PRO 7745,3.8 GHz (8 cores),9,2672,13312,AMD,
+3876,Intel Celeron J3455E,1.5 GHz (4 cores),5,269,796,intel,Apollo Lake
+3878,Intel Celeron 4305U,2.2 GHz (2 cores),5,757,1331,intel,Whiskey Lake
+3879,Intel Xeon w3-2435,3.1 GHz (8 cores),28,1898,10297,intel,Sapphire Rapids
+3883,Intel Celeron G1820TE,2.2 GHz (2 cores),6,407,707,intel,Haswell
+3885,Intel Xeon W-1250P,4.1 GHz (6 cores),9,1647,6633,intel,Comet Lake
+3888,AMD Athlon PRO 3045B,2.3 GHz (2 cores),6,766,1287,AMD,
+3891,Intel Core i5-10500E,3.1 GHz (6 cores),8,1417,5998,intel,Comet Lake
+3893,AMD Ryzen 5 PRO 7645,3.8 GHz (6 cores),6,2631,11286,AMD,
+3896,Intel Xeon W-1370,2.9 GHz (8 cores),9,2108,9090,intel,Rocket Lake
+3897,Intel Core i3-10305,3.8 GHz (4 cores),6,1536,4654,intel,Comet Lake
+3898,Intel Xeon W-1350P,4.0 GHz (6 cores),6,2206,8105,intel,Rocket Lake
+3899,Intel Celeron 7305E,1.0 GHz (5 cores),7,536,1383,intel,Alder Lake
+3900,Intel Core i3-10100E,3.2 GHz (4 cores),5,1150,3455,intel,Comet Lake
+3901,AMD Ryzen 7 PRO 5845,3.4 GHz (8 cores),5,2137,9464,AMD,
+3911,AMD Ryzen 7 PRO 2700X,3.6 GHz (8 cores),11,1250,6227,AMD,
+3926,AMD Ryzen 3 7440U,3.0 GHz (4 cores),5,2003,5806,AMD,
+3928,Intel Core i3-6100TE,2.7 GHz (2 cores),8,935,1870,intel,Skylake
+3938,AMD Athlon PRO 200GE,3.2 GHz (2 cores),5,932,1887,AMD,
+3943,Intel Xeon E5-2690 v4,2.6 GHz (14 cores),7,1072,8934,intel,Broadwell
+3976,Intel Xeon E3-1285 v4,3.5 GHz (4 cores),16,1323,4450,intel,Broadwell
+3984,Intel Atom x6416RE,1.7 GHz (4 cores),6,262,765,intel,Elkhart Lake
+3986,Intel Pentium Gold G7400T,3.1 GHz (2 cores),9,1674,3571,intel,Alder Lake
+4037,Intel Core i9-14900K,3.2 GHz (24 cores),17997,3067,20428,intel,Raptor Lake
+4038,Intel Core i7-14700K,3.4 GHz (20 cores),10350,2936,18946,intel,Raptor Lake
+4039,Intel Core i9-14900KF,3.2 GHz (24 cores),8470,3081,20597,intel,Raptor Lake
+4040,Intel Core i7-14700KF,3.4 GHz (20 cores),8362,2976,19338,intel,Raptor Lake
+4041,Intel Core i5-14600K,3.5 GHz (14 cores),4203,2812,15938,intel,Raptor Lake
+4042,Intel Core i5-14600KF,3.5 GHz (14 cores),4377,2780,15702,intel,Raptor Lake
+4043,Intel Core i9-14900HX,2.2 GHz (24 cores),5829,2688,15721,intel,Raptor Lake
+4044,Intel Core i5-14500,2.6 GHz (14 cores),1404,2539,13060,intel,Raptor Lake
+4045,Intel Core i7-14700,2.1 GHz (20 cores),1723,2717,15950,intel,Raptor Lake
+4046,Intel Core i7-14650HX,2.2 GHz (16 cores),1203,2443,13322,intel,Raptor Lake
+4047,Intel Core i7-14700HX,2.1 GHz (20 cores),1746,2512,13631,intel,Raptor Lake
+4048,Intel Core i5-14400F,2.5 GHz (10 cores),1591,2341,11279,intel,Raptor Lake
+4049,Intel Core i7-14700F,2.1 GHz (20 cores),1837,2717,16619,intel,Raptor Lake
+4050,Intel Core i9-14900,2.0 GHz (24 cores),386,2824,17057,intel,Raptor Lake
+4051,Intel Core i3-14100F,3.5 GHz (4 cores),353,2394,8131,intel,Raptor Lake
+4052,Intel Core i5-14400,2.5 GHz (10 cores),554,2359,10986,intel,Raptor Lake
+4053,Intel Core i5-14600,2.7 GHz (14 cores),133,2632,13967,intel,Raptor Lake
+4054,Intel Core i3-14100,3.5 GHz (4 cores),265,2413,7705,intel,Raptor Lake
+4055,Intel Core i5-14600T,1.8 GHz (14 cores),51,2556,12865,intel,Raptor Lake
+4056,Intel Core i5-14500T,1.7 GHz (14 cores),144,2364,9575,intel,Raptor Lake
+4057,Intel Core i9-14900F,2.0 GHz (24 cores),422,2870,18440,intel,Raptor Lake
+1,AMD Athlon 1640B,2.7 GHz (1 core),5,135,136,amd,
+3631,AMD EPYC 9374F,3.8 GHz (32 cores),13,2306,18263,AMD,
+3612,AMD EPYC 9354,3.2 GHz (32 cores),10,1731,12856,AMD,
+1339,Intel Celeron E3500,2.7 GHz (2 cores),8,274,406,intel-celeron,Wolfdale
+4079,AMD Ryzen 5 8640HS,3.5 GHz (6 cores),519,2139,8158,AMD,
+4083,AMD Ryzen 7 8840HS,3.3 GHz (8 cores),1411,2054,9024,AMD,
+2101,Intel Xeon E3-1240L v5,2.1 GHz (4 cores),13,1054,3420,intel-xeon,Skylake
+4062,Intel Xeon E5-4627 v4,2.6 GHz (10 cores),5,1111,6088,intel,Broadwell
+3717,Intel Xeon Gold 6346,3.1 GHz (16 cores),5,1489,12473,intel,Ice Lake
+2540,AMD A4-9125,2.3 GHz (2 cores),5,330,509,amd,Stoney Ridge
+2096,Intel Xeon E3-1280 v6,3.9 GHz (4 cores),23,1434,4634,intel-xeon,Kaby Lake
+4087,Intel Core i5-14500HX,2.6 GHz (14 cores),167,2336,12330,intel,Raptor Lake
+3664,Intel Xeon Gold 6442Y,2.6 GHz (24 cores),5,1996,17199,intel,Sapphire Rapids
+2766,Intel Xeon Platinum 8124M,3.0 GHz (18 cores),8,1219,11088,intel,Skylake
+3865,Intel Xeon Gold 5416S,2.0 GHz (16 cores),5,1732,11927,intel,Sapphire Rapids
+2281,Intel Xeon Gold 5120,2.2 GHz (14 cores),5,844,5913,intel-xeon,Skylake
+3687,AMD EPYC 9534,2.4 GHz (64 cores),5,1646,15433,AMD,
+1169,AMD Athlon II X2 280,3.6 GHz (2 cores),5,334,593,amd,Regor
+4067,Intel Celeron G4930T,3.0 GHz (2 cores),6,464,642,intel,Coffee Lake
+3665,AMD Ryzen 5 8500G,3.5 GHz (6 cores),18,2354,9444,AMD,
+3215,Intel Xeon Silver 4416+,2.0 GHz (20 cores),8,1759,13121,intel,Sapphire Rapids
+3711,Intel Xeon W-3265,2.7 GHz (24 cores),7,1242,12398,intel,Cascade Lake
+2324,Intel Xeon E5-2679 v9,2.5 GHz (20 cores),22,1122,9602,intel-xeon,Broadwell
+1937,AMD Turion II Neo N54L,2.2 GHz (2 cores),7,219,376,amd,Geneva
+4080,Intel Xeon Silver 4310T,2.3 GHz (10 cores),12,1388,8557,intel,Ice Lake
+518,AMD Athlon II Neo N36L,1.3 GHz (2 cores),5,113,180,amd,Champlain
+3272,Intel Celeron G6900E,3.0 GHz (2 cores),14,1561,2702,intel,Alder Lake
+3884,Intel U300E,1.1 GHz (5 cores),5,2185,5002,intel,Raptor Lake
+3760,AMD Ryzen 3 5125C,3.0 GHz (2 cores),6,1237,2566,AMD,
+3624,AMD Ryzen 5 8600G,4.3 GHz (6 cores),7,2398,10864,AMD,
+2335,"Intel Xeon E5-2618L v3
+",2.3 GHz (8 cores),6,1156,6055,intel-xeon,Haswell
+3789,Intel Xeon Gold 6444Y,3.6 GHz (16 cores),5,1988,16065,intel,Sapphire Rapids
