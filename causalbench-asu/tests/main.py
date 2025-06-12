@@ -369,7 +369,7 @@ def main():
     # zip_file = package_module(state, None)
     # shutil.copy(zip_file, os.getcwd())
 
-    dataset1: Dataset = Dataset(module_id=1444, version=2)
+    # dataset1: Dataset = Dataset(module_id=1444, version=2)
     # dataset2: Dataset = Dataset(module_id=1446, version=2)
     #
     # model1: Model = Model(module_id=4, version=1)  # PCMCI+
@@ -391,6 +391,9 @@ def main():
     #                                    metrics=[(metric1, {}), (metric2, {}), (metric3, {}), (metric4, {}), (metric5, {})])
     #
     # context1.publish(public=True)
+
+    run: Run = Run(zip_file="C:/Users/prata/Downloads/cb-run_runs-c82cc3bb-cfa8-49bc-9814-64c235277483-run.zip")
+    print(run.profiling.gpu)
 
 
 if __name__ == '__main__':
