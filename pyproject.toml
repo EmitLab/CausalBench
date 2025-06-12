@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "causalbench-asu"
-version = "0.1.1"
+version = "0.1.2"
 authors = [
     { name="CausalBench Team", email="support@causalbench.org"}
 ]

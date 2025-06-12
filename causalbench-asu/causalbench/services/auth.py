@@ -51,7 +51,7 @@ def init_auth() -> str | None:
 
 
 def authenticate(config) -> str | None:
-    login_url = "https://www.causalbench.org/api/authenticate/login"
+    login_url = "https://causalbench.org/api/authenticate/login"
 
     if 'email' in config:
         email = config['email']

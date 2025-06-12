@@ -392,8 +392,11 @@ def main():
     #
     # context1.publish(public=True)
 
-    run: Run = Run(zip_file="C:/Users/prata/Downloads/cb-run_runs-c82cc3bb-cfa8-49bc-9814-64c235277483-run.zip")
-    print(run.profiling.gpu)
+    run: Run = Run(zip_file="C:/Users/prata/Downloads/cb-run_runs-602a5a8f-2b37-4350-8f79-410d2683fea7-run.zip")
+    # print(run.profiling.gpu)
+
+    dataset: Dataset = Dataset(module_id=run.results[0].dataset.id, version=run.results[0].dataset.version)
+    print(dataset)
 
 
 if __name__ == '__main__':
