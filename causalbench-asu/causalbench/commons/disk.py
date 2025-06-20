@@ -77,7 +77,7 @@ class Disks:
                 physical_drives[drive_id].usage.free += int(device.fsavail)
                 physical_drives[drive_id].usage.used += int(device.fsused)
 
-        result = self._syscall(['lsblk', '-S', '-J', '-p', '-o', 'NAME,MODEL,ROTA'])
+        result = self._syscall(['lsblk', '-S', '-J', '-o', 'NAME,MODEL,ROTA'])
         drives = json.loads(result)
         drives = bunchify(drives)
 
@@ -90,7 +90,7 @@ class Disks:
 
             physical_drives[drive_id].model = drive.model.strip()
 
-            result = self._syscall(['lsblk', '-J', '-b', '-o', 'NAME,FSSIZE,FSAVAIL,FSUSED', f'{drive_id}'])
+            result = self._syscall(['lsblk', '-J', '-b', '-o', 'NAME,FSSIZE,FSAVAIL,FSUSED', f'/dev/{drive_id}'])
             device = json.loads(result)
             device = bunchify(device)
 
