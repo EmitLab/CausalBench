@@ -7,8 +7,10 @@ import sys
 import tempfile
 from importlib.metadata import version
 from pathlib import Path
+from urllib.parse import urlparse
 from zipfile import ZipFile
 
+import requests
 import yaml
 from bunch_py3 import bunchify, Bunch
 
@@ -54,8 +56,7 @@ def extract_module(module_id, version, module_type: str, zip_file: str) -> str:
     dir_path = causal_bench_path(module_type, module_id, version)
 
     # extract the zip file
-    with ZipFile(zip_file, 'r') as zipped:
-        zipped.extractall(path=dir_path)
+    extract_zip(zip_file, dir_path)
 
     return dir_path
 
@@ -66,8 +67,7 @@ def extract_module_temporary(zip_file: str) -> str:
     atexit.register(lambda: shutil.rmtree(dir_path))
 
     # extract the zip file
-    with ZipFile(zip_file, 'r') as zipped:
-        zipped.extractall(path=dir_path)
+    extract_zip(zip_file, dir_path)
 
     return dir_path
 
@@ -89,3 +89,29 @@ def package_module(state, package_path: str, entry_point: str = 'config.yaml') -
                         zipped.write(file_path, zipped_file_path)
 
     return zip_file
+
+
+def extract_zip(source, out_dir='.'):
+    parsed = urlparse(source)
+    is_url = parsed.scheme in ('http', 'https')
+
+    if is_url:
+        tmp_path = None
+        try:
+            with requests.get(source, stream=True) as r:
+                r.raise_for_status()
+                with tempfile.NamedTemporaryFile(suffix='.zip', delete=False) as tmp_file:
+                    for chunk in r.iter_content(chunk_size=8192):
+                        tmp_file.write(chunk)
+                    tmp_path = tmp_file.name
+
+            with ZipFile(tmp_path, 'r') as zf:
+                zf.extractall(out_dir)
+
+        finally:
+            if tmp_path and os.path.exists(tmp_path):
+                os.remove(tmp_path)
+
+    else:
+        with ZipFile(source, 'r') as zf:
+            zf.extractall(out_dir)
