@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "causalbench-asu"
-version = "0.1.4"
+version = "0.1.5"
 authors = [
     { name="CausalBench Team", email="support@causalbench.org"}
 ]
@@ -26,20 +26,22 @@ classifiers = [
 ]
 
 dependencies = [
+    "certifi",
+    "pip-system-certs",
     "requests",
-    "pyyaml",
-    "bunch_py3",
-    "pandas",
-    "jsonschema",
+    "pyjwt",
+    "siphash24",
     "pipreqs",
     "psutil",
     "py-cpuinfo",
-    "pip-system-certs",
     "pyadl",
     "nvidia-ml-py",
     "pyopencl",
-    "siphash24",
-    "wmi"
+    "wmi",
+    "pyyaml",
+    "bunch_py3",
+    "pandas",
+    "jsonschema"
 ]
 
 [project.urls]
