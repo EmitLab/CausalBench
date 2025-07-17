@@ -9,7 +9,7 @@ def evaluate(prediction: SpatioTemporalGraph, ground_truth: SpatioTemporalGraph,
 
     # convert to adjacency matrix
     pred = helpers.graph_to_adjmat(prediction)
-    truth = helpers. graph_to_adjmat(truth)
+    truth = helpers.graph_to_adjmat(ground_truth)
 
     # align the adjacency matrices
     pred, truth = helpers.align_adjmats(pred, truth)

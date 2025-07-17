@@ -9,6 +9,7 @@ import requests
 import yaml
 
 from causalbench.commons.utils import causal_bench_path, causalbench_version
+from requests import RequestException
 
 __access_token = None
 
@@ -83,6 +84,10 @@ def authenticate(config) -> str | None:
                 return data['access_token']
             return None
 
+        # Invalid credentials
+        if response.status_code == 401:
+            return None
+
         # Potential version mismatch
         if response.status_code == 403:
             message = response.json()['message']
@@ -93,7 +98,7 @@ def authenticate(config) -> str | None:
         # Raise an exception for HTTP errors
         response.raise_for_status()
 
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         print(f'Error occurred: {e}', file=sys.stderr)
         sys.exit(1)
 
