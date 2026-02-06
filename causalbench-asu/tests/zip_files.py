@@ -7,7 +7,7 @@ import tempfile
 def delete_zip_files(start_path):
     for root, dirs, files in os.walk(start_path):
         for file in files:
-            if file.endswith('.zip'):
+            if file.endswith(".zip"):
                 os.remove(os.path.join(root, file))
 
 
@@ -26,12 +26,18 @@ def rezip_subfolders(start_path):
                     else:
                         shutil.copy2(src_path, dst_path)
                 # Create a zip file from the temporary directory contents
-                shutil.make_archive(base_name=item_path, format='zip', root_dir=temp_dir, base_dir='.')
+                shutil.make_archive(
+                    base_name=item_path, format="zip", root_dir=temp_dir, base_dir="."
+                )
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Delete .zip files and rezip sub-folders in the given directory.')
-    parser.add_argument('path', type=str, help='Path to the directory to process.', nargs='?')
+    parser = argparse.ArgumentParser(
+        description="Delete .zip files and rezip sub-folders in the given directory."
+    )
+    parser.add_argument(
+        "path", type=str, help="Path to the directory to process.", nargs="?"
+    )
 
     args = parser.parse_args()
 
@@ -52,5 +58,6 @@ def main():
     delete_zip_files(start_path)
     rezip_subfolders(start_path)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
