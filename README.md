@@ -3,7 +3,7 @@
 The up-to-date documentation regarding usage and features of CausalBench can be found at [https://docs.causalbench.org](https://docs.causalbench.org).
 
 Registration at [CausalBench website](https://causalbench.org) is required in order to utilize the CausalBench package.
-### Install CausalBench: 
+### Install CausalBench:
 `pip install causalbench-asu`
 
 ## Overview
@@ -42,7 +42,7 @@ To start using CausalBench, follow these steps:
 
 ## Contributing
 
-CausalBench is an open-source project and welcomes contributions from the community. We plan to announce the contribution guideline soon. 
+CausalBench is an open-source project and welcomes contributions from the community. We plan to announce the contribution guideline soon.
 
 ## License
 
@@ -58,13 +58,15 @@ for Causal-Learning Benchmarking for Efficacy, Reproducibility, and Scientific
 Collaboration".
 
 ## Support Benchmark Context
-CausalBench is structured to support different machine learning tasks and dataset types. With user contribution, the supported context will be expanded, currently (as of 8/12/25), these models and tasks are provided.    
+CausalBench is structured to support different machine learning tasks and dataset types. With user contribution, the supported context will be expanded, currently (as of 8/12/25), these models and tasks are provided.
 
 | Dataset               | File                 | Description                                                                                                                                           |
 |-----------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Abalone               | data, static graph   |                                                                                                                                                       |
 | Adult                 | data, static graph   |                                                                                                                                                       |
 | Sachs                 | data, static graph   |                                                                                                                                                       |
+| California Housing    | data                 | Regression dataset from sklearn with 20,640 samples predicting median house values in California districts                                            |
+| Diabetes              | data                 | Regression dataset from sklearn with 442 samples predicting disease progression from physiological variables                                          |
 | NetSim                | data, static graph   | Brain FMRI scan<br/> - 28 simulations <br/> - Each has different DGPs, num of nodes (5, 50), num of observations (50 to 5000), 1400 datasets in total |
 | Time series simulated | data, temporal graph |                                                                                                                                                       |
 | Telecom               | data, temporal graph | Summary graph*                                                                                                                                        |
