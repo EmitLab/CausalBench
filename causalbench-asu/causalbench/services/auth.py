@@ -1,18 +1,16 @@
 import os
 import sys
-from datetime import datetime, timezone
-from pathlib import Path
-
 import jwt
 import requests
 import yaml
 
-from causalbench.commons.utils import causal_bench_path, causalbench_version
-from causalbench.commons.password import prompt_password
+from datetime import datetime, timezone
+from pathlib import Path
 from requests import RequestException
 
-
-api_endpoint = 'https://causalbench.org/api_beta'
+from causalbench.commons.constants import API_ENDPOINT
+from causalbench.commons.utils import causal_bench_path, causalbench_version
+from causalbench.commons.password import prompt_password
 
 
 __access_token = None
@@ -56,7 +54,7 @@ def init_auth() -> str | None:
 
 
 def authenticate(config) -> str | None:
-    login_url = f"{api_endpoint}/authenticate/login"
+    login_url = f"{API_ENDPOINT}/authenticate/login"
 
     if 'email' in config:
         email = config['email']
