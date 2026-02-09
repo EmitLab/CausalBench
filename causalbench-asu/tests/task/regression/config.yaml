@@ -1,0 +1,7 @@
+type: task
+name: Regression
+source: N/A
+url: N/A
+description: N/A
+path: regression.py
+class_name: Regression

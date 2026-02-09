@@ -1,3 +1,4 @@
+import copy
 import pandas as pd
 from bunch_py3 import Bunch
 
@@ -94,11 +95,24 @@ class SpatioTemporalGraph:
                 raise IndexError(f'Invalid index: "{name}"')
 
     def __copy__(self):
-        data_object = SpatioTemporalGraph(self.data)
-        data_object._index.cause = self.cause
-        data_object._index.effect = self.effect
-        data_object._index.location_cause = self.location_cause
-        data_object._index.location_effect = self.location_effect
-        data_object._index.strength = self.strength
-        data_object._index.lag = self.lag
-        return data_object
+        cls = self.__class__
+        new = cls.__new__(cls)
+
+        new.data = self.data.copy(deep=False)
+        new._index = copy.copy(self._index)
+        
+        return new
+    
+    def __deepcopy__(self, memo):
+        cls = self.__class__
+        new = cls.__new__(cls)
+        memo[id(self)] = new
+
+        new.data = self.data.copy(deep=True)
+        new._index = copy.deepcopy(self._index, memo)
+        
+        return new
+    
+    def copy(self, deep: bool = False):
+        return copy.deepcopy(self) if deep else copy.copy(self)
+

@@ -1,3 +1,4 @@
+import copy
 import pandas as pd
 from bunch_py3 import Bunch
 
@@ -9,7 +10,7 @@ class SpatioTemporalData:
         self._index = Bunch()
         self._index.target = None
         self._index.time = None
-        self._index.space = None
+        self._index.location = None
 
     @property
     def time(self):
@@ -28,12 +29,12 @@ class SpatioTemporalData:
         self.time = value
 
     @property
-    def space(self):
-        return self._index.space
+    def location(self):
+        return self._index.location
 
-    @space.setter
-    def space(self, value):
-        self.space = value
+    @location.setter
+    def location(self, value):
+        self.location = value
 
     def update_index(self, data: Bunch):
         if 'index' in data:
@@ -60,8 +61,23 @@ class SpatioTemporalData:
                 raise IndexError(f'Invalid index: "{name}"')
 
     def __copy__(self):
-        data_object = SpatioTemporalData(self.data)
-        data_object._index.time = self.time
-        data_object._index.space = self.space
-        data_object._index.target = self.target
-        return data_object
+        cls = self.__class__
+        new = cls.__new__(cls)
+
+        new.data = self.data.copy(deep=False)
+        new._index = copy.copy(self._index)
+        
+        return new
+    
+    def __deepcopy__(self, memo):
+        cls = self.__class__
+        new = cls.__new__(cls)
+        memo[id(self)] = new
+
+        new.data = self.data.copy(deep=True)
+        new._index = copy.deepcopy(self._index, memo)
+        
+        return new
+    
+    def copy(self, deep: bool = False):
+        return copy.deepcopy(self) if deep else copy.copy(self)

@@ -45,10 +45,13 @@ properties:
                         type: object
                         propertyNames:
                             enum:
+                                - target
                                 - time
                                 - location
                                 - cause
                                 - effect
+                                - location_cause
+                                - location_effect
                                 - strength
                                 - lag
                         patternProperties:
