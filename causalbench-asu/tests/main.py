@@ -6,14 +6,21 @@ def main():
 
     task = Task(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/task/regression.zip").load()
 
-    dataset = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/california_housing.zip")
+    # dataset = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/california_housing.zip")
+    dataset = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/breast_cancer_wisconsin.zip")
     data_files = dataset.load()
 
     # model = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/linear_regression.zip")
-    # out = model.execute(Bunch({'data': data_files.file1.copy(deep=True), 'fit_intercept': True, 'positive': False, 'helpers': task.helpers()}))
+    # out = model.execute(Bunch({'data': data_files.file1.copy(deep=True), 'fit_intercept': True, 'tol': 1e-6, 'positive': False, 'helpers': task.helpers()}))
     
-    model = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/decision_tree_regressor.zip")
-    out = model.execute(Bunch({'data': data_files.file1.copy(deep=True), 'criterion': 'squared_error', 'splitter': 'best', 'max_depth': None, 'min_samples_split': 2, 'min_samples_leaf': 1, 'ccp_alpha': 0.0, 'random_state': None, 'helpers': task.helpers()}))
+    # model = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/decision_tree_regressor.zip")
+    # out = model.execute(Bunch({'data': data_files.file1.copy(deep=True), 'criterion': 'squared_error', 'splitter': 'best', 'max_depth': None, 'min_samples_split': 2, 'min_samples_leaf': 1, 'min_weight_fraction_leaf': 0.0, 'max_features': None, 'random_state': None, 'max_leaf_nodes': None, 'min_impurity_decrease': 0.0, 'ccp_alpha': 0.0, 'helpers': task.helpers()}))
+
+    # model = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/logistic_regression.zip")
+    # out = model.execute(Bunch({'data': data_files.file1.copy(deep=True), 'penalty': 'l2', 'C': 1.0, 'l1_ratio': 0.0, 'dual': False, 'tol': 1e-4, 'fit_intercept': True, 'intercept_scaling': 1.0, 'class_weight': None, 'random_state': None, 'solver': 'lbfgs', 'max_iter': 100, 'verbose': 0, 'warm_start': False, 'helpers': task.helpers()}))
+
+    model = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/decision_tree_classifier.zip")
+    out = model.execute(Bunch({'data': data_files.file1.copy(deep=True), 'criterion': 'gini', 'splitter': 'best', 'max_depth': None, 'min_samples_split': 2, 'min_samples_leaf': 1, 'min_weight_fraction_leaf': 0.0, 'max_features': None, 'random_state': None, 'max_leaf_nodes': None, 'min_impurity_decrease': 0.0, 'class_weight': None, 'ccp_alpha': 0.0, 'helpers': task.helpers()}))
 
     print()
     print()

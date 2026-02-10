@@ -1,0 +1,62 @@
+type: model
+name: logistic_regression
+source: scikit-learn
+url: https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+description: Logistic Regression (classification). Fits a linear model for classification using a logistic (sigmoid) function and regularization.
+task:
+    id: 5
+    version: 1
+path: logistic_regression.py
+hyperparameters:
+    penalty:
+        data: string
+        description: Specify the norm of the penalty.
+        value: l2
+    C:
+        data: decimal
+        description: Inverse of regularization strength; must be a positive decimal.
+        value: 1.0
+    l1_ratio:
+        data: decimal
+        description: Elastic-Net mixing parameter. Used only if penalty is elasticnet.
+        value: 0.0
+    dual:
+        data: boolean
+        description: Dual or primal formulation. Dual is only implemented for l2 penalty with liblinear solver.
+        value: False
+    tol:
+        data: decimal
+        description: Tolerance for stopping criteria.
+        value: 0.0001
+    fit_intercept:
+        data: boolean
+        description: Specifies if a constant (intercept) should be added to the decision function.
+        value: True
+    intercept_scaling:
+        data: decimal
+        description: Scaling of the synthetic feature for intercept when using liblinear solver.
+        value: 1.0
+    class_weight:
+        data: string
+        description: Weights associated with classes or 'balanced'.
+        value: null
+    random_state:
+        data: integer
+        description: Seed used by sag, saga, or liblinear solvers.
+        value: null
+    solver:
+        data: string
+        description: Algorithm to use in the optimization problem.
+        value: lbfgs
+    max_iter:
+        data: integer
+        description: Maximum number of iterations taken for the solvers to converge.
+        value: 100
+    verbose:
+        data: integer
+        description: Verbosity level.
+        value: 0
+    warm_start:
+        data: boolean
+        description: Reuse the solution of the previous call to fit as initialization.
+        value: False

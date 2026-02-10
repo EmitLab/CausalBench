@@ -1,4 +1,4 @@
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.tree import DecisionTreeClassifier
 
 
 def execute(
@@ -13,13 +13,14 @@ def execute(
     random_state,
     max_leaf_nodes,
     min_impurity_decrease,
+    class_weight,
     ccp_alpha,
     helpers: any,
 ):
     X = helpers.get_features(data)
     y = helpers.get_target(data)
 
-    model = DecisionTreeRegressor(
+    model = DecisionTreeClassifier(
         criterion=criterion,
         splitter=splitter,
         max_depth=max_depth,
@@ -30,6 +31,7 @@ def execute(
         random_state=random_state,
         max_leaf_nodes=max_leaf_nodes,
         min_impurity_decrease=min_impurity_decrease,
+        class_weight=class_weight,
         ccp_alpha=ccp_alpha,
     )
 

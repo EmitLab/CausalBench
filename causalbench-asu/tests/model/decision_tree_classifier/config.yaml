@@ -1,17 +1,17 @@
 type: model
-name: decision_tree_regressor
+name: decision_tree_classifier
 source: scikit-learn
-url: https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html
-description: "Decision Tree Regressor. A non-parametric supervised learning method used for regression."
+url: https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
+description: "Decision Tree Classifier. A non-parametric supervised learning method used for classification."
 task:
-    id: 4
+    id: 5
     version: 1
-path: decision_tree_regressor.py
+path: decision_tree_classifier.py
 hyperparameters:
     criterion:
         data: string
         description: Function to measure the quality of a split.
-        value: squared_error
+        value: gini
     splitter:
         data: string
         description: Strategy used to choose the split at each node.
@@ -38,7 +38,7 @@ hyperparameters:
         value: null
     random_state:
         data: integer
-        description: Controls the randomness of the estimator.
+        description: Seed used by the random number generator.
         value: null
     max_leaf_nodes:
         data: integer
@@ -48,6 +48,10 @@ hyperparameters:
         data: decimal
         description: A node will be split if this split induces a decrease of the impurity greater than or equal to this value.
         value: 0.0
+    class_weight:
+        data: string
+        description: Weights associated with classes.
+        value: null
     ccp_alpha:
         data: decimal
         description: Complexity parameter used for Minimal Cost-Complexity Pruning.
