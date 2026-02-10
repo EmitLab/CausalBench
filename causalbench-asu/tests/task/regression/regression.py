@@ -22,9 +22,13 @@ class Regression(AbstractTask):
 class Helpers:
 
     @staticmethod
+    def get_features(data: SpatioTemporalData) -> pd.DataFrame:
+        return data.data.loc[:, data.data.columns != data.target]
+
+    @staticmethod
     def get_target(data: SpatioTemporalData) -> pd.Series:
-        return data.data[data.target]
+        return data.data.loc[:, data.target]
     
     @staticmethod
     def set_target(data: SpatioTemporalData, target: pd.Series):
-        data.data[data.target] = target
+        data.data.loc[:, data.target] = target

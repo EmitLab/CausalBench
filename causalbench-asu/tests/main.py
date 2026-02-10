@@ -3,6 +3,45 @@ from causalbench.modules import Dataset, Metric, Model, Context, Run, Task
 def main():
     pass
 
+    task = Task(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/task/regression.zip").load()
+
+    dataset = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/california_housing.zip")
+    data_files = dataset.load()
+    
+    # model
+    print('[MODEL]')
+    data = data_files.file1.copy(deep=True)
+
+    target = task.helpers().get_target(data).copy(deep=True)
+    target[:] = 0
+
+    print(task.helpers().get_target(data))
+
+    task.helpers().set_target(data, target)
+    print(task.helpers().get_target(data))
+
+    print()
+    print()
+    print()
+
+    print('[METRICS]')
+    ground_truth = data_files.file1.copy(deep=True)
+    predicted = data
+
+    target = task.helpers().get_target(ground_truth)
+    print(target)
+
+    target = task.helpers().get_target(predicted)
+    print(target)
+
+    print()
+
+    features = task.helpers().get_features(ground_truth)
+    print(features)
+
+    features = task.helpers().get_features(predicted)
+    print(features)
+
     # task: Task = Task(module_id=1, version=1)
     # # print(task.name)
     # task.publish(public=True)
@@ -14,8 +53,8 @@ def main():
     # # # print(dataset.name)
     # dataset.publish(public=True)
 
-    task: Task = Task(zip_file="C:\\Users\\prata\\Files\\Git\\CausalBench\\causalbench-asu\\tests\\task\\discovery.static.zip")
-    task.publish()
+    # task: Task = Task(zip_file="C:\\Users\\prata\\Files\\Git\\CausalBench\\causalbench-asu\\tests\\task\\discovery.static.zip")
+    # task.publish()
 
     # model: Model = Model(zip_file="C:\\Users\\prata\\Files\\Git\\CausalBench\\causalbench-asu\\tests\\model\\pc.zip")
     # model.publish()

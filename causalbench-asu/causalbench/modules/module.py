@@ -101,7 +101,7 @@ class Module(ABC):
 
         cb_ver = causalbench_version()
         if self.causalbench.major != cb_ver.major or self.causalbench.minor != cb_ver.minor:
-            logging.error(f'CausalBench {self.causalbench.major}:{self.causalbench.minor} is incompatible with {cb_ver.major}:{cb_ver.minor}')
+            logging.error(f'CausalBench {self.causalbench.major}.{self.causalbench.minor}.x is incompatible with {cb_ver.major}.{cb_ver.minor}.x')
             sys.exit(1)
 
         try:

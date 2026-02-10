@@ -58,7 +58,7 @@ def fetch_zip_files(zip_urls, download_dir):
 
 def compute_CATE(data, treatment, outcome, graph):
     try:
-        data_clean = data.copy()
+        data_clean = data.copy(deep=True)
         
         if treatment in data_clean.columns:
             data_clean[treatment] = pd.to_numeric(data_clean[treatment], errors='coerce')
@@ -205,7 +205,7 @@ numeric_cols = [col for col in df.columns if col not in ['dataset', 'time_durati
 print(f"Normalizing columns: {numeric_cols}")
 
 if numeric_cols:
-    df_original = df[numeric_cols].copy()
+    df_original = df[numeric_cols].copy(deep=True)
     
     df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
     

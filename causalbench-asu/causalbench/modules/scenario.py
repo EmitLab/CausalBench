@@ -128,6 +128,6 @@ class Scenario:
                 raise ValueError(f'Parameter "{mapping[field]}" for field "{field}" is not of type {datatype}')
 
             # perform mapping
-            parameters[field] = data[mapping[field]].copy()
+            parameters[field] = data[mapping[field]].copy(deep=True)
 
         return parameters
