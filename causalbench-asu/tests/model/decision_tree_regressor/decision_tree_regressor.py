@@ -10,9 +10,10 @@ def execute(
     min_samples_leaf,
     ccp_alpha,
     random_state,
+    helpers: any
 ):
-    X = data.data
-    y = data.target
+    X = helpers.get_features(data)
+    y = helpers.get_target(data)
 
     model = DecisionTreeRegressor(
         criterion=criterion,
@@ -27,4 +28,6 @@ def execute(
 
     prediction = model.predict(X)
 
-    return {"prediction": prediction}
+    helpers.set_target(data, prediction)
+
+    return {"prediction": data}
