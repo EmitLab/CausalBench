@@ -1,0 +1,38 @@
+type: model
+name: decision_tree_regressor
+source: scikit-learn
+url: https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html
+description: "A decision tree regressor. Builds a tree structure to predict continuous target values by learning simple decision rules inferred from the data features."
+task:
+    id: 1
+    version: 1
+path: decision_tree_regressor.py
+hyperparameters:
+    criterion:
+        data: string
+        description: "The function to measure the quality of a split. One of ['squared_error', 'friedman_mse', 'absolute_error', 'poisson']."
+        value: 'squared_error'
+    splitter:
+        data: string
+        description: "The strategy used to choose the split at each node. One of ['best', 'random']."
+        value: 'best'
+    max_depth:
+        data: integer
+        description: The maximum depth of the tree. If null, nodes are expanded until all leaves are pure or contain less than min_samples_split samples.
+        value: null
+    min_samples_split:
+        data: integer
+        description: The minimum number of samples required to split an internal node.
+        value: 2
+    min_samples_leaf:
+        data: integer
+        description: The minimum number of samples required to be at a leaf node.
+        value: 1
+    ccp_alpha:
+        data: decimal
+        description: Complexity parameter used for Minimal Cost-Complexity Pruning. The subtree with the largest cost complexity that is smaller than ccp_alpha will be chosen.
+        value: 0.0
+    random_state:
+        data: integer
+        description: Controls the randomness of the estimator. Set to an integer for reproducible results.
+        value: null
