@@ -33,7 +33,7 @@ def init_auth() -> str | None:
 
     # config file does not exist
     if not os.path.isfile(config_path):
-        print('Credentials required')
+        print('Please input your CausalBench credentials to proceed.')
         create_config(config_path)
 
     # validate config
@@ -49,7 +49,7 @@ def init_auth() -> str | None:
             return access_token
 
         # authentication failed
-        print('Incorrect credentials')
+        print('Incorrect credentials, please try again.')
         create_config(config_path)
 
 
