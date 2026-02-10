@@ -1,4 +1,8 @@
 # California Housing dataset: https://scikit-learn.org/stable/datasets/real_world.html#california-housing-dataset
+causalbench:
+    major: '0'
+    minor: '2'
+    build: '0'
 type: dataset
 name: california_housing
 source: sklearn
@@ -10,40 +14,51 @@ files:
         data: dataframe
         path: california_housing_data.csv
         headers: true
+        index:
+            target: MedHouseVal
         columns:
             MedInc:
+                index: 0
                 header: MedInc
-                type: continuous
+                type:
                 data: decimal
             HouseAge:
+                index: 1
                 header: HouseAge
-                type: continuous
+                type:
                 data: decimal
             AveRooms:
+                index: 2
                 header: AveRooms
-                type: continuous
+                type:
                 data: decimal
             AveBedrms:
+                index: 3
                 header: AveBedrms
-                type: continuous
+                type:
                 data: decimal
             Population:
+                index: 4
                 header: Population
-                type: continuous
+                type:
                 data: decimal
             AveOccup:
+                index: 5
                 header: AveOccup
-                type: continuous
+                type:
                 data: decimal
             Latitude:
+                index: 6
                 header: Latitude
-                type: continuous
+                type:
                 data: decimal
             Longitude:
+                index: 7
                 header: Longitude
-                type: continuous
+                type:
                 data: decimal
             MedHouseVal:
+                index: 8
                 header: MedHouseVal
-                type: continuous
+                type:
                 data: decimal

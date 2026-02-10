@@ -1,4 +1,8 @@
 # Diabetes dataset: https://scikit-learn.org/stable/datasets/toy_dataset.html#diabetes-dataset
+causalbench:
+    major: '0'
+    minor: '2'
+    build: '0'
 type: dataset
 name: diabetes
 source: sklearn
@@ -10,48 +14,61 @@ files:
         data: dataframe
         path: diabetes_data.csv
         headers: true
+        index:
+            target: target
         columns:
             age:
+                index: 0
                 header: age
-                type: continuous
+                type:
                 data: decimal
             sex:
+                index: 1
                 header: sex
-                type: continuous
+                type:
                 data: decimal
             bmi:
+                index: 2
                 header: bmi
-                type: continuous
+                type:
                 data: decimal
             bp:
+                index: 3
                 header: bp
-                type: continuous
+                type:
                 data: decimal
             s1:
+                index: 4
                 header: s1
-                type: continuous
+                type:
                 data: decimal
             s2:
+                index: 5
                 header: s2
-                type: continuous
+                type:
                 data: decimal
             s3:
+                index: 6
                 header: s3
-                type: continuous
+                type:
                 data: decimal
             s4:
+                index: 7
                 header: s4
-                type: continuous
+                type:
                 data: decimal
             s5:
+                index: 8
                 header: s5
-                type: continuous
+                type:
                 data: decimal
             s6:
+                index: 9
                 header: s6
-                type: continuous
+                type:
                 data: decimal
             target:
+                index: 10
                 header: target
-                type: continuous
+                type:
                 data: decimal
