@@ -1,7 +1,0 @@
-type: task
-name: Classification
-source: N/A
-url: N/A
-description: N/A
-path: classification.py
-class_name: Classification

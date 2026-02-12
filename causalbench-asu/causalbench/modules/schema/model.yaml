@@ -47,6 +47,7 @@ properties:
                             - integer
                             - decimal
                             - boolean
+                            - object
                     description:
                         type: string
                     value:

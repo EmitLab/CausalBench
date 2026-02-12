@@ -1,7 +1,0 @@
-type: task
-name: Causal Discovery (Static)
-source: N/A
-url: N/A
-description: N/A
-path: discovery.static.py
-class_name: DiscoveryStatic
