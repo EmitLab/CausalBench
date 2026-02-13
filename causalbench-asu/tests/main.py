@@ -59,14 +59,23 @@ def main():
 
 
 
+    # task1 = Task(module_id=4, version=1)
+    # task1.publish(public=True)
 
-    # task1 = Task(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/task/classification.zip", module_id=4, version=1)
+    # task1 = Task(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/task/classification.zip")
+    # task1.publish()
     
     # dataset1 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/breast_cancer_wisconsin.zip")
+    # dataset1.publish(public=True)
+
     # dataset2 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/forest_covertype.zip")
+    # dataset2.publish(public=True)
 
     # model1 = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/logistic_regression.zip")
+    # model1.publish(public=True)
+
     # model2 = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/decision_tree_classifier.zip")
+    # model2.publish(public=True)
 
     # metric1 = Metric(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/metric/accuracy_classification.zip")
     # metric2 = Metric(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/metric/precision_classification.zip")
@@ -87,13 +96,20 @@ def main():
 
 
 
-    # task2 = Task(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/task/regression.zip", module_id=5, version=1)
+    # task2 = Task(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/task/regression.zip")
+    # task2.publish()
     
     # dataset3 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/california_housing.zip")
+    # dataset3.publish(public=True)
+
     # dataset4 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/diabetes.zip")
+    # dataset4.publish(public=True)
 
     # model3 = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/linear_regression.zip")
+    # model3.publish(public=True)
+
     # model4 = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/decision_tree_regressor.zip")
+    # model4.publish(public=True)
 
     # metric3 = Metric(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/metric/mae_regression.zip")
     # metric4 = Metric(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/metric/r2score_regression.zip")
