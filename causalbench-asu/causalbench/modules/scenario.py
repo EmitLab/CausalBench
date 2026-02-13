@@ -41,12 +41,12 @@ class Scenario:
 
         # check model compatibility
         if self.model[0].task.id != self.task.module_id or self.model[0].task.version != self.task.version:
-            raise TypeError(f'Model "{self.model[0].name}" not compatible with task "{self.task.module_id}"')
+            raise TypeError(f'Model "{self.model[0].name}" not compatible with task "{self.task.name}"')
 
         # check metric compatibility
         for metric in self.metrics:
             if metric[0].task.id != self.task.module_id or metric[0].task.version != self.task.version:
-                raise TypeError(f'Metric "{metric[0].name}" not compatible with task "{self.task.module_id}"')
+                raise TypeError(f'Metric "{metric[0].name}" not compatible with task "{self.task.name}"')
 
         # map model parameters
         parameters: Bunch = Bunch()

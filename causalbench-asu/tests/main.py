@@ -98,11 +98,11 @@ def main():
 
     # task2 = Task(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/task/regression.zip")
     # task2.publish()
-    
-    # dataset3 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/california_housing.zip")
+
+    # dataset3 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/diabetes.zip")
     # dataset3.publish(public=True)
 
-    # dataset4 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/diabetes.zip")
+    # dataset4 = Dataset(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/data/california_housing.zip")
     # dataset4.publish(public=True)
 
     # model3 = Model(zip_file="C:/Users/prata/Files/Git/CausalBench/causalbench-asu/tests/model/linear_regression.zip")
@@ -127,6 +127,47 @@ def main():
     # run2 = context.execute()
 
     # print(run2)
+
+
+
+    # context1 = Context.create(
+    #     name='Classification (Demo)',
+    #     description='Demonstrate a benchmarking context for classification.',
+    #     task=Task(module_id=4, version=1),
+    #     datasets=[(Dataset(module_id=1471, version=1), {'data': 'file1', 'ground_truth': 'file1'}),
+    #               (Dataset(module_id=1472, version=1), {'data': 'file1', 'ground_truth': 'file1'})],
+    #     models=[(Model(module_id=22, version=1), {}), (Model(module_id=23, version=1), {})],
+    #     metrics=[(Metric(module_id=26, version=1), {}), (Metric(module_id=28, version=1), {})]
+    # )
+
+    # context1.publish(public=True)
+
+    # context1 = Context(module_id=33, version=1)
+    # run1 = context1.execute()
+    # print(run1)
+
+    # run1.publish(public=True)
+
+
+
+    # context2 = Context.create(
+    #     name='Regression (Demo)',
+    #     description='Demonstrate a benchmarking context for regression.',
+    #     task=Task(module_id=5, version=1),
+    #     datasets=[(Dataset(module_id=1473, version=1), {'data': 'file1', 'ground_truth': 'file1'}),
+    #               (Dataset(module_id=1474, version=1), {'data': 'file1', 'ground_truth': 'file1'})],
+    #     models=[(Model(module_id=24, version=1), {}), (Model(module_id=25, version=1), {})],
+    #     metrics=[(Metric(module_id=27, version=1), {}), (Metric(module_id=29, version=1), {})]
+    # )
+
+    # context2.publish(public=True)
+
+
+    # context2 = Context(module_id=34, version=1)
+    # run2 = context2.execute()
+    # print(run2)
+
+    # run2.publish(public=True)
 
 
 

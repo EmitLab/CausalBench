@@ -8,7 +8,7 @@ import tempfile
 from importlib.metadata import version
 from pathlib import Path
 from urllib.parse import urlparse
-from zipfile import ZipFile
+from zipfile import ZipFile, ZIP_DEFLATED
 
 import requests
 import yaml
@@ -76,7 +76,7 @@ def package_module(state, package_path: str, entry_point: str = 'config.yaml') -
     zip_file = tempfile.NamedTemporaryFile(delete=True, suffix='.zip').name
     atexit.register(lambda: os.remove(zip_file))
 
-    with ZipFile(zip_file, 'w') as zipped:
+    with ZipFile(zip_file, 'w', ZIP_DEFLATED, compresslevel=9) as zipped:
         if entry_point:
             zipped.writestr(entry_point, yaml.safe_dump(state, sort_keys=False, indent=4))
 

@@ -11,6 +11,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'CausalBench-Backend', '
 
 import s3_service
 
+
 def get_all_zip_files_from_s3(bucket_name='causalbench-1225'):
     """Get list of ALL ZIP files from S3 bucket (handles pagination)"""
     s3_client = boto3.client('s3')
@@ -91,18 +92,19 @@ def process_zip_file(zip_key):
                         # Only do this if 'task' exists
                         if 'task' in config_data:
                             # Remove name from 'task'
+
                             config_data['task'] = {
-                                'id': config_data['task']['id'],
-                                'version': config_data['task']['version']
+                                'id': config_data['task'][0]['id'],
+                                'version': config_data['task'][0]['version']
                             }
 
                             print(f"Removed name from task")
 
                         # Always do this
                         config_data['causalbench'] = {
-                            'major': 0,
-                            'minor': 2,
-                            'build': 0
+                            'major': '0',
+                            'minor': '2',
+                            'build': '0'
                         }
                         
                         # Reconstruct YAML with proper 4-space indentation
@@ -124,7 +126,7 @@ def process_zip_file(zip_key):
                 # Create new ZIP file with content (modified or unmodified)
                 new_zip_path = temp_dir_path / f"updated_{Path(zip_key).name}"
                 
-                with zipfile.ZipFile(new_zip_path, 'w', zipfile.ZIP_DEFLATED) as new_zip:
+                with zipfile.ZipFile(new_zip_path, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as new_zip:
                     for file_path in extract_dir.rglob("*"):
                         if file_path.is_file():
                             # Calculate relative path from extract_dir
