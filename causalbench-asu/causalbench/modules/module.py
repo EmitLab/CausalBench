@@ -101,7 +101,12 @@ class Module(ABC):
 
         cb_ver = causalbench_version()
         if self.causalbench.major != cb_ver.major or self.causalbench.minor != cb_ver.minor:
-            logging.error(f'CausalBench {self.causalbench.major}.{self.causalbench.minor}.x is incompatible with {cb_ver.major}.{cb_ver.minor}.x')
+            if self.module_id is not None and self.version is not None:
+                logging.error(f'Installed CausalBench {cb_ver.major}.{cb_ver.minor}.x is incompatible with {self.causalbench.major}.{self.causalbench.minor}.x (used by {self.type} with module_id={self.module_id} and version={self.version})')
+            elif self.module_id is not None:
+                logging.error(f'Installed CausalBench {cb_ver.major}.{cb_ver.minor}.x is incompatible with {self.causalbench.major}.{self.causalbench.minor}.x (used by {self.type} with module_id={self.module_id})')
+            else:
+                logging.error(f'Installed CausalBench {cb_ver.major}.{cb_ver.minor}.x is incompatible with {self.causalbench.major}.{self.causalbench.minor}.x (used by {self.type})')
             sys.exit(1)
 
         try:

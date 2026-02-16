@@ -32,24 +32,15 @@ def save_module(module_type, module_id, version, public, input_file, api_base, d
         data = bunchify(response.json())
 
         if response.status_code == 200:
-            if data.version_num == 0:
-                print(f'Published {module_type} with module_id={data.id} (visibility={visibility})', file=sys.stderr)
-            else:
-                print(f'Published {module_type} with module_id={data.id} and version={data.version_num} (visibility={visibility})', file=sys.stderr)
+            print(f'Published {module_type} with module_id={data.id} and version={data.version_num} (visibility={visibility})', file=sys.stderr)
             return data.id, data.version_num
 
         else:
-            if version == 0:
-                print(f'Failed to publish {module_type} with module_id={module_id}: {data.message} ({response.status_code})', file=sys.stderr)
-            else:
-                print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {data.message} ({response.status_code})', file=sys.stderr)
+            print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {data.message} ({response.status_code})', file=sys.stderr)
             sys.exit(1)
 
     except (RequestsJSONDecodeError, AttributeError):
-        if version == 0:
-            print(f'Failed to publish {module_type} with module_id={module_id}: {response.text} ({response.status_code})', file=sys.stderr)
-        else:
-            print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {response.text} ({response.status_code})', file=sys.stderr)
+        print(f'Failed to publish {module_type} with module_id={module_id} and version={version}: {response.text} ({response.status_code})', file=sys.stderr)
         sys.exit(1)
 
 
@@ -74,25 +65,16 @@ def fetch_module(module_type, module_id, version, base_api, default_output_file)
         with open(file_path, 'wb') as file:
             file.write(response.content)
 
-        if version == 0:
-            print(f'Fetched {module_type} with module_id={module_id}', file=sys.stderr)
-        else:
-            print(f'Fetched {module_type} with module_id={module_id} and version={version}', file=sys.stderr)
+        print(f'Fetched {module_type} with module_id={module_id} and version={version}', file=sys.stderr)
         return file_path
 
     else:
         try:
             data = bunchify(response.json())
 
-            if version == 0:
-                print(f'Failed to fetch {module_type} with module_id={module_id}: {data.message} ({response.status_code})', file=sys.stderr)
-            else:
-                print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {data.message} ({response.status_code})', file=sys.stderr)
+            print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {data.message} ({response.status_code})', file=sys.stderr)
             sys.exit(1)
 
         except (RequestsJSONDecodeError, AttributeError):
-            if version == 0:
-                print(f'Failed to fetch {module_type} with module_id={module_id}: {response.text} ({response.status_code})', file=sys.stderr)
-            else:
-                print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {response.text} ({response.status_code})', file=sys.stderr)
+            print(f'Failed to fetch {module_type} with module_id={module_id} and version={version}: {response.text} ({response.status_code})', file=sys.stderr)
             sys.exit(1)
